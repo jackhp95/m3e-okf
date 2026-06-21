@@ -97,7 +97,7 @@ const families = [
     blurb: "Form controls for choosing values.",
     members: ["checkbox", "radio-group", "switch", "slider", "chips"],
     choosing:
-      "**checkbox** = select zero-or-more from a list. **radio-group** = exactly one from a small visible set. **switch** = a single immediate on/off toggle. **slider** = a number within a range. **chips** = compact, often dynamic choices: filter-chips for multi-select filtering, input-chips for tokenized entry, suggestion/assist chips for prompts. For one-of-many where options shouldn't all be visible, use **select** instead of radio-group.",
+      "**checkbox** = select zero-or-more from a list. **switch** = a single immediate on/off toggle (applies instantly, no Save). **slider** = a number within a range. **chips** = compact, often dynamic choices: filter-chips for multi-select filtering, input-chips for tokenized entry, suggestion/assist chips for prompts.\n\n_One-of-many — the key fork:_ use **radio-group** when all options should stay **visible** at once and there are only a few (2–5); use **[select](../components/select.md)** (a closed dropdown menu) when the list is **long or should stay collapsed** until opened. Phrases like \"closed list\", \"dropdown\", or \"pick from a menu\" → select. \"Choose one\" with a handful of always-visible options → radio-group. For an inline horizontal one-of-many that reads as a control, **[segmented-button](../components/segmented-button.md)** is a third option.",
   },
   {
     slug: "text-inputs",
@@ -105,7 +105,7 @@ const families = [
     blurb: "Fields for entering and selecting text.",
     members: ["form-field", "select", "autocomplete", "search", "textarea-autosize", "option"],
     choosing:
-      "Wrap text inputs in **form-field** for labels, supporting text, and validation styling. **select** picks one value from a list (the closed menu). **autocomplete** is a text field with filterable suggestions as you type. **search** is a dedicated search bar/view pattern. **textarea-autosize** grows a multiline field with its content. **option** supplies the items for select/autocomplete listboxes.",
+      "Wrap text inputs in **form-field** for labels, supporting text, and validation styling. **select** = pick one value from a **closed dropdown menu** (the one-of-many control when options stay collapsed; compare with radio-group under Selection controls). **autocomplete** = a text field where the user types and filters live suggestions. **search** = a dedicated search bar/view pattern. **textarea-autosize** grows a multiline field with its content. **option** supplies the items inside select/autocomplete listboxes.",
   },
   {
     slug: "navigation",

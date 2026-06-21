@@ -48,6 +48,19 @@ import "@m3e/web/chips";
 </m3e-filter-chip-set>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Chip with leading icon and label**
+
+```html
+<m3e-chip>
+  <m3e-icon slot="icon" name="menu_book"></m3e-icon>
+  Library
+</m3e-chip>
+```
+
 ## API
 
 ### `<m3e-chip>`
@@ -109,8 +122,8 @@ A chip users interact with to perform a smart or automated action that can span 
 | `href` | `string` | "" | The URL to which the link button points. |
 | `name` |  |  | The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form. |
 | `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
-| `type` | `FormSubmitterType` | "button" | The type of the element. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
+| `type` | `"button" \| "submit" \| "reset"` | "button" | The type of the element. |
 | `value` |  |  | A string representing the value of the chip. |
 | `variant` | `'outlined' \| 'elevated'` | "outlined" | The appearance variant of the chip. |
 
@@ -405,8 +418,8 @@ A chip used to help narrow a user's intent by presenting dynamically generated s
 | `href` | `string` | "" | The URL to which the link button points. |
 | `name` |  |  | The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form. |
 | `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
-| `type` | `FormSubmitterType` | "button" | The type of the element. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
+| `type` | `"button" \| "submit" \| "reset"` | "button" | The type of the element. |
 | `value` |  |  | A string representing the value of the chip. |
 | `variant` | `'outlined' \| 'elevated'` | "outlined" | The appearance variant of the chip. |
 

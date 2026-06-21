@@ -24,6 +24,35 @@ import "@m3e/web/theme";
 <m3e-theme-icon color="#004f4f" scheme="light"></m3e-theme-icon>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Theme with drawer, nav menu, and app bar shell**
+
+```html
+<m3e-theme color="#8B6F47" scheme="auto" contrast="standard" motion="expressive" strong-focus>
+  <m3e-drawer-container start-mode="over">
+    <nav slot="start">
+      <m3e-nav-menu>
+        <a href="/photos">
+          <m3e-nav-menu-item selected>
+            <m3e-icon slot="icon" name="photo_library"></m3e-icon>
+            <span slot="label">Photos</span>
+          </m3e-nav-menu-item>
+        </a>
+      </m3e-nav-menu>
+    </nav>
+    <m3e-app-bar>
+      <m3e-icon-button slot="leading" aria-label="Back">
+        <m3e-icon name="arrow_back"></m3e-icon>
+      </m3e-icon-button>
+      <span slot="title">Title</span>
+    </m3e-app-bar>
+  </m3e-drawer-container>
+</m3e-theme>
+```
+
 ## API
 
 ### `<m3e-theme>`

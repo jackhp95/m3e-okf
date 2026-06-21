@@ -114,7 +114,7 @@ A list of items.
 | Attribute | Type | Default | Description |
 | --- | --- | --- | --- |
 | `href` | `string` | "" | The URL to which the link button points. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
 | `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
 | `download` | `string \| null` | null | A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file. |
 | `disabled` | `boolean` | false | Whether the element is disabled. |
@@ -174,7 +174,7 @@ An item in a list that performs an action.
 | `download` | `string \| null` | null | A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file. |
 | `href` | `string` | "" | The URL to which the link button points. |
 | `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
 
 **Properties** (JS-only, no attribute)
 

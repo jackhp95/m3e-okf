@@ -15,18 +15,21 @@
           {
             "name": "centered",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the title and subtitle are centered."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           },
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large'",
+            "typeSource": "cem",
             "default": "\"small\"",
             "description": "The size of the bar."
           }
@@ -219,78 +222,91 @@
           {
             "name": "auto-activate",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the first option should be automatically activated."
           },
           {
             "name": "case-sensitive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether filtering is case sensitive."
           },
           {
             "name": "filter",
             "type": "'none' | 'contains' | 'starts-with' | 'ends-with' | ((option: M3eOptionElement, term: string) => boolean)",
+            "typeSource": "cem",
             "default": "\"contains\"",
             "description": "Mode in which to filter options."
           },
           {
             "name": "hide-selection-indicator",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the selection indicator."
           },
           {
             "name": "hide-loading",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the menu when loading options."
           },
           {
             "name": "hide-no-data",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the menu when there are no options to show."
           },
           {
             "name": "loading",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether options are being loaded."
           },
           {
             "name": "loading-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Loading...\"",
             "description": "The text announced and presented when loading options."
           },
           {
             "name": "no-data-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"No options\"",
             "description": "The text announced and presented when no options are available for the current term."
           },
           {
             "name": "panel-class",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "Class or list of classes to be applied to the autocomplete's overlay panel."
           },
           {
             "name": "required",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the user is required to make a selection when interacting with the autocomplete."
           },
           {
             "name": "results-label",
             "type": "string | ((count: number) => string)",
+            "typeSource": "cem",
             "default": "(count) => `${count} options`",
             "description": "The text announced when available options change for the current term."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -479,18 +495,21 @@
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large'",
+            "typeSource": "cem",
             "default": "\"medium\"",
             "description": "The size of the badge."
           },
           {
             "name": "position",
             "type": "'above' | 'below' | 'above-after' | 'above-before' | 'below-before' | 'below-after' | 'before' | 'after'",
+            "typeSource": "cem",
             "default": "\"above-after\"",
             "description": "The position of the badge, when attached to another element."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -607,54 +626,63 @@
           {
             "name": "detent",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The zero‑based index of the detent the sheet should open to."
           },
           {
             "name": "detents",
             "type": "string[]",
+            "typeSource": "cem",
             "default": "[]",
             "description": "Detents (discrete height states) the sheet can snap to."
           },
           {
             "name": "handle",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to display a drag handle and enable the top region of the sheet as a gesture\nsurface for dragging between detents."
           },
           {
             "name": "handle-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Drag handle\"",
             "description": "The accessible label given to the drag handle."
           },
           {
             "name": "hideable",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the bottom sheet can hide when its swiped down."
           },
           {
             "name": "hide-friction",
             "type": "number",
+            "typeSource": "cem",
             "default": "0.5",
             "description": "The friction coefficient to hide the sheet."
           },
           {
             "name": "modal",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the bottom sheet behaves as modal."
           },
           {
             "name": "open",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the bottom sheet is open."
           },
           {
             "name": "overshoot-limit",
             "type": "number",
+            "typeSource": "cem",
             "default": "4",
             "description": "A fractional value, between 0 and 100, indicating the maximum visual overshoot allowed when dragging past the minimum or maximum size."
           }
@@ -881,18 +909,21 @@
           {
             "name": "detent",
             "type": "number | undefined",
+            "typeSource": "cem",
             "default": "undefined",
             "description": "The zero‑based index of the detent the sheet should open to."
           },
           {
             "name": "secondary",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Marks this trigger as a secondary trigger for accessibility. Secondary triggers do not receive ARIA ownership."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -949,36 +980,42 @@
           {
             "name": "current",
             "type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | undefined",
+            "typeSource": "cem",
             "default": "undefined",
             "description": "Indicates the current item in the breadcrumb path."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded,\noptionally specifying the new name of the file."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           }
@@ -1013,42 +1050,49 @@
           {
             "name": "item-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The accessible label given to the item's internal button."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "current",
             "type": "'page' | 'step' | 'location' | 'date' | 'time' | 'true' | undefined",
+            "typeSource": "cem",
             "default": "undefined",
             "description": "Indicates the current item in the breadcrumb path."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the internal breadcrumb link button points."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the internal breadcrumb link button."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the internal link target will be downloaded, optionally specifying a file name."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the internal link target and the document."
           }
@@ -1198,6 +1242,7 @@
           {
             "name": "wrap",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether items wrap to a new line."
           }
@@ -1252,80 +1297,94 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled and interactive."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the toggle button is selected."
           },
           {
             "name": "shape",
             "type": "'rounded' | 'square'",
+            "typeSource": "cem",
             "default": "\"rounded\"",
             "description": "The shape of the button."
           },
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large' | 'extra-small' | 'extra-large'",
+            "typeSource": "cem",
             "default": "\"small\"",
             "description": "The size of the button."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           },
           {
             "name": "toggle",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the button will toggle between selected and unselected states."
           },
           {
             "name": "type",
-            "type": "FormSubmitterType",
+            "type": "\"button\" | \"submit\" | \"reset\"",
+            "typeSource": "ts",
             "default": "\"button\"",
             "description": "The type of the element."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "The value associated with the element's name when it's submitted with form data."
           },
           {
             "name": "variant",
             "type": "'text' | 'filled' | 'outlined' | 'elevated' | 'tonal'",
+            "typeSource": "cem",
             "default": "\"text\"",
             "description": "The appearance variant of the button."
           }
@@ -2336,18 +2395,21 @@
           {
             "name": "multi",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether multiple toggle buttons can be selected."
           },
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large' | 'extra-small' | 'extra-large'",
+            "typeSource": "cem",
             "default": "\"small\"",
             "description": "The size of the group."
           },
           {
             "name": "variant",
             "type": "'standard' | 'connected'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The appearance variant of the group."
           }
@@ -2426,42 +2488,49 @@
           {
             "name": "range-start",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "Start of a date range."
           },
           {
             "name": "range-end",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "End of a date range."
           },
           {
             "name": "today",
             "type": "Date",
+            "typeSource": "cem",
             "default": "new Date()",
             "description": "Today's date."
           },
           {
             "name": "date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The selected date."
           },
           {
             "name": "active-date",
             "type": "Date",
+            "typeSource": "cem",
             "default": "new Date()",
             "description": "The active date."
           },
           {
             "name": "min-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The minimum date that can be selected."
           },
           {
             "name": "max-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The maximum date that can be selected."
           }
@@ -2506,30 +2575,35 @@
           {
             "name": "today",
             "type": "Date",
+            "typeSource": "cem",
             "default": "new Date()",
             "description": "Today's date."
           },
           {
             "name": "date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The selected date."
           },
           {
             "name": "active-date",
             "type": "Date",
+            "typeSource": "cem",
             "default": "new Date()",
             "description": "The active date."
           },
           {
             "name": "min-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The minimum date that can be selected."
           },
           {
             "name": "max-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The maximum date that can be selected."
           }
@@ -2561,30 +2635,35 @@
           {
             "name": "today",
             "type": "Date",
+            "typeSource": "cem",
             "default": "new Date()",
             "description": "Today's date."
           },
           {
             "name": "date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The selected date."
           },
           {
             "name": "active-date",
             "type": "Date",
+            "typeSource": "cem",
             "default": "new Date()",
             "description": "The active date."
           },
           {
             "name": "min-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The minimum date that can be selected."
           },
           {
             "name": "max-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The maximum date that can be selected."
           }
@@ -2616,78 +2695,91 @@
           {
             "name": "date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The selected date."
           },
           {
             "name": "max-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The maximum date that can be selected."
           },
           {
             "name": "min-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The minimum date that can be selected."
           },
           {
             "name": "range-end",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "End of a date range."
           },
           {
             "name": "range-start",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "Start of a date range."
           },
           {
             "name": "start-at",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A date specifying the period (month or year) to start the calendar in."
           },
           {
             "name": "start-view",
             "type": "'month' | 'year' | 'multi-year'",
+            "typeSource": "cem",
             "default": "\"month\"",
             "description": "The initial view used to select a date."
           },
           {
             "name": "previous-month-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous month\"",
             "description": "The accessible label given to the button used to move to the previous month."
           },
           {
             "name": "next-month-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next month\"",
             "description": "The accessible label given to the button used to move to the next month."
           },
           {
             "name": "previous-year-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous year\"",
             "description": "The accessible label given to the button used to move to the previous year."
           },
           {
             "name": "next-year-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next year\"",
             "description": "The accessible label given to the button used to move to the next year."
           },
           {
             "name": "previous-multi-year-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous 24 years\"",
             "description": "The accessible label given to the button used to move to the previous 24 years."
           },
           {
             "name": "next-multi-year-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next 24 years\"",
             "description": "The accessible label given to the button used to move to the next 24 years."
           }
@@ -2955,74 +3047,87 @@
           {
             "name": "actionable",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the card is \"actionable\" and will respond to use interaction."
           },
           {
             "name": "inline",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to present the card inline with surrounding content."
           },
           {
             "name": "orientation",
             "type": "'vertical' | 'horizontal'",
+            "typeSource": "cem",
             "default": "\"vertical\"",
             "description": "The orientation of the card."
           },
           {
             "name": "variant",
             "type": "'filled' | 'outlined' | 'elevated'",
+            "typeSource": "cem",
             "default": "\"filled\"",
             "description": "The appearance variant of the card."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded,\noptionally specifying the new name of the file."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name of the element, submitted as a pair with the element's `value`\nas part of form data, when the element is used to submit a form."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "The value associated with the element's name when it's submitted with form data."
           },
           {
             "name": "type",
-            "type": "FormSubmitterType",
+            "type": "\"button\" | \"submit\" | \"reset\"",
+            "typeSource": "ts",
             "default": "\"button\"",
             "description": "The type of the element."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled and interactive."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           }
@@ -3258,34 +3363,40 @@
           {
             "name": "checked",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is checked."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "indeterminate",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element's checked state is indeterminate."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "required",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is required."
           },
           {
             "name": "value",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"on\"",
             "description": "A string representing the value of the checkbox."
           }
@@ -3558,11 +3669,13 @@
         "attributes": [
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "A string representing the value of the chip."
           },
           {
             "name": "variant",
             "type": "'outlined' | 'elevated'",
+            "typeSource": "cem",
             "default": "\"outlined\"",
             "description": "The appearance variant of the chip."
           }
@@ -3706,56 +3819,66 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled and interactive."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           },
           {
             "name": "type",
-            "type": "FormSubmitterType",
+            "type": "\"button\" | \"submit\" | \"reset\"",
+            "typeSource": "ts",
             "default": "\"button\"",
             "description": "The type of the element."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "A string representing the value of the chip."
           },
           {
             "name": "variant",
             "type": "'outlined' | 'elevated'",
+            "typeSource": "cem",
             "default": "\"outlined\"",
             "description": "The appearance variant of the chip."
           }
@@ -3951,6 +4074,7 @@
           {
             "name": "vertical",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is oriented vertically."
           }
@@ -3984,28 +4108,33 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled and interactive."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is selected."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "A string representing the value of the chip."
           },
           {
             "name": "variant",
             "type": "'outlined' | 'elevated'",
+            "typeSource": "cem",
             "default": "\"outlined\"",
             "description": "The appearance variant of the chip."
           }
@@ -4301,28 +4430,33 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "hide-selection-indicator",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the selection indicator."
           },
           {
             "name": "multi",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether multiple chips can be selected."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "vertical",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is oriented vertically."
           }
@@ -4432,34 +4566,40 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled and interactive."
           },
           {
             "name": "removable",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the chip is removable."
           },
           {
             "name": "remove-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Remove\"",
             "description": "The accessible label given to the button used to remove the chip."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "A string representing the value of the chip."
           },
           {
             "name": "variant",
             "type": "'outlined' | 'elevated'",
+            "typeSource": "cem",
             "default": "\"outlined\"",
             "description": "The appearance variant of the chip."
           }
@@ -4719,22 +4859,26 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "required",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether a value is required for the element."
           },
           {
             "name": "vertical",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is oriented vertically."
           }
@@ -4851,56 +4995,66 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled and interactive."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           },
           {
             "name": "type",
-            "type": "FormSubmitterType",
+            "type": "\"button\" | \"submit\" | \"reset\"",
+            "typeSource": "ts",
             "default": "\"button\"",
             "description": "The type of the element."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "A string representing the value of the chip."
           },
           {
             "name": "variant",
             "type": "'outlined' | 'elevated'",
+            "typeSource": "cem",
             "default": "\"outlined\"",
             "description": "The appearance variant of the chip."
           }
@@ -5186,120 +5340,140 @@
           {
             "name": "variant",
             "type": "'auto' | 'docked' | 'modal'",
+            "typeSource": "cem",
             "default": "\"docked\"",
             "description": "The appearance variant of the picker."
           },
           {
             "name": "clearable",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the user can clear the selected date and close the picker."
           },
           {
             "name": "date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The selected date."
           },
           {
             "name": "max-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The maximum date that can be selected."
           },
           {
             "name": "min-date",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The minimum date that can be selected."
           },
           {
             "name": "range",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether a range of dates can be selected."
           },
           {
             "name": "range-end",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "End of a date range."
           },
           {
             "name": "range-start",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "Start of a date range."
           },
           {
             "name": "start-at",
             "type": "Date | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A date specifying the period (month or year) to start the calendar in."
           },
           {
             "name": "start-view",
             "type": "'month' | 'year' | 'multi-year'",
+            "typeSource": "cem",
             "default": "\"month\"",
             "description": "The initial view used to select a date."
           },
           {
             "name": "previous-month-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous month\"",
             "description": "The accessible label given to the button used to move to the previous month."
           },
           {
             "name": "next-month-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next month\"",
             "description": "The accessible label given to the button used to move to the next month."
           },
           {
             "name": "previous-year-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous year\"",
             "description": "The accessible label given to the button used to move to the previous year."
           },
           {
             "name": "next-year-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next year\"",
             "description": "The accessible label given to the button used to move to the next year."
           },
           {
             "name": "previous-multi-year-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous 24 years\"",
             "description": "The accessible label given to the button used to move to the previous 24 years."
           },
           {
             "name": "next-multi-year-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next 24 years\"",
             "description": "The accessible label given to the button used to move to the next 24 years."
           },
           {
             "name": "clear-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Clear\"",
             "description": "The label given to the button used clear the selected date and close the picker."
           },
           {
             "name": "confirm-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"OK\"",
             "description": "The label given to the button used apply the selected date and close the picker."
           },
           {
             "name": "dismiss-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Cancel\"",
             "description": "The label given to the button used discard the selected date and close the picker."
           },
           {
             "name": "label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Select date\"",
             "description": "The label given to the the picker."
           }
@@ -5482,6 +5656,7 @@
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -5528,6 +5703,7 @@
           {
             "name": "return-value",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The value to return from the dialog."
           }
@@ -5555,35 +5731,41 @@
           {
             "name": "alert",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the dialog is an alert."
           },
           {
             "name": "close-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Close\"",
             "description": "The accessible label given to the button used to dismiss the dialog."
           },
           {
             "name": "disable-close",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether users cannot click the backdrop or press ESC to dismiss the dialog."
           },
           {
             "name": "dismissible",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether a button is presented that can be used to close the dialog."
           },
           {
             "name": "no-focus-trap",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to disable focus trapping, which keeps keyboard `Tab` navigation within the dialog."
           },
           {
             "name": "open",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the dialog is open."
           }
@@ -5753,6 +5935,7 @@
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -5803,24 +5986,28 @@
           {
             "name": "inset",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the divider is indented with equal padding on both sides."
           },
           {
             "name": "inset-start",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the divider is indented with padding on the leading side."
           },
           {
             "name": "inset-end",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the divider is indented with padding on the trailing side."
           },
           {
             "name": "vertical",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the divider is vertically aligned with adjacent content."
           }
@@ -5889,36 +6076,42 @@
           {
             "name": "end",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the end drawer is open."
           },
           {
             "name": "end-mode",
             "type": "'auto' | 'over' | 'push' | 'side'",
+            "typeSource": "cem",
             "default": "\"side\"",
             "description": "The behavior mode of the end drawer."
           },
           {
             "name": "end-divider",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to show a divider between the end drawer and content for `side` mode."
           },
           {
             "name": "start",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the start drawer is open."
           },
           {
             "name": "start-mode",
             "type": "'auto' | 'over' | 'push' | 'side'",
+            "typeSource": "cem",
             "default": "\"side\"",
             "description": "The behavior mode of the start drawer."
           },
           {
             "name": "start-divider",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to show a divider between the start drawer and content for `side` mode."
           }
@@ -6018,6 +6211,7 @@
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -6071,24 +6265,28 @@
           {
             "name": "hide-toggle",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the expansion toggle."
           },
           {
             "name": "toggle-direction",
             "type": "'vertical' | 'horizontal'",
+            "typeSource": "cem",
             "default": "\"vertical\"",
             "description": "The direction of the expansion toggle."
           },
           {
             "name": "toggle-position",
             "type": "'before' | 'after'",
+            "typeSource": "cem",
             "default": "\"after\"",
             "description": "The position of the expansion toggle."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           }
@@ -6184,30 +6382,35 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "hide-toggle",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the expansion toggle."
           },
           {
             "name": "open",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the panel is expanded."
           },
           {
             "name": "toggle-direction",
             "type": "'vertical' | 'horizontal'",
+            "typeSource": "cem",
             "default": "\"vertical\"",
             "description": "The direction of the expansion toggle."
           },
           {
             "name": "toggle-position",
             "type": "'before' | 'after'",
+            "typeSource": "cem",
             "default": "\"after\"",
             "description": "The position of the expansion toggle."
           }
@@ -6390,6 +6593,7 @@
           {
             "name": "multi",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether multiple expansion panels can be open at the same time."
           }
@@ -6445,74 +6649,87 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled and interactive."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "extended",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the button is extended to show the label."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "lowered",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to present a lowered elevation."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large'",
+            "typeSource": "cem",
             "default": "\"medium\"",
             "description": "The size of the button."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           },
           {
             "name": "type",
-            "type": "FormSubmitterType",
+            "type": "\"button\" | \"submit\" | \"reset\"",
+            "typeSource": "ts",
             "default": "\"button\"",
             "description": "The type of the element."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "The value associated with the element's name when it's submitted with form data."
           },
           {
             "name": "variant",
             "type": "'primary' | 'primary-container' | 'secondary' | 'secondary-container' | 'tertiary' | 'tertiary-container' | 'surface'",
+            "typeSource": "cem",
             "default": "\"primary-container\"",
             "description": "The appearance variant of the button."
           }
@@ -7933,30 +8150,35 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           }
@@ -8058,6 +8280,7 @@
           {
             "name": "variant",
             "type": "'primary' | 'secondary' | 'tertiary'",
+            "typeSource": "cem",
             "default": "\"primary\"",
             "description": "The appearance variant of the menu."
           }
@@ -8192,6 +8415,7 @@
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -8249,24 +8473,28 @@
           {
             "name": "float-label",
             "type": "'always' | 'auto'",
+            "typeSource": "cem",
             "default": "\"auto\"",
             "description": "Specifies whether the label should float always or only when necessary."
           },
           {
             "name": "hide-required-marker",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the required marker should be hidden."
           },
           {
             "name": "hide-subscript",
             "type": "'always' | 'auto' | 'never'",
+            "typeSource": "cem",
             "default": "\"auto\"",
             "description": "Whether subscript content is hidden."
           },
           {
             "name": "variant",
             "type": "'filled' | 'outlined'",
+            "typeSource": "cem",
             "default": "\"outlined\"",
             "description": "The appearance variant of the field."
           }
@@ -8491,24 +8719,28 @@
           {
             "name": "emphasized",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the heading uses an emphasized typescale."
           },
           {
             "name": "level",
             "type": "1 | 2 | 3 | 4 | 5 | 6 | undefined",
+            "typeSource": "cem",
             "default": "undefined",
             "description": "The accessibility level of the heading."
           },
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large'",
+            "typeSource": "cem",
             "default": "\"medium\"",
             "description": "The size of the heading."
           },
           {
             "name": "variant",
             "type": "'display' | 'headline' | 'title' | 'label'",
+            "typeSource": "cem",
             "default": "\"display\"",
             "description": "The appearance variant of the heading."
           }
@@ -8720,36 +8952,42 @@
           {
             "name": "filled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the icon is filled."
           },
           {
             "name": "grade",
             "type": "'medium' | 'low' | 'high'",
+            "typeSource": "cem",
             "default": "\"medium\"",
             "description": "The grade of the icon."
           },
           {
             "name": "optical-size",
             "type": "number",
+            "typeSource": "cem",
             "default": "24",
             "description": "A value from 20 to 48 indicating the optical size of the icon."
           },
           {
             "name": "name",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The name of the icon."
           },
           {
             "name": "variant",
             "type": "'outlined' | 'rounded' | 'sharp'",
+            "typeSource": "cem",
             "default": "\"outlined\"",
             "description": "The appearance variant of the icon."
           },
           {
             "name": "weight",
             "type": "100 | 200 | 300 | 400 | 500 | 600 | 700",
+            "typeSource": "cem",
             "default": "400",
             "description": "A value from 100 to 700 indicating the weight of the icon."
           }
@@ -8797,86 +9035,101 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled and interactive."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the toggle button is selected."
           },
           {
             "name": "shape",
             "type": "'rounded' | 'square'",
+            "typeSource": "cem",
             "default": "\"rounded\"",
             "description": "The shape of the button."
           },
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large' | 'extra-small' | 'extra-large'",
+            "typeSource": "cem",
             "default": "\"small\"",
             "description": "The size of the button."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           },
           {
             "name": "toggle",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the button will toggle between selected and unselected states."
           },
           {
             "name": "type",
-            "type": "FormSubmitterType",
+            "type": "\"button\" | \"submit\" | \"reset\"",
+            "typeSource": "ts",
             "default": "\"button\"",
             "description": "The type of the element."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "The value associated with the element's name when it's submitted with form data."
           },
           {
             "name": "variant",
             "type": "'filled' | 'outlined' | 'tonal' | 'standard'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The appearance variant of the button."
           },
           {
             "name": "width",
             "type": "'default' | 'narrow' | 'wide'",
+            "typeSource": "cem",
             "default": "\"default\"",
             "description": "The width of the button."
           }
@@ -9896,6 +10149,7 @@
           {
             "name": "variant",
             "type": "'standard' | 'segmented'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The appearance variant of the list."
           }
@@ -9998,30 +10252,35 @@
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded,\noptionally specifying the new name of the file."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           }
@@ -10325,30 +10584,35 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           }
@@ -10747,12 +11011,14 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "open",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the item is expanded."
           }
@@ -11220,6 +11486,7 @@
           {
             "name": "variant",
             "type": "'standard' | 'segmented'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The appearance variant of the list."
           }
@@ -11323,17 +11590,20 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is selected."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "A string representing the value of the option."
           }
         ],
@@ -11822,28 +12092,33 @@
           {
             "name": "hide-selection-indicator",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the selection indicator."
           },
           {
             "name": "multi",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether multiple items can be selected."
           },
           {
             "name": "variant",
             "type": "'standard' | 'segmented'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The appearance variant of the list."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           }
@@ -12039,6 +12314,7 @@
           {
             "name": "variant",
             "type": "'uncontained' | 'contained'",
+            "typeSource": "cem",
             "default": "\"uncontained\"",
             "description": "The appearance variant of the indicator."
           }
@@ -12112,6 +12388,7 @@
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -12151,30 +12428,35 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "Whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           }
@@ -12421,24 +12703,28 @@
           {
             "name": "position-x",
             "type": "'before' | 'after'",
+            "typeSource": "cem",
             "default": "\"after\"",
             "description": "The position of the menu, on the x-axis."
           },
           {
             "name": "position-y",
             "type": "'above' | 'below'",
+            "typeSource": "cem",
             "default": "\"below\"",
             "description": "The position of the menu, on the y-axis."
           },
           {
             "name": "variant",
             "type": "'standard' | 'vibrant'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The appearance variant of the menu."
           },
           {
             "name": "submenu",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the menu is a submenu."
           }
@@ -12554,12 +12840,14 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "checked",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is checked."
           }
@@ -12825,12 +13113,14 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "checked",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is checked."
           }
@@ -13102,48 +13392,56 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled."
           },
           {
             "name": "disabled-interactive",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled and interactive."
           },
           {
             "name": "download",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file."
           },
           {
             "name": "href",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The URL to which the link button points."
           },
           {
             "name": "orientation",
             "type": "'vertical' | 'horizontal'",
+            "typeSource": "cem",
             "default": "\"vertical\"",
             "description": "The layout orientation of the item."
           },
           {
             "name": "rel",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The relationship between the `target` of the link button and the document."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is selected."
           },
           {
             "name": "target",
-            "type": "LinkTarget",
+            "type": "\"_self\" | \"_blank\" | \"_parent\" | \"_top\" | string",
+            "typeSource": "ts",
             "default": "\"\"",
             "description": "The target of the link button."
           }
@@ -13354,6 +13652,7 @@
           {
             "name": "mode",
             "type": "'auto' | 'compact' | 'expanded'",
+            "typeSource": "cem",
             "default": "\"compact\"",
             "description": "The mode in which items in the bar are presented."
           }
@@ -13457,18 +13756,21 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "open",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the item is expanded."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the item is selected."
           }
@@ -13885,6 +14187,7 @@
           {
             "name": "mode",
             "type": "'auto' | 'compact' | 'expanded'",
+            "typeSource": "cem",
             "default": "\"compact\"",
             "description": "The mode in which items in the rail are presented."
           }
@@ -14026,6 +14329,7 @@
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           }
@@ -14077,35 +14381,41 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "disable-highlight",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether text highlighting is disabled."
           },
           {
             "name": "highlight-mode",
             "type": "'contains' | 'starts-with' | 'ends-with'",
+            "typeSource": "cem",
             "default": "\"contains\"",
             "description": "The mode in which to highlight a term."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is selected."
           },
           {
             "name": "term",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The search term to highlight."
           },
           {
             "name": "value",
+            "typeSource": "cem",
             "description": "A string representing the value of the option."
           }
         ],
@@ -14340,24 +14650,28 @@
           {
             "name": "state",
             "type": "'loading' | 'no-data' | 'content'",
+            "typeSource": "cem",
             "default": "\"content\"",
             "description": "The state for which to present content."
           },
           {
             "name": "scroll-strategy",
             "type": "'hide' | 'reposition'",
+            "typeSource": "cem",
             "default": "\"hide\"",
             "description": "The strategy that controls how the panel behaves when its trigger scrolls."
           },
           {
             "name": "fit-anchor-width",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the panel's width should match its anchor's width."
           },
           {
             "name": "anchor-offset",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The logical margin, in pixels, between the panel and its anchor."
           }
@@ -14536,78 +14850,91 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "first-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"First page\"",
             "description": "The accessible label given to the button used to move to the first page."
           },
           {
             "name": "hide-page-size",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide page size selection."
           },
           {
             "name": "items-per-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Items per page:\"",
             "description": "The label for the page size selector."
           },
           {
             "name": "last-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Last page\"",
             "description": "The accessible label given to the button used to move to the last page."
           },
           {
             "name": "length",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The length of the total number of items which are being paginated."
           },
           {
             "name": "next-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next page\"",
             "description": "The accessible label given to the button used to move to the next page."
           },
           {
             "name": "page-index",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The zero-based page index of the displayed list of items."
           },
           {
             "name": "page-size",
             "type": "number | \"all\"",
+            "typeSource": "cem",
             "default": "50",
             "description": "The number of items to display in a page."
           },
           {
             "name": "page-sizes",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"5,10,25,50,100\"",
             "description": "A comma separated list of available page sizes."
           },
           {
             "name": "page-size-variant",
             "type": "'filled' | 'outlined'",
+            "typeSource": "cem",
             "default": "\"outlined\"",
             "description": "The appearance variant of the page size field."
           },
           {
             "name": "previous-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous page\"",
             "description": "The accessible label given to the button used to move to the previous page."
           },
           {
             "name": "show-first-last-buttons",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to show first/last buttons."
           }
@@ -14718,24 +15045,28 @@
           {
             "name": "indeterminate",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to show something is happening without conveying progress."
           },
           {
             "name": "max",
             "type": "number",
+            "typeSource": "cem",
             "default": "100",
             "description": "The maximum progress value."
           },
           {
             "name": "value",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "A fractional value, between 0 and `max`, indicating progress."
           },
           {
             "name": "variant",
             "type": "'flat' | 'wavy'",
+            "typeSource": "cem",
             "default": "\"flat\"",
             "description": "The appearance of the indicator."
           }
@@ -14806,30 +15137,35 @@
           {
             "name": "buffer-value",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "A fractional value, between 0 and `max`, indicating buffer progress."
           },
           {
             "name": "max",
             "type": "number",
+            "typeSource": "cem",
             "default": "100",
             "description": "The maximum progress value."
           },
           {
             "name": "mode",
             "type": "'determinate' | 'indeterminate' | 'buffer' | 'query'",
+            "typeSource": "cem",
             "default": "\"determinate\"",
             "description": "The mode of the progress bar."
           },
           {
             "name": "value",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "A fractional value, between 0 and `max`, indicating progress."
           },
           {
             "name": "variant",
             "type": "'flat' | 'wavy'",
+            "typeSource": "cem",
             "default": "\"flat\"",
             "description": "The appearance of the indicator."
           }
@@ -14920,26 +15256,31 @@
           {
             "name": "checked",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is checked."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "required",
+            "typeSource": "cem",
             "description": "Whether the element is required."
           },
           {
             "name": "value",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"on\"",
             "description": "A string representing the value of the radio."
           }
@@ -15101,21 +15442,25 @@
         "sourceFile": "packages/web/src/radio-group/RadioGroupElement.ts",
         "attributes": [
           {
-            "name": "aria-invalid"
+            "name": "aria-invalid",
+            "typeSource": "cem"
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "required",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is required."
           }
@@ -15264,12 +15609,14 @@
           {
             "name": "clearable",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the bar presents a button used to clear the search term."
           },
           {
             "name": "clear-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Clear\"",
             "description": "The accessible label given to the button used to clear the search term."
           }
@@ -15434,36 +15781,42 @@
           {
             "name": "contained",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the view features a persistent, filled search container."
           },
           {
             "name": "mode",
             "type": "'auto' | 'docked' | 'fullscreen'",
+            "typeSource": "cem",
             "default": "\"docked\"",
             "description": "The behavior mode of the view."
           },
           {
             "name": "open",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the view is expanded to show results."
           },
           {
             "name": "clear-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Clear\"",
             "description": "The accessible label given to the button used to clear the search term."
           },
           {
             "name": "close-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Close\"",
             "description": "The accessible label given to the button used to collapse the view."
           },
           {
             "name": "hide-search-icon",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the search icon."
           }
@@ -15680,18 +16033,21 @@
           {
             "name": "checked",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is checked."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "value",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"on\"",
             "description": "A string representing the value of the segment."
           }
@@ -15920,23 +16276,27 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "hide-selection-indicator",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the selection indicator."
           },
           {
             "name": "multi",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether multiple options can be selected."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           }
         ],
@@ -16070,34 +16430,40 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "hide-selection-indicator",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to hide the selection indicator for single select options."
           },
           {
             "name": "multi",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether multiple options can be selected."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "panel-class",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "Class or list of classes to be applied to the select's overlay panel."
           },
           {
             "name": "required",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is required."
           }
@@ -16304,6 +16670,7 @@
           {
             "name": "name",
             "type": "'square' | '4-leaf-clover' | '4-sided-cookie' | '6-sided-cookie' | '7-sided-cookie' | '8-leaf-clover' | '9-sided-cookie' | '12-sided-cookie' | 'arch' | 'arrow' | 'boom' | 'bun' | 'burst' | 'circle' | 'diamond' | 'fan' | 'flower' | 'gem' | 'ghost-ish' | 'heart' | 'hexagon' | 'oval' | 'pentagon' | 'pill' | 'pixel-circle' | 'pixel-triangle' | 'puffy' | 'puffy-diamond' | 'semicircle' | 'slanted' | 'soft-boom' | 'soft-burst' | 'sunny' | 'triangle' | 'very-sunny' | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The name of the shape."
           }
@@ -16367,18 +16734,21 @@
           {
             "name": "animation",
             "type": "'none' | 'pulse' | 'wave'",
+            "typeSource": "cem",
             "default": "\"wave\"",
             "description": "The animation effect of the skeleton."
           },
           {
             "name": "shape",
             "type": "'auto' | 'rounded' | 'square' | 'circular'",
+            "typeSource": "cem",
             "default": "\"auto\"",
             "description": "The shape of the skeleton."
           },
           {
             "name": "loaded",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the content of the skeleton has been loaded."
           }
@@ -16474,30 +16844,35 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether scroll buttons are disabled."
           },
           {
             "name": "next-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next page\"",
             "description": "The accessible label given to the button used to move to the next page."
           },
           {
             "name": "previous-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous page\"",
             "description": "The accessible label given to the button used to move to the previous page."
           },
           {
             "name": "threshold",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "A value, in pixels, indicating the scroll threshold at which to begin showing pagination controls."
           },
           {
             "name": "vertical",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether content is oriented vertically."
           }
@@ -16574,16 +16949,19 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "value",
             "type": "number | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The value of the thumb."
           }
@@ -16731,42 +17109,49 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "discrete",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to show tick marks."
           },
           {
             "name": "labelled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to show value labels when activated."
           },
           {
             "name": "max",
             "type": "number",
+            "typeSource": "cem",
             "default": "100",
             "description": "The maximum allowable value."
           },
           {
             "name": "min",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The minimum allowable value."
           },
           {
             "name": "step",
             "type": "number",
+            "typeSource": "cem",
             "default": "1",
             "description": "The value at which the thumb will snap."
           },
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large' | 'extra-small' | 'extra-large'",
+            "typeSource": "cem",
             "default": "\"extra-small\"",
             "description": "The size of the slider."
           }
@@ -16964,24 +17349,28 @@
           {
             "name": "action",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"\"",
             "description": "The label of the snackbar's action."
           },
           {
             "name": "close-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Close\"",
             "description": "The accessible label given to the button used to dismiss the snackbar."
           },
           {
             "name": "dismissible",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether a button is presented that can be used to close the snackbar."
           },
           {
             "name": "duration",
             "type": "number",
+            "typeSource": "cem",
             "default": "3000",
             "description": "The length of time, in milliseconds, to wait before automatically dismissing the snackbar."
           }
@@ -17084,12 +17473,14 @@
           {
             "name": "variant",
             "type": "'filled' | 'outlined' | 'elevated' | 'tonal'",
+            "typeSource": "cem",
             "default": "\"filled\"",
             "description": "The appearance variant of the button."
           },
           {
             "name": "size",
             "type": "'small' | 'medium' | 'large' | 'extra-small' | 'extra-large'",
+            "typeSource": "cem",
             "default": "\"small\"",
             "description": "The size of the button."
           }
@@ -17182,69 +17573,81 @@
           {
             "name": "detents",
             "type": "string[]",
+            "typeSource": "cem",
             "default": "[]",
             "description": "Detents (discrete sizes) the start pane can snap to."
           },
           {
             "name": "label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Resize panes\"",
             "description": "The accessible label given to the movable drag handle."
           },
           {
             "name": "max",
             "type": "number",
+            "typeSource": "cem",
             "default": "100",
             "description": "A fractional value, between 0 and 100, indicating the maximum size of the start pane."
           },
           {
             "name": "min",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "A fractional value, between 0 and 100, indicating the minimum size of the start pane."
           },
           {
             "name": "orientation",
             "type": "'vertical' | 'horizontal' | 'auto'",
+            "typeSource": "cem",
             "default": "\"horizontal\"",
             "description": "The orientation of the split."
           },
           {
             "name": "overshoot-limit",
             "type": "number",
+            "typeSource": "cem",
             "default": "4",
             "description": "A fractional value, between 0 and 100, indicating the maximum visual overshoot allowed when dragging past the minimum or maximum size."
           },
           {
             "name": "step",
             "type": "number",
+            "typeSource": "cem",
             "default": "1",
             "description": "A fractional value, between 0 and 100, indicating the increment by which to adjust the value when resized via keyboard."
           },
           {
             "name": "value",
             "type": "number",
+            "typeSource": "cem",
             "default": "50",
             "description": "A fractional value, between 0 and 100, indicating the size of the start pane."
           },
           {
             "name": "wrap-detents",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether cycling through detents will wrap."
           },
           {
             "name": "valueFormatter",
             "type": "(\n    value: number,\n    orientation: Omit<SplitPaneOrientation, \"auto\">,\n    dir: Direction,\n  ) => string | undefined | undefined",
+            "typeSource": "cem",
             "description": "A function used to generates human readable text for the accessible value (`aria-valuetext`) of the drag handle."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           }
@@ -17403,24 +17806,28 @@
           {
             "name": "header-position",
             "type": "'above' | 'below'",
+            "typeSource": "cem",
             "default": "\"above\"",
             "description": "The position of the step header, when oriented horizontally."
           },
           {
             "name": "label-position",
             "type": "'below' | 'end'",
+            "typeSource": "cem",
             "default": "\"end\"",
             "description": "The position of the step labels, when oriented horizontally."
           },
           {
             "name": "linear",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the validity of previous steps should be checked or not."
           },
           {
             "name": "orientation",
             "type": "'vertical' | 'horizontal' | 'auto'",
+            "typeSource": "cem",
             "default": "\"horizontal\"",
             "description": "The orientation of the stepper."
           }
@@ -17547,42 +17954,49 @@
           {
             "name": "completed",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the step has been completed."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "editable",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the step is editable and users can return to it after completion."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           },
           {
             "name": "optional",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the step is optional."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is selected."
           },
           {
             "name": "invalid",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the step has an error."
           }
@@ -17897,28 +18311,33 @@
           {
             "name": "checked",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is checked."
           },
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "icons",
             "type": "'none' | 'selected' | 'both'",
+            "typeSource": "cem",
             "default": "\"none\"",
             "description": "The icons to present."
           },
           {
             "name": "name",
+            "typeSource": "cem",
             "description": "The name that identifies the element when submitting the associated form."
           },
           {
             "name": "value",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"on\"",
             "description": "A string representing the value of the switch."
           }
@@ -18395,18 +18814,21 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is selected."
           }
@@ -18586,35 +19008,41 @@
         "attributes": [
           {
             "name": "disable-pagination",
+            "typeSource": "cem",
             "description": "Whether scroll buttons are disabled."
           },
           {
             "name": "header-position",
             "type": "'before' | 'after'",
+            "typeSource": "cem",
             "default": "\"before\"",
             "description": "The position of the tab headers."
           },
           {
             "name": "next-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Next page\"",
             "description": "The accessible label given to the button used to move to the next page."
           },
           {
             "name": "previous-page-label",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"Previous page\"",
             "description": "The accessible label given to the button used to move to the previous page."
           },
           {
             "name": "stretch",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether tabs are stretched to fill the header."
           },
           {
             "name": "variant",
             "type": "'primary' | 'secondary'",
+            "typeSource": "cem",
             "default": "\"secondary\"",
             "description": "The appearance variant of the tabs."
           }
@@ -18754,24 +19182,28 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether auto-sizing is disabled."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           },
           {
             "name": "max-rows",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The maximum amount of rows in the `textarea`."
           },
           {
             "name": "min-rows",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The minimum amount of rows in the `textarea`."
           }
@@ -18820,42 +19252,49 @@
           {
             "name": "color",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"#6750A4\"",
             "description": "The hex color from which to derive dynamic color palettes."
           },
           {
             "name": "contrast",
             "type": "'medium' | 'standard' | 'high'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The contrast level of the theme."
           },
           {
             "name": "density",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The density scale (0, -1, -2)."
           },
           {
             "name": "scheme",
             "type": "'auto' | 'light' | 'dark'",
+            "typeSource": "cem",
             "default": "\"auto\"",
             "description": "The color scheme of the theme."
           },
           {
             "name": "strong-focus",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to enable strong focus indicators."
           },
           {
             "name": "variant",
             "type": "'content' | 'vibrant' | 'expressive' | 'monochrome' | 'neutral' | 'tonal-spot' | 'fidelity' | 'rainbow' | 'fruit-salad'",
+            "typeSource": "cem",
             "default": "\"neutral\"",
             "description": "The color variant of the theme."
           },
           {
             "name": "motion",
             "type": "'standard' | 'expressive'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The motion scheme."
           }
@@ -18896,18 +19335,21 @@
           {
             "name": "color",
             "type": "string",
+            "typeSource": "cem",
             "default": "\"#6750A4\"",
             "description": "The hex color of the theme to preview"
           },
           {
             "name": "scheme",
             "type": "'auto' | 'light' | 'dark'",
+            "typeSource": "cem",
             "default": "\"auto\"",
             "description": "The color scheme of the theme."
           },
           {
             "name": "variant",
             "type": "'content' | 'vibrant' | 'expressive' | 'monochrome' | 'neutral' | 'tonal-spot' | 'fidelity' | 'rainbow' | 'fruit-salad'",
+            "typeSource": "cem",
             "default": "\"neutral\"",
             "description": "The color variant of the theme."
           }
@@ -18993,12 +19435,14 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element is disabled."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is selected."
           }
@@ -19114,12 +19558,14 @@
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           },
           {
             "name": "max-depth",
             "type": "number",
+            "typeSource": "cem",
             "default": "2",
             "description": "The maximum depth of the table of contents."
           }
@@ -19283,24 +19729,28 @@
           {
             "name": "elevated",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the toolbar is elevated."
           },
           {
             "name": "shape",
             "type": "'rounded' | 'square'",
+            "typeSource": "cem",
             "default": "\"square\"",
             "description": "The shape of the toolbar."
           },
           {
             "name": "variant",
             "type": "'standard' | 'vibrant'",
+            "typeSource": "cem",
             "default": "\"standard\"",
             "description": "The appearance variant of the toolbar."
           },
           {
             "name": "vertical",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is oriented vertically."
           }
@@ -19394,6 +19844,7 @@
           {
             "name": "disable-restore-focus",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether to focus should not be restored to the trigger when activated."
           }
@@ -19421,36 +19872,42 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           },
           {
             "name": "hide-delay",
             "type": "number",
+            "typeSource": "cem",
             "default": "200",
             "description": "The amount of time, in milliseconds, before hiding the tooltip."
           },
           {
             "name": "position",
             "type": "'above' | 'below' | 'above-after' | 'above-before' | 'below-before' | 'below-after' | 'before' | 'after'",
+            "typeSource": "cem",
             "default": "\"below-after\"",
             "description": "The position of the tooltip."
           },
           {
             "name": "show-delay",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The amount of time, in milliseconds, before showing the tooltip."
           },
           {
             "name": "touch-gestures",
             "type": "'off' | 'auto' | 'on'",
+            "typeSource": "cem",
             "default": "\"auto\"",
             "description": "The mode in which to handle touch gestures."
           }
@@ -19614,36 +20071,42 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "for",
             "type": "string | null",
+            "typeSource": "cem",
             "default": "null",
             "description": "The identifier of the interactive control to which this element is attached."
           },
           {
             "name": "hide-delay",
             "type": "number",
+            "typeSource": "cem",
             "default": "200",
             "description": "The amount of time, in milliseconds, before hiding the tooltip."
           },
           {
             "name": "position",
             "type": "'above' | 'below' | 'before' | 'after'",
+            "typeSource": "cem",
             "default": "\"below\"",
             "description": "The position of the tooltip."
           },
           {
             "name": "show-delay",
             "type": "number",
+            "typeSource": "cem",
             "default": "0",
             "description": "The amount of time, in milliseconds, before showing the tooltip."
           },
           {
             "name": "touch-gestures",
             "type": "'off' | 'auto' | 'on'",
+            "typeSource": "cem",
             "default": "\"auto\"",
             "description": "The mode in which to handle touch gestures."
           }
@@ -19776,24 +20239,28 @@
           {
             "name": "disabled",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the element is disabled."
           },
           {
             "name": "indeterminate",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "A value indicating whether the element's selected / checked state is indeterminate."
           },
           {
             "name": "open",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the item is expanded."
           },
           {
             "name": "selected",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether the item is selected."
           }
@@ -20021,12 +20488,14 @@
           {
             "name": "multi",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether multiple items can be selected."
           },
           {
             "name": "cascade",
             "type": "boolean",
+            "typeSource": "cem",
             "default": "false",
             "description": "Whether multiple item selection cascades to child items."
           }

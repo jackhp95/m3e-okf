@@ -30,6 +30,19 @@ import "@m3e/web/search";
 </m3e-search-view>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Search bar with leading icon and input**
+
+```html
+<m3e-search-bar>
+  <m3e-icon slot="leading" name="search"></m3e-icon>
+  <input slot="input" type="search" placeholder="Search posts…" autocomplete="off" />
+</m3e-search-bar>
+```
+
 ## API
 
 ### `<m3e-search-bar>`

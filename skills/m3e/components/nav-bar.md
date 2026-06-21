@@ -38,7 +38,7 @@ An item, placed in a navigation bar or rail, used to navigate to destinations in
 | `orientation` | `'vertical' \| 'horizontal'` | "vertical" | The layout orientation of the item. |
 | `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
 | `selected` | `boolean` | false | A value indicating whether the element is selected. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
 
 **Properties** (JS-only, no attribute)
 

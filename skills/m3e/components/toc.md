@@ -26,6 +26,18 @@ import "@m3e/web/toc";
 </div>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Table of contents with overline slot**
+
+```html
+<m3e-toc for="post-content" max-depth="3">
+  <span slot="overline">Contents</span>
+</m3e-toc>
+```
+
 ## API
 
 ### `<m3e-toc-item>`

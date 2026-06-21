@@ -29,6 +29,30 @@ import "@m3e/web/breadcrumb";
 </m3e-breadcrumb>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Breadcrumb trail**
+
+```html
+<m3e-breadcrumb>
+  <m3e-breadcrumb-item href="/">Home</m3e-breadcrumb-item>
+  <m3e-breadcrumb-item href="/work">Work</m3e-breadcrumb-item>
+  <m3e-breadcrumb-item href="/work/tags">Tags</m3e-breadcrumb-item>
+</m3e-breadcrumb>
+```
+
+**Breadcrumb trail with current page**
+
+```html
+<m3e-breadcrumb>
+  <m3e-breadcrumb-item href="/photos">Photos</m3e-breadcrumb-item>
+  <m3e-breadcrumb-item href="/collections">Collections</m3e-breadcrumb-item>
+  <m3e-breadcrumb-item current="page">Title</m3e-breadcrumb-item>
+</m3e-breadcrumb>
+```
+
 ## API
 
 ### `<m3e-breadcrumb-item-button>`
@@ -39,7 +63,7 @@ import "@m3e/web/breadcrumb";
 | --- | --- | --- | --- |
 | `current` | `'page' \| 'step' \| 'location' \| 'date' \| 'time' \| 'true' \| undefined` | undefined | Indicates the current item in the breadcrumb path. |
 | `href` | `string` | "" | The URL to which the link button points. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
 | `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
 | `download` | `string \| null` | null | A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file. |
 | `disabled` | `boolean` | false | Whether the element is disabled. |
@@ -68,7 +92,7 @@ An item in a breadcrumb.
 | `disabled` | `boolean` | false | Whether the element is disabled. |
 | `current` | `'page' \| 'step' \| 'location' \| 'date' \| 'time' \| 'true' \| undefined` | undefined | Indicates the current item in the breadcrumb path. |
 | `href` | `string` | "" | The URL to which the internal breadcrumb link button points. |
-| `target` | `LinkTarget` | "" | The target of the internal breadcrumb link button. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the internal breadcrumb link button. |
 | `download` | `string \| null` | null | A value indicating whether the internal link target will be downloaded, optionally specifying a file name. |
 | `rel` | `string` | "" | The relationship between the internal link target and the document. |
 

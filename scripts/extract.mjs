@@ -62,6 +62,63 @@ function typeOf(node) {
   return node?.parsedType?.text || node?.type?.text || undefined;
 }
 
+/**
+ * The type-parser can't inline imported type aliases (e.g. `FormSubmitterType`,
+ * `LinkTarget`), so the CEM leaves them as bare identifiers — opaque to an agent.
+ * Detect that case so we can fall back to the README's literal union.
+ */
+function isOpaqueAlias(t) {
+  return !!t && /^[A-Za-z_][A-Za-z0-9_]*(\s*\|\s*(null|undefined))?$/.test(t) && !/^(boolean|string|number|Date|Event|object|any|unknown|void|null|undefined)\b/.test(t);
+}
+/** A README type worth trusting over an opaque alias: an actual literal union. */
+function isLiteralUnion(t) {
+  return !!t && t.includes("|") && /["']/.test(t);
+}
+
+/**
+ * Resolve string-literal type aliases from the TS source (ground truth) so the
+ * CEM's un-inlined aliases (FormSubmitterType, LinkTarget, …) become real unions.
+ * Scans `export type X = "a" | "b" | …;` across packages/web/src.
+ */
+function buildAliasMap() {
+  const map = new Map();
+  const walk = (dir) => {
+    for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+      const fp = path.join(dir, ent.name);
+      if (ent.isDirectory()) walk(fp);
+      else if (ent.name.endsWith(".ts") && !ent.name.endsWith(".spec.ts")) {
+        const re = /export type (\w+)\s*=\s*([^;]+);/g;
+        let m;
+        const src = fs.readFileSync(fp, "utf8");
+        while ((m = re.exec(src))) {
+          const body = m[2].replace(/\s+/g, " ").replace(/\(string & \{\}\)/g, "string").trim();
+          if (/["']/.test(body)) map.set(m[1], body); // string-literal unions only
+        }
+      }
+    }
+  };
+  walk(SRC);
+  return map;
+}
+const ALIASES = buildAliasMap();
+
+/** Build { attrName -> readmeType } from a README's Attribute tables. */
+function readmeAttrTypes(readme) {
+  const map = new Map();
+  if (!readme) return map;
+  for (const tbl of readme.tables) {
+    if (!tbl.headers.some((h) => /^attribute$/i.test(h))) continue;
+    const nameKey = tbl.headers.find((h) => /attribute/i.test(h));
+    const typeKey = tbl.headers.find((h) => /type/i.test(h));
+    if (!typeKey) continue;
+    for (const row of tbl.rows) {
+      const n = (row[nameKey] || "").trim();
+      if (n && row[typeKey]) map.set(n, row[typeKey].trim());
+    }
+  }
+  return map;
+}
+
 /** Public, documentable fields that are NOT reflected as attributes (JS-only props). */
 function propsOf(decl) {
   const attrNames = new Set((decl.attributes || []).map((a) => a.fieldName || a.name));
@@ -241,13 +298,27 @@ for (const dir of dirs) {
   const hasReadme = fs.existsSync(readmePath);
   const readme = hasReadme ? parseReadme(fs.readFileSync(readmePath, "utf8")) : null;
 
+  const rmTypes = readmeAttrTypes(readme);
   const elements = els.map(({ decl, modulePath }) => {
-    const attributes = (decl.attributes || []).map((a) => ({
-      name: a.name,
-      type: typeOf(a),
-      default: a.default,
-      description: a.description,
-    }));
+    const attributes = (decl.attributes || []).map((a) => {
+      let type = typeOf(a);
+      let typeSource = "cem";
+      if (isOpaqueAlias(type)) {
+        // CEM left an imported alias un-inlined. Resolve from TS source (truth),
+        // then fall back to the README's literal union.
+        const base = type.replace(/\s*\|\s*(null|undefined)\s*$/, "");
+        const suffix = type.slice(base.length);
+        const rt = rmTypes.get(a.name);
+        if (ALIASES.has(base)) {
+          type = ALIASES.get(base) + suffix;
+          typeSource = "ts";
+        } else if (isLiteralUnion(rt)) {
+          type = rt;
+          typeSource = "readme";
+        }
+      }
+      return { name: a.name, type, typeSource, default: a.default, description: a.description };
+    });
     return {
       tag: decl.tagName,
       summary: (decl.description || "").split("\n")[0] || undefined,

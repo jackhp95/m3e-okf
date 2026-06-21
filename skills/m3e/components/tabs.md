@@ -23,6 +23,25 @@ import "@m3e/web/tabs";
 </m3e-tabs>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Tabs with icons and panels**
+
+```html
+<m3e-tabs>
+  <m3e-tab selected for="tab-photos"><m3e-icon slot="icon" name="photo_library"></m3e-icon>Photos</m3e-tab>
+  <m3e-tab for="tab-facts"><m3e-icon slot="icon" name="psychology"></m3e-icon>Facts</m3e-tab>
+  <m3e-tab-panel id="tab-photos">
+    <p>Photo grid goes here.</p>
+  </m3e-tab-panel>
+  <m3e-tab-panel id="tab-facts">
+    <p>Facts go here.</p>
+  </m3e-tab-panel>
+</m3e-tabs>
+```
+
 ## API
 
 ### `<m3e-tab>`

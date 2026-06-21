@@ -21,6 +21,35 @@ import "@m3e/web/segmented-button";
 </m3e-segmented-button>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Segmented button with icons**
+
+```html
+<m3e-segmented-button>
+  <m3e-button-segment value="paste" checked>
+    <m3e-icon slot="icon" name="content_paste"></m3e-icon>
+    Paste
+  </m3e-button-segment>
+  <m3e-button-segment value="file">
+    <m3e-icon slot="icon" name="upload_file"></m3e-icon>
+    File
+  </m3e-button-segment>
+</m3e-segmented-button>
+```
+
+**Segmented button for value selection**
+
+```html
+<m3e-segmented-button>
+  <m3e-button-segment value="0.75">0.75x</m3e-button-segment>
+  <m3e-button-segment value="1" checked>1x</m3e-button-segment>
+  <m3e-button-segment value="1.5">1.5x</m3e-button-segment>
+</m3e-segmented-button>
+```
+
 ## API
 
 ### `<m3e-button-segment>`

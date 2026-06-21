@@ -23,6 +23,18 @@ import "@m3e/web/fab";
 </m3e-fab>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Small FAB with icon**
+
+```html
+<m3e-fab size="small" aria-label="Navigation menu">
+  <m3e-icon name="menu"></m3e-icon>
+</m3e-fab>
+```
+
 ## API
 
 ### `<m3e-fab>`
@@ -42,8 +54,8 @@ A floating action button (FAB) used to present important actions.
 | `name` |  |  | The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form. |
 | `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
 | `size` | `'small' \| 'medium' \| 'large'` | "medium" | The size of the button. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
-| `type` | `FormSubmitterType` | "button" | The type of the element. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
+| `type` | `"button" \| "submit" \| "reset"` | "button" | The type of the element. |
 | `value` |  |  | The value associated with the element's name when it's submitted with form data. |
 | `variant` | `'primary' \| 'primary-container' \| 'secondary' \| 'secondary-container' \| 'tertiary' \| 'tertiary-container' \| 'surface'` | "primary-container" | The appearance variant of the button. |
 

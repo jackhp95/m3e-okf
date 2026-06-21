@@ -33,9 +33,9 @@ A button users interact with to perform an action.
 | `selected` | `boolean` | false | Whether the toggle button is selected. |
 | `shape` | `'rounded' \| 'square'` | "rounded" | The shape of the button. |
 | `size` | `'small' \| 'medium' \| 'large' \| 'extra-small' \| 'extra-large'` | "small" | The size of the button. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
 | `toggle` | `boolean` | false | Whether the button will toggle between selected and unselected states. |
-| `type` | `FormSubmitterType` | "button" | The type of the element. |
+| `type` | `"button" \| "submit" \| "reset"` | "button" | The type of the element. |
 | `value` |  |  | The value associated with the element's name when it's submitted with form data. |
 | `variant` | `'text' \| 'filled' \| 'outlined' \| 'elevated' \| 'tonal'` | "text" | The appearance variant of the button. |
 

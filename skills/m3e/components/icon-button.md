@@ -16,6 +16,42 @@ import "@m3e/web/icon-button";
 </m3e-icon-button>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Icon button wrapping an icon**
+
+```html
+<m3e-icon-button aria-label="Toggle theme">
+  <m3e-icon name="dark_mode"></m3e-icon>
+</m3e-icon-button>
+```
+
+**Link icon buttons in a toolbar**
+
+```html
+<div>
+  <m3e-icon-button href="/rss.xml" aria-label="RSS Feed">
+    <m3e-icon name="rss_feed"></m3e-icon>
+  </m3e-icon-button>
+  <m3e-icon-button href="/feed.json" aria-label="JSON Feed">
+    <m3e-icon name="data_object"></m3e-icon>
+  </m3e-icon-button>
+</div>
+```
+
+**Icon buttons grouped in a media control bar**
+
+```html
+<m3e-icon-button aria-label="Previous">
+  <m3e-icon name="skip_previous"></m3e-icon>
+</m3e-icon-button>
+<m3e-icon-button aria-label="Play/Pause">
+  <m3e-icon name="play_arrow"></m3e-icon>
+</m3e-icon-button>
+```
+
 ## API
 
 ### `<m3e-icon-button>`
@@ -35,9 +71,9 @@ An icon button users interact with to perform a supplementary action.
 | `selected` | `boolean` | false | Whether the toggle button is selected. |
 | `shape` | `'rounded' \| 'square'` | "rounded" | The shape of the button. |
 | `size` | `'small' \| 'medium' \| 'large' \| 'extra-small' \| 'extra-large'` | "small" | The size of the button. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
 | `toggle` | `boolean` | false | Whether the button will toggle between selected and unselected states. |
-| `type` | `FormSubmitterType` | "button" | The type of the element. |
+| `type` | `"button" \| "submit" \| "reset"` | "button" | The type of the element. |
 | `value` |  |  | The value associated with the element's name when it's submitted with form data. |
 | `variant` | `'filled' \| 'outlined' \| 'tonal' \| 'standard'` | "standard" | The appearance variant of the button. |
 | `width` | `'default' \| 'narrow' \| 'wide'` | "default" | The width of the button. |

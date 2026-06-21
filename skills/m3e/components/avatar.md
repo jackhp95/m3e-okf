@@ -26,6 +26,21 @@ import "@m3e/web/avatar";
 </m3e-avatar>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Avatar with image and icon fallback**
+
+```html
+<m3e-avatar>
+  <img src="face.jpg" />
+</m3e-avatar>
+<m3e-avatar>
+  <m3e-icon name="person"></m3e-icon>
+</m3e-avatar>
+```
+
 ## API
 
 ### `<m3e-avatar>`

@@ -64,6 +64,31 @@ import "@m3e/web/nav-menu";
 </m3e-nav-menu>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Nested navigation menu with icons, badges, and links**
+
+```html
+<m3e-nav-menu>
+  <m3e-nav-menu-item selected>
+    <m3e-icon slot="icon" name="home"></m3e-icon>
+    <a slot="label" href="/">Home</a>
+  </m3e-nav-menu-item>
+  <m3e-divider></m3e-divider>
+  <m3e-nav-menu-item open>
+    <m3e-icon slot="icon" name="edit_note"></m3e-icon>
+    <span slot="label">Work</span>
+    <m3e-nav-menu-item>
+      <m3e-icon slot="icon" name="article"></m3e-icon>
+      <span slot="label">Articles</span>
+      <span slot="badge">12</span>
+    </m3e-nav-menu-item>
+  </m3e-nav-menu-item>
+</m3e-nav-menu>
+```
+
 ## API
 
 ### `<m3e-nav-menu-item>`

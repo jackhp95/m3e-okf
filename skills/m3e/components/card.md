@@ -19,6 +19,38 @@ import "@m3e/web/card";
 </m3e-card>
 ```
 
+## Real-world compositions
+
+_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+
+**Outlined card with header and content slots**
+
+```html
+<m3e-card variant="outlined">
+  <m3e-heading slot="header" variant="title" size="small">People</m3e-heading>
+  <div slot="content">
+    <m3e-chip-set>
+      <m3e-chip>Person Name</m3e-chip>
+      <m3e-chip>Relative</m3e-chip>
+    </m3e-chip-set>
+  </div>
+</m3e-card>
+```
+
+**Actionable filled card linking to a detail page**
+
+```html
+<a href="/entities/1">
+  <m3e-card variant="filled" actionable>
+    <div slot="content">
+      <m3e-icon name="family_history"></m3e-icon>
+      <span>Relative</span>
+      <m3e-icon name="chevron_right"></m3e-icon>
+    </div>
+  </m3e-card>
+</a>
+```
+
 ## API
 
 ### `<m3e-card>`
@@ -34,12 +66,12 @@ A content container for text, images (or other media), and actions in the contex
 | `orientation` | `'vertical' \| 'horizontal'` | "vertical" | The orientation of the card. |
 | `variant` | `'filled' \| 'outlined' \| 'elevated'` | "filled" | The appearance variant of the card. |
 | `href` | `string` | "" | The URL to which the link button points. |
-| `target` | `LinkTarget` | "" | The target of the link button. |
+| `target` | `"_self" \| "_blank" \| "_parent" \| "_top" \| string` | "" | The target of the link button. |
 | `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
 | `download` | `string \| null` | null | A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file. |
 | `name` |  |  | The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form. |
 | `value` |  |  | The value associated with the element's name when it's submitted with form data. |
-| `type` | `FormSubmitterType` | "button" | The type of the element. |
+| `type` | `"button" \| "submit" \| "reset"` | "button" | The type of the element. |
 | `disabled-interactive` | `boolean` | false | Whether the element is disabled and interactive. |
 | `disabled` | `boolean` | false | Whether the element is disabled. |
 

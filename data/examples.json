@@ -1,0 +1,111 @@
+{
+  "icon-button": [
+    {
+      "title": "Icon button wrapping an icon",
+      "code": "<m3e-icon-button aria-label=\"Toggle theme\">\n  <m3e-icon name=\"dark_mode\"></m3e-icon>\n</m3e-icon-button>",
+      "source": "2026: src/pages/speed-reader.astro"
+    },
+    {
+      "title": "Link icon buttons in a toolbar",
+      "code": "<div>\n  <m3e-icon-button href=\"/rss.xml\" aria-label=\"RSS Feed\">\n    <m3e-icon name=\"rss_feed\"></m3e-icon>\n  </m3e-icon-button>\n  <m3e-icon-button href=\"/feed.json\" aria-label=\"JSON Feed\">\n    <m3e-icon name=\"data_object\"></m3e-icon>\n  </m3e-icon-button>\n</div>",
+      "source": "2026: src/components/NavFab.astro"
+    },
+    {
+      "title": "Icon buttons grouped in a media control bar",
+      "code": "<m3e-icon-button aria-label=\"Previous\">\n  <m3e-icon name=\"skip_previous\"></m3e-icon>\n</m3e-icon-button>\n<m3e-icon-button aria-label=\"Play/Pause\">\n  <m3e-icon name=\"play_arrow\"></m3e-icon>\n</m3e-icon-button>",
+      "source": "kinfolk: src/pages/slideshow.astro"
+    }
+  ],
+  "chips": [
+    {
+      "title": "Chip with leading icon and label",
+      "code": "<m3e-chip>\n  <m3e-icon slot=\"icon\" name=\"menu_book\"></m3e-icon>\n  Library\n</m3e-chip>",
+      "source": "2026: src/pages/speed-reader.astro"
+    }
+  ],
+  "search": [
+    {
+      "title": "Search bar with leading icon and input",
+      "code": "<m3e-search-bar>\n  <m3e-icon slot=\"leading\" name=\"search\"></m3e-icon>\n  <input slot=\"input\" type=\"search\" placeholder=\"Search posts…\" autocomplete=\"off\" />\n</m3e-search-bar>",
+      "source": "2026: src/pages/work/index.astro"
+    }
+  ],
+  "segmented-button": [
+    {
+      "title": "Segmented button with icons",
+      "code": "<m3e-segmented-button>\n  <m3e-button-segment value=\"paste\" checked>\n    <m3e-icon slot=\"icon\" name=\"content_paste\"></m3e-icon>\n    Paste\n  </m3e-button-segment>\n  <m3e-button-segment value=\"file\">\n    <m3e-icon slot=\"icon\" name=\"upload_file\"></m3e-icon>\n    File\n  </m3e-button-segment>\n</m3e-segmented-button>",
+      "source": "2026: src/pages/speed-reader.astro"
+    },
+    {
+      "title": "Segmented button for value selection",
+      "code": "<m3e-segmented-button>\n  <m3e-button-segment value=\"0.75\">0.75x</m3e-button-segment>\n  <m3e-button-segment value=\"1\" checked>1x</m3e-button-segment>\n  <m3e-button-segment value=\"1.5\">1.5x</m3e-button-segment>\n</m3e-segmented-button>",
+      "source": "2026: src/components/ReadingToolbar.astro"
+    }
+  ],
+  "nav-menu": [
+    {
+      "title": "Nested navigation menu with icons, badges, and links",
+      "code": "<m3e-nav-menu>\n  <m3e-nav-menu-item selected>\n    <m3e-icon slot=\"icon\" name=\"home\"></m3e-icon>\n    <a slot=\"label\" href=\"/\">Home</a>\n  </m3e-nav-menu-item>\n  <m3e-divider></m3e-divider>\n  <m3e-nav-menu-item open>\n    <m3e-icon slot=\"icon\" name=\"edit_note\"></m3e-icon>\n    <span slot=\"label\">Work</span>\n    <m3e-nav-menu-item>\n      <m3e-icon slot=\"icon\" name=\"article\"></m3e-icon>\n      <span slot=\"label\">Articles</span>\n      <span slot=\"badge\">12</span>\n    </m3e-nav-menu-item>\n  </m3e-nav-menu-item>\n</m3e-nav-menu>",
+      "source": "2026: src/components/NavFab.astro"
+    }
+  ],
+  "fab": [
+    {
+      "title": "Small FAB with icon",
+      "code": "<m3e-fab size=\"small\" aria-label=\"Navigation menu\">\n  <m3e-icon name=\"menu\"></m3e-icon>\n</m3e-fab>",
+      "source": "2026: src/components/NavFab.astro"
+    }
+  ],
+  "breadcrumb": [
+    {
+      "title": "Breadcrumb trail",
+      "code": "<m3e-breadcrumb>\n  <m3e-breadcrumb-item href=\"/\">Home</m3e-breadcrumb-item>\n  <m3e-breadcrumb-item href=\"/work\">Work</m3e-breadcrumb-item>\n  <m3e-breadcrumb-item href=\"/work/tags\">Tags</m3e-breadcrumb-item>\n</m3e-breadcrumb>",
+      "source": "2026: src/components/Breadcrumbs.astro"
+    },
+    {
+      "title": "Breadcrumb trail with current page",
+      "code": "<m3e-breadcrumb>\n  <m3e-breadcrumb-item href=\"/photos\">Photos</m3e-breadcrumb-item>\n  <m3e-breadcrumb-item href=\"/collections\">Collections</m3e-breadcrumb-item>\n  <m3e-breadcrumb-item current=\"page\">Title</m3e-breadcrumb-item>\n</m3e-breadcrumb>",
+      "source": "kinfolk: src/layouts/Layout.astro"
+    }
+  ],
+  "toc": [
+    {
+      "title": "Table of contents with overline slot",
+      "code": "<m3e-toc for=\"post-content\" max-depth=\"3\">\n  <span slot=\"overline\">Contents</span>\n</m3e-toc>",
+      "source": "2026: src/components/ReadingToolbar.astro"
+    }
+  ],
+  "theme": [
+    {
+      "title": "Theme with drawer, nav menu, and app bar shell",
+      "code": "<m3e-theme color=\"#8B6F47\" scheme=\"auto\" contrast=\"standard\" motion=\"expressive\" strong-focus>\n  <m3e-drawer-container start-mode=\"over\">\n    <nav slot=\"start\">\n      <m3e-nav-menu>\n        <a href=\"/photos\">\n          <m3e-nav-menu-item selected>\n            <m3e-icon slot=\"icon\" name=\"photo_library\"></m3e-icon>\n            <span slot=\"label\">Photos</span>\n          </m3e-nav-menu-item>\n        </a>\n      </m3e-nav-menu>\n    </nav>\n    <m3e-app-bar>\n      <m3e-icon-button slot=\"leading\" aria-label=\"Back\">\n        <m3e-icon name=\"arrow_back\"></m3e-icon>\n      </m3e-icon-button>\n      <span slot=\"title\">Title</span>\n    </m3e-app-bar>\n  </m3e-drawer-container>\n</m3e-theme>",
+      "source": "kinfolk: src/layouts/Layout.astro"
+    }
+  ],
+  "tabs": [
+    {
+      "title": "Tabs with icons and panels",
+      "code": "<m3e-tabs>\n  <m3e-tab selected for=\"tab-photos\"><m3e-icon slot=\"icon\" name=\"photo_library\"></m3e-icon>Photos</m3e-tab>\n  <m3e-tab for=\"tab-facts\"><m3e-icon slot=\"icon\" name=\"psychology\"></m3e-icon>Facts</m3e-tab>\n  <m3e-tab-panel id=\"tab-photos\">\n    <p>Photo grid goes here.</p>\n  </m3e-tab-panel>\n  <m3e-tab-panel id=\"tab-facts\">\n    <p>Facts go here.</p>\n  </m3e-tab-panel>\n</m3e-tabs>",
+      "source": "kinfolk: src/pages/entities/[id].astro"
+    }
+  ],
+  "card": [
+    {
+      "title": "Outlined card with header and content slots",
+      "code": "<m3e-card variant=\"outlined\">\n  <m3e-heading slot=\"header\" variant=\"title\" size=\"small\">People</m3e-heading>\n  <div slot=\"content\">\n    <m3e-chip-set>\n      <m3e-chip>Person Name</m3e-chip>\n      <m3e-chip>Relative</m3e-chip>\n    </m3e-chip-set>\n  </div>\n</m3e-card>",
+      "source": "kinfolk: src/pages/photos/[id].astro"
+    },
+    {
+      "title": "Actionable filled card linking to a detail page",
+      "code": "<a href=\"/entities/1\">\n  <m3e-card variant=\"filled\" actionable>\n    <div slot=\"content\">\n      <m3e-icon name=\"family_history\"></m3e-icon>\n      <span>Relative</span>\n      <m3e-icon name=\"chevron_right\"></m3e-icon>\n    </div>\n  </m3e-card>\n</a>",
+      "source": "kinfolk: src/pages/entities/[id].astro"
+    }
+  ],
+  "avatar": [
+    {
+      "title": "Avatar with image and icon fallback",
+      "code": "<m3e-avatar>\n  <img src=\"face.jpg\" />\n</m3e-avatar>\n<m3e-avatar>\n  <m3e-icon name=\"person\"></m3e-icon>\n</m3e-avatar>",
+      "source": "kinfolk: src/pages/entities/[id].astro"
+    }
+  ]
+}

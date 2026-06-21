@@ -16,6 +16,8 @@ const OUT = path.join(ROOT, "skills/m3e");
 const components = JSON.parse(fs.readFileSync(path.join(DATA, "components.json"), "utf8"));
 const sources = JSON.parse(fs.readFileSync(path.join(DATA, "sources.json"), "utf8"));
 const guidance = JSON.parse(fs.readFileSync(path.join(DATA, "guidance.json"), "utf8"));
+const examplesPath = path.join(DATA, "examples.json");
+const realExamples = fs.existsSync(examplesPath) ? JSON.parse(fs.readFileSync(examplesPath, "utf8")) : {};
 const SHA = sources.sha;
 const SHORT = SHA.slice(0, 7);
 const REPO = "https://github.com/matraic/m3e/blob";
@@ -100,6 +102,17 @@ for (const c of components) {
   if (c.examples.length) {
     md += "## Examples\n\n";
     for (const ex of c.examples.slice(0, 4)) md += "```html\n" + ex.code + "\n```\n\n";
+  }
+
+  // verified real-world compositions mined from real projects (no custom CSS,
+  // every tag/attr/slot validated against the CEM)
+  const real = realExamples[c.name];
+  if (real && real.length) {
+    md += "## Real-world compositions\n\n";
+    md += "_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._\n\n";
+    for (const ex of real) {
+      md += `**${ex.title}**\n\n\`\`\`html\n${ex.code}\n\`\`\`\n\n`;
+    }
   }
 
   md += "## API\n\n";

@@ -11,12 +11,17 @@ See [`PLAN.md`](PLAN.md) for the design rationale and decisions.
 ## Pipeline
 
 ```
-scripts/extract.mjs      CEM + TS + README   ->  data/components.json, sources.json, report.md
-scripts/guidance.mjs     m3e docs + taxonomy ->  data/guidance.json (concepts + families)
-scripts/build-skill.mjs  data/*.json         ->  skills/m3e/ (SKILL.md, components/*, concepts/*)
+scripts/extract.mjs        CEM + TS + README     ->  data/components.json, sources.json, report.md
+scripts/guidance.mjs       m3e docs + taxonomy   ->  data/guidance.json (concepts + families)
+scripts/build-examples.mjs mined snippets        ->  data/examples.json (validated real-world)
+scripts/build-skill.mjs    data/*.json           ->  skills/m3e/ (SKILL.md, components/*, concepts/*)
 ```
 
-Run in that order: `guidance.mjs` reads `sources.json`; `build-skill.mjs` reads all three.
+Run in that order. `build-examples.mjs` validates candidate compositions in
+`.cache/examples_raw.json` (mined from real projects) against the manifest —
+rejecting any with custom CSS or any tag/attribute/slot/enum value not in the
+ground truth — and keeps only the clean, correct ones. `build-skill.mjs` reads
+all the data files.
 
 Ground truth is the build-time **Custom Elements Manifest** + TypeScript source.
 READMEs supply prose/examples but every API claim is verified against the CEM;
@@ -34,6 +39,7 @@ cd packages/web && npm run cem          # -> dist/custom-elements.json
 # 2. extract + build (from repo root)
 node scripts/extract.mjs                 # all components (or pass dir names for a subset)
 node scripts/guidance.mjs                # concept pages + component taxonomy
+node scripts/build-examples.mjs          # validate mined real-world compositions
 node scripts/build-skill.mjs
 ```
 
@@ -49,6 +55,8 @@ step 1 with a new SHA, then `node scripts/extract.mjs` and review
 | `data/components.json` | the asset we own: one record per component, full verified API |
 | `data/sources.json` | provenance: pinned SHA + upstream file paths per component |
 | `data/report.md` | verification report: README-vs-code drift |
+| `data/examples_raw.json` | mined candidate snippets (curated input to build-examples) |
+| `data/examples.json` | validated real-world compositions, keyed by component |
 | `skills/m3e/SKILL.md` | the router/index agents read first |
 | `skills/m3e/components/*.md` | per-component cards (loaded on demand) |
 | `skills/m3e/concepts/*.md` | cross-cutting: theming, color, motion, etc. (WIP) |
@@ -59,7 +67,10 @@ step 1 with a new SHA, then `node scripts/extract.mjs` and review
 - [x] Extract + verify all 53 components (110 elements)
 - [x] Render SKILL.md index + per-component cards
 - [x] "When to use" guidance layer: 9 concept pages + selection guide + card cross-links
-- [ ] Install/validate the skill against a sample build task
+- [x] Type aliases resolved from TS source (no opaque `FormSubmitterType`/`LinkTarget`)
+- [x] Validated real-world compositions mined from real projects (17 across 12 components)
+- [x] Validated the skill against a sample build task (0 hallucinations) + a negative test
+- [ ] Staleness check when upstream m3e moves past the pinned SHA
 
 Upstream `matraic/m3e` is MIT-licensed. "Material Design" / "Material 3" are
 trademarks of Google LLC; this project is not affiliated with Google.
