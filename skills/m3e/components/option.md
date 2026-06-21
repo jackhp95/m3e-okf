@@ -24,6 +24,44 @@ import "@m3e/web/option";
 </m3e-option-panel>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Autocomplete option panel with grouped results**
+
+```html
+<m3e-option-panel fit-anchor-width>
+  <m3e-option value="apple">Apple</m3e-option>
+  <m3e-option value="banana">Banana</m3e-option>
+  <m3e-optgroup>
+    <span slot="label">Citrus</span>
+    <m3e-option value="lemon">Lemon</m3e-option>
+    <m3e-option value="orange" selected>Orange</m3e-option>
+    <m3e-option value="grapefruit" disabled>Grapefruit</m3e-option>
+  </m3e-optgroup>
+</m3e-option-panel>
+```
+
+**Option panel with search-term highlighting**
+
+```html
+<m3e-option-panel state="content" scroll-strategy="reposition">
+  <m3e-option value="react" term="re" highlight-mode="starts-with">React</m3e-option>
+  <m3e-option value="redux" term="re" highlight-mode="starts-with">Redux</m3e-option>
+  <m3e-option value="remix" term="re" highlight-mode="starts-with">Remix</m3e-option>
+</m3e-option-panel>
+```
+
+**Empty option panel loading state**
+
+```html
+<m3e-option-panel state="loading" anchor-offset="4">
+  <m3e-loading-indicator></m3e-loading-indicator>
+  <span>Searching...</span>
+</m3e-option-panel>
+```
+
 ## API
 
 ### `<m3e-option>`

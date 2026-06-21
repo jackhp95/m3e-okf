@@ -29,9 +29,9 @@ import "@m3e/web/breadcrumb";
 </m3e-breadcrumb>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Breadcrumb trail**
 
@@ -43,6 +43,8 @@ _Mined from real projects and validated against the manifest — pure Material c
 </m3e-breadcrumb>
 ```
 
+_Source: 2026: src/components/Breadcrumbs.astro_
+
 **Breadcrumb trail with current page**
 
 ```html
@@ -52,6 +54,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   <m3e-breadcrumb-item current="page">Title</m3e-breadcrumb-item>
 </m3e-breadcrumb>
 ```
+
+_Source: kinfolk: src/layouts/Layout.astro_
 
 ## API
 

@@ -53,6 +53,79 @@ import "@m3e/web/menu";
 </m3e-menu>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Basic action menu triggered from a button**
+
+```html
+<m3e-button variant="outlined">
+  <m3e-menu-trigger for="file-menu">File</m3e-menu-trigger>
+  <m3e-icon slot="trailing-icon" name="arrow_drop_down"></m3e-icon>
+</m3e-button>
+<m3e-menu id="file-menu">
+  <m3e-menu-item>
+    <m3e-icon slot="icon" name="note_add"></m3e-icon>
+    New document
+  </m3e-menu-item>
+  <m3e-menu-item>
+    <m3e-icon slot="icon" name="folder_open"></m3e-icon>
+    Open
+  </m3e-menu-item>
+  <m3e-menu-item disabled>
+    <m3e-icon slot="icon" name="save"></m3e-icon>
+    Save
+  </m3e-menu-item>
+</m3e-menu>
+```
+
+**View menu with checkbox and radio selection groups**
+
+```html
+<m3e-button variant="text">
+  <m3e-menu-trigger for="view-menu">View</m3e-menu-trigger>
+</m3e-button>
+<m3e-menu id="view-menu" variant="vibrant">
+  <m3e-menu-item-checkbox checked>
+    Show sidebar
+  </m3e-menu-item-checkbox>
+  <m3e-menu-item-checkbox>
+    Show status bar
+  </m3e-menu-item-checkbox>
+  <hr>
+  <m3e-menu-item-group>
+    <m3e-menu-item-radio checked>Comfortable</m3e-menu-item-radio>
+    <m3e-menu-item-radio>Cozy</m3e-menu-item-radio>
+    <m3e-menu-item-radio>Compact</m3e-menu-item-radio>
+  </m3e-menu-item-group>
+</m3e-menu>
+```
+
+**Nested submenu for sharing options**
+
+```html
+<m3e-button variant="filled">
+  <m3e-menu-trigger for="share-menu">Share</m3e-menu-trigger>
+</m3e-button>
+<m3e-menu id="share-menu">
+  <m3e-menu-item>
+    <m3e-icon slot="icon" name="link"></m3e-icon>
+    Copy link
+  </m3e-menu-item>
+  <m3e-menu-item>
+    <m3e-icon slot="icon" name="group"></m3e-icon>
+    <m3e-menu-trigger for="people-menu">Share with people</m3e-menu-trigger>
+    <m3e-icon slot="trailing-icon" name="chevron_right"></m3e-icon>
+  </m3e-menu-item>
+</m3e-menu>
+<m3e-menu id="people-menu" submenu position-x="after">
+  <m3e-menu-item>Alex Chen</m3e-menu-item>
+  <m3e-menu-item>Jordan Lee</m3e-menu-item>
+  <m3e-menu-item>Sam Rivera</m3e-menu-item>
+</m3e-menu>
+```
+
 ## API
 
 ### `<m3e-menu-trigger>`

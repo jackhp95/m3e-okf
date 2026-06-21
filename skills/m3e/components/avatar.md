@@ -26,9 +26,9 @@ import "@m3e/web/avatar";
 </m3e-avatar>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Avatar with image and icon fallback**
 
@@ -40,6 +40,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   <m3e-icon name="person"></m3e-icon>
 </m3e-avatar>
 ```
+
+_Source: kinfolk: src/pages/entities/[id].astro_
 
 ## API
 

@@ -20,6 +20,38 @@ import "@m3e/web/split-button";
 </m3e-split-button>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Filled split button with primary action and menu toggle**
+
+```html
+<m3e-split-button variant="filled" size="medium">
+  <m3e-button slot="leading-button">
+    <m3e-icon slot="icon" name="edit"></m3e-icon>
+    Edit
+  </m3e-button>
+  <m3e-button slot="trailing-button">
+    <m3e-icon name="keyboard_arrow_down"></m3e-icon>
+  </m3e-button>
+</m3e-split-button>
+```
+
+**Tonal split button**
+
+```html
+<m3e-split-button variant="tonal" size="large">
+  <m3e-button slot="leading-button">
+    <m3e-icon slot="icon" name="save"></m3e-icon>
+    Save
+  </m3e-button>
+  <m3e-button slot="trailing-button">
+    <m3e-icon name="arrow_drop_down"></m3e-icon>
+  </m3e-button>
+</m3e-split-button>
+```
+
 ## API
 
 ### `<m3e-split-button>`

@@ -14,6 +14,38 @@ import "@m3e/web/button";
 <m3e-button variant="tonal">Tonal Button</m3e-button>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Five button variants in an action row**
+
+```html
+<m3e-button variant="filled">
+  <m3e-icon slot="icon" name="add"></m3e-icon>
+  New
+</m3e-button>
+<m3e-button variant="tonal">Tonal</m3e-button>
+<m3e-button variant="elevated">Elevated</m3e-button>
+<m3e-button variant="outlined">Outlined</m3e-button>
+<m3e-button variant="text">Text</m3e-button>
+```
+
+**Toggle button and link button with icons**
+
+```html
+<m3e-button variant="outlined" toggle>
+  <m3e-icon slot="icon" name="favorite_border"></m3e-icon>
+  <m3e-icon slot="selected-icon" name="favorite" filled></m3e-icon>
+  <span slot="selected">Saved</span>
+  Save
+</m3e-button>
+<m3e-button variant="filled" href="/download" download size="large">
+  <m3e-icon slot="icon" name="download"></m3e-icon>
+  Download
+</m3e-button>
+```
+
 ## API
 
 ### `<m3e-button>`

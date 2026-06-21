@@ -104,14 +104,16 @@ for (const c of components) {
     for (const ex of c.examples.slice(0, 4)) md += "```html\n" + ex.code + "\n```\n\n";
   }
 
-  // verified real-world compositions mined from real projects (no custom CSS,
-  // every tag/attr/slot validated against the CEM)
+  // validated compositions: every tag/attribute/slot/union value checked against
+  // the CEM ground truth, no custom CSS. Either authored straight from the API or
+  // mined from real projects (provenance noted per example).
   const real = realExamples[c.name];
   if (real && real.length) {
-    md += "## Real-world compositions\n\n";
-    md += "_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._\n\n";
+    md += "## Compositions\n\n";
+    md += "_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._\n\n";
     for (const ex of real) {
       md += `**${ex.title}**\n\n\`\`\`html\n${ex.code}\n\`\`\`\n\n`;
+      if (ex.origin === "mined" && ex.source) md += `_Source: ${ex.source}_\n\n`;
     }
   }
 

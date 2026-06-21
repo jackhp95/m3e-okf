@@ -24,6 +24,40 @@ import "@m3e/web/split-pane";
 </m3e-split-pane>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Horizontal split pane with min and max constraints**
+
+```html
+<m3e-split-pane orientation="horizontal" value="35" min="20" max="60" label="Resize sidebar">
+  <nav slot="start">
+    <ul>
+      <li>Inbox</li>
+      <li>Drafts</li>
+      <li>Sent</li>
+    </ul>
+  </nav>
+  <main slot="end">
+    <p>Select a message to read.</p>
+  </main>
+</m3e-split-pane>
+```
+
+**Vertical split pane with snapping detents**
+
+```html
+<m3e-split-pane orientation="vertical" detents="25 50 75" wrap-detents step="5">
+  <section slot="start">
+    <p>Editor</p>
+  </section>
+  <section slot="end">
+    <p>Preview output</p>
+  </section>
+</m3e-split-pane>
+```
+
 ## API
 
 ### `<m3e-split-pane>`

@@ -30,6 +30,35 @@ import "@m3e/web/select";
 </m3e-select>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Single select of fruit options**
+
+```html
+<label for="fruit">Favorite fruit</label>
+<br />
+<m3e-select id="fruit" name="fruit" required>
+  <m3e-option value="apple">Apples</m3e-option>
+  <m3e-option value="orange">Oranges</m3e-option>
+  <m3e-option value="banana">Bananas</m3e-option>
+  <m3e-option value="grape">Grapes</m3e-option>
+</m3e-select>
+```
+
+**Multi-select languages with custom arrow**
+
+```html
+<m3e-select multi name="languages">
+  <m3e-icon slot="arrow" name="expand_more"></m3e-icon>
+  <m3e-option value="javascript">JavaScript</m3e-option>
+  <m3e-option value="typescript">TypeScript</m3e-option>
+  <m3e-option value="python">Python</m3e-option>
+  <m3e-option value="rust">Rust</m3e-option>
+</m3e-select>
+```
+
 ## API
 
 ### `<m3e-select>`

@@ -16,9 +16,9 @@ import "@m3e/web/icon-button";
 </m3e-icon-button>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Icon button wrapping an icon**
 
@@ -27,6 +27,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   <m3e-icon name="dark_mode"></m3e-icon>
 </m3e-icon-button>
 ```
+
+_Source: 2026: src/pages/speed-reader.astro_
 
 **Link icon buttons in a toolbar**
 
@@ -41,6 +43,8 @@ _Mined from real projects and validated against the manifest — pure Material c
 </div>
 ```
 
+_Source: 2026: src/components/NavFab.astro_
+
 **Icon buttons grouped in a media control bar**
 
 ```html
@@ -51,6 +55,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   <m3e-icon name="play_arrow"></m3e-icon>
 </m3e-icon-button>
 ```
+
+_Source: kinfolk: src/pages/slideshow.astro_
 
 ## API
 

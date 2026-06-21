@@ -24,6 +24,76 @@ import "@m3e/web/list";
 </m3e-list>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Contact list with leading icons and trailing chevrons**
+
+```html
+<m3e-list variant="standard">
+  <m3e-list-item>
+    <m3e-icon slot="leading" name="person"></m3e-icon>
+    <span slot="overline">Engineering</span>
+    Ada Lovelace
+    <span slot="supporting-text">ada@example.com</span>
+    <m3e-icon slot="trailing" name="chevron_right"></m3e-icon>
+  </m3e-list-item>
+  <m3e-list-item>
+    <m3e-icon slot="leading" name="person"></m3e-icon>
+    <span slot="overline">Design</span>
+    Grace Hopper
+    <span slot="supporting-text">grace@example.com</span>
+    <m3e-icon slot="trailing" name="chevron_right"></m3e-icon>
+  </m3e-list-item>
+</m3e-list>
+```
+
+**Action list of navigable links**
+
+```html
+<m3e-action-list variant="segmented">
+  <m3e-list-action href="/account">
+    <m3e-icon slot="leading" name="manage_accounts"></m3e-icon>
+    Account
+    <m3e-icon slot="trailing" name="open_in_new"></m3e-icon>
+  </m3e-list-action>
+  <m3e-list-action href="/billing">
+    <m3e-icon slot="leading" name="payments"></m3e-icon>
+    Billing
+  </m3e-list-action>
+  <m3e-list-action disabled>
+    <m3e-icon slot="leading" name="lock"></m3e-icon>
+    Admin tools
+  </m3e-list-action>
+</m3e-action-list>
+```
+
+**Multi-select selection list with expandable group**
+
+```html
+<m3e-selection-list multi name="topics">
+  <m3e-list-option value="news" selected>
+    <m3e-icon slot="leading" name="feed"></m3e-icon>
+    Product news
+  </m3e-list-option>
+  <m3e-list-option value="offers">
+    <m3e-icon slot="leading" name="local_offer"></m3e-icon>
+    Special offers
+  </m3e-list-option>
+  <m3e-expandable-list-item open>
+    <m3e-icon slot="leading" name="folder"></m3e-icon>
+    Advanced
+    <m3e-list-option slot="items" value="beta">
+      Beta features
+    </m3e-list-option>
+    <m3e-list-option slot="items" value="api">
+      API updates
+    </m3e-list-option>
+  </m3e-expandable-list-item>
+</m3e-selection-list>
+```
+
 ## API
 
 ### `<m3e-list-item>`

@@ -26,6 +26,45 @@ import "@m3e/web/button-group";
 </m3e-button-group>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Connected toggle group for view selection**
+
+```html
+<m3e-button-group variant="connected">
+  <m3e-button variant="tonal" shape="square" toggle selected>
+    <m3e-icon slot="icon" name="view_list"></m3e-icon>
+    List
+  </m3e-button>
+  <m3e-button variant="tonal" shape="square" toggle>
+    <m3e-icon slot="icon" name="grid_view"></m3e-icon>
+    Grid
+  </m3e-button>
+  <m3e-button variant="tonal" shape="square" toggle>
+    <m3e-icon slot="icon" name="map"></m3e-icon>
+    Map
+  </m3e-button>
+</m3e-button-group>
+```
+
+**Multi-select formatting toolbar**
+
+```html
+<m3e-button-group variant="connected" multi size="medium">
+  <m3e-button variant="tonal" shape="square" toggle aria-label="Bold">
+    <m3e-icon name="format_bold"></m3e-icon>
+  </m3e-button>
+  <m3e-button variant="tonal" shape="square" toggle aria-label="Italic">
+    <m3e-icon name="format_italic"></m3e-icon>
+  </m3e-button>
+  <m3e-button variant="tonal" shape="square" toggle aria-label="Underline">
+    <m3e-icon name="format_underlined"></m3e-icon>
+  </m3e-button>
+</m3e-button-group>
+```
+
 ## API
 
 ### `<m3e-button-group>`

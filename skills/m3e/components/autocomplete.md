@@ -32,6 +32,37 @@ import "@m3e/web/autocomplete";
 </m3e-autocomplete>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Favorite fruit autocomplete with auto-activation**
+
+```html
+<label for="fruit">Choose your favorite fruit</label>
+<input id="fruit" />
+<m3e-autocomplete for="fruit" auto-activate required>
+  <m3e-option>Apples</m3e-option>
+  <m3e-option>Oranges</m3e-option>
+  <m3e-option>Bananas</m3e-option>
+  <m3e-option>Grapes</m3e-option>
+</m3e-autocomplete>
+```
+
+**Starts-with country search with no-data message**
+
+```html
+<label for="country">Country</label>
+<input id="country" placeholder="Start typing..." />
+<m3e-autocomplete for="country" filter="starts-with" no-data-label="No matching countries">
+  <m3e-option>Australia</m3e-option>
+  <m3e-option>Brazil</m3e-option>
+  <m3e-option>Canada</m3e-option>
+  <m3e-option>Denmark</m3e-option>
+  <span slot="no-data">Try a different spelling</span>
+</m3e-autocomplete>
+```
+
 ## API
 
 ### `<m3e-autocomplete>`

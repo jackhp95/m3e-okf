@@ -20,6 +20,37 @@ import "@m3e/web/slide-group";
 </m3e-slide-group>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Horizontal scrollable button row**
+
+```html
+<m3e-slide-group threshold="48" previous-page-label="Scroll left" next-page-label="Scroll right">
+  <m3e-icon slot="prev-icon" name="chevron_left"></m3e-icon>
+  <m3e-icon slot="next-icon" name="chevron_right"></m3e-icon>
+  <m3e-button variant="tonal">All</m3e-button>
+  <m3e-button variant="outlined">Photos</m3e-button>
+  <m3e-button variant="outlined">Videos</m3e-button>
+  <m3e-button variant="outlined">Documents</m3e-button>
+  <m3e-button variant="outlined">Music</m3e-button>
+  <m3e-button variant="outlined">Archives</m3e-button>
+</m3e-slide-group>
+```
+
+**Vertical slide group of cards**
+
+```html
+<m3e-slide-group vertical threshold="32">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+  <div>Item 4</div>
+  <div>Item 5</div>
+</m3e-slide-group>
+```
+
 ## API
 
 ### `<m3e-slide-group>`

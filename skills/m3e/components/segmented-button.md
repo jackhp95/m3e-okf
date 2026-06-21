@@ -21,9 +21,9 @@ import "@m3e/web/segmented-button";
 </m3e-segmented-button>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Segmented button with icons**
 
@@ -40,6 +40,8 @@ _Mined from real projects and validated against the manifest — pure Material c
 </m3e-segmented-button>
 ```
 
+_Source: 2026: src/pages/speed-reader.astro_
+
 **Segmented button for value selection**
 
 ```html
@@ -49,6 +51,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   <m3e-button-segment value="1.5">1.5x</m3e-button-segment>
 </m3e-segmented-button>
 ```
+
+_Source: 2026: src/components/ReadingToolbar.astro_
 
 ## API
 

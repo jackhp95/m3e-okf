@@ -14,6 +14,44 @@ import "@m3e/web/divider";
 <m3e-divider></m3e-divider>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Dividers separating a settings list**
+
+```html
+<ul>
+  <li>
+    <span>Profile</span>
+  </li>
+  <m3e-divider inset-start></m3e-divider>
+  <li>
+    <span>Privacy</span>
+  </li>
+  <m3e-divider inset-start></m3e-divider>
+  <li>
+    <span>Notifications</span>
+  </li>
+</ul>
+```
+
+**Vertical divider between toolbar actions**
+
+```html
+<nav>
+  <m3e-button variant="text">
+    <m3e-icon slot="icon" name="format_bold"></m3e-icon>
+    Bold
+  </m3e-button>
+  <m3e-divider vertical></m3e-divider>
+  <m3e-button variant="text">
+    <m3e-icon slot="icon" name="link"></m3e-icon>
+    Link
+  </m3e-button>
+</nav>
+```
+
 ## API
 
 ### `<m3e-divider>`

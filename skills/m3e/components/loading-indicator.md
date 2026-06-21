@@ -14,6 +14,35 @@ import "@m3e/web/loading-indicator";
 <m3e-loading-indicator></m3e-loading-indicator>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Inline loading indicator while content loads**
+
+```html
+<section>
+  <header>
+    <h2>Your dashboard</h2>
+  </header>
+  <div>
+    <m3e-loading-indicator></m3e-loading-indicator>
+    <p>Loading your latest activity...</p>
+  </div>
+</section>
+```
+
+**Contained loading indicator inside a refresh button**
+
+```html
+<div>
+  <m3e-button variant="tonal" disabled>
+    <m3e-loading-indicator slot="icon" variant="contained"></m3e-loading-indicator>
+    Refreshing
+  </m3e-button>
+</div>
+```
+
 ## API
 
 ### `<m3e-loading-indicator>`

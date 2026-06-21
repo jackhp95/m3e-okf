@@ -18,6 +18,22 @@ import "@m3e/web/switch";
 <label>Switch label&nbsp;<m3e-switch icons="both"></m3e-switch></label>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Labelled switch with icons in both states**
+
+```html
+<label>Enable notifications&nbsp;<m3e-switch checked icons="both" name="notifications" value="enabled"></m3e-switch></label>
+```
+
+**Disabled switch**
+
+```html
+<label>Sync over cellular&nbsp;<m3e-switch disabled icons="selected"></m3e-switch></label>
+```
+
 ## API
 
 ### `<m3e-switch>`

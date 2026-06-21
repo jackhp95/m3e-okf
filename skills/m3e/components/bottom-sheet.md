@@ -31,6 +31,53 @@ import "@m3e/web/bottom-sheet";
 </m3e-bottom-sheet>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Modal share sheet with action list**
+
+```html
+<m3e-button variant="tonal">
+  <m3e-bottom-sheet-trigger for="share-sheet">Share</m3e-bottom-sheet-trigger>
+</m3e-button>
+<m3e-bottom-sheet id="share-sheet" modal handle hideable detents="fit half full">
+  <span slot="header">Share to</span>
+  <m3e-action-list>
+    <m3e-list-action>
+      <m3e-icon slot="leading" name="link"></m3e-icon>
+      <m3e-bottom-sheet-action>Copy link</m3e-bottom-sheet-action>
+    </m3e-list-action>
+    <m3e-list-action>
+      <m3e-icon slot="leading" name="mail"></m3e-icon>
+      <m3e-bottom-sheet-action>Email</m3e-bottom-sheet-action>
+    </m3e-list-action>
+  </m3e-action-list>
+</m3e-bottom-sheet>
+```
+
+**Non-modal filter sheet opening to a detent**
+
+```html
+<m3e-button variant="outlined">
+  <m3e-bottom-sheet-trigger for="filters-sheet" detent="1">Filters</m3e-bottom-sheet-trigger>
+</m3e-button>
+<m3e-bottom-sheet id="filters-sheet" handle detents="half full">
+  <span slot="header">Filters</span>
+  <label>
+    <m3e-checkbox checked></m3e-checkbox>
+    In stock only
+  </label>
+  <label>
+    <m3e-checkbox></m3e-checkbox>
+    On sale
+  </label>
+  <m3e-button variant="filled">
+    <m3e-bottom-sheet-action>Apply</m3e-bottom-sheet-action>
+  </m3e-button>
+</m3e-bottom-sheet>
+```
+
 ## API
 
 ### `<m3e-bottom-sheet-action>`

@@ -18,6 +18,26 @@ import "@m3e/web/textarea-autosize";
 </m3e-form-field>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Auto-resizing comment textarea**
+
+```html
+<label for="comment">Add a comment</label>
+<textarea id="comment" placeholder="Share your thoughts..."></textarea>
+<m3e-textarea-autosize for="comment" min-rows="2" max-rows="8"></m3e-textarea-autosize>
+```
+
+**Disabled auto-sizing on a fixed message box**
+
+```html
+<label for="msg">Message</label>
+<textarea id="msg"></textarea>
+<m3e-textarea-autosize for="msg" disabled></m3e-textarea-autosize>
+```
+
 ## API
 
 ### `<m3e-textarea-autosize>`

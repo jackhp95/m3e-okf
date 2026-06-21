@@ -17,6 +17,45 @@ import "@m3e/web/form-field";
 </m3e-form-field>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Outlined field with prefix, hint and required marker**
+
+```html
+<m3e-form-field variant="outlined">
+  <label for="site-url">Website</label>
+  <m3e-icon slot="prefix" name="public"></m3e-icon>
+  <span slot="prefix-text">https://</span>
+  <input id="site-url" type="text" name="website" placeholder="yourdomain.com" />
+  <span slot="hint">Include the full domain without a path.</span>
+</m3e-form-field>
+```
+
+**Filled field with always-floating label and error**
+
+```html
+<m3e-form-field variant="filled" float-label="always">
+  <label for="amount">Amount</label>
+  <span slot="prefix-text">$</span>
+  <input id="amount" type="text" name="amount" value="0.00" />
+  <span slot="suffix-text">USD</span>
+  <span slot="error">Enter an amount greater than zero.</span>
+</m3e-form-field>
+```
+
+**Search field with leading and trailing icons**
+
+```html
+<m3e-form-field variant="outlined" hide-required-marker>
+  <label for="search">Search docs</label>
+  <m3e-icon slot="prefix" name="search"></m3e-icon>
+  <input id="search" type="text" name="q" placeholder="Type to search" />
+  <m3e-icon slot="suffix" name="close"></m3e-icon>
+</m3e-form-field>
+```
+
 ## API
 
 ### `<m3e-form-field>`

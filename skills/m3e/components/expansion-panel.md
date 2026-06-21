@@ -25,6 +25,61 @@ import "@m3e/web/expansion-panel";
 </m3e-accordion>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**FAQ accordion with single-open behavior**
+
+```html
+<m3e-accordion>
+  <m3e-expansion-panel open>
+    <span slot="header">How do I reset my password?</span>
+    <m3e-icon slot="toggle-icon" name="expand_more"></m3e-icon>
+    <p>Open Settings, choose Security, then select Reset password. A link will be sent to your email.</p>
+  </m3e-expansion-panel>
+  <m3e-expansion-panel>
+    <span slot="header">Can I change my plan later?</span>
+    <p>Yes. Plans can be upgraded or downgraded at any time from the Billing page.</p>
+  </m3e-expansion-panel>
+  <m3e-expansion-panel>
+    <span slot="header">Where can I download invoices?</span>
+    <p>All invoices are available under Billing, in the Invoice history section.</p>
+  </m3e-expansion-panel>
+</m3e-accordion>
+```
+
+**Settings panel with custom header and actions**
+
+```html
+<m3e-expansion-panel toggle-position="before">
+  <div slot="header">
+    <m3e-icon name="notifications"></m3e-icon>
+    <span>Notification preferences</span>
+  </div>
+  <p>Choose how and when we contact you about account activity and product updates.</p>
+  <div slot="actions">
+    <m3e-button variant="text">Cancel</m3e-button>
+    <m3e-button variant="filled">Save</m3e-button>
+  </div>
+</m3e-expansion-panel>
+```
+
+**Multi-open accordion with horizontal toggle**
+
+```html
+<m3e-accordion multi>
+  <m3e-expansion-panel toggle-direction="horizontal">
+    <span slot="header">Shipping</span>
+    <p>Standard delivery arrives in 3 to 5 business days.</p>
+  </m3e-expansion-panel>
+  <m3e-expansion-panel toggle-direction="horizontal">
+    <span slot="header">Returns</span>
+    <p>Items can be returned within 30 days of receipt.</p>
+  </m3e-expansion-panel>
+</m3e-accordion>
+```
+
 ## API
 
 ### `<m3e-expansion-header>`

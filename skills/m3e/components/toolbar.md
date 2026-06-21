@@ -30,6 +30,42 @@ import "@m3e/web/toolbar";
 </m3e-toolbar>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Vibrant rounded media controls toolbar**
+
+```html
+<m3e-toolbar variant="vibrant" shape="rounded">
+  <m3e-button variant="text">
+    <m3e-icon slot="icon" name="skip_previous"></m3e-icon>
+  </m3e-button>
+  <m3e-button variant="filled">
+    <m3e-icon slot="icon" name="play_arrow"></m3e-icon>
+  </m3e-button>
+  <m3e-button variant="text">
+    <m3e-icon slot="icon" name="skip_next"></m3e-icon>
+  </m3e-button>
+</m3e-toolbar>
+```
+
+**Elevated vertical editing toolbar**
+
+```html
+<m3e-toolbar vertical elevated shape="square">
+  <m3e-button variant="text">
+    <m3e-icon slot="icon" name="format_bold"></m3e-icon>
+  </m3e-button>
+  <m3e-button variant="text">
+    <m3e-icon slot="icon" name="format_italic"></m3e-icon>
+  </m3e-button>
+  <m3e-button variant="text">
+    <m3e-icon slot="icon" name="format_underlined"></m3e-icon>
+  </m3e-button>
+</m3e-toolbar>
+```
+
 ## API
 
 ### `<m3e-toolbar>`

@@ -14,6 +14,35 @@ import "@m3e/web/paginator";
 <m3e-paginator show-first-last-buttons length="300"></m3e-paginator>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Table paginator with first/last navigation**
+
+```html
+<footer>
+  <m3e-paginator length="300" page-size="25" page-index="0" page-sizes="10,25,50,100" show-first-last-buttons></m3e-paginator>
+</footer>
+```
+
+**Compact paginator with hidden page-size selector**
+
+```html
+<m3e-paginator length="48" page-size="10" hide-page-size next-page-label="Next results" previous-page-label="Previous results"></m3e-paginator>
+```
+
+**Paginator with custom navigation icons**
+
+```html
+<m3e-paginator length="500" page-size="50" page-size-variant="filled" show-first-last-buttons>
+  <m3e-icon slot="first-page-icon" name="first_page"></m3e-icon>
+  <m3e-icon slot="previous-page-icon" name="chevron_left"></m3e-icon>
+  <m3e-icon slot="next-page-icon" name="chevron_right"></m3e-icon>
+  <m3e-icon slot="last-page-icon" name="last_page"></m3e-icon>
+</m3e-paginator>
+```
+
 ## API
 
 ### `<m3e-paginator>`

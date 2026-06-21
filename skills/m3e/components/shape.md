@@ -14,6 +14,29 @@ import "@m3e/web/shape";
 <m3e-shape name="sunny"></m3e-shape>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Decorative sunny shape with icon**
+
+```html
+<m3e-shape name="sunny">
+  <m3e-icon name="star"></m3e-icon>
+</m3e-shape>
+```
+
+**Row of expressive decorative shapes**
+
+```html
+<div>
+  <m3e-shape name="4-leaf-clover"></m3e-shape>
+  <m3e-shape name="heart"></m3e-shape>
+  <m3e-shape name="diamond"></m3e-shape>
+  <m3e-shape name="burst"></m3e-shape>
+</div>
+```
+
 ## API
 
 ### `<m3e-shape>`

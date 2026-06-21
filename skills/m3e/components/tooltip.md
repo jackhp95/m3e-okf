@@ -34,6 +34,46 @@ import "@m3e/web/tooltip";
 </m3e-rich-tooltip>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Simple tooltip on an icon button**
+
+```html
+<m3e-button id="refreshBtn" variant="tonal">
+  <m3e-icon slot="icon" name="refresh"></m3e-icon>
+</m3e-button>
+<m3e-tooltip for="refreshBtn" position="above">Refresh data</m3e-tooltip>
+```
+
+**Rich tooltip with subhead and actions**
+
+```html
+<m3e-button id="infoBtn" variant="outlined">
+  <m3e-icon slot="icon" name="info"></m3e-icon>
+  Details
+</m3e-button>
+<m3e-rich-tooltip for="infoBtn" position="below-after" show-delay="100">
+  <span slot="subhead">New settings available</span>
+  Now you can adjust uploaded image quality and upgrade your available storage space.
+  <div slot="actions">
+    <m3e-button variant="text">
+      <m3e-rich-tooltip-action>Learn more</m3e-rich-tooltip-action>
+    </m3e-button>
+  </div>
+</m3e-rich-tooltip>
+```
+
+**Tooltip with touch gestures disabled**
+
+```html
+<m3e-button id="deleteBtn" variant="text">
+  <m3e-icon slot="icon" name="delete"></m3e-icon>
+</m3e-button>
+<m3e-tooltip for="deleteBtn" position="after" touch-gestures="off" hide-delay="400">Delete item</m3e-tooltip>
+```
+
 ## API
 
 ### `<m3e-rich-tooltip-action>`

@@ -15,8 +15,20 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(fileURLToPath(import.meta.url), "../..");
-const raw = JSON.parse(fs.readFileSync(path.join(ROOT, "data/examples_raw.json"), "utf8"));
 const comps = JSON.parse(fs.readFileSync(path.join(ROOT, "data/components.json"), "utf8"));
+
+// Two candidate sources, both validated against the same ground truth:
+//   examples_raw.json       — mined from real projects (carries project/sourceFile)
+//   authored_candidates.json — hand-authored straight from the CEM/TS API
+// Authored entries get a provenance-tagged source string so the skill can be honest
+// about origin while the validator stays the single gate for correctness.
+const mined = JSON.parse(fs.readFileSync(path.join(ROOT, "data/examples_raw.json"), "utf8"))
+  .map((e) => ({ ...e, origin: "mined" }));
+const authoredPath = path.join(ROOT, "data/authored_candidates.json");
+const authored = fs.existsSync(authoredPath)
+  ? JSON.parse(fs.readFileSync(authoredPath, "utf8")).map((e) => ({ ...e, origin: "authored" }))
+  : [];
+const raw = [...mined, ...authored];
 
 // ground-truth index: tag -> { attrs:Map(name->type), props:Set, slots:Set }
 const GT = new Map();
@@ -32,7 +44,7 @@ const GLOBAL_OK = (name) =>
   ["slot", "id", "role", "title", "hidden", "tabindex", "lang", "dir", "is"].includes(name) ||
   name.startsWith("aria-") ||
   name.startsWith("data-");
-const NATIVE = new Set(["div","span","a","img","input","textarea","label","p","time","nav","main","section","header","footer","ul","ol","li","h1","h2","h3","h4","h5","h6","button","slot","br","hr","strong","em","small","i","b"]);
+const NATIVE = new Set(["div","span","a","img","input","textarea","label","p","time","nav","main","section","header","footer","aside","article","form","fieldset","legend","figure","figcaption","table","thead","tbody","tr","th","td","ul","ol","li","h1","h2","h3","h4","h5","h6","button","slot","br","hr","strong","em","small","i","b"]);
 const VOID = new Set(["img", "input", "br", "hr", "source", "meta", "link"]);
 
 // ---- minimal HTML tokenizer -> tree -------------------------------------
@@ -128,7 +140,8 @@ for (const ex of raw) {
   if (errs.length) {
     report.push({ ...ex, status: "REJECT", errs });
   } else {
-    (accepted[ex.component] ||= []).push({ title: ex.title, code: ex.code, source: `${ex.project}: ${ex.sourceFile}` });
+    const source = ex.origin === "authored" ? "authored (validated vs CEM)" : `${ex.project}: ${ex.sourceFile}`;
+    (accepted[ex.component] ||= []).push({ title: ex.title, code: ex.code, source, origin: ex.origin });
     report.push({ ...ex, status: "OK" });
   }
 }

@@ -14,6 +14,29 @@ import "@m3e/web/badge";
 <m3e-button id="button">Button</m3e-button><m3e-badge for="button">10</m3e-badge>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Notification count badge on a button**
+
+```html
+<m3e-button id="notifications" variant="tonal">
+  <m3e-icon slot="icon" name="notifications"></m3e-icon>
+  Alerts
+</m3e-button>
+<m3e-badge for="notifications">10</m3e-badge>
+```
+
+**Small dot badge and large count badge on icons**
+
+```html
+<m3e-icon id="mail-icon" name="mail"></m3e-icon>
+<m3e-badge for="mail-icon" size="small" position="above-after"></m3e-badge>
+<m3e-icon id="cart-icon" name="shopping_cart"></m3e-icon>
+<m3e-badge for="cart-icon" size="large" position="above-after">99+</m3e-badge>
+```
+
 ## API
 
 ### `<m3e-badge>`

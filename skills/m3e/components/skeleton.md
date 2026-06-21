@@ -16,6 +16,38 @@ import "@m3e/web/skeleton";
 </m3e-skeleton>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Card loading placeholder with wave animation**
+
+```html
+<m3e-skeleton animation="wave" shape="rounded">
+  <div>
+    <p>Loading content...</p>
+  </div>
+</m3e-skeleton>
+```
+
+**Circular avatar and text placeholders**
+
+```html
+<div>
+  <m3e-skeleton shape="circular" animation="pulse"></m3e-skeleton>
+  <m3e-skeleton shape="rounded" animation="pulse"></m3e-skeleton>
+  <m3e-skeleton shape="rounded" animation="pulse"></m3e-skeleton>
+</div>
+```
+
+**Loaded skeleton revealing content**
+
+```html
+<m3e-skeleton loaded shape="auto" animation="none">
+  <p>Content has finished loading.</p>
+</m3e-skeleton>
+```
+
 ## API
 
 ### `<m3e-skeleton>`

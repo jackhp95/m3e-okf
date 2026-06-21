@@ -10,6 +10,36 @@ import "@m3e/web/datepicker";
 
 **Elements:** `<m3e-datepicker>`, `<m3e-datepicker-toggle>`
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Booking range picker with constraints**
+
+```html
+<form>
+  <label for="stay">Choose your stay</label>
+  <m3e-datepicker id="stay" range variant="docked" clearable label="Select dates" start-view="month">
+    <m3e-datepicker-toggle for="stay">
+      <m3e-icon name="calendar_month"></m3e-icon>
+    </m3e-datepicker-toggle>
+  </m3e-datepicker>
+</form>
+```
+
+**Modal single-date picker**
+
+```html
+<div>
+  <label for="due">Due date</label>
+  <m3e-datepicker id="due" variant="modal" clearable label="Select date">
+    <m3e-datepicker-toggle for="due">
+      <m3e-icon name="event"></m3e-icon>
+    </m3e-datepicker-toggle>
+  </m3e-datepicker>
+</div>
+```
+
 ## API
 
 ### `<m3e-datepicker>`

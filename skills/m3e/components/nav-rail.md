@@ -30,6 +30,58 @@ import "@m3e/web/nav-rail";
 </m3e-nav-rail>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Collapsible navigation rail with toggle**
+
+```html
+<m3e-nav-rail id="main-rail" mode="auto">
+  <m3e-button toggle>
+    <m3e-icon name="menu"></m3e-icon>
+    <m3e-icon slot="selected" name="menu_open"></m3e-icon>
+    <m3e-nav-rail-toggle for="main-rail"></m3e-nav-rail-toggle>
+  </m3e-button>
+  <m3e-nav-item selected>
+    <m3e-icon slot="icon" name="dashboard"></m3e-icon>
+    Dashboard
+  </m3e-nav-item>
+  <m3e-nav-item>
+    <m3e-icon slot="icon" name="folder"></m3e-icon>
+    Projects
+  </m3e-nav-item>
+  <m3e-nav-item>
+    <m3e-icon slot="icon" name="insights"></m3e-icon>
+    Reports
+  </m3e-nav-item>
+  <m3e-nav-item>
+    <m3e-icon slot="icon" name="settings"></m3e-icon>
+    Settings
+  </m3e-nav-item>
+</m3e-nav-rail>
+```
+
+**Expanded navigation rail with link destinations**
+
+```html
+<m3e-nav-rail id="docs-rail" mode="expanded">
+  <m3e-nav-item href="/overview" selected>
+    <m3e-icon slot="icon" name="home"></m3e-icon>
+    <m3e-icon slot="selected-icon" name="home" filled></m3e-icon>
+    Overview
+  </m3e-nav-item>
+  <m3e-nav-item href="/components">
+    <m3e-icon slot="icon" name="widgets"></m3e-icon>
+    Components
+  </m3e-nav-item>
+  <m3e-nav-item href="/guides">
+    <m3e-icon slot="icon" name="menu_book"></m3e-icon>
+    Guides
+  </m3e-nav-item>
+</m3e-nav-rail>
+```
+
 ## API
 
 ### `<m3e-nav-rail>`

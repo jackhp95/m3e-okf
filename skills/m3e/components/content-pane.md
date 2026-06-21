@@ -17,6 +17,24 @@ import "@m3e/web/content-pane";
 </m3e-content-pane>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Scrollable article surface**
+
+```html
+<m3e-content-pane>
+  <header>
+    <h2>Release notes</h2>
+  </header>
+  <p>This version introduces a redesigned navigation drawer and refined motion.</p>
+  <m3e-divider></m3e-divider>
+  <p>Performance improvements reduce initial load time across all surfaces.</p>
+  <p>Several accessibility fixes were applied to form controls.</p>
+</m3e-content-pane>
+```
+
 ## API
 
 ### `<m3e-content-pane>`

@@ -50,6 +50,56 @@ import "@m3e/web/stepper";
 </m3e-stepper>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Horizontal stepper with completed and optional steps**
+
+```html
+<m3e-stepper orientation="horizontal" header-position="above" label-position="end">
+  <m3e-step for="acct" completed editable>
+    Account
+    <m3e-icon slot="icon" name="person"></m3e-icon>
+  </m3e-step>
+  <m3e-step for="profile" selected>
+    Profile
+    <span slot="hint">Tell us about yourself</span>
+  </m3e-step>
+  <m3e-step for="review" optional>Review</m3e-step>
+  <m3e-step-panel id="acct">
+    <p>Account details saved.</p>
+  </m3e-step-panel>
+  <m3e-step-panel id="profile">
+    <p>Enter your profile information.</p>
+  </m3e-step-panel>
+  <m3e-step-panel id="review">
+    <p>Review and submit.</p>
+  </m3e-step-panel>
+</m3e-stepper>
+```
+
+**Linear vertical stepper with navigation controls**
+
+```html
+<m3e-stepper orientation="vertical" linear>
+  <m3e-step for="s1" selected>Choose a plan</m3e-step>
+  <m3e-step for="s2">Payment</m3e-step>
+  <m3e-step-panel id="s1">
+    <p>Pick the plan that fits you.</p>
+  </m3e-step-panel>
+  <m3e-step-panel id="s2">
+    <p>Confirm and reset if needed.</p>
+    <m3e-button>
+      <m3e-stepper-previous>Back</m3e-stepper-previous>
+    </m3e-button>
+    <m3e-button>
+      <m3e-stepper-reset>Start over</m3e-stepper-reset>
+    </m3e-button>
+  </m3e-step-panel>
+</m3e-stepper>
+```
+
 ## API
 
 ### `<m3e-stepper>`

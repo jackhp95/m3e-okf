@@ -23,9 +23,9 @@ import "@m3e/web/tabs";
 </m3e-tabs>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Tabs with icons and panels**
 
@@ -41,6 +41,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   </m3e-tab-panel>
 </m3e-tabs>
 ```
+
+_Source: kinfolk: src/pages/entities/[id].astro_
 
 ## API
 

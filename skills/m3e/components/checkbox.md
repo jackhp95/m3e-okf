@@ -21,6 +21,44 @@ import "@m3e/web/checkbox";
 <m3e-checkbox id="chk"></m3e-checkbox><label for="chk">Checkbox label </label>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Notification preferences with required terms**
+
+```html
+<section>
+  <p>Email notifications</p>
+  <label>
+    <m3e-checkbox checked name="news" value="newsletter"></m3e-checkbox>
+    Product newsletter
+  </label>
+  <label>
+    <m3e-checkbox name="offers" value="offers"></m3e-checkbox>
+    Special offers
+  </label>
+  <label>
+    <m3e-checkbox indeterminate name="digest" value="digest"></m3e-checkbox>
+    Weekly digest
+  </label>
+  <m3e-divider></m3e-divider>
+  <label>
+    <m3e-checkbox required name="terms" value="accepted"></m3e-checkbox>
+    I accept the terms of service
+  </label>
+</section>
+```
+
+**Single checkbox with external label**
+
+```html
+<div>
+  <m3e-checkbox id="remember" checked name="remember" value="yes"></m3e-checkbox>
+  <label for="remember">Remember me on this device</label>
+</div>
+```
+
 ## API
 
 ### `<m3e-checkbox>`

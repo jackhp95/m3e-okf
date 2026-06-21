@@ -19,9 +19,9 @@ import "@m3e/web/card";
 </m3e-card>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Outlined card with header and content slots**
 
@@ -37,6 +37,8 @@ _Mined from real projects and validated against the manifest — pure Material c
 </m3e-card>
 ```
 
+_Source: kinfolk: src/pages/photos/[id].astro_
+
 **Actionable filled card linking to a detail page**
 
 ```html
@@ -50,6 +52,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   </m3e-card>
 </a>
 ```
+
+_Source: kinfolk: src/pages/entities/[id].astro_
 
 ## API
 

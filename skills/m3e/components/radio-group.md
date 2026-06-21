@@ -23,6 +23,32 @@ import "@m3e/web/radio-group";
 </m3e-radio-group>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Single-choice shipping options**
+
+```html
+<label for="ship">Shipping method</label>
+<br />
+<m3e-radio-group id="ship" name="shipping" required>
+  <label><m3e-radio value="standard" checked></m3e-radio> Standard (5-7 days)</label>
+  <label><m3e-radio value="express"></m3e-radio> Express (2 days)</label>
+  <label><m3e-radio value="overnight"></m3e-radio> Overnight</label>
+</m3e-radio-group>
+```
+
+**Disabled radio group with one disabled option**
+
+```html
+<m3e-radio-group name="plan" disabled>
+  <label><m3e-radio value="free" checked></m3e-radio> Free</label>
+  <label><m3e-radio value="pro"></m3e-radio> Pro</label>
+  <label><m3e-radio value="team" disabled></m3e-radio> Team</label>
+</m3e-radio-group>
+```
+
 ## API
 
 ### `<m3e-radio>`

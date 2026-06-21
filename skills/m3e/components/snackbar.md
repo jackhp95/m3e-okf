@@ -8,6 +8,19 @@ The `@m3e/snackbar` package provides the `M3eSnackbar` global service on `window
 import "@m3e/web/snackbar";
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Dismissible snackbar with action**
+
+```html
+<m3e-snackbar action="Undo" dismissible duration="5000" close-label="Dismiss">
+  Message archived
+  <m3e-icon slot="close-icon" name="close"></m3e-icon>
+</m3e-snackbar>
+```
+
 ## API
 
 ### `<m3e-snackbar>`

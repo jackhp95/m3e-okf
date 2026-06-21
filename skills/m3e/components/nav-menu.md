@@ -64,9 +64,9 @@ import "@m3e/web/nav-menu";
 </m3e-nav-menu>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Nested navigation menu with icons, badges, and links**
 
@@ -88,6 +88,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   </m3e-nav-menu-item>
 </m3e-nav-menu>
 ```
+
+_Source: 2026: src/components/NavFab.astro_
 
 ## API
 

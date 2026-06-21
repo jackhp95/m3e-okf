@@ -29,6 +29,30 @@ import "@m3e/web/heading";
 <m3e-heading variant="headline" size="large" level="1">Page title</m3e-heading>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Page header hierarchy with semantic levels**
+
+```html
+<header>
+  <m3e-heading variant="headline" size="large" level="1">Quarterly report</m3e-heading>
+  <m3e-heading variant="title" size="medium" level="2">Revenue overview</m3e-heading>
+  <p>A summary of performance across all regions for the quarter.</p>
+  <m3e-heading variant="label" size="small">Updated 2 hours ago</m3e-heading>
+</header>
+```
+
+**Emphasized display heading for a hero section**
+
+```html
+<section>
+  <m3e-heading variant="display" size="large" emphasized level="1">Build faster.</m3e-heading>
+  <m3e-heading variant="headline" size="small" level="2">Ship expressive interfaces with Material 3.</m3e-heading>
+</section>
+```
+
 ## API
 
 ### `<m3e-heading>`

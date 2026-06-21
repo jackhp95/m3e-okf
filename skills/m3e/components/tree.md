@@ -64,6 +64,65 @@ import "@m3e/web/tree";
 </m3e-tree>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Documentation navigation tree**
+
+```html
+<m3e-tree>
+  <m3e-tree-item open>
+    <m3e-icon slot="icon" name="folder"></m3e-icon>
+    <span slot="label">Getting Started</span>
+    <m3e-tree-item>
+      <span slot="label">Overview</span>
+    </m3e-tree-item>
+    <m3e-tree-item>
+      <span slot="label">Installation</span>
+    </m3e-tree-item>
+  </m3e-tree-item>
+  <m3e-tree-item>
+    <m3e-icon slot="icon" name="folder"></m3e-icon>
+    <span slot="label">Components</span>
+    <m3e-tree-item>
+      <span slot="label">Button</span>
+    </m3e-tree-item>
+    <m3e-tree-item>
+      <span slot="label">Card</span>
+    </m3e-tree-item>
+  </m3e-tree-item>
+</m3e-tree>
+```
+
+**Multi-select tree with cascading checkboxes**
+
+```html
+<m3e-tree multi cascade>
+  <m3e-tree-item open>
+    <span slot="label">Fruits</span>
+    <m3e-tree-item selected>
+      <span slot="label">Apples</span>
+    </m3e-tree-item>
+    <m3e-tree-item>
+      <span slot="label">Oranges</span>
+    </m3e-tree-item>
+    <m3e-tree-item disabled>
+      <span slot="label">Bananas</span>
+    </m3e-tree-item>
+  </m3e-tree-item>
+  <m3e-tree-item indeterminate>
+    <span slot="label">Vegetables</span>
+    <m3e-tree-item selected>
+      <span slot="label">Carrots</span>
+    </m3e-tree-item>
+    <m3e-tree-item>
+      <span slot="label">Broccoli</span>
+    </m3e-tree-item>
+  </m3e-tree-item>
+</m3e-tree>
+```
+
 ## API
 
 ### `<m3e-tree-item>`

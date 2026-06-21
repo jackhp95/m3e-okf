@@ -16,6 +16,26 @@ import "@m3e/web/calendar";
 <m3e-calendar date="2025-12-13"></m3e-calendar>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Date picker calendar with a custom header**
+
+```html
+<m3e-calendar date="2025-12-13" min-date="2025-01-01" max-date="2026-12-31">
+  <span slot="header">Select a delivery date</span>
+</m3e-calendar>
+```
+
+**Range calendar starting in the multi-year view**
+
+```html
+<m3e-calendar start-view="multi-year" start-at="2026-06-01" range-start="2026-06-10" range-end="2026-06-17" next-month-label="Next month" previous-month-label="Previous month">
+  <span slot="header">Choose your stay</span>
+</m3e-calendar>
+```
+
 ## API
 
 ### `<m3e-month-view>`

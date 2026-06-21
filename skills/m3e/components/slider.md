@@ -25,6 +25,27 @@ import "@m3e/web/slider";
 </m3e-slider>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Discrete labelled volume slider**
+
+```html
+<m3e-slider labelled discrete min="0" max="100" step="10" size="medium">
+  <m3e-slider-thumb value="40"></m3e-slider-thumb>
+</m3e-slider>
+```
+
+**Range slider with two thumbs**
+
+```html
+<m3e-slider labelled min="0" max="1000" step="50">
+  <m3e-slider-thumb name="min-price" value="200"></m3e-slider-thumb>
+  <m3e-slider-thumb name="max-price" value="800"></m3e-slider-thumb>
+</m3e-slider>
+```
+
 ## API
 
 ### `<m3e-slider-thumb>`

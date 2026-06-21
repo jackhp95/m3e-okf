@@ -25,6 +25,49 @@ import "@m3e/web/dialog";
 </m3e-dialog>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Confirmation dialog with header and actions**
+
+```html
+<m3e-button variant="filled">
+  <m3e-dialog-trigger for="confirm">Delete project</m3e-dialog-trigger>
+</m3e-button>
+<m3e-dialog id="confirm" dismissible>
+  <span slot="header">Delete project?</span>
+  <p>This action permanently removes the project and all of its files. This cannot be undone.</p>
+  <div slot="actions">
+    <m3e-button variant="text">
+      <m3e-dialog-action return-value="cancel">Cancel</m3e-dialog-action>
+    </m3e-button>
+    <m3e-button variant="filled">
+      <m3e-icon slot="icon" name="delete"></m3e-icon>
+      <m3e-dialog-action return-value="delete">Delete</m3e-dialog-action>
+    </m3e-button>
+  </div>
+</m3e-dialog>
+```
+
+**Alert dialog with close icon**
+
+```html
+<m3e-button variant="tonal">
+  <m3e-dialog-trigger for="info">Session timeout</m3e-dialog-trigger>
+</m3e-button>
+<m3e-dialog id="info" alert dismissible>
+  <m3e-icon slot="close-icon" name="close"></m3e-icon>
+  <span slot="header">Your session has expired</span>
+  <p>For your security, you have been signed out due to inactivity. Please sign in again to continue.</p>
+  <div slot="actions">
+    <m3e-button variant="filled">
+      <m3e-dialog-action return-value="ok">Sign in</m3e-dialog-action>
+    </m3e-button>
+  </div>
+</m3e-dialog>
+```
+
 ## API
 
 ### `<m3e-dialog-action>`

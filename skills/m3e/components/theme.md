@@ -24,9 +24,9 @@ import "@m3e/web/theme";
 <m3e-theme-icon color="#004f4f" scheme="light"></m3e-theme-icon>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Theme with drawer, nav menu, and app bar shell**
 
@@ -52,6 +52,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   </m3e-drawer-container>
 </m3e-theme>
 ```
+
+_Source: kinfolk: src/layouts/Layout.astro_
 
 ## API
 

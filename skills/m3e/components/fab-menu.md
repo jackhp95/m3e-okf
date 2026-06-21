@@ -28,6 +28,57 @@ import "@m3e/web/fab-menu";
 </m3e-fab-menu>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Primary FAB revealing a secondary action menu**
+
+```html
+<m3e-button variant="filled" size="large">
+  <m3e-fab-menu-trigger for="compose-menu"></m3e-fab-menu-trigger>
+  <m3e-icon slot="icon" name="edit"></m3e-icon>
+  Compose
+</m3e-button>
+<m3e-fab-menu id="compose-menu" variant="secondary">
+  <m3e-menu-item>
+    <m3e-icon slot="icon" name="mail"></m3e-icon>
+    New email
+  </m3e-menu-item>
+  <m3e-menu-item>
+    <m3e-icon slot="icon" name="event"></m3e-icon>
+    New event
+  </m3e-menu-item>
+  <m3e-menu-item>
+    <m3e-icon slot="icon" name="group"></m3e-icon>
+    New group
+  </m3e-menu-item>
+</m3e-fab-menu>
+```
+
+**Tertiary FAB menu with link and disabled items**
+
+```html
+<m3e-button variant="tonal" size="large">
+  <m3e-fab-menu-trigger for="share-menu"></m3e-fab-menu-trigger>
+  <m3e-icon slot="icon" name="share"></m3e-icon>
+</m3e-button>
+<m3e-fab-menu id="share-menu" variant="tertiary">
+  <m3e-menu-item href="https://example.com/link" target="_blank">
+    <m3e-icon slot="icon" name="link"></m3e-icon>
+    Copy link
+  </m3e-menu-item>
+  <m3e-menu-item>
+    <m3e-icon slot="icon" name="download"></m3e-icon>
+    Export PDF
+  </m3e-menu-item>
+  <m3e-menu-item disabled>
+    <m3e-icon slot="icon" name="print"></m3e-icon>
+    Print
+  </m3e-menu-item>
+</m3e-fab-menu>
+```
+
 ## API
 
 ### `<m3e-menu-item>`

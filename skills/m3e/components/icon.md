@@ -21,6 +21,31 @@ import "@m3e/web/icon";
 />
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Icon variants, fill and weight showcase**
+
+```html
+<nav>
+  <m3e-icon name="home" variant="outlined"></m3e-icon>
+  <m3e-icon name="favorite" variant="rounded" filled></m3e-icon>
+  <m3e-icon name="settings" variant="sharp" weight="600"></m3e-icon>
+  <m3e-icon name="star" filled grade="high" optical-size="40"></m3e-icon>
+</nav>
+```
+
+**Light-weight low-grade status icons**
+
+```html
+<span>
+  <m3e-icon name="check_circle" filled weight="300" grade="low"></m3e-icon>
+  <m3e-icon name="error" variant="rounded" weight="500"></m3e-icon>
+  <m3e-icon name="schedule" optical-size="20"></m3e-icon>
+</span>
+```
+
 ## API
 
 ### `<m3e-icon>`

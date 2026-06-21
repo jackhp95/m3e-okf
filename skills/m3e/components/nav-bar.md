@@ -21,6 +21,62 @@ import "@m3e/web/nav-bar";
 </m3e-nav-bar>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Bottom navigation bar with selected destination**
+
+```html
+<nav>
+  <m3e-nav-bar mode="compact">
+    <m3e-nav-item selected>
+      <m3e-icon slot="icon" name="home"></m3e-icon>
+      <m3e-icon slot="selected-icon" name="home" filled></m3e-icon>
+      Home
+    </m3e-nav-item>
+    <m3e-nav-item>
+      <m3e-icon slot="icon" name="search"></m3e-icon>
+      Explore
+    </m3e-nav-item>
+    <m3e-nav-item>
+      <m3e-icon slot="icon" name="favorite"></m3e-icon>
+      <m3e-icon slot="selected-icon" name="favorite" filled></m3e-icon>
+      Saved
+    </m3e-nav-item>
+    <m3e-nav-item>
+      <m3e-icon slot="icon" name="person"></m3e-icon>
+      Profile
+    </m3e-nav-item>
+  </m3e-nav-bar>
+</nav>
+```
+
+**Expanded nav bar linking to app sections**
+
+```html
+<nav>
+  <m3e-nav-bar mode="expanded">
+    <m3e-nav-item href="/inbox" selected>
+      <m3e-icon slot="icon" name="inbox"></m3e-icon>
+      Inbox
+    </m3e-nav-item>
+    <m3e-nav-item href="/sent">
+      <m3e-icon slot="icon" name="send"></m3e-icon>
+      Sent
+    </m3e-nav-item>
+    <m3e-nav-item href="/drafts">
+      <m3e-icon slot="icon" name="drafts"></m3e-icon>
+      Drafts
+    </m3e-nav-item>
+    <m3e-nav-item href="/archive" disabled>
+      <m3e-icon slot="icon" name="archive"></m3e-icon>
+      Archive
+    </m3e-nav-item>
+  </m3e-nav-bar>
+</nav>
+```
+
 ## API
 
 ### `<m3e-nav-item>`

@@ -22,6 +22,35 @@ import "@m3e/web/progress-indicator";
 <m3e-circular-progress-indicator indeterminate></m3e-circular-progress-indicator>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Determinate linear and circular progress**
+
+```html
+<div>
+  <p>Uploading files...</p>
+  <m3e-linear-progress-indicator value="65" max="100"></m3e-linear-progress-indicator>
+</div>
+<div>
+  <m3e-circular-progress-indicator value="65" max="100" variant="wavy"></m3e-circular-progress-indicator>
+</div>
+```
+
+**Indeterminate loading states**
+
+```html
+<m3e-linear-progress-indicator mode="indeterminate"></m3e-linear-progress-indicator>
+<m3e-circular-progress-indicator indeterminate></m3e-circular-progress-indicator>
+```
+
+**Buffered linear progress**
+
+```html
+<m3e-linear-progress-indicator mode="buffer" value="40" buffer-value="75" max="100"></m3e-linear-progress-indicator>
+```
+
 ## API
 
 ### `<m3e-circular-progress-indicator>`

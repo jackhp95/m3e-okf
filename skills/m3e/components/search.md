@@ -30,9 +30,9 @@ import "@m3e/web/search";
 </m3e-search-view>
 ```
 
-## Real-world compositions
+## Compositions
 
-_Mined from real projects and validated against the manifest — pure Material composition, no custom CSS._
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
 
 **Search bar with leading icon and input**
 
@@ -42,6 +42,8 @@ _Mined from real projects and validated against the manifest — pure Material c
   <input slot="input" type="search" placeholder="Search posts…" autocomplete="off" />
 </m3e-search-bar>
 ```
+
+_Source: 2026: src/pages/work/index.astro_
 
 ## API
 

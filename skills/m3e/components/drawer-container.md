@@ -41,6 +41,56 @@ import "@m3e/web/drawer-container";
 </m3e-drawer-container>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**App shell with navigation drawer toggle**
+
+```html
+<m3e-button variant="text" toggle>
+  <m3e-drawer-toggle for="nav"></m3e-drawer-toggle>
+  <m3e-icon slot="icon" name="menu"></m3e-icon>
+  Menu
+</m3e-button>
+<m3e-drawer-container start start-mode="over">
+  <nav slot="start" id="nav" aria-label="Primary">
+    <a href="/home">Home</a>
+    <a href="/reports">Reports</a>
+    <a href="/settings">Settings</a>
+  </nav>
+  <main>
+    <h1>Dashboard</h1>
+    <p>Welcome back. Select an item from the navigation drawer.</p>
+  </main>
+</m3e-drawer-container>
+```
+
+**Dual drawers with side navigation and detail panel**
+
+```html
+<m3e-drawer-container start start-mode="side" start-divider end end-mode="over">
+  <nav slot="start" aria-label="Sections">
+    <a href="/inbox">Inbox</a>
+    <a href="/sent">Sent</a>
+    <a href="/archive">Archive</a>
+  </nav>
+  <main>
+    <header>
+      <h1>Inbox</h1>
+    </header>
+    <p>Your messages appear here.</p>
+  </main>
+  <aside slot="end" aria-label="Details">
+    <h2>Filters</h2>
+    <label>
+      <m3e-checkbox checked></m3e-checkbox>
+      Unread only
+    </label>
+  </aside>
+</m3e-drawer-container>
+```
+
 ## API
 
 ### `<m3e-drawer-container>`

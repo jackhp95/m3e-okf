@@ -32,6 +32,43 @@ import "@m3e/web/app-bar";
 </div>
 ```
 
+## Compositions
+
+_Validated against the manifest — every tag, attribute, slot, and union value checked against the CEM ground truth; pure Material composition, no custom CSS._
+
+**Medium app bar with leading and trailing actions**
+
+```html
+<m3e-app-bar size="medium">
+  <m3e-button slot="leading-icon" variant="text" aria-label="Back">
+    <m3e-icon name="arrow_back"></m3e-icon>
+  </m3e-button>
+  <span slot="title">Top 10 hiking trails</span>
+  <span slot="subtitle">Discover popular trails</span>
+  <m3e-button slot="trailing-icon" variant="tonal" aria-label="Bookmark">
+    <m3e-icon name="bookmark" filled></m3e-icon>
+  </m3e-button>
+</m3e-app-bar>
+```
+
+**Centered large app bar with trailing menu**
+
+```html
+<m3e-app-bar size="large" centered>
+  <m3e-button slot="leading-icon" variant="text" aria-label="Open navigation">
+    <m3e-icon name="menu"></m3e-icon>
+  </m3e-button>
+  <span slot="title">Inbox</span>
+  <span slot="subtitle">24 unread messages</span>
+  <m3e-button slot="trailing-icon" variant="text" aria-label="Search">
+    <m3e-icon name="search"></m3e-icon>
+  </m3e-button>
+  <m3e-button slot="trailing-icon" variant="text" aria-label="More options">
+    <m3e-icon name="more_vert"></m3e-icon>
+  </m3e-button>
+</m3e-app-bar>
+```
+
 ## API
 
 ### `<m3e-app-bar>`
