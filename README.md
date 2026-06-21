@@ -104,7 +104,7 @@ ln -s "$(pwd)/skills/m3e" ~/.claude/skills/m3e         # personal (all projects)
 - [x] Type aliases resolved from TS source (no opaque `FormSubmitterType`/`LinkTarget`)
 - [x] Validated compositions for every component (106 across 53: 89 authored + 17 mined)
 - [x] README example markup verified against the CEM; drifting snippets withheld from cards
-- [x] Validated the skill against a sample build task (0 hallucinations) + a negative test
+- [x] Dogfooded: agents built 4 realistic UIs (settings, media bar, signup form, dashboard shell) from the skill alone — output markup spanning ~20 components validated against the CEM with **0 hallucinations**
 - [x] Staleness check (`scripts/check-staleness.mjs`) + skill guard (`scripts/check-skill.mjs`)
 - [x] Installed to `~/.claude/skills/m3e` (symlink)
 
