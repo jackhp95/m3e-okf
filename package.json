@@ -1,0 +1,19 @@
+{
+  "name": "m3e-docs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Generates a verified Claude Code skill for the @m3e/web component library",
+  "scripts": {
+    "extract": "node scripts/extract.mjs",
+    "guidance": "node scripts/guidance.mjs",
+    "build:examples": "node scripts/build-examples.mjs",
+    "build:skill": "node scripts/build-skill.mjs",
+    "check:skill": "node scripts/check-skill.mjs",
+    "check:staleness": "node scripts/check-staleness.mjs",
+    "test": "node --test scripts/lib/*.test.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.0"
+  }
+}

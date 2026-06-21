@@ -74,6 +74,20 @@ downstream artifacts from committed data to assert nothing is stale, and runs th
 `check-skill` guard. It does **not** re-fetch upstream m3e — version drift is a
 separate, SHA-pinned step (`check-staleness.mjs`).
 
+### Render verification (optional, needs the built bundle)
+
+`scripts/render-verify.mjs` loads the actually-compiled `@m3e/web` bundle in a DOM
+(jsdom) and asserts every custom-element tag the examples use is really defined by
+the shipped code — a build-vs-examples cross-check the static CEM validation can't
+give. Registration only, by design: full runtime/render checks need a real browser
+(the form-associated components use `ElementInternals`/`CustomStateSet`, absent in
+jsdom). Not in CI (it builds upstream).
+
+```bash
+(cd .cache/m3e/packages/web && npm run build)   # produces dist/all.js
+node scripts/render-verify.mjs
+```
+
 ## Install
 
 The skill is the `skills/m3e/` directory. Symlink it into your personal skills
