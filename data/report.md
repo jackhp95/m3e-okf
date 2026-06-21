@@ -9,9 +9,11 @@ Components: 53  ·  Elements: 110
 - **DEFAULT-UNDOCUMENTED**: 37
 - **UNDOCUMENTED**: 37
 - **DEFAULT-MISMATCH**: 10
+- **SLOT-README-ONLY**: 2
 
 > UNDOCUMENTED = real attribute (in CEM) missing from README. README-only = README lists an
 > attribute the CEM doesn't expose (likely stale/typo). DEFAULT-MISMATCH = default disagrees.
+> SLOT-README-ONLY = a README example uses `slot="x"` the CEM doesn't expose on that element.
 
 ### autocomplete
 - `panel-class` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
@@ -82,6 +84,9 @@ Components: 53  ·  Elements: 110
 - `target` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `for` — **UNDOCUMENTED** (in CEM, not in README)
 
+### form-field
+- `slot="label" on <m3e-form-field>` — **SLOT-README-ONLY** (used in README example, not a CEM slot)
+
 ### icon
 - `name` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 
@@ -146,6 +151,7 @@ Components: 53  ·  Elements: 110
 
 ### stepper
 - `invalid` — **UNDOCUMENTED** (in CEM, not in README)
+- `slot="actions" on <m3e-step-panel>` — **SLOT-README-ONLY** (used in README example, not a CEM slot)
 
 ### switch
 - `icons` — **DEFAULT-MISMATCH** (README=false CEM="none")

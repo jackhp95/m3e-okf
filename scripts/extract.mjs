@@ -284,6 +284,71 @@ function verify(dir, cemAttrsByName, readme) {
   return findings;
 }
 
+// Minimal HTML tokenizer -> tree, just enough to resolve a slotted element's
+// nearest m3e ancestor in README example markup.
+const VOID_TAGS = new Set(["img", "input", "br", "hr", "source", "meta", "link"]);
+function parseHtml(html) {
+  const root = { tag: "#root", attrs: {}, children: [], parent: null };
+  let cur = root;
+  const re = /<\/?([a-zA-Z][\w-]*)((?:\s+[^<>]*?)?)\s*(\/?)>/g;
+  let m;
+  while ((m = re.exec(html))) {
+    const [, tag, attrStr, selfClose] = m;
+    if (m[0][1] === "/") {
+      let n = cur;
+      while (n && n.tag !== tag) n = n.parent;
+      if (n && n.parent) cur = n.parent;
+      continue;
+    }
+    const attrs = {};
+    const ar = /([:\w-]+)(?:=("[^"]*"|'[^']*'|[^\s>]+))?/g;
+    let a;
+    while ((a = ar.exec(attrStr))) attrs[a[1]] = a[2] ? a[2].replace(/^["']|["']$/g, "") : "";
+    const node = { tag, attrs, children: [], parent: cur };
+    cur.children.push(node);
+    if (!selfClose && !VOID_TAGS.has(tag.toLowerCase())) cur = node;
+  }
+  return root;
+}
+
+/**
+ * Verify slot claims in README example markup against CEM. For every `slot="X"`
+ * whose nearest enclosing m3e ancestor is one of this dir's elements, flag X if
+ * the CEM exposes no such slot on that element (e.g. form-field's README uses
+ * `slot="label"` but the manifest has no label slot). Slots aren't otherwise
+ * verified, so this catches drift the attribute pass can't see.
+ */
+function verifySlots(elementsBySlotSet, readme) {
+  const findings = [];
+  const seen = new Set();
+  for (const ex of readme.examples || []) {
+    const root = parseHtml(ex.code);
+    const walk = (node) => {
+      for (const child of node.children) {
+        if (child.attrs.slot != null && child.attrs.slot !== "") {
+          let anc = child.parent;
+          while (anc && !anc.tag.startsWith("m3e-")) anc = anc.parent;
+          if (anc && elementsBySlotSet.has(anc.tag)) {
+            const slots = elementsBySlotSet.get(anc.tag);
+            const key = `${anc.tag}|${child.attrs.slot}`;
+            if (!slots.has(child.attrs.slot) && !seen.has(key)) {
+              seen.add(key);
+              findings.push({
+                attr: `slot="${child.attrs.slot}" on <${anc.tag}>`,
+                kind: "SLOT-README-ONLY",
+                detail: "used in README example, not a CEM slot",
+              });
+            }
+          }
+        }
+        walk(child);
+      }
+    };
+    walk(root);
+  }
+  return findings;
+}
+
 // ---------------------------------------------------------------------------
 // Build records
 // ---------------------------------------------------------------------------
@@ -336,6 +401,13 @@ for (const dir of dirs) {
   const cemAttrsByName = new Map();
   for (const el of elements) for (const a of el.attributes) cemAttrsByName.set(a.name, a);
   const findings = readme ? verify(dir, cemAttrsByName, readme) : [];
+  // slot verification: per-element CEM slot sets (default slot excluded — it has
+  // no `slot=` attribute in markup, so it can never appear as a drift claim).
+  const slotSets = new Map(
+    elements.map((el) => [el.tag, new Set(el.slots.map((s) => s.name).filter((n) => n !== "(default)"))])
+  );
+  const slotFindings = readme ? verifySlots(slotSets, readme).map((f) => ({ ...f, dir })) : [];
+  findings.push(...slotFindings);
   allFindings.push(...findings);
 
   components.push({
@@ -386,7 +458,8 @@ report += `Components: ${components.length}  ·  Elements: ${components.reduce((
 report += `## Verification findings (README vs CEM ground truth)\n\n`;
 report += Object.entries(byKind).map(([k, n]) => `- **${k}**: ${n}`).join("\n") + "\n\n";
 report += `> UNDOCUMENTED = real attribute (in CEM) missing from README. README-only = README lists an\n`;
-report += `> attribute the CEM doesn't expose (likely stale/typo). DEFAULT-MISMATCH = default disagrees.\n\n`;
+report += `> attribute the CEM doesn't expose (likely stale/typo). DEFAULT-MISMATCH = default disagrees.\n`;
+report += `> SLOT-README-ONLY = a README example uses \`slot="x"\` the CEM doesn't expose on that element.\n\n`;
 for (const c of components) {
   const f = allFindings.filter((x) => x.dir === c.name);
   if (!f.length) continue;

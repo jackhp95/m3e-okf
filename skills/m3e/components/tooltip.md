@@ -206,4 +206,4 @@ Source files:
 - [`packages/web/src/tooltip/TooltipElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/tooltip/TooltipElement.ts)
 
 **README drift corrected** (3 item(s); CEM values used above):
-_See `data/report.md` for specifics — defaults/attributes where the README disagreed with or omitted the code._
+_See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

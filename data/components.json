@@ -8699,8 +8699,10 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 0,
-      "byKind": {}
+      "findings": 1,
+      "byKind": {
+        "SLOT-README-ONLY": 1
+      }
     }
   },
   {
@@ -18289,9 +18291,10 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 1,
+      "findings": 2,
       "byKind": {
-        "UNDOCUMENTED": 1
+        "UNDOCUMENTED": 1,
+        "SLOT-README-ONLY": 1
       }
     }
   },

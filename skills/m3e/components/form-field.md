@@ -117,3 +117,6 @@ API values above are taken from the build-time **Custom Elements Manifest** (mac
 
 Source files:
 - [`packages/web/src/form-field/FormFieldElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/form-field/FormFieldElement.ts)
+
+**README drift corrected** (1 item(s); CEM values used above):
+_See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

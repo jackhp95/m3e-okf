@@ -274,5 +274,5 @@ Source files:
 - [`packages/web/src/stepper/StepperPreviousElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/stepper/StepperPreviousElement.ts)
 - [`packages/web/src/stepper/StepperResetElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/stepper/StepperResetElement.ts)
 
-**README drift corrected** (1 item(s); CEM values used above):
-_See `data/report.md` for specifics — defaults/attributes where the README disagreed with or omitted the code._
+**README drift corrected** (2 item(s); CEM values used above):
+_See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

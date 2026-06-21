@@ -127,7 +127,7 @@ for (const c of components) {
   md += "Source files:\n" + src.sourceFiles.map((f) => `- [\`${f}\`](${REPO}/${SHA}/${f})`).join("\n") + "\n";
   if (c.verification.findings) {
     md += `\n**README drift corrected** (${c.verification.findings} item(s); CEM values used above):\n`;
-    md += "_See `data/report.md` for specifics — defaults/attributes where the README disagreed with or omitted the code._\n";
+    md += "_See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._\n";
   }
   fs.writeFileSync(path.join(OUT, "components", `${c.name}.md`), md);
 }
