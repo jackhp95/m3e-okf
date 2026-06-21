@@ -69,6 +69,11 @@ It has unit tests against a self-contained ground truth:
 node --test scripts/lib/*.test.mjs
 ```
 
+CI (`.github/workflows/ci.yml`) runs these tests on every push/PR, rebuilds the
+downstream artifacts from committed data to assert nothing is stale, and runs the
+`check-skill` guard. It does **not** re-fetch upstream m3e — version drift is a
+separate, SHA-pinned step (`check-staleness.mjs`).
+
 ## Install
 
 The skill is the `skills/m3e/` directory. Symlink it into your personal skills

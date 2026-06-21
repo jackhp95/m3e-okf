@@ -1,0 +1,39 @@
+name: CI
+
+# Enforce the repo's guarantees on every push/PR. These checks run against
+# committed inputs only (data/components.json + guidance.json) — they do NOT
+# re-fetch upstream m3e (that's a deliberate, SHA-pinned regeneration step;
+# see check-staleness.mjs for version drift). They assert that what's committed
+# is internally consistent: validator rules hold, downstream artifacts are
+# freshly built, and no card or concept page ships markup the CEM contradicts.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Unit tests (CEM validator)
+        run: node --test scripts/lib/*.test.mjs
+
+      - name: Rebuild downstream artifacts from committed data
+        run: |
+          node scripts/build-examples.mjs
+          node scripts/build-skill.mjs
+
+      - name: Assert committed artifacts are fresh
+        run: |
+          git diff --exit-code -- data/examples.json skills/ \
+            || (echo "::error::Committed skill/examples are stale — run build-examples.mjs + build-skill.mjs and commit." && exit 1)
+
+      - name: Guard — every html block valid against the CEM
+        run: node scripts/check-skill.mjs
