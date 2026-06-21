@@ -59,6 +59,16 @@ Check whether upstream has moved past the pinned SHA at any time:
 node scripts/check-staleness.mjs   # exit 0 = current, 1 = stale, 2 = unreachable
 ```
 
+## Tests
+
+The shared CEM-validator (`scripts/lib/validate-markup.mjs`) is load-bearing —
+it gates compositions, audits README examples, and guards the rendered skill.
+It has unit tests against a self-contained ground truth:
+
+```bash
+node --test scripts/lib/*.test.mjs
+```
+
 ## Install
 
 The skill is the `skills/m3e/` directory. Symlink it into your personal skills
