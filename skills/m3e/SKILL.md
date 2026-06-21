@@ -150,6 +150,7 @@ Non-visual configuration elements.
 ## Concepts
 
 - [Choosing components](concepts/choosing-components.md) — which component when
+- [Forms & validation](concepts/forms.md) — wiring m3e controls into a native `<form>`
 - [Color & theming](concepts/color.md) · [Density](concepts/density.md) · [Motion](concepts/motion.md) · [Typography](concepts/typography.md)
 - [Getting started](concepts/getting-started.md) · [Installation](concepts/installation.md)
 - Frameworks: [React](concepts/frameworks-react.md) · [Vue](concepts/frameworks-vue.md) · [Angular](concepts/frameworks-angular.md)

@@ -147,7 +147,9 @@ const byName = new Map(components.map((c) => [c.name, c]));
 for (const con of guidance.concepts) {
   let md = `# ${con.title}\n\n`;
   md += con.markdown + "\n\n";
-  md += `---\n_Source: [\`${con.source}\`](${REPO}/${SHA}/${con.source}) · \`matraic/m3e\` @ \`${SHORT}\`._\n`;
+  md += con.authored
+    ? `---\n_Authored for this skill; every example is validated against the CEM (\`matraic/m3e\` @ \`${SHORT}\`)._\n`
+    : `---\n_Source: [\`${con.source}\`](${REPO}/${SHA}/${con.source}) · \`matraic/m3e\` @ \`${SHORT}\`._\n`;
   fs.writeFileSync(path.join(OUT, "concepts", `${con.slug}.md`), md);
 }
 
@@ -217,6 +219,7 @@ ${rows}
 ## Concepts
 
 - [Choosing components](concepts/choosing-components.md) — which component when
+- [Forms & validation](concepts/forms.md) — wiring m3e controls into a native \`<form>\`
 - [Color & theming](concepts/color.md) · [Density](concepts/density.md) · [Motion](concepts/motion.md) · [Typography](concepts/typography.md)
 - [Getting started](concepts/getting-started.md) · [Installation](concepts/installation.md)
 - Frameworks: [React](concepts/frameworks-react.md) · [Vue](concepts/frameworks-vue.md) · [Angular](concepts/frameworks-angular.md)

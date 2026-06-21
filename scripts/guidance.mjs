@@ -95,6 +95,18 @@ const concepts = CONCEPT_SOURCES.filter((c) => fs.existsSync(path.join(DOCS, c.s
   markdown: htmlToMarkdown(fs.readFileSync(path.join(DOCS, c.src), "utf8")),
 }));
 
+// Authored concept pages — cross-cutting topics the upstream docs don't cover as
+// a page (e.g. wiring m3e form controls into a native <form>). Markdown is read
+// verbatim from data/authored-concepts/; its example markup is validated against
+// the CEM by check-skill like every other html block in the skill.
+const AUTHORED_CONCEPTS = [{ slug: "forms", title: "Forms & validation", file: "forms.md" }];
+const authoredDir = path.join(ROOT, "data/authored-concepts");
+for (const c of AUTHORED_CONCEPTS) {
+  const p = path.join(authoredDir, c.file);
+  if (!fs.existsSync(p)) continue;
+  concepts.push({ slug: c.slug, title: c.title, authored: true, markdown: fs.readFileSync(p, "utf8").trim() });
+}
+
 // ---------------------------------------------------------------------------
 // Curated taxonomy — selection guidance. Each component sits in exactly one
 // family (for a clean grouped index); cross-family decisions live in `choosing`.

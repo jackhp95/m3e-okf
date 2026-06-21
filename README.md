@@ -108,6 +108,7 @@ ln -s "$(pwd)/skills/m3e" ~/.claude/skills/m3e         # personal (all projects)
 | `data/report.md` | verification report: README-vs-code drift (attrs, defaults, slots, examples) |
 | `data/examples_raw.json` | mined candidate snippets (curated input to build-examples) |
 | `data/authored_candidates.json` | hand-authored candidate compositions (input to build-examples) |
+| `data/authored-concepts/*.md` | hand-authored concept pages (e.g. forms) — examples CEM-validated by check-skill |
 | `data/examples.json` | validated compositions (mined + authored), keyed by component |
 | `scripts/lib/validate-markup.mjs` | shared CEM-validator used by build-examples, extract, check-skill |
 | `skills/m3e/SKILL.md` | the router/index agents read first |
