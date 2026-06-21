@@ -47,6 +47,22 @@ The pinned SHA lives in `data/sources.json`. To bump the library version, re-run
 step 1 with a new SHA, then `node scripts/extract.mjs` and review
 `data/report.md` for newly introduced drift before rebuilding the skill.
 
+Check whether upstream has moved past the pinned SHA at any time:
+
+```bash
+node scripts/check-staleness.mjs   # exit 0 = current, 1 = stale, 2 = unreachable
+```
+
+## Install
+
+The skill is the `skills/m3e/` directory. Symlink it into your personal skills
+so it stays live across regenerations (or copy it for a per-project install):
+
+```bash
+ln -s "$(pwd)/skills/m3e" ~/.claude/skills/m3e         # personal (all projects)
+# or:  ln -s "$(pwd)/skills/m3e" /path/to/project/.claude/skills/m3e
+```
+
 ## Layout
 
 | Path | What |
@@ -70,7 +86,8 @@ step 1 with a new SHA, then `node scripts/extract.mjs` and review
 - [x] Type aliases resolved from TS source (no opaque `FormSubmitterType`/`LinkTarget`)
 - [x] Validated real-world compositions mined from real projects (17 across 12 components)
 - [x] Validated the skill against a sample build task (0 hallucinations) + a negative test
-- [ ] Staleness check when upstream m3e moves past the pinned SHA
+- [x] Staleness check (`scripts/check-staleness.mjs`)
+- [x] Installed to `~/.claude/skills/m3e` (symlink)
 
 Upstream `matraic/m3e` is MIT-licensed. "Material Design" / "Material 3" are
 trademarks of Google LLC; this project is not affiliated with Google.
