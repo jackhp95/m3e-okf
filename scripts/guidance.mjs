@@ -23,37 +23,54 @@ const SHA = sources.sha;
 // ---------------------------------------------------------------------------
 function htmlToMarkdown(html) {
   // isolate the main content pane
-  let body = (html.match(/<m3e-content-pane[^>]*id="body"[^>]*>([\s\S]*?)<\/m3e-content-pane>/) ||
-    html.match(/<body[^>]*>([\s\S]*?)<\/body>/) || [null, html])[1];
+  let body = (html.match(/<m3e-content-pane[^>]*id="body"[^>]*>([\s\S]*?)<\/m3e-content-pane\s*>/) ||
+    html.match(/<body[^>]*>([\s\S]*?)<\/body\s*>/) || [null, html])[1];
   body = body.replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, "");
 
-  const inline = (s) =>
+  // Decode HTML entities — named plus any numeric (&#123;) — shared by inline
+  // prose and code blocks. <pre> content is HTML-escaped upstream (e.g. a
+  // `<script>` example arrives as `&lt;script&gt;`), so without this the code
+  // blocks would render literal `&lt;`/`&quot;`/`&#123;`.
+  const decodeEntities = (s) =>
     s
-      .replace(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (_, h, t) => `[${t.trim()}](${h})`)
-      .replace(/<code[^>]*>([\s\S]*?)<\/code>/g, (_, t) => `\`${t.trim()}\``)
-      .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/g, (_, __, t) => `**${t.trim()}**`)
-      .replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1>/g, (_, __, t) => `_${t.trim()}_`)
-      .replace(/<br\s*\/?>/g, " ")
-      .replace(/<[^>]+>/g, "")
-      .replace(/&amp;/g, "&")
+      .replace(/&nbsp;/g, " ")
       .replace(/&lt;/g, "<")
       .replace(/&gt;/g, ">")
       .replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'")
+      .replace(/&#39;|&apos;/g, "'")
+      .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
+      .replace(/&amp;/g, "&");
+
+  const inline = (s) =>
+    decodeEntities(
+      s
+        .replace(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a\s*>/g, (_, h, t) => `[${t.trim()}](${h})`)
+        .replace(/<code[^>]*>([\s\S]*?)<\/code\s*>/g, (_, t) => `\`${t.trim()}\``)
+        .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1\s*>/g, (_, __, t) => `**${t.trim()}**`)
+        .replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1\s*>/g, (_, __, t) => `_${t.trim()}_`)
+        .replace(/<br\s*\/?>/g, " ")
+        .replace(/<[^>]+>/g, "")
+    )
       .replace(/\s+/g, " ")
       .trim();
 
   const out = [];
   // token-walk the block elements in order
+  // Each open tag must be followed by whitespace or `>` (`<p(?:\s[^>]*)?>`) so
+  // the `<p>` branch doesn't also swallow `<pre>` (and `<li>` doesn't catch
+  // `<link>`) — otherwise a paragraph match absorbs the following code block and
+  // the next paragraph, inlining code into prose. Closing tags allow whitespace
+  // before `>` because some upstream docs split the bracket onto its own line
+  // (e.g. `</pre\n          >`, as in Angular's CUSTOM_ELEMENTS_SCHEMA example).
   const blockRe =
-    /<m3e-heading[^>]*level="(\d)"[^>]*>([\s\S]*?)<\/m3e-heading>|<p[^>]*>([\s\S]*?)<\/p>|<pre[^>]*>([\s\S]*?)<\/pre>|<li[^>]*>([\s\S]*?)<\/li>/g;
+    /<m3e-heading[^>]*level="(\d)"[^>]*>([\s\S]*?)<\/m3e-heading\s*>|<p(?:\s[^>]*)?>([\s\S]*?)<\/p\s*>|<pre(?:\s[^>]*)?>([\s\S]*?)<\/pre\s*>|<li(?:\s[^>]*)?>([\s\S]*?)<\/li\s*>/g;
   let m;
   while ((m = blockRe.exec(body))) {
     if (m[1]) out.push(`\n${"#".repeat(Math.min(6, +m[1] + 1))} ${inline(m[2])}\n`);
     else if (m[3] != null) {
       const t = inline(m[3]);
       if (t) out.push(t + "\n");
-    } else if (m[4] != null) out.push("```\n" + m[4].replace(/<[^>]+>/g, "").trim() + "\n```\n");
+    } else if (m[4] != null) out.push("```\n" + decodeEntities(m[4].replace(/<[^>]+>/g, "")).trim() + "\n```\n");
     else if (m[5] != null) out.push(`- ${inline(m[5])}`);
   }
   return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();

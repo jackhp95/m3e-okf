@@ -2,13 +2,13 @@
 
 ## Color
 
-M3E applies the Material Design 3 color system allowing you to create accessible and personalized color schemes that cascade to every component.
+M3E applies the [Material Design 3 color system](https://m3.material.io/styles/color/system/overview) allowing you to create accessible and personalized color schemes that cascade to every component.
 
 ### Design tokens
 
-The Material Design 3 design tokens are implemented as custom CSS properties. Design tokens are named, platform-agnostic variables that represent visual design decisions—such as color, typography, spacing, and elevation—in a reusable, consistent format.
+The [Material Design 3 design tokens](https://m3.material.io/foundations/design-tokens/overview) are implemented as custom CSS properties. Design tokens are named, platform-agnostic variables that represent visual design decisions—such as color, typography, spacing, and elevation—in a reusable, consistent format.
 
-Color tokens are surfaced using the standardized prefix `--md-sys-color-*` supporting use of the Material Theme Builder.
+Color tokens are surfaced using the standardized prefix `--md-sys-color-*` supporting use of the [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/).
 
 ### Static color
 
