@@ -10,45 +10,7 @@ import "@m3e/web/stepper";
 
 **Elements:** `<m3e-stepper>`, `<m3e-step-panel>`, `<m3e-step>`, `<m3e-stepper-previous>`, `<m3e-stepper-previous>`, `<m3e-stepper-reset>`
 
-## Examples
-
-```html
-<m3e-stepper>
-  <m3e-step for="step1">Fill out your name</m3e-step>
-  <m3e-step for="step2">Fill out your address</m3e-step>
-  <m3e-step for="step3">Done</m3e-step>
-  <m3e-step-panel id="step1">
-    <form>
-      <m3e-form-field>
-        <label slot="label" for="name">Name</label>
-        <input name="name" id="name" required />
-      </m3e-form-field>
-    </form>
-    <div slot="actions">
-      <m3e-button><m3e-stepper-next>Next</m3e-stepper-next></m3e-button>
-    </div>
-  </m3e-step-panel>
-  <m3e-step-panel id="step2">
-    <form>
-      <m3e-form-field>
-        <label slot="label" for="address">Address</label>
-        <input name="address" id="address" required />
-      </m3e-form-field>
-    </form>
-    <div slot="actions">
-      <m3e-button><m3e-stepper-previous>Back</m3e-stepper-previous></m3e-button>
-      <m3e-button><m3e-stepper-next>Next</m3e-stepper-next></m3e-button>
-    </div>
-  </m3e-step-panel>
-  <m3e-step-panel id="step3"
-    >Done
-    <div slot="actions">
-      <m3e-button><m3e-stepper-previous>Back</m3e-stepper-previous></m3e-button>
-      <m3e-button><m3e-stepper-reset>Reset</m3e-stepper-reset></m3e-button>
-    </div>
-  </m3e-step-panel>
-</m3e-stepper>
-```
+_1 README example(s) withheld — markup drifts from the manifest (see `data/report.md`). The validated **Compositions** below are CEM-checked._
 
 ## Compositions
 
@@ -274,5 +236,5 @@ Source files:
 - [`packages/web/src/stepper/StepperPreviousElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/stepper/StepperPreviousElement.ts)
 - [`packages/web/src/stepper/StepperResetElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/stepper/StepperResetElement.ts)
 
-**README drift corrected** (2 item(s); CEM values used above):
+**README drift corrected** (4 item(s); CEM values used above):
 _See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

@@ -9,16 +9,18 @@ Components: 53  ·  Elements: 110
 - **DEFAULT-UNDOCUMENTED**: 37
 - **UNDOCUMENTED**: 37
 - **DEFAULT-MISMATCH**: 10
-- **SLOT-README-ONLY**: 2
+- **EXAMPLE-DRIFT**: 9
 
 > UNDOCUMENTED = real attribute (in CEM) missing from README. README-only = README lists an
 > attribute the CEM doesn't expose (likely stale/typo). DEFAULT-MISMATCH = default disagrees.
-> SLOT-README-ONLY = a README example uses `slot="x"` the CEM doesn't expose on that element.
+> EXAMPLE-DRIFT = a README example uses a tag/attribute/slot the CEM doesn't expose (markup an
+> agent might copy verbatim). These snippets are withheld from the generated cards.
 
 ### autocomplete
 - `panel-class` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `results-label` — **DEFAULT-UNDOCUMENTED** (CEM=(count) => `${count} options`, README blank)
 - `for` — **UNDOCUMENTED** (in CEM, not in README)
+- `slot="label" not a slot of <m3e-form-field>` — **EXAMPLE-DRIFT** (in README example)
 
 ### badge
 - `for` — **UNDOCUMENTED** (in CEM, not in README)
@@ -58,6 +60,7 @@ Components: 53  ·  Elements: 110
 - `rel` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `target` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `type` — **DEFAULT-UNDOCUMENTED** (CEM="button", README blank)
+- `slot="label" not a slot of <m3e-form-field>` — **EXAMPLE-DRIFT** (in README example)
 
 ### datepicker
 - `for` — **UNDOCUMENTED** (in CEM, not in README)
@@ -83,9 +86,10 @@ Components: 53  ·  Elements: 110
 - `rel` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `target` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `for` — **UNDOCUMENTED** (in CEM, not in README)
+- `unknown tag <m3e-fab-menu-item>` — **EXAMPLE-DRIFT** (in README example)
 
 ### form-field
-- `slot="label" on <m3e-form-field>` — **SLOT-README-ONLY** (used in README example, not a CEM slot)
+- `slot="label" not a slot of <m3e-form-field>` — **EXAMPLE-DRIFT** (in README example)
 
 ### icon
 - `name` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
@@ -137,6 +141,7 @@ Components: 53  ·  Elements: 110
 
 ### select
 - `panel-class` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
+- `slot="label" not a slot of <m3e-form-field>` — **EXAMPLE-DRIFT** (in README example)
 
 ### skeleton
 - `animation` — **DEFAULT-MISMATCH** (README="none" CEM="wave")
@@ -151,10 +156,15 @@ Components: 53  ·  Elements: 110
 
 ### stepper
 - `invalid` — **UNDOCUMENTED** (in CEM, not in README)
-- `slot="actions" on <m3e-step-panel>` — **SLOT-README-ONLY** (used in README example, not a CEM slot)
+- `slot="label" not a slot of <m3e-form-field>` — **EXAMPLE-DRIFT** (in README example)
+- `slot="actions" not a slot of <m3e-step-panel>` — **EXAMPLE-DRIFT** (in README example)
+- `unknown tag <m3e-stepper-next>` — **EXAMPLE-DRIFT** (in README example)
 
 ### switch
 - `icons` — **DEFAULT-MISMATCH** (README=false CEM="none")
+
+### textarea-autosize
+- `slot="label" not a slot of <m3e-form-field>` — **EXAMPLE-DRIFT** (in README example)
 
 ### theme
 - `variant` — **DEFAULT-MISMATCH** (README="content" CEM="neutral")

@@ -13,19 +13,24 @@ See [`PLAN.md`](PLAN.md) for the design rationale and decisions.
 ```
 scripts/extract.mjs        CEM + TS + README     ->  data/components.json, sources.json, report.md
 scripts/guidance.mjs       m3e docs + taxonomy   ->  data/guidance.json (concepts + families)
-scripts/build-examples.mjs mined snippets        ->  data/examples.json (validated real-world)
+scripts/build-examples.mjs mined + authored      ->  data/examples.json (validated compositions)
 scripts/build-skill.mjs    data/*.json           ->  skills/m3e/ (SKILL.md, components/*, concepts/*)
+scripts/check-skill.mjs    skills/m3e/**         ->  guard: every html block valid vs the CEM
 ```
 
-Run in that order. `build-examples.mjs` validates candidate compositions in
-`.cache/examples_raw.json` (mined from real projects) against the manifest —
-rejecting any with custom CSS or any tag/attribute/slot/enum value not in the
-ground truth — and keeps only the clean, correct ones. `build-skill.mjs` reads
-all the data files.
+Run in that order. `build-examples.mjs` validates candidate compositions from
+`data/examples_raw.json` (mined from real projects) and `data/authored_candidates.json`
+(hand-authored from the API) against the manifest — rejecting any with custom CSS
+or any tag/attribute/slot/enum value not in the ground truth — and keeps only the
+clean, correct ones (tagged `origin: mined|authored`). `build-skill.mjs` reads all
+the data files and additionally withholds any README example snippet whose markup
+drifts from the CEM. The shared validator lives in `scripts/lib/validate-markup.mjs`.
 
 Ground truth is the build-time **Custom Elements Manifest** + TypeScript source.
-READMEs supply prose/examples but every API claim is verified against the CEM;
-drift is recorded in `data/report.md` and the code value wins.
+READMEs supply prose/examples but every API claim — attributes, defaults, slots,
+and the markup in README examples — is verified against the CEM; drift is recorded
+in `data/report.md` (with kinds like `DEFAULT-MISMATCH`, `UNDOCUMENTED`,
+`EXAMPLE-DRIFT`) and the code value wins.
 
 ## Regenerate
 
@@ -39,8 +44,9 @@ cd packages/web && npm run cem          # -> dist/custom-elements.json
 # 2. extract + build (from repo root)
 node scripts/extract.mjs                 # all components (or pass dir names for a subset)
 node scripts/guidance.mjs                # concept pages + component taxonomy
-node scripts/build-examples.mjs          # validate mined real-world compositions
+node scripts/build-examples.mjs          # validate mined + authored compositions
 node scripts/build-skill.mjs
+node scripts/check-skill.mjs             # guard: assert no card/concept ships drifted markup
 ```
 
 The pinned SHA lives in `data/sources.json`. To bump the library version, re-run
@@ -70,9 +76,11 @@ ln -s "$(pwd)/skills/m3e" ~/.claude/skills/m3e         # personal (all projects)
 | `.cache/m3e/` | upstream checkout (gitignored) |
 | `data/components.json` | the asset we own: one record per component, full verified API |
 | `data/sources.json` | provenance: pinned SHA + upstream file paths per component |
-| `data/report.md` | verification report: README-vs-code drift |
+| `data/report.md` | verification report: README-vs-code drift (attrs, defaults, slots, examples) |
 | `data/examples_raw.json` | mined candidate snippets (curated input to build-examples) |
-| `data/examples.json` | validated real-world compositions, keyed by component |
+| `data/authored_candidates.json` | hand-authored candidate compositions (input to build-examples) |
+| `data/examples.json` | validated compositions (mined + authored), keyed by component |
+| `scripts/lib/validate-markup.mjs` | shared CEM-validator used by build-examples, extract, check-skill |
 | `skills/m3e/SKILL.md` | the router/index agents read first |
 | `skills/m3e/components/*.md` | per-component cards (loaded on demand) |
 | `skills/m3e/concepts/*.md` | cross-cutting: theming, color, motion, etc. (WIP) |
@@ -84,9 +92,10 @@ ln -s "$(pwd)/skills/m3e" ~/.claude/skills/m3e         # personal (all projects)
 - [x] Render SKILL.md index + per-component cards
 - [x] "When to use" guidance layer: 9 concept pages + selection guide + card cross-links
 - [x] Type aliases resolved from TS source (no opaque `FormSubmitterType`/`LinkTarget`)
-- [x] Validated real-world compositions mined from real projects (17 across 12 components)
+- [x] Validated compositions for every component (106 across 53: 89 authored + 17 mined)
+- [x] README example markup verified against the CEM; drifting snippets withheld from cards
 - [x] Validated the skill against a sample build task (0 hallucinations) + a negative test
-- [x] Staleness check (`scripts/check-staleness.mjs`)
+- [x] Staleness check (`scripts/check-staleness.mjs`) + skill guard (`scripts/check-skill.mjs`)
 - [x] Installed to `~/.claude/skills/m3e` (symlink)
 
 Upstream `matraic/m3e` is MIT-licensed. "Material Design" / "Material 3" are

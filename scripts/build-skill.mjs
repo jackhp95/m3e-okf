@@ -9,11 +9,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildGroundTruth, validateMarkup } from "./lib/validate-markup.mjs";
 
 const ROOT = path.resolve(fileURLToPath(import.meta.url), "../..");
 const DATA = path.join(ROOT, "data");
 const OUT = path.join(ROOT, "skills/m3e");
 const components = JSON.parse(fs.readFileSync(path.join(DATA, "components.json"), "utf8"));
+const GT = buildGroundTruth(components);
 const sources = JSON.parse(fs.readFileSync(path.join(DATA, "sources.json"), "utf8"));
 const guidance = JSON.parse(fs.readFileSync(path.join(DATA, "guidance.json"), "utf8"));
 const examplesPath = path.join(DATA, "examples.json");
@@ -99,10 +101,16 @@ for (const c of components) {
   md += "```ts\n" + c.import + "\n```\n\n";
   if (c.elementCount > 1) md += `**Elements:** ${c.elements.map((e) => `\`<${e.tag}>\``).join(", ")}\n\n`;
 
-  if (c.examples.length) {
+  // README example snippets — but only those whose markup checks out against the
+  // CEM. Some READMEs drift (e.g. <m3e-fab-menu-item>, slot="label"); we never
+  // show markup an agent might copy verbatim that the manifest contradicts.
+  const cleanExamples = c.examples.filter((ex) => validateMarkup(ex.code, GT, { allowCss: true }).length === 0);
+  const withheld = c.examples.length - cleanExamples.length;
+  if (cleanExamples.length) {
     md += "## Examples\n\n";
-    for (const ex of c.examples.slice(0, 4)) md += "```html\n" + ex.code + "\n```\n\n";
+    for (const ex of cleanExamples.slice(0, 4)) md += "```html\n" + ex.code + "\n```\n\n";
   }
+  if (withheld) md += `_${withheld} README example(s) withheld — markup drifts from the manifest (see \`data/report.md\`). The validated **Compositions** below are CEM-checked._\n\n`;
 
   // validated compositions: every tag/attribute/slot/union value checked against
   // the CEM ground truth, no custom CSS. Either authored straight from the API or

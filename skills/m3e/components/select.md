@@ -11,24 +11,14 @@ import "@m3e/web/select";
 ## Examples
 
 ```html
-<m3e-form-field>
-  <label slot="label" for="select">Choose your favorite fruit</label>
-  <m3e-select id="select">
-    <m3e-option>Apples</m3e-option>
-    <m3e-option>Oranges</m3e-option>
-    <m3e-option>Bananas</m3e-option>
-    <m3e-option>Grapes</m3e-option>
-  </m3e-select>
-</m3e-form-field>
-```
-
-```html
 <m3e-select multi>
   <m3e-option value="javascript">JavaScript</m3e-option>
   <m3e-option value="typescript">TypeScript</m3e-option>
   <m3e-option value="python">Python</m3e-option>
 </m3e-select>
 ```
+
+_1 README example(s) withheld — markup drifts from the manifest (see `data/report.md`). The validated **Compositions** below are CEM-checked._
 
 ## Compositions
 
@@ -133,5 +123,5 @@ API values above are taken from the build-time **Custom Elements Manifest** (mac
 Source files:
 - [`packages/web/src/select/SelectElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/select/SelectElement.ts)
 
-**README drift corrected** (1 item(s); CEM values used above):
+**README drift corrected** (2 item(s); CEM values used above):
 _See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

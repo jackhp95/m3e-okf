@@ -8,14 +8,7 @@ The `m3e-form-field` component is a semantic, expressive container for form cont
 import "@m3e/web/form-field";
 ```
 
-## Examples
-
-```html
-<m3e-form-field>
-  <label slot="label" for="field">Text field</label>
-  <input id="field" />
-</m3e-form-field>
-```
+_1 README example(s) withheld — markup drifts from the manifest (see `data/report.md`). The validated **Compositions** below are CEM-checked._
 
 ## Compositions
 

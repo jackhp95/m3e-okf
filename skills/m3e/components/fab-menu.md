@@ -10,23 +10,7 @@ import "@m3e/web/fab-menu";
 
 **Elements:** `<m3e-menu-item>`, `<m3e-fab-menu>`, `<m3e-fab-menu-trigger>`
 
-## Examples
-
-```html
-<m3e-fab variant="primary" size="large">
-  <m3e-fab-menu-trigger for="fabmenu">
-    <m3e-icon name="edit"></m3e-icon>
-  </m3e-fab-menu-trigger>
-</m3e-fab>
-<m3e-fab-menu id="fabmenu" variant="secondary">
-  <m3e-fab-menu-item>First</m3e-fab-menu-item>
-  <m3e-fab-menu-item>Second</m3e-fab-menu-item>
-  <m3e-fab-menu-item>Third</m3e-fab-menu-item>
-  <m3e-fab-menu-item>Forth</m3e-fab-menu-item>
-  <m3e-fab-menu-item>Fifth</m3e-fab-menu-item>
-  <m3e-fab-menu-item>Sixth</m3e-fab-menu-item>
-</m3e-fab-menu>
-```
+_1 README example(s) withheld — markup drifts from the manifest (see `data/report.md`). The validated **Compositions** below are CEM-checked._
 
 ## Compositions
 
@@ -206,5 +190,5 @@ Source files:
 - [`packages/web/src/fab-menu/FabMenuElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/fab-menu/FabMenuElement.ts)
 - [`packages/web/src/fab-menu/FabMenuTriggerElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/fab-menu/FabMenuTriggerElement.ts)
 
-**README drift corrected** (4 item(s); CEM values used above):
+**README drift corrected** (5 item(s); CEM values used above):
 _See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

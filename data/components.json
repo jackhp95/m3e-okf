@@ -385,10 +385,11 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 3,
+      "findings": 4,
       "byKind": {
         "DEFAULT-UNDOCUMENTED": 2,
-        "UNDOCUMENTED": 1
+        "UNDOCUMENTED": 1,
+        "EXAMPLE-DRIFT": 1
       }
     }
   },
@@ -5262,9 +5263,10 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 8,
+      "findings": 9,
       "byKind": {
-        "DEFAULT-UNDOCUMENTED": 8
+        "DEFAULT-UNDOCUMENTED": 8,
+        "EXAMPLE-DRIFT": 1
       }
     }
   },
@@ -8450,10 +8452,11 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 4,
+      "findings": 5,
       "byKind": {
         "DEFAULT-UNDOCUMENTED": 3,
-        "UNDOCUMENTED": 1
+        "UNDOCUMENTED": 1,
+        "EXAMPLE-DRIFT": 1
       }
     }
   },
@@ -8701,7 +8704,7 @@
       "checked": true,
       "findings": 1,
       "byKind": {
-        "SLOT-README-ONLY": 1
+        "EXAMPLE-DRIFT": 1
       }
     }
   },
@@ -16650,9 +16653,10 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 1,
+      "findings": 2,
       "byKind": {
-        "DEFAULT-UNDOCUMENTED": 1
+        "DEFAULT-UNDOCUMENTED": 1,
+        "EXAMPLE-DRIFT": 1
       }
     }
   },
@@ -18291,10 +18295,10 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 2,
+      "findings": 4,
       "byKind": {
         "UNDOCUMENTED": 1,
-        "SLOT-README-ONLY": 1
+        "EXAMPLE-DRIFT": 3
       }
     }
   },
@@ -19235,8 +19239,10 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 0,
-      "byKind": {}
+      "findings": 1,
+      "byKind": {
+        "EXAMPLE-DRIFT": 1
+      }
     }
   },
   {

@@ -31,15 +31,6 @@ import "@m3e/web/chips";
 ```
 
 ```html
-<m3e-form-field>
-  <label slot="label" for="keywords">Keywords</label>
-  <m3e-input-chip-set aria-label="Enter keywords">
-    <input id="keywords" slot="input" placeholder="New keyword..." />
-  </m3e-input-chip-set>
-</m3e-form-field>
-```
-
-```html
 <m3e-filter-chip-set aria-label="Filter by topic">
   <m3e-filter-chip><m3e-icon slot="icon" name="palette"></m3e-icon>Design</m3e-filter-chip>
   <m3e-filter-chip><m3e-icon slot="icon" name="accessibility_new"></m3e-icon>Accessibility</m3e-filter-chip>
@@ -47,6 +38,17 @@ import "@m3e/web/chips";
   <m3e-filter-chip><m3e-icon slot="icon" name="description"></m3e-icon>Documentation</m3e-filter-chip>
 </m3e-filter-chip-set>
 ```
+
+```html
+<m3e-chip-set role="group" aria-label="Suggested replies">
+  <m3e-suggestion-chip>Sounds good!</m3e-suggestion-chip>
+  <m3e-suggestion-chip>Can you clarify?</m3e-suggestion-chip>
+  <m3e-suggestion-chip>Let's do it.</m3e-suggestion-chip>
+  <m3e-suggestion-chip>Maybe later.</m3e-suggestion-chip>
+</m3e-chip-set>
+```
+
+_1 README example(s) withheld — markup drifts from the manifest (see `data/report.md`). The validated **Compositions** below are CEM-checked._
 
 ## Compositions
 
@@ -480,5 +482,5 @@ Source files:
 - [`packages/web/src/chips/InputChipSetElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/chips/InputChipSetElement.ts)
 - [`packages/web/src/chips/SuggestionChipElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/chips/SuggestionChipElement.ts)
 
-**README drift corrected** (8 item(s); CEM values used above):
+**README drift corrected** (9 item(s); CEM values used above):
 _See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._
