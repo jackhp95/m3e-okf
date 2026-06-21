@@ -1,0 +1,122 @@
+# drawer-container
+
+**Family:** [Navigation](../concepts/choosing-components.md#navigation) · See also: [app-bar](app-bar.md), [toolbar](toolbar.md), [nav-bar](nav-bar.md), [nav-rail](nav-rail.md), [nav-menu](nav-menu.md), [tabs](tabs.md), [breadcrumb](breadcrumb.md), [toc](toc.md), [paginator](paginator.md), [stepper](stepper.md), [slide-group](slide-group.md)
+
+The `m3e-drawer-container` component provides a responsive layout container for managing one or two sliding drawers alongside main content. It supports multiple drawer modes (`over`, `push`, `side`, and `auto`), adapts to breakpoint size, and encodes spatial hierarchy, motion transitions, and accessibility semantics for modal, dismissible, and permanent navigation.
+
+```ts
+import "@m3e/web/drawer-container";
+```
+
+**Elements:** `<m3e-drawer-container>`, `<m3e-drawer-toggle>`
+
+## Examples
+
+```html
+<m3e-drawer-container>
+  <nav slot="start">
+    <!-- Start drawer content -->
+  </nav>
+  <main>
+    <!-- Main content -->
+  </main>
+  <aside slot="end">
+    <!-- End drawer content -->
+  </aside>
+</m3e-drawer-container>
+```
+
+```html
+<m3e-icon-button slot="leading-icon" aria-label="Menu" toggle selected>
+  <m3e-drawer-toggle for="startDrawer"></m3e-drawer-toggle>
+  <m3e-icon name="menu"></m3e-icon>
+  <m3e-icon slot="selected" name="menu_open"></m3e-icon>
+</m3e-icon-button>
+
+<m3e-drawer-container start>
+  <nav slot="start" id="startDrawer" aria-label="Navigation">
+    <!-- Start drawer content -->
+  </nav>
+  <!-- Container content -->
+</m3e-drawer-container>
+```
+
+## API
+
+### `<m3e-drawer-container>`
+
+A container for one or two sliding drawers.
+
+**Attributes**
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| `end` | `boolean` | false | Whether the end drawer is open. |
+| `end-mode` | `'auto' \| 'over' \| 'push' \| 'side'` | "side" | The behavior mode of the end drawer. |
+| `end-divider` | `boolean` | false | Whether to show a divider between the end drawer and content for `side` mode. |
+| `start` | `boolean` | false | Whether the start drawer is open. |
+| `start-mode` | `'auto' \| 'over' \| 'push' \| 'side'` | "side" | The behavior mode of the start drawer. |
+| `start-divider` | `boolean` | false | Whether to show a divider between the start drawer and content for `side` mode. |
+
+**Properties** (JS-only, no attribute)
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `formAssociated` _(readonly)_ |  | Indicates that this custom element participates in form submission, validation, and form state restoration. |
+
+**Slots**
+
+| Slot | Description |
+| --- | --- |
+| `(default)` | Renders the main content. |
+| `start` | Renders the start drawer. |
+| `end` | Renders the end drawer. |
+
+**Events**
+
+| Event | Type | Description |
+| --- | --- | --- |
+| `change` | `Event` | Dispatched when the state of the start or end drawers change. |
+
+**CSS custom properties** — 10 total across 10 families. Common ones:
+
+| Family (`[size]`/`[variant]` = any value) | Description |
+| --- | --- |
+| `--m3e-drawer-container-color` | The background color of the drawer container. |
+| `--m3e-drawer-container-elevation` | The elevation level of the drawer container. |
+| `--m3e-drawer-container-width` | The width of the drawer container. |
+| `--m3e-drawer-container-scrim-opacity` | The opacity of the scrim behind the drawer. |
+| `--m3e-modal-drawer-start-shape` | The shape of the drawer's start edge (typically left in LTR). |
+| `--m3e-modal-drawer-end-shape` | The shape of the drawer's end edge (typically right in LTR). |
+| `--m3e-modal-drawer-container-color` | The background color of the modal drawer container. |
+| `--m3e-modal-drawer-elevation` | The elevation level of the modal drawer container. |
+| `--m3e-drawer-divider-color` | The color of the divider between drawer sections. |
+| `--m3e-drawer-divider-thickness` | The thickness of the divider line. |
+
+### `<m3e-drawer-toggle>`
+
+An element, nested within a clickable element, used to toggle the opened state of a drawer.
+
+**Attributes**
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| `for` | `string \| null` | null | The identifier of the interactive control to which this element is attached. |
+
+**Properties** (JS-only, no attribute)
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `control` _(readonly)_ |  | The interactive element to which this element is attached. |
+
+## Source & fidelity
+
+Generated from `matraic/m3e` @ [`c89173f`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/drawer-container/README.md) (MIT).
+API values above are taken from the build-time **Custom Elements Manifest** (machine truth), not the prose README.
+
+Source files:
+- [`packages/web/src/drawer-container/DrawerContainerElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/drawer-container/DrawerContainerElement.ts)
+- [`packages/web/src/drawer-container/DrawerToggleElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/drawer-container/DrawerToggleElement.ts)
+
+**README drift corrected** (1 item(s); CEM values used above):
+_See `data/report.md` for specifics — defaults/attributes where the README disagreed with or omitted the code._

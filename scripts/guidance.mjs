@@ -1,0 +1,166 @@
+// guidance.mjs — the "when to use which" layer.
+//
+// Two outputs into data/guidance.json:
+//   1. concepts[] — cross-cutting docs (color/density/motion/typography,
+//      frameworks, getting-started) extracted from m3e's own doc pages, which
+//      are authoritative for THIS library (and cite the canonical m3.material.io
+//      pages, which are a JS SPA we can't scrape).
+//   2. families[] — a curated taxonomy grouping the 53 components into decision
+//      families with selection guidance ("use X when…"). Drives the choosing
+//      guide, the grouped index, and per-card cross-links.
+
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = path.resolve(fileURLToPath(import.meta.url), "../..");
+const DOCS = path.join(ROOT, ".cache/m3e/docs");
+const sources = JSON.parse(fs.readFileSync(path.join(ROOT, "data/sources.json"), "utf8"));
+const SHA = sources.sha;
+
+// ---------------------------------------------------------------------------
+// HTML -> Markdown for the simple m3e doc pages
+// ---------------------------------------------------------------------------
+function htmlToMarkdown(html) {
+  // isolate the main content pane
+  let body = (html.match(/<m3e-content-pane[^>]*id="body"[^>]*>([\s\S]*?)<\/m3e-content-pane>/) ||
+    html.match(/<body[^>]*>([\s\S]*?)<\/body>/) || [null, html])[1];
+  body = body.replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/g, "");
+
+  const inline = (s) =>
+    s
+      .replace(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (_, h, t) => `[${t.trim()}](${h})`)
+      .replace(/<code[^>]*>([\s\S]*?)<\/code>/g, (_, t) => `\`${t.trim()}\``)
+      .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/g, (_, __, t) => `**${t.trim()}**`)
+      .replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1>/g, (_, __, t) => `_${t.trim()}_`)
+      .replace(/<br\s*\/?>/g, " ")
+      .replace(/<[^>]+>/g, "")
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const out = [];
+  // token-walk the block elements in order
+  const blockRe =
+    /<m3e-heading[^>]*level="(\d)"[^>]*>([\s\S]*?)<\/m3e-heading>|<p[^>]*>([\s\S]*?)<\/p>|<pre[^>]*>([\s\S]*?)<\/pre>|<li[^>]*>([\s\S]*?)<\/li>/g;
+  let m;
+  while ((m = blockRe.exec(body))) {
+    if (m[1]) out.push(`\n${"#".repeat(Math.min(6, +m[1] + 1))} ${inline(m[2])}\n`);
+    else if (m[3] != null) {
+      const t = inline(m[3]);
+      if (t) out.push(t + "\n");
+    } else if (m[4] != null) out.push("```\n" + m[4].replace(/<[^>]+>/g, "").trim() + "\n```\n");
+    else if (m[5] != null) out.push(`- ${inline(m[5])}`);
+  }
+  return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+const CONCEPT_SOURCES = [
+  { slug: "color", title: "Color & theming", src: "styles/color.html" },
+  { slug: "density", title: "Density", src: "styles/density.html" },
+  { slug: "motion", title: "Motion", src: "styles/motion.html" },
+  { slug: "typography", title: "Typography", src: "styles/typography.html" },
+  { slug: "getting-started", title: "Getting started", src: "getting-started/overview.html" },
+  { slug: "installation", title: "Installation", src: "getting-started/installation.html" },
+  { slug: "frameworks-react", title: "React", src: "frameworks/react.html" },
+  { slug: "frameworks-vue", title: "Vue", src: "frameworks/vue.html" },
+  { slug: "frameworks-angular", title: "Angular", src: "frameworks/angular.html" },
+];
+
+const concepts = CONCEPT_SOURCES.filter((c) => fs.existsSync(path.join(DOCS, c.src))).map((c) => ({
+  slug: c.slug,
+  title: c.title,
+  source: `docs/${c.src}`,
+  markdown: htmlToMarkdown(fs.readFileSync(path.join(DOCS, c.src), "utf8")),
+}));
+
+// ---------------------------------------------------------------------------
+// Curated taxonomy — selection guidance. Each component sits in exactly one
+// family (for a clean grouped index); cross-family decisions live in `choosing`.
+// ---------------------------------------------------------------------------
+const families = [
+  {
+    slug: "actions",
+    title: "Actions & buttons",
+    blurb: "Elements users click to perform an action.",
+    members: ["button", "icon-button", "fab", "fab-menu", "split-button", "button-group", "segmented-button"],
+    choosing:
+      "Use **button** for standard labeled actions. Drop to **icon-button** when space is tight and the icon is unambiguous. **fab** is the single most important screen action (one per screen); **fab-menu** expands a FAB into related actions. **split-button** pairs a default action with a dropdown of alternates. **button-group** visually unifies several related buttons; **segmented-button** is for picking among 2–5 mutually-exclusive options (closer to a control than an action — for on/off prefer **switch**, for many options prefer **select** or **chips**).",
+  },
+  {
+    slug: "selection-inputs",
+    title: "Selection controls",
+    blurb: "Form controls for choosing values.",
+    members: ["checkbox", "radio-group", "switch", "slider", "chips"],
+    choosing:
+      "**checkbox** = select zero-or-more from a list. **radio-group** = exactly one from a small visible set. **switch** = a single immediate on/off toggle. **slider** = a number within a range. **chips** = compact, often dynamic choices: filter-chips for multi-select filtering, input-chips for tokenized entry, suggestion/assist chips for prompts. For one-of-many where options shouldn't all be visible, use **select** instead of radio-group.",
+  },
+  {
+    slug: "text-inputs",
+    title: "Text input & forms",
+    blurb: "Fields for entering and selecting text.",
+    members: ["form-field", "select", "autocomplete", "search", "textarea-autosize", "option"],
+    choosing:
+      "Wrap text inputs in **form-field** for labels, supporting text, and validation styling. **select** picks one value from a list (the closed menu). **autocomplete** is a text field with filterable suggestions as you type. **search** is a dedicated search bar/view pattern. **textarea-autosize** grows a multiline field with its content. **option** supplies the items for select/autocomplete listboxes.",
+  },
+  {
+    slug: "navigation",
+    title: "Navigation",
+    blurb: "Moving between destinations and through content.",
+    members: ["app-bar", "toolbar", "nav-bar", "nav-rail", "nav-menu", "drawer-container", "tabs", "breadcrumb", "toc", "paginator", "stepper", "slide-group"],
+    choosing:
+      "Top-level destinations: **nav-bar** (bottom, compact/mobile), **nav-rail** (side, medium widths), **drawer-container** (expanded side drawer, large screens) — these are the responsive trio. **nav-menu** is a hierarchical nav tree. Within a page: **tabs** switch peer views; **breadcrumb** shows hierarchy depth; **toc** links to in-page sections; **stepper** walks an ordered multi-step flow; **paginator** moves through pages of data; **slide-group** is directional content paging. **app-bar** is the top header surface; **toolbar** holds contextual actions.",
+  },
+  {
+    slug: "containers",
+    title: "Containers & surfaces",
+    blurb: "Surfaces that group or reveal content.",
+    members: ["card", "content-pane", "dialog", "bottom-sheet", "split-pane", "expansion-panel", "divider", "menu"],
+    choosing:
+      "**card** groups related content/actions about one subject. **content-pane** is a plain shaped padded surface. For transient focus: **dialog** (modal prompt/decision, blocks the page), **bottom-sheet** (sheet from the bottom, mobile-friendly, supports detents), **menu** (a small contextual list of actions/commands anchored to a trigger). **expansion-panel** shows/hides sections in place. **split-pane** is a resizable two-pane layout. **divider** is a thin rule between items.",
+  },
+  {
+    slug: "data-display",
+    title: "Data & collections",
+    blurb: "Showing structured or hierarchical data.",
+    members: ["list", "tree", "calendar", "datepicker"],
+    choosing:
+      "**list** renders rows of items (optionally selectable/expandable/actionable). **tree** renders nested hierarchy. **calendar** is an inline month/year date surface; **datepicker** is the text-field + popup calendar for forms.",
+  },
+  {
+    slug: "feedback",
+    title: "Feedback & status",
+    blurb: "Communicating status, progress, and messages.",
+    members: ["badge", "snackbar", "tooltip", "loading-indicator", "progress-indicator", "skeleton"],
+    choosing:
+      "**snackbar** = brief, dismissible message about a completed action (global service). **tooltip** = on-hover/focus context for a control. **badge** = a small count/dot on an icon or item. For waiting: **progress-indicator** (linear/circular, determinate or indeterminate), **loading-indicator** (expressive attention-grabbing spinner), **skeleton** (placeholder surface while content loads).",
+  },
+  {
+    slug: "content-media",
+    title: "Content & media",
+    blurb: "Identity, iconography, and shape primitives.",
+    members: ["avatar", "icon", "heading", "shape"],
+    choosing:
+      "**icon** renders Material Symbols. **avatar** shows a person/entity image or initials. **heading** gives expressive, accessible Material type-scale headings. **shape** applies Material's abstract shape system to arbitrary content.",
+  },
+  {
+    slug: "system",
+    title: "System",
+    blurb: "Non-visual configuration elements.",
+    members: ["theme"],
+    choosing: "**theme** is a non-visual element that applies dynamic color/theming tokens to its subtree. See the Color & theming concept page.",
+  },
+];
+
+fs.writeFileSync(
+  path.join(ROOT, "data/guidance.json"),
+  JSON.stringify({ sha: SHA, concepts, families }, null, 2)
+);
+const assigned = families.flatMap((f) => f.members);
+console.log(
+  `guidance: ${concepts.length} concept pages, ${families.length} families covering ${assigned.length} components`
+);

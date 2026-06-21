@@ -1,0 +1,48 @@
+# textarea-autosize
+
+**Family:** [Text input & forms](../concepts/choosing-components.md#text-inputs) · See also: [form-field](form-field.md), [select](select.md), [autocomplete](autocomplete.md), [search](search.md), [option](option.md)
+
+The `m3e-textarea-autosize` component automatically adjusts the height of a linked `textarea` to fit its content, preserving layout integrity and user experience. This non-visual element listens to input changes and applies dynamic resizing, constrained by optional row limits. It supports declarative configuration via attributes and can be disabled when manual control is preferred.
+
+```ts
+import "@m3e/web/textarea-autosize";
+```
+
+## Examples
+
+```html
+<m3e-form-field>
+  <label slot="label" for="fld">Textarea Autosize</label>
+  <textarea id="fld"></textarea>
+  <m3e-textarea-autosize for="fld" max-rows="5"></m3e-textarea-autosize>
+</m3e-form-field>
+```
+
+## API
+
+### `<m3e-textarea-autosize>`
+
+A non-visual element used to automatically resize a `textarea` to fit its content.
+
+**Attributes**
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| `disabled` | `boolean` | false | Whether auto-sizing is disabled. |
+| `for` | `string \| null` | null | The identifier of the interactive control to which this element is attached. |
+| `max-rows` | `number` | 0 | The maximum amount of rows in the `textarea`. |
+| `min-rows` | `number` | 0 | The minimum amount of rows in the `textarea`. |
+
+**Properties** (JS-only, no attribute)
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `control` _(readonly)_ |  | The interactive element to which this element is attached. |
+
+## Source & fidelity
+
+Generated from `matraic/m3e` @ [`c89173f`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/textarea-autosize/README.md) (MIT).
+API values above are taken from the build-time **Custom Elements Manifest** (machine truth), not the prose README.
+
+Source files:
+- [`packages/web/src/textarea-autosize/TextareaAutosizeElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/textarea-autosize/TextareaAutosizeElement.ts)

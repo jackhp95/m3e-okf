@@ -1,0 +1,60 @@
+# avatar
+
+**Family:** [Content & media](../concepts/choosing-components.md#content-media) · See also: [icon](icon.md), [heading](heading.md), [shape](shape.md)
+
+The `m3e-avatar` component is a reusable identity primitive that displays visual or textual representation with consistent sizing, shape, and typography.
+
+```ts
+import "@m3e/web/avatar";
+```
+
+## Examples
+
+```html
+<m3e-avatar>AB</m3e-avatar>
+```
+
+```html
+<m3e-avatar>
+  <m3e-icon name="person"></m3e-icon>
+</m3e-avatar>
+```
+
+```html
+<m3e-avatar>
+  <img src="https://avatars.githubusercontent.com/u/224686995?s=48&v=4" />
+</m3e-avatar>
+```
+
+## API
+
+### `<m3e-avatar>`
+
+An image, icon or textual initials representing a user or other identity.
+
+**Slots**
+
+| Slot | Description |
+| --- | --- |
+| `(default)` | Renders the content of the avatar. |
+
+**CSS custom properties** — 8 total across 8 families. Common ones:
+
+| Family (`[size]`/`[variant]` = any value) | Description |
+| --- | --- |
+| `--m3e-avatar-size` | Size of the avatar. |
+| `--m3e-avatar-shape` | Border radius of the avatar. |
+| `--m3e-avatar-font-size` | Font size for the avatar. |
+| `--m3e-avatar-font-weight` | Font weight for the avatar. |
+| `--m3e-avatar-line-height` | Line height for the avatar. |
+| `--m3e-avatar-tracking` | Letter spacing for the avatar. |
+| `--m3e-avatar-color` | Background color of the avatar. |
+| `--m3e-avatar-label-color` | Text color of the avatar. |
+
+## Source & fidelity
+
+Generated from `matraic/m3e` @ [`c89173f`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/avatar/README.md) (MIT).
+API values above are taken from the build-time **Custom Elements Manifest** (machine truth), not the prose README.
+
+Source files:
+- [`packages/web/src/avatar/AvatarElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/avatar/AvatarElement.ts)

@@ -1,0 +1,96 @@
+# card
+
+**Family:** [Containers & surfaces](../concepts/choosing-components.md#containers) · See also: [content-pane](content-pane.md), [dialog](dialog.md), [bottom-sheet](bottom-sheet.md), [split-pane](split-pane.md), [expansion-panel](expansion-panel.md), [divider](divider.md), [menu](menu.md)
+
+The `m3e-card` component is a flexible, expressive container for presenting a unified subject—text, media, and actions—on a visually distinct surface. It supports multiple appearance variants via the `variant` attribute: `filled` (default, for solid emphasis), `outlined` (for subtle framing with a border), and `elevated` (for depth and motion with shadow elevation). Cards can be made actionable, responding to user interaction when the `actionable` attribute is set, and can be presented inline with surrounding content using the `inline` attribute. It supports both vertical and horizontal layouts through the `orientation` attribute. Content organization is enabled via dedicated slots for `header`, `content`, `actions`, and `footer`, or developers can use the default slot for custom layouts.
+
+```ts
+import "@m3e/web/card";
+```
+
+## Examples
+
+```html
+<m3e-card>
+  <div slot="header">Header section</div>
+  <div slot="content">Content section</div>
+  <div slot="actions">Actions section</div>
+  <div slot="footer">Footer section</div>
+</m3e-card>
+```
+
+## API
+
+### `<m3e-card>`
+
+A content container for text, images (or other media), and actions in the context of a single subject.
+
+**Attributes**
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| `actionable` | `boolean` | false | Whether the card is "actionable" and will respond to use interaction. |
+| `inline` | `boolean` | false | Whether to present the card inline with surrounding content. |
+| `orientation` | `'vertical' \| 'horizontal'` | "vertical" | The orientation of the card. |
+| `variant` | `'filled' \| 'outlined' \| 'elevated'` | "filled" | The appearance variant of the card. |
+| `href` | `string` | "" | The URL to which the link button points. |
+| `target` | `LinkTarget` | "" | The target of the link button. |
+| `rel` | `string` | "" | The relationship between the `target` of the link button and the document. |
+| `download` | `string \| null` | null | A value indicating whether the `target` of the link button will be downloaded, optionally specifying the new name of the file. |
+| `name` |  |  | The name of the element, submitted as a pair with the element's `value` as part of form data, when the element is used to submit a form. |
+| `value` |  |  | The value associated with the element's name when it's submitted with form data. |
+| `type` | `FormSubmitterType` | "button" | The type of the element. |
+| `disabled-interactive` | `boolean` | false | Whether the element is disabled and interactive. |
+| `disabled` | `boolean` | false | Whether the element is disabled. |
+
+**Properties** (JS-only, no attribute)
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `formAssociated` _(readonly)_ | `boolean` | Indicates that this custom element participates in form submission, validation, and form state restoration. |
+
+**Slots**
+
+| Slot | Description |
+| --- | --- |
+| `(default)` | Renders the content of the card without padding. |
+| `header` | Renders the header of the card. |
+| `content` | Renders the content of the card with padding. |
+| `actions` | Renders the actions of the card. |
+| `footer` | Renders the footer of the card. |
+
+**Events**
+
+| Event | Type | Description |
+| --- | --- | --- |
+| `click` | `MouseEvent` | Dispatched when the element is clicked. |
+
+**CSS custom properties** — 73 total across 31 families. Common ones:
+
+| Family (`[size]`/`[variant]` = any value) | Description |
+| --- | --- |
+| `--m3e-card-padding` | Internal spacing for all slotted regions |
+| `--m3e-card-shape` | Corner radius of the card container. |
+| `--m3e-[variant]-card-text-color` | Foreground color for text content in filled cards. |
+| `--m3e-[variant]-card-container-color` | Background color of the filled card container. |
+| `--m3e-[variant]-card-container-elevation` | Elevation level for filled card container. |
+| `--m3e-[variant]-card-disabled-text-color` | Text color when filled card is disabled. |
+| `--m3e-[variant]-card-disabled-text-opacity` | Opacity applied to text when disabled. |
+| `--m3e-[variant]-card-disabled-container-color` | Background color when disabled. |
+| `--m3e-[variant]-card-disabled-container-elevation` | Elevation level when disabled. |
+| `--m3e-[variant]-card-disabled-container-elevation-color` | Shadow color when disabled. |
+| `--m3e-[variant]-card-disabled-container-elevation-opacity` | Shadow opacity when disabled. |
+| `--m3e-[variant]-card-disabled-container-opacity` | Overall container opacity when disabled. |
+
+_…19 more families. See source for the full list._
+
+## Source & fidelity
+
+Generated from `matraic/m3e` @ [`c89173f`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/card/README.md) (MIT).
+API values above are taken from the build-time **Custom Elements Manifest** (machine truth), not the prose README.
+
+Source files:
+- [`packages/web/src/card/CardElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/card/CardElement.ts)
+
+**README drift corrected** (9 item(s); CEM values used above):
+_See `data/report.md` for specifics — defaults/attributes where the README disagreed with or omitted the code._

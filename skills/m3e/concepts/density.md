@@ -1,0 +1,22 @@
+# Density
+
+## Density
+
+Density refers to the spatial compactness of UI elements—how tightly components are arranged, how much padding surrounds them, and how much content fits within a given layout. M3E applies the Material Design 3 density system to adapt component layout, spacing, and touch targets across varied contexts—from spacious, touch-friendly surfaces to compact, information-dense environments.
+
+### Design tokens
+
+The Material Design 3 design tokens are implemented as custom CSS properties. Design tokens are named, platform-agnostic variables that represent visual design decisions—such as color, typography, spacing, and elevation—in a reusable, consistent format.
+
+Density tokens are surfaced using the standardized `--md-sys-density-scale` and `--md-sys-density-size` custom CSS properties. M3E provides the [Theme](../components/theme.html) component which can be used to systematically control `--md-sys-density-scale` using its `density` attribute.
+
+### Density-aware components
+
+The following components support density scaling: `autocomplete`, `breadcrumb`, `button-group`, `button`, `checkbox`, `chips`, `fab`, `form-field`, `icon button`, `list`, `menu`, `nav menu`, `paginator`, `radio-group`, `segmented button`, `select`, `split-button`, `switch`, `tabs`, `toolbar`, and `tree`. Each component adapts its layout, spacing, and touch targets based on the active density scale. Refer to the component's documentation for usage examples.
+
+### Touch surfaces
+
+Touch surfaces maintain a minimum size of `48dp x 48dp`, ensuring accessible, tap-friendly targets across all density settings. This threshold aligns with Material Design 3 guidelines and is enforced even in compact layouts, preserving interaction clarity and usability for both mouse and touch input.
+
+---
+_Source: [`docs/styles/density.html`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/docs/styles/density.html) · `matraic/m3e` @ `c89173f`._

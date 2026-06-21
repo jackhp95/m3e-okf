@@ -1,0 +1,62 @@
+# slide-group
+
+**Family:** [Navigation](../concepts/choosing-components.md#navigation) · See also: [app-bar](app-bar.md), [toolbar](toolbar.md), [nav-bar](nav-bar.md), [nav-rail](nav-rail.md), [nav-menu](nav-menu.md), [drawer-container](drawer-container.md), [tabs](tabs.md), [breadcrumb](breadcrumb.md), [toc](toc.md), [paginator](paginator.md), [stepper](stepper.md)
+
+The `m3e-slide-group` component presents directional pagination controls for navigating overflowing content. It orchestrates scrollable layouts with expressive slot-based icons and adaptive orientation, revealing navigation affordances only when content exceeds a defined threshold. It supports both horizontal and vertical flows, and encodes accessibility through customizable labels and interaction states.
+
+```ts
+import "@m3e/web/slide-group";
+```
+
+## Examples
+
+```html
+<m3e-slide-group threshold="48">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+  <div>Item 4</div>
+  <div>Item 5</div>
+</m3e-slide-group>
+```
+
+## API
+
+### `<m3e-slide-group>`
+
+Presents pagination controls used to scroll overflowing content.
+
+**Attributes**
+
+| Attribute | Type | Default | Description |
+| --- | --- | --- | --- |
+| `disabled` | `boolean` | false | Whether scroll buttons are disabled. |
+| `next-page-label` | `string` | "Next page" | The accessible label given to the button used to move to the next page. |
+| `previous-page-label` | `string` | "Previous page" | The accessible label given to the button used to move to the previous page. |
+| `threshold` | `number` | 0 | A value, in pixels, indicating the scroll threshold at which to begin showing pagination controls. |
+| `vertical` | `boolean` | false | Whether content is oriented vertically. |
+
+**Slots**
+
+| Slot | Description |
+| --- | --- |
+| `(default)` | Renders the content to paginate. |
+| `next-icon` | Renders the icon to present for the next button. |
+| `prev-icon` | Renders the icon to present for the previous button. |
+
+**CSS custom properties** — 4 total across 4 families. Common ones:
+
+| Family (`[size]`/`[variant]` = any value) | Description |
+| --- | --- |
+| `--m3e-slide-group-button-icon-size` | Sets icon size for scroll buttons; overrides default small icon size. |
+| `--m3e-slide-group-button-size` | Defines scroll button size; used for width (horizontal) or height (vertical). |
+| `--m3e-slide-group-divider-top` | Adds top border to content container for visual separation. |
+| `--m3e-slide-group-divider-bottom` | Adds bottom border to content container for visual separation. |
+
+## Source & fidelity
+
+Generated from `matraic/m3e` @ [`c89173f`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/slide-group/README.md) (MIT).
+API values above are taken from the build-time **Custom Elements Manifest** (machine truth), not the prose README.
+
+Source files:
+- [`packages/web/src/slide-group/SlideGroupElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/slide-group/SlideGroupElement.ts)

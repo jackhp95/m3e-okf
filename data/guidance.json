@@ -1,0 +1,186 @@
+{
+  "sha": "c89173f392134df452422ffad051d5a5c90934b6",
+  "concepts": [
+    {
+      "slug": "color",
+      "title": "Color & theming",
+      "source": "docs/styles/color.html",
+      "markdown": "## Color\n\nM3E applies the Material Design 3 color system allowing you to create accessible and personalized color schemes that cascade to every component.\n\n### Design tokens\n\nThe Material Design 3 design tokens are implemented as custom CSS properties. Design tokens are named, platform-agnostic variables that represent visual design decisions—such as color, typography, spacing, and elevation—in a reusable, consistent format.\n\nColor tokens are surfaced using the standardized prefix `--md-sys-color-*` supporting use of the Material Theme Builder.\n\n### Static color\n\nStatic colors refer to predefined, spec-aligned colors that do not automatically adapt to system settings. The `--md-sys-color-*` custom CSS properties default to the **baseline** values for light mode.\n\n### Dynamic color\n\nDynamic color refers to runtime-generated color schemes derived from a single source color, allowing personalized theming that adapts to system settings.\n\nM3E provides the [Theme](../components/theme.html) component which applies dynamic color, expressive motion, density, and strong focus indicators to nested, theme-aware elements. This component leverages the `@material/material-color-utils` library to generates light and dark variants based on the content strategy—mapping perceptually tuned tones to standard Material Design 3 roles like _primary_, _surface_, and _outline_.\n\n### Forced colors\n\nM3E honors `forced-colors` mode by dynamically adapting component styles to ensure legibility, contrast, and semantic clarity in high-contrast environments."
+    },
+    {
+      "slug": "density",
+      "title": "Density",
+      "source": "docs/styles/density.html",
+      "markdown": "## Density\n\nDensity refers to the spatial compactness of UI elements—how tightly components are arranged, how much padding surrounds them, and how much content fits within a given layout. M3E applies the Material Design 3 density system to adapt component layout, spacing, and touch targets across varied contexts—from spacious, touch-friendly surfaces to compact, information-dense environments.\n\n### Design tokens\n\nThe Material Design 3 design tokens are implemented as custom CSS properties. Design tokens are named, platform-agnostic variables that represent visual design decisions—such as color, typography, spacing, and elevation—in a reusable, consistent format.\n\nDensity tokens are surfaced using the standardized `--md-sys-density-scale` and `--md-sys-density-size` custom CSS properties. M3E provides the [Theme](../components/theme.html) component which can be used to systematically control `--md-sys-density-scale` using its `density` attribute.\n\n### Density-aware components\n\nThe following components support density scaling: `autocomplete`, `breadcrumb`, `button-group`, `button`, `checkbox`, `chips`, `fab`, `form-field`, `icon button`, `list`, `menu`, `nav menu`, `paginator`, `radio-group`, `segmented button`, `select`, `split-button`, `switch`, `tabs`, `toolbar`, and `tree`. Each component adapts its layout, spacing, and touch targets based on the active density scale. Refer to the component's documentation for usage examples.\n\n### Touch surfaces\n\nTouch surfaces maintain a minimum size of `48dp x 48dp`, ensuring accessible, tap-friendly targets across all density settings. This threshold aligns with Material Design 3 guidelines and is enforced even in compact layouts, preserving interaction clarity and usability for both mouse and touch input."
+    },
+    {
+      "slug": "motion",
+      "title": "Motion",
+      "source": "docs/styles/motion.html",
+      "markdown": "## Motion\n\nM3E primarily applies the [Material Design 3 easing and duration](https://m3.material.io/styles/motion/easing-and-duration/applying-easing-and-duration) system to provide consistent, emotionally tuned transitions across components. A subset—including buttons, loading indicators, and switches—have adopted the Material Design 3 motion physics system , bringing spring-based dynamics and velocity-aware responsiveness to components where expressive motion is essential.\n\n### Design tokens\n\nThe Material Design 3 design tokens are implemented as custom CSS properties. Design tokens are named, platform-agnostic variables that represent visual design decisions—such as color, typography, spacing, and elevation—in a reusable, consistent format.\n\nMotion tokens are surfaced using the standardized prefix `--md-sys-motion-*` and are defaulted to spec-aligned values. M3E provides the [Theme](../components/theme.html) component which can be used to systematically control whether **standard** or **expressive** motion schemes are used through its `motion` attribute.\n\n### Reduced motion\n\nM3E honors reduced motion system settings by dynamically disabling or simplifying transitions for users who prefer minimal motion. Components respond to the `prefers-reduced-motion` media query, ensuring that expressive motion never compromises comfort or accessibility."
+    },
+    {
+      "slug": "typography",
+      "title": "Typography",
+      "source": "docs/styles/typography.html",
+      "markdown": "## Typography\n\nM3E applies the [Material Design 3 typography system](https://m3.material.io/styles/typography) to encode visual hierarchy, editorial tone, and spatial rhythm across components. The system defines a **30-style type scale**—comprising 15 baseline and 15 emphasized roles.\n\nTypography tokens follow the prefix `--md-sys-typescale-*` for the **standard** typescale and `--md-sys-typescale-emphasized-*` for **emphasized**. Each typescale variant encodes font size, line height, weight, and tracking (or letter spacing).\n\nFor example, `body-large` is encoded using `--md-sys-typescale-body-large-font-size`, `--md-sys-typescale-body-large-font-weight`, `--md-sys-typescale-body-large-line-height`, and `--md-sys-typescale-body-large-tracking`.\n\nM3E components support the full semantic range of the Material 3 type system, including **standard** and **emphasized** variants of: `display-large`, `display-medium`, `display-small`, `headline-large`, `headline-medium`, `headline-small`, `title-large`, `title-medium`, `title-small`, `body-large`, `body-medium`, `body-small`, `label-large`, `label-medium`, and `label-small`.\n\nEach role is mapped to a tokenized style and applied contextually—for example, `label-large` for buttons, `body-large` for list items, and `body-small` for form-field hints."
+    },
+    {
+      "slug": "getting-started",
+      "title": "Getting started",
+      "source": "docs/getting-started/overview.html",
+      "markdown": "## Overview\n\nWelcome to the **M3E Showcase**, a curated presentation of modular, accessible, and expressive [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) built with fidelity to Google's [Material Design 3](https://m3.material.io/). This library provides a comprehensive suite of reusable components, each crafted to deliver seamless integration, consistent theming, and intuitive user experiences.\n\nLeverages Material 3's design tokens, dynamic color, shape and motion systems for highly customizable UI elements.\n\nESM-first with modular entry points and tree-shaking for minimal bundles.\n\nBuilt-in support for accessibility standards, ensuring inclusive experiences for all users.\n\nEffortlessly adapt components to your brand or user preferences with Material 3's advanced theming capabilities.\n\nLightweight, fast-loading components designed for modern web platforms.\n\nBuilt with secure-by-default patterns, including XSS-safe templating, Trusted Types compatibility, and support for strong Content Security Policies (CSP)."
+    },
+    {
+      "slug": "installation",
+      "title": "Installation",
+      "source": "docs/getting-started/installation.html",
+      "markdown": "## Installation\n\nThe M3E Web Component library is distributed as a single package under the **@m3e/web** namespace.\n\nnpm i @m3e/web After installing the package, each component can be imported individually through its own module.\n\nFor example:\n\nimport \"@m3e/web/button\"; **Alternatively, import the `@m3e/web/all` module to load every component at once.** This option is convenient when you want full access to the M3E ecosystem without managing individual modules.\n\nimport \"@m3e/web/all\"; Native module support Each package uses JavaScript Modules and documents their native module support. To use a module directly in a browser without a bundler, use a module script similar to the following.\n\n<script type=\"module\" src=\"/node_modules/@m3e/web/dist/button.js\"></script> In addition, you must also use an import map to include dependencies. The following is an example import map that imports all entry points for `@m3e/web/core`.\n\n<script type=\"importmap\"> { \"imports\": { \"tslib\": \"https://cdn.jsdelivr.net/npm/tslib@2.8.1/+esm\", \"lit\": \"https://cdn.jsdelivr.net/npm/lit@3.3.0/+esm\", \"lit/\": \"https://cdn.jsdelivr.net/npm/lit@3.3.0/\", \"lit-html\": \"https://cdn.jsdelivr.net/npm/lit-html@3.3.0/+esm\", \"lit-html/directive.js\": \"https://cdn.jsdelivr.net/npm/lit-html@3.3.0/directive.js\", \"lit-html/directives/if-defined.js\": \"https://cdn.jsdelivr.net/npm/lit-html@3.3.0/directives/if-defined.js\", \"lit-html/directives/class-map.js\": \"https://cdn.jsdelivr.net/npm/lit-html@3.3.0/directives/class-map.js\", \"@lit/reactive-element\": \"https://cdn.jsdelivr.net/npm/@lit/reactive-element@2.0.4/+esm\", \"@lit/reactive-element/\": \"https://cdn.jsdelivr.net/npm/@lit/reactive-element@2.0.4/\", \"@m3e/web/core\": \"/node_modules/@m3e/web/dist/core.js\", \"@m3e/web/core/a11y\": \"/node_modules/@m3e/web/dist/core-a11y.js\", \"@m3e/web/core/anchoring\": \"/node_modules/@m3e/web/dist/core-anchoring.js\", \"@m3e/web/core/bidi\": \"/node_modules/@m3e/web/dist/core-bidi.js\", \"@m3e/web/core/layout\": \"/node_modules/@m3e/web/dist/core-layout.js\", \"@m3e/web/core/platform\": \"/node_modules/@m3e/web/dist/core-platform.js\" } } </script> For production builds, use the minified files to ensure optimal load performance.\n\n### Editor integration\n\nThe `@m3e/web` package includes a Custom Elements Manifest to support enhanced editor tooling and developer experience.\n\n#### Visual Studio Code\n\nTo enable autocomplete and hover documentation, install the Custom Elements Manifest Language Server extension. It will automatically detect the manifest bundled with this package and surface tag names, attributes, slots, and events in supported files.\n\nAlternatively, you can explicitly reference the `html-custom-data.json` and `css-custom-data.json` in your workspace settings."
+    },
+    {
+      "slug": "frameworks-react",
+      "title": "React",
+      "source": "docs/frameworks/react.html",
+      "markdown": "## React\n\nThe **@m3e/react** package provides idiomatic React bindings for all M3E Web Components. Each component is exposed as its own React module, offering typed props, event mappings, and seamless integration with the React rendering model. However, the React bindings are **client-only**. In Next.js, you **must** use them inside a `\"use client\"` boundary.\n\nnpm i @m3e/react After installation, import the React module for any component you want to use. Each module wraps the corresponding `@m3e/web` module and exposes a familiar React component API.\n\nFor example:\n\nimport { M3eButton } from \"@m3e/react/button\"; React modules automatically register their underlying Web Component, so no additional side-effect imports from `@m3e/web` are required.\n\n**Alternatively, import the `@m3e/react/all` module to load every React binding at once.** This option is convenient when you want full access to the M3E component suite without managing individual modules.\n\nimport \"@m3e/react/all\"; Each React module mirrors the structure of its Web Component counterpart, ensuring a consistent mental model across both ecosystems. Use individual modules for tree-shaking and minimal bundles, or the aggregated module for rapid prototyping and full-suite development."
+    },
+    {
+      "slug": "frameworks-vue",
+      "title": "Vue",
+      "source": "docs/frameworks/vue.html",
+      "markdown": "## Vue\n\nM3E does not require a dedicated Vue bindings package. Vue provides first-class support for Web Components, allowing all M3E components to be used directly in Vue templates without additional wrappers.\n\nSee [Vue and Web Components](https://vuejs.org/guide/extras/web-components.html) for more information."
+    },
+    {
+      "slug": "frameworks-angular",
+      "title": "Angular",
+      "source": "docs/frameworks/angular.html",
+      "markdown": "## Angular\n\nM3E does not require a dedicated Angular bindings package. Angular provides first-class support for Web Components, allowing all M3E components to be used directly in Angular templates without additional wrappers.\n\nHowever, Angular requires the `CUSTOM_ELEMENTS_SCHEMA` to recognize custom elements. Add it to your module definition:"
+    }
+  ],
+  "families": [
+    {
+      "slug": "actions",
+      "title": "Actions & buttons",
+      "blurb": "Elements users click to perform an action.",
+      "members": [
+        "button",
+        "icon-button",
+        "fab",
+        "fab-menu",
+        "split-button",
+        "button-group",
+        "segmented-button"
+      ],
+      "choosing": "Use **button** for standard labeled actions. Drop to **icon-button** when space is tight and the icon is unambiguous. **fab** is the single most important screen action (one per screen); **fab-menu** expands a FAB into related actions. **split-button** pairs a default action with a dropdown of alternates. **button-group** visually unifies several related buttons; **segmented-button** is for picking among 2–5 mutually-exclusive options (closer to a control than an action — for on/off prefer **switch**, for many options prefer **select** or **chips**)."
+    },
+    {
+      "slug": "selection-inputs",
+      "title": "Selection controls",
+      "blurb": "Form controls for choosing values.",
+      "members": [
+        "checkbox",
+        "radio-group",
+        "switch",
+        "slider",
+        "chips"
+      ],
+      "choosing": "**checkbox** = select zero-or-more from a list. **radio-group** = exactly one from a small visible set. **switch** = a single immediate on/off toggle. **slider** = a number within a range. **chips** = compact, often dynamic choices: filter-chips for multi-select filtering, input-chips for tokenized entry, suggestion/assist chips for prompts. For one-of-many where options shouldn't all be visible, use **select** instead of radio-group."
+    },
+    {
+      "slug": "text-inputs",
+      "title": "Text input & forms",
+      "blurb": "Fields for entering and selecting text.",
+      "members": [
+        "form-field",
+        "select",
+        "autocomplete",
+        "search",
+        "textarea-autosize",
+        "option"
+      ],
+      "choosing": "Wrap text inputs in **form-field** for labels, supporting text, and validation styling. **select** picks one value from a list (the closed menu). **autocomplete** is a text field with filterable suggestions as you type. **search** is a dedicated search bar/view pattern. **textarea-autosize** grows a multiline field with its content. **option** supplies the items for select/autocomplete listboxes."
+    },
+    {
+      "slug": "navigation",
+      "title": "Navigation",
+      "blurb": "Moving between destinations and through content.",
+      "members": [
+        "app-bar",
+        "toolbar",
+        "nav-bar",
+        "nav-rail",
+        "nav-menu",
+        "drawer-container",
+        "tabs",
+        "breadcrumb",
+        "toc",
+        "paginator",
+        "stepper",
+        "slide-group"
+      ],
+      "choosing": "Top-level destinations: **nav-bar** (bottom, compact/mobile), **nav-rail** (side, medium widths), **drawer-container** (expanded side drawer, large screens) — these are the responsive trio. **nav-menu** is a hierarchical nav tree. Within a page: **tabs** switch peer views; **breadcrumb** shows hierarchy depth; **toc** links to in-page sections; **stepper** walks an ordered multi-step flow; **paginator** moves through pages of data; **slide-group** is directional content paging. **app-bar** is the top header surface; **toolbar** holds contextual actions."
+    },
+    {
+      "slug": "containers",
+      "title": "Containers & surfaces",
+      "blurb": "Surfaces that group or reveal content.",
+      "members": [
+        "card",
+        "content-pane",
+        "dialog",
+        "bottom-sheet",
+        "split-pane",
+        "expansion-panel",
+        "divider",
+        "menu"
+      ],
+      "choosing": "**card** groups related content/actions about one subject. **content-pane** is a plain shaped padded surface. For transient focus: **dialog** (modal prompt/decision, blocks the page), **bottom-sheet** (sheet from the bottom, mobile-friendly, supports detents), **menu** (a small contextual list of actions/commands anchored to a trigger). **expansion-panel** shows/hides sections in place. **split-pane** is a resizable two-pane layout. **divider** is a thin rule between items."
+    },
+    {
+      "slug": "data-display",
+      "title": "Data & collections",
+      "blurb": "Showing structured or hierarchical data.",
+      "members": [
+        "list",
+        "tree",
+        "calendar",
+        "datepicker"
+      ],
+      "choosing": "**list** renders rows of items (optionally selectable/expandable/actionable). **tree** renders nested hierarchy. **calendar** is an inline month/year date surface; **datepicker** is the text-field + popup calendar for forms."
+    },
+    {
+      "slug": "feedback",
+      "title": "Feedback & status",
+      "blurb": "Communicating status, progress, and messages.",
+      "members": [
+        "badge",
+        "snackbar",
+        "tooltip",
+        "loading-indicator",
+        "progress-indicator",
+        "skeleton"
+      ],
+      "choosing": "**snackbar** = brief, dismissible message about a completed action (global service). **tooltip** = on-hover/focus context for a control. **badge** = a small count/dot on an icon or item. For waiting: **progress-indicator** (linear/circular, determinate or indeterminate), **loading-indicator** (expressive attention-grabbing spinner), **skeleton** (placeholder surface while content loads)."
+    },
+    {
+      "slug": "content-media",
+      "title": "Content & media",
+      "blurb": "Identity, iconography, and shape primitives.",
+      "members": [
+        "avatar",
+        "icon",
+        "heading",
+        "shape"
+      ],
+      "choosing": "**icon** renders Material Symbols. **avatar** shows a person/entity image or initials. **heading** gives expressive, accessible Material type-scale headings. **shape** applies Material's abstract shape system to arbitrary content."
+    },
+    {
+      "slug": "system",
+      "title": "System",
+      "blurb": "Non-visual configuration elements.",
+      "members": [
+        "theme"
+      ],
+      "choosing": "**theme** is a non-visual element that applies dynamic color/theming tokens to its subtree. See the Color & theming concept page."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+# Color & theming
+
+## Color
+
+M3E applies the Material Design 3 color system allowing you to create accessible and personalized color schemes that cascade to every component.
+
+### Design tokens
+
+The Material Design 3 design tokens are implemented as custom CSS properties. Design tokens are named, platform-agnostic variables that represent visual design decisions—such as color, typography, spacing, and elevation—in a reusable, consistent format.
+
+Color tokens are surfaced using the standardized prefix `--md-sys-color-*` supporting use of the Material Theme Builder.
+
+### Static color
+
+Static colors refer to predefined, spec-aligned colors that do not automatically adapt to system settings. The `--md-sys-color-*` custom CSS properties default to the **baseline** values for light mode.
+
+### Dynamic color
+
+Dynamic color refers to runtime-generated color schemes derived from a single source color, allowing personalized theming that adapts to system settings.
+
+M3E provides the [Theme](../components/theme.html) component which applies dynamic color, expressive motion, density, and strong focus indicators to nested, theme-aware elements. This component leverages the `@material/material-color-utils` library to generates light and dark variants based on the content strategy—mapping perceptually tuned tones to standard Material Design 3 roles like _primary_, _surface_, and _outline_.
+
+### Forced colors
+
+M3E honors `forced-colors` mode by dynamically adapting component styles to ensure legibility, contrast, and semantic clarity in high-contrast environments.
+
+---
+_Source: [`docs/styles/color.html`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/docs/styles/color.html) · `matraic/m3e` @ `c89173f`._
