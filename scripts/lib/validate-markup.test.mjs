@@ -84,3 +84,25 @@ test("errors are de-duplicated", () => {
   const errs = clean(`<m3e-bad></m3e-bad><m3e-bad></m3e-bad>`);
   assert.equal(errs.filter((e) => e.includes("m3e-bad")).length, 1);
 });
+
+// #2 — tags inside HTML comments must not be validated (they never render).
+test("tags inside HTML comments are ignored", () => {
+  assert.deepEqual(clean(`<!-- <m3e-fake bogus="1"> --><m3e-button>x</m3e-button>`), []);
+});
+
+test("a commented-out invalid slot does not fail a valid element", () => {
+  assert.deepEqual(
+    clean(`<m3e-button><!-- <span slot="nope">old</span> --><m3e-icon slot="icon" name="x"></m3e-icon></m3e-button>`),
+    []
+  );
+});
+
+// #3 — a '>' inside a quoted attribute value must not truncate the tag and
+// silently drop later attributes.
+test("a '>' inside a quoted attribute value does not hide later attributes", () => {
+  const errs = clean(`<m3e-button data-fn="a > b" colour="red">x</m3e-button>`);
+  assert.ok(
+    errs.some((e) => e.includes(`undocumented attribute "colour"`)),
+    `expected the trailing 'colour' attribute to still be checked, got: ${JSON.stringify(errs)}`
+  );
+});

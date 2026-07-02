@@ -36,9 +36,17 @@ const VOID = new Set(["img", "input", "br", "hr", "source", "meta", "link"]);
 
 // ---- minimal HTML tokenizer -> tree -------------------------------------
 function parse(html) {
+  // Strip HTML comments first: tags inside `<!-- ... -->` never render, so they
+  // must not be validated (an invalid tag/attr/slot in a comment is not a real
+  // markup error).
+  html = html.replace(/<!--[\s\S]*?-->/g, "");
   const root = { tag: "#root", attrs: {}, children: [], parent: null };
   let cur = root;
-  const re = /<\/?([a-zA-Z][\w-]*)((?:\s+[^<>]*?)?)\s*(\/?)>/g;
+  // The attribute-string body allows quoted runs (which may legitimately
+  // contain `>`, e.g. `data-fn="a > b"`) alongside unquoted chars other than
+  // `>`. Without the quoted-run alternative, a `>` inside a value would end the
+  // tag early and silently drop every attribute after it.
+  const re = /<\/?([a-zA-Z][\w-]*)((?:\s+(?:"[^"]*"|'[^']*'|[^<>"'])*?)?)\s*(\/?)>/g;
   let m;
   while ((m = re.exec(html))) {
     const [, tag, attrStr, selfClose] = m;
