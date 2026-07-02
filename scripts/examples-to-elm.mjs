@@ -28,7 +28,7 @@ import { dirname, resolve } from "node:path";
 import { parseHTML } from "linkedom";
 
 import { buildOracle } from "./lib/oracle.mjs";
-import { toElm } from "./lib/to-elm.mjs";
+import { toElm, toElmCem } from "./lib/to-elm.mjs";
 import { deriveSection } from "./lib/sections.mjs";
 import { pascal } from "./lib/naming.mjs";
 import { verifyExamples } from "./verify-examples.mjs";
@@ -66,22 +66,26 @@ function nodeToHtml(node) {
 }
 
 /**
- * Convert one mined example's raw HTML to Elm, handling multi-root galleries.
+ * Convert one mined example's raw HTML to Elm at the requested layer, handling
+ * multi-root galleries.
+ * @param {"top"|"middle"|"bottom"} layer
  * @returns {{ code: string } | { skip: string }}
  */
-function convertExample(html, oracle) {
+function convertExample(html, oracle, layer = "top") {
+  const convert = (h) =>
+    layer === "top" ? toElm(h, oracle) : toElmCem(h, oracle, layer);
   const roots = topLevelNodes(html);
 
-  // Single root (or empty) -> defer entirely to toElm.
+  // Single root (or empty) -> defer entirely to the layer converter.
   if (roots.length <= 1) {
-    return toElm(html, oracle);
+    return convert(html);
   }
 
   // Multiple roots -> convert each sibling independently, assemble as a single
   // Elm LIST expression so the whole example is one compilable expression.
   const pieces = [];
   for (const node of roots) {
-    const res = toElm(nodeToHtml(node), oracle);
+    const res = convert(nodeToHtml(node));
     if (res.skip) return { skip: res.skip };
     pieces.push(res.code);
   }
@@ -195,10 +199,71 @@ function main() {
     }
   }
 
+  // --- Phase A1: emit + compile-verify the middle (M3e.Cem.*) and bottom
+  // (M3e.Cem.Html.*) layers for every TOP-surviving example. -----------------
+  // These layers are permissive supersets of the strict top, so a mid/bottom
+  // failure is a converter defect (or a genuinely unrepresentable example) —
+  // NOT a "layer unavailable" state. We enforce an ALL-OR-NOTHING invariant: an
+  // example ships only if top, mid AND bottom all compile, so the docs-site
+  // layer toggle is never partial. Everything dropped here is logged.
+  for (const module of Object.keys(generated)) {
+    for (const ex of generated[module].examples) {
+      ex.mid = convertExample(ex.html, oracle, "middle");
+      ex.bottom = convertExample(ex.html, oracle, "bottom");
+    }
+  }
+
+  // A sentinel shadow map so verifyExamples can attribute each layer failure to
+  // (module, idx): a skipped layer gets an unbound-variable sentinel so it
+  // registers as a compile failure at its own idx.
+  const layerFailures = (layerKey) => {
+    const shadow = {};
+    for (const module of Object.keys(generated)) {
+      shadow[module] = {
+        examples: generated[module].examples.map((ex) => ({
+          title: ex.title,
+          code: ex[layerKey].code ? ex[layerKey].code : "layerSkippedSentinel",
+        })),
+      };
+    }
+    const { failures, fatal } = verifyExamples(shadow);
+    if (fatal) {
+      console.error(`FATAL: ${layerKey}-layer verification did not build:\n` + fatal);
+      process.exit(2);
+    }
+    return new Map(
+      failures.map((f) => [`${f.module}#${f.idx}`, f.firstErrorLine]),
+    );
+  };
+
+  const midFail = layerFailures("mid");
+  const botFail = layerFailures("bottom");
+
+  let layerDropped = 0;
+  for (const module of Object.keys(generated)) {
+    const kept = [];
+    generated[module].examples.forEach((ex, idx) => {
+      const key = `${module}#${idx}`;
+      const midReason = ex.mid.skip || midFail.get(key);
+      const botReason = ex.bottom.skip || botFail.get(key);
+      if (midReason || botReason) {
+        layerDropped += 1;
+        converted -= 1;
+        const parts = [];
+        if (midReason) parts.push(`mid: ${midReason}`);
+        if (botReason) parts.push(`bottom: ${botReason}`);
+        skippedLines.push(`${module} :: ${ex.title} :: layer ${parts.join(" | ")}`);
+      } else {
+        kept.push(ex);
+      }
+    });
+    if (kept.length > 0) generated[module].examples = kept;
+    else delete generated[module];
+  }
+
   // Split the built data into two outputs (stable, alphabetized keys):
   //   sortedGenerated -> elm-cem-facing {examples:[{title,code,section}],docMeta}
-  //   rich            -> docs-facing   {Module:[{title,section,html,top}]}
-  // `top` is the verified top-layer Elm (mid/bottom added by a later phase).
+  //   rich            -> docs-facing   {Module:[{title,section,html,top,mid,bottom}]}
   const sortedGenerated = {};
   const rich = {};
   for (const key of Object.keys(generated).sort()) {
@@ -211,11 +276,13 @@ function main() {
       })),
       docMeta,
     };
-    rich[key] = exs.map(({ title, section, html, code }) => ({
+    rich[key] = exs.map(({ title, section, html, code, mid, bottom }) => ({
       title,
       ...(section ? { section } : {}),
       html,
       top: code,
+      mid: mid.code,
+      bottom: bottom.code,
     }));
   }
 
@@ -233,8 +300,9 @@ function main() {
   const zeroExampleCount = Object.keys(corpus).length - componentCount;
 
   console.log(
-    `converted+compiled ${converted} / total ${total}; ` +
-      `skipped ${total - converted} (convert ${total - converted - compileDropped}, compile ${compileDropped}) ` +
+    `converted+compiled(3 layers) ${converted} / total ${total}; ` +
+      `skipped ${total - converted} (convert ${total - converted - compileDropped - layerDropped}, ` +
+      `top-compile ${compileDropped}, mid/bottom-layer ${layerDropped}) ` +
       `across ${componentCount} components`,
   );
   console.log(`components with zero examples: ${zeroExampleCount}`);

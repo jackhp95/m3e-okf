@@ -476,10 +476,17 @@ function cemNodeToElm(node, oracle, layer, slotName) {
 
   const tag = node.tagName.toLowerCase();
   const attrExprs = [];
-  if (slotName) attrExprs.push(cemSlotAttr(layer, slotName));
 
   if (!tag.startsWith("m3e-")) {
-    // Plain HTML: <a href> keeps its href; other attrs (class/id/...) drop.
+    // Plain HTML element: its attr list is `List (Html.Attribute msg)`, so a
+    // slot is ALWAYS a raw Html attribute — even at the middle layer (where
+    // `M3e.Cem.Attr.slot` only fits an m3e element's typed attr list).
+    if (slotName) {
+      attrExprs.push(
+        `Html.Attributes.attribute "slot" "${escapeElmString(slotName)}"`,
+      );
+    }
+    // <a href> keeps its href; other attrs (class/id/...) drop.
     if (tag === "a") {
       const href = node.getAttribute("href");
       if (href != null) {
@@ -490,6 +497,10 @@ function cemNodeToElm(node, oracle, layer, slotName) {
     const fn = HTML_TAGS.has(tag) ? `Html.${tag}` : `Html.node "${tag}"`;
     return `${fn} ${elmList(attrExprs)} ${elmList(children)}`;
   }
+
+  // m3e element: the slot goes in its typed attr list (M3e.Cem.Attr.slot at
+  // middle, raw Html attribute at bottom).
+  if (slotName) attrExprs.push(cemSlotAttr(layer, slotName));
 
   const entry = oracle[tag];
   if (!entry) skip(`unknown m3e tag ${tag}`);
