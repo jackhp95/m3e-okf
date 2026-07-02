@@ -5,7 +5,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
-import { camel, pascal, avoidConflicts } from "./naming.mjs";
+import { camel, pascal } from "./naming.mjs";
 
 // scripts/lib/oracle.mjs -> repo root is four levels up
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -29,6 +29,12 @@ function kebab(key) {
     .toLowerCase();
 }
 
+// A TS type the codegen has no simple setter for: arrays (`string[]`),
+// functions (`=> `), or object literals (`{`). Mirrors the generator's ASkip.
+function isComplexType(typeText) {
+  return /\[\]|=>|^\s*\{/.test(typeText);
+}
+
 // Extract quoted string-literal values from a TS union type text.
 function enumLiterals(typeText) {
   const out = [];
@@ -41,6 +47,20 @@ function enumLiterals(typeText) {
 export function buildOracle() {
   const cem = readJson(CEM_PATH);
   const slots = readJson(SLOTS_PATH);
+
+  // Variant groups: a `group` config folds several tags into ONE top module
+  // with a constructor per variant (e.g. Progress.group = { linear:
+  // "m3e-linear-progress-indicator", ... } -> `M3e.Progress.linear`). Build a
+  // tag -> { module, variant } map so the TOP mapper targets the group module.
+  // (Middle/bottom layers keep the per-tag modules, which exist as-is.)
+  const groupByTag = {};
+  for (const [module, cfg] of Object.entries(slots)) {
+    if (cfg && cfg.group && typeof cfg.group === "object") {
+      for (const [variant, tag] of Object.entries(cfg.group)) {
+        groupByTag[tag] = { module, variant };
+      }
+    }
+  }
 
   const oracle = {};
 
@@ -59,20 +79,34 @@ export function buildOracle() {
       const setterNames = new Set();
       for (const attr of d.attributes ?? []) {
         const htmlName = attr.name;
-        // taken = the other attributes' setter names already assigned
-        const setter = avoidConflicts(camel(htmlName), setterNames);
+        // Attribute setters use the PLAIN camelCase name — the generator does
+        // NOT reserved-bump them (Attr.elm: `elmName = camel attribute.name`),
+        // so `min`/`max`/etc. stay as-is. (`setterNames` is still tracked for
+        // the slot-helper collision bump below.)
+        const setter = camel(htmlName);
         setterNames.add(setter);
 
         const typeText = attr.type?.text ?? "";
         const enumSource = attr.parsedType?.text ?? attr.type?.text ?? "";
+        // Strip nullable union members (`| null` / `| undefined`) the way the
+        // generator does, so `number | null` still classifies as a number.
+        const bare = typeText
+          .replace(/\s*\|\s*(null|undefined)\b/g, "")
+          .trim();
         let kind;
         let enumValues = [];
-        if (typeText === "boolean") {
+        if (bare === "boolean") {
           kind = "bool";
-        } else if (typeText === "number") {
+        } else if (bare === "number") {
           // Numeric attributes map to a `Float` setter at every layer, so the
           // value is emitted as a bare Elm number literal (no quotes).
           kind = "number";
+        } else if (isComplexType(bare)) {
+          // Array/function/object-typed attributes (e.g. `detents: string[]`,
+          // `valueFormatter`) have NO generated setter (the codegen skips them),
+          // so the mapper drops them like id/class rather than emitting a
+          // non-existent setter.
+          kind = "skip";
         } else {
           const lits = enumLiterals(enumSource);
           if (lits.length >= 2) {
@@ -147,6 +181,9 @@ export function buildOracle() {
         requiredFields,
         requiredSlots,
         slots: slotEntries,
+        // Present only for variant-group members; the TOP mapper folds them
+        // into `M3e.<group.module>.<group.variant>`.
+        group: groupByTag[tag] ?? null,
       };
     }
   }

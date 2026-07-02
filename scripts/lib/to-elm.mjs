@@ -32,6 +32,15 @@ function escapeElmString(s) {
 const isWhitespaceText = (node) =>
   node.nodeType === 3 && node.textContent.trim() === "";
 
+// Universal accessibility attributes: settable on ANY component (independent of
+// the phantom rows) via the `Aria` modules. Strict/middle layers use `M3e.Aria`
+// (open-row `Attr`); the bottom layer uses `M3e.Cem.Html.Aria` (`Html.Attribute`).
+const ARIA_SETTER = {
+  "aria-label": "label",
+  "aria-labelledby": "labelledby",
+  "aria-describedby": "describedby",
+};
+
 /** Validate + normalize a numeric attribute value to an Elm number literal.
  * Accepts an optional sign, integer, or simple decimal (Elm rejects `.5`/`5.`).
  * A non-numeric value skips (the compile gate would reject it anyway). */
@@ -188,6 +197,11 @@ function plainElementToElm(node, oracle) {
     return `Native.${tag}`;
   }
 
+  // `Native.img` takes ONLY attributes (no children): `img : List Attr -> ...`.
+  if (tag === "img") {
+    return `Native.img []`;
+  }
+
   const children = childNodesToElm(node, oracle);
   const list = children.length === 0 ? "[]" : `[ ${children.join(", ")} ]`;
 
@@ -216,6 +230,12 @@ function elementToElm(node, oracle) {
   if (!entry) {
     skip(`unknown m3e tag ${tag}`);
   }
+
+  // Variant-group members fold into the group's TOP module with a per-variant
+  // constructor (`M3e.Progress.linear`); everything else is `M3e.<Module>.view`.
+  // Setters + content helpers all live on the target module.
+  const mod = entry.group ? entry.group.module : entry.module;
+  const ctor = entry.group ? entry.group.variant : "view";
 
   // Does the default slot fold into the required record as a `content` field?
   // (A required, single-value default slot is not a `child` helper.)
@@ -280,6 +300,12 @@ function elementToElm(node, oracle) {
     // Required-record fields were consumed above; they are not setters.
     if (requiredHtmlNames.has(name)) continue;
 
+    // Universal aria-* setters (settable on any component via M3e.Aria).
+    if (ARIA_SETTER[name]) {
+      attrExprs.push(`M3e.Aria.${ARIA_SETTER[name]} "${escapeElmString(value)}"`);
+      continue;
+    }
+
     const attr = entry.attributes.find((a) => a.htmlName === name);
     if (!attr) {
       // Non-structural presentational/identity attrs (id/class/style/data-*)
@@ -292,7 +318,13 @@ function elementToElm(node, oracle) {
       skip(`unmapped attr ${name} on ${tag}`);
     }
 
-    const setterRef = `M3e.${entry.module}.${attr.setter}`;
+    // Array/function/object-typed attrs have no generated setter -> drop.
+    if (attr.kind === "skip") {
+      droppedAttrs.push({ tag, name, value });
+      continue;
+    }
+
+    const setterRef = `M3e.${mod}.${attr.setter}`;
     if (attr.kind === "enum") {
       attrExprs.push(`${setterRef} M3e.Value.${camel(value)}`);
     } else if (attr.kind === "bool") {
@@ -325,7 +357,7 @@ function elementToElm(node, oracle) {
           skip(`unknown slot "${slotName}" on ${tag}`);
         }
         slottedExprs.push(
-          `M3e.${entry.module}.${slotEntry.helper} (${nodeToElm(child, oracle)})`,
+          `M3e.${mod}.${slotEntry.helper} (${nodeToElm(child, oracle)})`,
         );
         continue;
       }
@@ -364,10 +396,10 @@ function elementToElm(node, oracle) {
     recordFields.unshift(`content = ${defaultExprs[0]}`);
   } else if (defaultExprs.length === 1) {
     // Wrap default-slot content with the component's `child` helper (single).
-    singleExprs.push(`M3e.${entry.module}.child (${defaultExprs[0]})`);
+    singleExprs.push(`M3e.${mod}.child (${defaultExprs[0]})`);
   } else if (defaultExprs.length > 1) {
     // `children` returns a LIST — splice, don't nest.
-    childrenExpr = `M3e.${entry.module}.children [ ${defaultExprs.join(", ")} ]`;
+    childrenExpr = `M3e.${mod}.children [ ${defaultExprs.join(", ")} ]`;
   }
 
   const attrsList =
@@ -395,7 +427,7 @@ function elementToElm(node, oracle) {
   const hasRecord = recordFields.length > 0;
   const recordArg = hasRecord ? `{ ${recordFields.join(", ")} } ` : "";
 
-  return `M3e.${entry.module}.view ${recordArg}${attrsList} ${contentList}`;
+  return `M3e.${mod}.${ctor} ${recordArg}${attrsList} ${contentList}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -536,6 +568,18 @@ function cemNodeToElm(node, oracle, layer, slotName) {
 
   for (const [name, value] of [...node.attributes].map((a) => [a.name, a.value])) {
     if (name === "slot") continue; // carried via slotName on this element
+    // Universal aria-* setters (M3e.Aria at middle, M3e.Cem.Html.Aria at bottom).
+    if (ARIA_SETTER[name]) {
+      const ariaMod = layer === "bottom" ? "M3e.Cem.Html.Aria" : "M3e.Aria";
+      attrExprs.push(`${ariaMod}.${ARIA_SETTER[name]} "${escapeElmString(value)}"`);
+      continue;
+    }
+    // Array/function/object-typed attrs have no setter at any layer -> drop.
+    const known = entry.attributes.find((a) => a.htmlName === name);
+    if (known && known.kind === "skip") {
+      droppedAttrs.push({ tag, name, value });
+      continue;
+    }
     const typed = cemTypedAttr(entry, layer, name, value);
     if (typed != null) {
       attrExprs.push(typed);

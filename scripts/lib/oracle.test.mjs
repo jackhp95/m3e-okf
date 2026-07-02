@@ -16,8 +16,9 @@ test("button slot helpers incl. selected->selectedSlot bump + default child", ()
   assert.equal(b.slots.find((s) => s.rawName === "selected").helper, "selectedSlot");
   assert.equal(b.slots.find((s) => s.rawName === "").helper, "child");
 });
-test("icon-button module + required ariaLabel", () => {
+test("icon-button module; aria-label is NOT a required field (universal setter)", () => {
   const ib = oracle["m3e-icon-button"];
   assert.equal(ib.module, "IconButton");
-  assert.ok(ib.requiredFields.some((f) => f.field === "ariaLabel" && f.htmlName === "aria-label"));
+  // aria moved off the phantom/required system -> settable via M3e.Aria on anything.
+  assert.ok(!ib.requiredFields.some((f) => f.field === "ariaLabel"));
 });

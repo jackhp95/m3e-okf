@@ -21,35 +21,34 @@ test("plain text-only button", () => {
   });
 });
 
-// The real `M3e.Checkbox.view` takes a required record `{ ariaLabel : String }`
-// as its first argument. A checkbox WITHOUT aria-label cannot call the typed view
-// honestly, so it is skipped (those examples fall through to the fallback later).
-test("checkbox missing required aria-label -> skip", () => {
-  const r = conv(`<m3e-checkbox checked></m3e-checkbox>`);
-  assert.ok(r.skip && /ariaLabel|aria-label/.test(r.skip));
+// aria is universal + optional (not a required record): a checkbox WITHOUT
+// aria-label converts fine — a11y requirements live in elm-review rules now.
+test("checkbox without aria-label converts (aria is optional)", () => {
+  assert.deepEqual(conv(`<m3e-checkbox checked></m3e-checkbox>`), {
+    code: `M3e.Checkbox.view [ M3e.Checkbox.checked True ] []`,
+  });
 });
 
 // --- (a) required-record view form ---------------------------------------
 
 // IconButton exposes NO `child`/`children` helper: its default slot is
 // `required + single`, so the codegen folds it into the required record as the
-// `content` field (record order: content first, then named required fields).
-// Confirmed against packages/m3e/src/M3e/IconButton.elm:
-//   view : { content : Element {icon}, ariaLabel : String } -> ...
-test("icon-button required record folds default icon slot into content", () => {
+// `content` field. aria-label is now a universal optional setter (M3e.Aria.label
+// in the attribute list), NOT a required-record field.
+test("icon-button folds default icon slot into content; aria is a setter", () => {
   const r = conv(
     `<m3e-icon-button aria-label="Toggle theme"><m3e-icon name="dark_mode"></m3e-icon></m3e-icon-button>`,
   );
   assert.deepEqual(r, {
-    code: `M3e.IconButton.view { content = M3e.Icon.view [ M3e.Icon.name "dark_mode" ] [], ariaLabel = "Toggle theme" } [] []`,
+    code: `M3e.IconButton.view { content = M3e.Icon.view [ M3e.Icon.name "dark_mode" ] [] } [ M3e.Aria.label "Toggle theme" ] []`,
   });
 });
 
-// Checkbox has no default slot, so its required record is just { ariaLabel }.
-test("checkbox required record", () => {
+// aria-label is a universal setter (M3e.Aria.label), not a required record.
+test("checkbox aria-label -> M3e.Aria.label setter", () => {
   const r = conv(`<m3e-checkbox aria-label="Accept" checked></m3e-checkbox>`);
   assert.deepEqual(r, {
-    code: `M3e.Checkbox.view { ariaLabel = "Accept" } [ M3e.Checkbox.checked True ] []`,
+    code: `M3e.Checkbox.view [ M3e.Aria.label "Accept", M3e.Checkbox.checked True ] []`,
   });
 });
 
@@ -227,15 +226,15 @@ test("bottom: button with icon slot + text", () => {
   );
 });
 
-test("middle: aria-label (untyped) via Attr.attribute escape + typed bool", () => {
+test("middle: aria-label via universal M3e.Aria.label + typed bool", () => {
   assert.deepEqual(mid(`<m3e-checkbox aria-label="Accept" checked></m3e-checkbox>`), {
-    code: `M3e.Cem.Checkbox.checkbox [ M3e.Cem.Attr.attribute (Html.Attributes.attribute "aria-label") "Accept", M3e.Cem.Checkbox.checked True ] []`,
+    code: `M3e.Cem.Checkbox.checkbox [ M3e.Aria.label "Accept", M3e.Cem.Checkbox.checked True ] []`,
   });
 });
 
-test("bottom: aria-label as raw Html attribute + typed bool", () => {
+test("bottom: aria-label via M3e.Cem.Html.Aria.label + typed bool", () => {
   assert.deepEqual(bot(`<m3e-checkbox aria-label="Accept" checked></m3e-checkbox>`), {
-    code: `M3e.Cem.Html.Checkbox.checkbox [ Html.Attributes.attribute "aria-label" "Accept", M3e.Cem.Html.Checkbox.checked True ] []`,
+    code: `M3e.Cem.Html.Checkbox.checkbox [ M3e.Cem.Html.Aria.label "Accept", M3e.Cem.Html.Checkbox.checked True ] []`,
   });
 });
 
@@ -248,13 +247,13 @@ test("mid/bottom: plain text-only button", () => {
   });
 });
 
-test("mid/bottom: icon-button does NOT fold — aria-label attr + child element", () => {
+test("mid/bottom: icon-button does NOT fold — aria setter + child element", () => {
   const html = `<m3e-icon-button aria-label="Toggle theme"><m3e-icon name="dark_mode"></m3e-icon></m3e-icon-button>`;
   assert.deepEqual(mid(html), {
-    code: `M3e.Cem.IconButton.iconButton [ M3e.Cem.Attr.attribute (Html.Attributes.attribute "aria-label") "Toggle theme" ] [ M3e.Cem.Icon.icon [ M3e.Cem.Icon.name "dark_mode" ] [] ]`,
+    code: `M3e.Cem.IconButton.iconButton [ M3e.Aria.label "Toggle theme" ] [ M3e.Cem.Icon.icon [ M3e.Cem.Icon.name "dark_mode" ] [] ]`,
   });
   assert.deepEqual(bot(html), {
-    code: `M3e.Cem.Html.IconButton.iconButton [ Html.Attributes.attribute "aria-label" "Toggle theme" ] [ M3e.Cem.Html.Icon.icon [ M3e.Cem.Html.Icon.name "dark_mode" ] [] ]`,
+    code: `M3e.Cem.Html.IconButton.iconButton [ M3e.Cem.Html.Aria.label "Toggle theme" ] [ M3e.Cem.Html.Icon.icon [ M3e.Cem.Html.Icon.name "dark_mode" ] [] ]`,
   });
 });
 
