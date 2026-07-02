@@ -266,3 +266,12 @@ test("enum: Value token at middle, raw string at bottom", () => {
     code: `M3e.Cem.Html.Button.button [ M3e.Cem.Html.Button.size "extra-large" ] [ Html.text "Big" ]`,
   });
 });
+
+test("numeric attribute -> Float literal (no quotes) at all layers", () => {
+  assert.deepEqual(conv(`<m3e-icon name="star" optical-size="24"></m3e-icon>`), {
+    code: `M3e.Icon.view [ M3e.Icon.name "star", M3e.Icon.opticalSize 24 ] []`,
+  });
+  assert.deepEqual(bot(`<m3e-icon name="star" optical-size="24"></m3e-icon>`), {
+    code: `M3e.Cem.Html.Icon.icon [ M3e.Cem.Html.Icon.name "star", M3e.Cem.Html.Icon.opticalSize 24 ] []`,
+  });
+});

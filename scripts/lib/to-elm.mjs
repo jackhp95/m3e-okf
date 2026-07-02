@@ -32,6 +32,17 @@ function escapeElmString(s) {
 const isWhitespaceText = (node) =>
   node.nodeType === 3 && node.textContent.trim() === "";
 
+/** Validate + normalize a numeric attribute value to an Elm number literal.
+ * Accepts an optional sign, integer, or simple decimal (Elm rejects `.5`/`5.`).
+ * A non-numeric value skips (the compile gate would reject it anyway). */
+function numberLiteral(value, tag, name) {
+  const t = value.trim();
+  if (!/^-?\d+(?:\.\d+)?$/.test(t)) {
+    skip(`non-numeric value "${value}" for ${name} on ${tag}`);
+  }
+  return t;
+}
+
 // Non-structural attributes that carry no typed setter (presentational /
 // identity only). On a doc EXAMPLE these are safely DROPPED with a log rather
 // than skipping the whole example. Plain-HTML elements already drop all attrs;
@@ -276,6 +287,9 @@ function elementToElm(node, oracle) {
     } else if (attr.kind === "bool") {
       // Presence of a boolean attribute means "true".
       attrExprs.push(`${setterRef} True`);
+    } else if (attr.kind === "number") {
+      // Numeric setter takes a Float; emit the raw value as a number literal.
+      attrExprs.push(`${setterRef} ${numberLiteral(value, tag, name)}`);
     } else if (attr.kind === "string") {
       attrExprs.push(`${setterRef} "${escapeElmString(value)}"`);
     } else {
@@ -454,6 +468,10 @@ function cemTypedAttr(entry, layer, name, value) {
   }
   if (attr.kind === "bool") {
     return `${setterRef} True`;
+  }
+  if (attr.kind === "number") {
+    // Numeric setter takes a Float at every layer -> bare number literal.
+    return `${setterRef} ${numberLiteral(value, entry.module, name)}`;
   }
   if (attr.kind === "string") {
     return `${setterRef} "${escapeElmString(value)}"`;

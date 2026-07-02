@@ -69,6 +69,10 @@ export function buildOracle() {
         let enumValues = [];
         if (typeText === "boolean") {
           kind = "bool";
+        } else if (typeText === "number") {
+          // Numeric attributes map to a `Float` setter at every layer, so the
+          // value is emitted as a bare Elm number literal (no quotes).
+          kind = "number";
         } else {
           const lits = enumLiterals(enumSource);
           if (lits.length >= 2) {
