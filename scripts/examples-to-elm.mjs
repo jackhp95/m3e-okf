@@ -13,9 +13,14 @@
 //
 // Multi-root handling: many mined examples have several top-level sibling
 // elements (e.g. five button variants). `toElm` maps a single root; here we
-// detect >1 top-level node, convert EACH sibling separately, and join their
-// code with "\n\n" into one gallery example. If any sibling skips, the whole
-// example skips with that reason.
+// detect >1 top-level node, convert EACH sibling separately, and assemble their
+// code into ONE Elm LIST expression (`[ expr1\n    , expr2\n    ... ]`) — a
+// single, compilable expression. Single-root examples stay a bare expression.
+// If any sibling skips, the whole example skips with that reason.
+//
+// Every candidate example is then COMPILE-VERIFIED against the real M3e.* / Kit
+// API (see verify-examples.mjs); non-compiling examples are DROPPED and logged
+// to config/examples.skipped.txt with a `compile: <firstErrorLine>` reason.
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -26,6 +31,7 @@ import { buildOracle } from "./lib/oracle.mjs";
 import { toElm } from "./lib/to-elm.mjs";
 import { deriveSection } from "./lib/sections.mjs";
 import { pascal } from "./lib/naming.mjs";
+import { verifyExamples } from "./verify-examples.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 // scripts/examples-to-elm.mjs -> repo root is two levels up (m3e-docs/scripts).
@@ -70,14 +76,29 @@ function convertExample(html, oracle) {
     return toElm(html, oracle);
   }
 
-  // Multiple roots -> convert each sibling independently, join as a gallery.
+  // Multiple roots -> convert each sibling independently, assemble as a single
+  // Elm LIST expression so the whole example is one compilable expression.
   const pieces = [];
   for (const node of roots) {
     const res = toElm(nodeToHtml(node), oracle);
     if (res.skip) return { skip: res.skip };
     pieces.push(res.code);
   }
-  return { code: pieces.join("\n\n") };
+  return { code: toElmList(pieces) };
+}
+
+/**
+ * Assemble sibling expressions into one Elm list literal:
+ *   [ expr1
+ *   , expr2
+ *   ]
+ * Multi-line sibling expressions are re-indented so the list stays valid.
+ */
+function toElmList(pieces) {
+  const indented = pieces.map((p) =>
+    p.split("\n").join("\n      "),
+  );
+  return "[ " + indented.join("\n    , ") + "\n    ]";
 }
 
 function main() {
@@ -127,11 +148,57 @@ function main() {
     }
   }
 
+  // --- COMPILE-VERIFY every candidate against the real M3e.* / Kit API. ------
+  // Anything that fails `elm make` is DROPPED and logged with its reason. This
+  // is the "examples can't lie" gate: only compiling Elm survives.
+  const { failures, fatal } = verifyExamples(generated);
+  if (fatal) {
+    console.error(
+      "FATAL: the scratch verification app did not build (harness/elm.json issue):\n" +
+        fatal,
+    );
+    process.exit(2);
+  }
+
+  // Index failures by module for O(1) drop; sort each module's drop indices
+  // descending so splicing doesn't shift later indices.
+  const failByModule = new Map(); // module -> Map(idx -> firstErrorLine)
+  for (const f of failures) {
+    if (!failByModule.has(f.module)) failByModule.set(f.module, new Map());
+    failByModule.get(f.module).set(f.idx, f.firstErrorLine);
+  }
+
+  let compileDropped = 0;
+  for (const module of Object.keys(generated)) {
+    const drops = failByModule.get(module);
+    if (!drops) continue;
+    const kept = [];
+    generated[module].examples.forEach((ex, idx) => {
+      if (drops.has(idx)) {
+        compileDropped += 1;
+        converted -= 1;
+        skippedLines.push(
+          `${module} :: ${ex.title} :: compile: ${drops.get(idx)}`,
+        );
+      } else {
+        kept.push(ex);
+      }
+    });
+    if (kept.length > 0) {
+      generated[module].examples = kept;
+    } else {
+      delete generated[module];
+    }
+  }
+
   // Sort output keys alphabetically for a stable diff.
   const sortedGenerated = {};
   for (const key of Object.keys(generated).sort()) {
     sortedGenerated[key] = generated[key];
   }
+
+  // Keep the skip log deterministic.
+  skippedLines.sort();
 
   writeFileSync(OUT_GENERATED, JSON.stringify(sortedGenerated, null, 2) + "\n");
   writeFileSync(
@@ -143,7 +210,9 @@ function main() {
   const zeroExampleCount = Object.keys(corpus).length - componentCount;
 
   console.log(
-    `converted ${converted} / total ${total} examples across ${componentCount} components; skipped ${total - converted}`,
+    `converted+compiled ${converted} / total ${total}; ` +
+      `skipped ${total - converted} (convert ${total - converted - compileDropped}, compile ${compileDropped}) ` +
+      `across ${componentCount} components`,
   );
   console.log(`components with zero examples: ${zeroExampleCount}`);
 }

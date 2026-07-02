@@ -229,7 +229,15 @@ function elementToElm(node, oracle) {
   // A required, single-value default slot is folded into the required record as
   // a bare `content` field (no child/children helper). It is prepended so the
   // record reads `{ content = ..., <named fields> }`, matching the codegen.
-  const defaultWrapped = [];
+  //
+  // Otherwise, default children are wrapped by the component's `child`/`children`
+  // helper. CRITICAL: `child x` returns ONE `Content`, but `children [ ... ]`
+  // returns a `List Content` (the codegen defines it as `List.map (slot "")`).
+  // A list-returning helper therefore CANNOT sit as an element inside the
+  // `[ ... ]` content list — that yields `List (List Content)` and fails to
+  // compile. We keep it as a separate spliced fragment appended with `++`.
+  const singleExprs = [...slottedExprs]; // each a single `Content`
+  let childrenExpr = null; // a `List Content` fragment, or null
   if (foldsContent) {
     if (defaultExprs.length === 0) {
       skip(`missing required content (default slot) on ${tag}`);
@@ -239,19 +247,33 @@ function elementToElm(node, oracle) {
     }
     recordFields.unshift(`content = ${defaultExprs[0]}`);
   } else if (defaultExprs.length === 1) {
-    // Wrap default-slot content with the component's child helper.
-    defaultWrapped.push(`M3e.${entry.module}.child (${defaultExprs[0]})`);
+    // Wrap default-slot content with the component's `child` helper (single).
+    singleExprs.push(`M3e.${entry.module}.child (${defaultExprs[0]})`);
   } else if (defaultExprs.length > 1) {
-    defaultWrapped.push(
-      `M3e.${entry.module}.children [ ${defaultExprs.join(", ")} ]`,
-    );
+    // `children` returns a LIST — splice, don't nest.
+    childrenExpr = `M3e.${entry.module}.children [ ${defaultExprs.join(", ")} ]`;
   }
 
-  const contentExprs = [...slottedExprs, ...defaultWrapped];
   const attrsList =
     attrExprs.length === 0 ? "[]" : `[ ${attrExprs.join(", ")} ]`;
-  const contentList =
-    contentExprs.length === 0 ? "[]" : `[ ${contentExprs.join(", ")} ]`;
+
+  // Assemble the content argument as a single `List Content` expression:
+  //   - only single Contents      -> `[ a, b ]`
+  //   - only a children fragment   -> `M3e.X.children [ ... ]`
+  //   - both                       -> `[ a, b ] ++ M3e.X.children [ ... ]`
+  let contentList;
+  const singleList =
+    singleExprs.length === 0 ? "[]" : `[ ${singleExprs.join(", ")} ]`;
+  if (childrenExpr == null) {
+    contentList = singleList;
+  } else if (singleExprs.length === 0) {
+    // Parenthesize: as the view's content argument, a bare `children [ ... ]`
+    // would otherwise be read as two separate arguments (`children` and the
+    // list) rather than one applied expression.
+    contentList = `(${childrenExpr})`;
+  } else {
+    contentList = `(${singleList} ++ ${childrenExpr})`;
+  }
 
   // Required record (named fields and/or folded content) -> 3-arg view form.
   const hasRecord = recordFields.length > 0;

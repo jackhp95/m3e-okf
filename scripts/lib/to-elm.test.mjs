@@ -76,11 +76,14 @@ test("enum attr rendered via M3e.Value with camelCase", () => {
   });
 });
 
-test("multiple default children -> children [...]", () => {
+// `children` returns a `List Content` (codegen: `List.map (slot "")`), so it
+// must be the content argument directly — NOT nested as one element inside a
+// `[ ... ]` list (that would be `List (List Content)` and fail to compile).
+test("multiple default children -> children [...] spliced as the content arg", () => {
   assert.deepEqual(
     conv(`<m3e-button variant="text"><m3e-icon name="a"></m3e-icon>Hi</m3e-button>`),
     {
-      code: `M3e.Button.view [ M3e.Button.variant M3e.Value.text ] [ M3e.Button.children [ M3e.Icon.view [ M3e.Icon.name "a" ] [], Kit.text "Hi" ] ]`,
+      code: `M3e.Button.view [ M3e.Button.variant M3e.Value.text ] (M3e.Button.children [ M3e.Icon.view [ M3e.Icon.name "a" ] [], Kit.text "Hi" ])`,
     },
   );
 });
