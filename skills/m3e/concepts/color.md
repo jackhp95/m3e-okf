@@ -18,7 +18,7 @@ Static colors refer to predefined, spec-aligned colors that do not automatically
 
 Dynamic color refers to runtime-generated color schemes derived from a single source color, allowing personalized theming that adapts to system settings.
 
-M3E provides the [Theme](../components/theme.html) component which applies dynamic color, expressive motion, density, and strong focus indicators to nested, theme-aware elements. This component leverages the `@material/material-color-utils` library to generates light and dark variants based on the content strategy—mapping perceptually tuned tones to standard Material Design 3 roles like _primary_, _surface_, and _outline_.
+M3E provides the [Theme](../components/theme.md) component which applies dynamic color, expressive motion, density, and strong focus indicators to nested, theme-aware elements. This component leverages the `@material/material-color-utils` library to generates light and dark variants based on the content strategy—mapping perceptually tuned tones to standard Material Design 3 roles like _primary_, _surface_, and _outline_.
 
 ### Forced colors
 

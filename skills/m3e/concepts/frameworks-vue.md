@@ -1,7 +1,5 @@
 # Vue
 
-## Vue
-
 M3E does not require a dedicated Vue bindings package. Vue provides first-class support for Web Components, allowing all M3E components to be used directly in Vue templates without additional wrappers.
 
 See [Vue and Web Components](https://vuejs.org/guide/extras/web-components.html) for more information.

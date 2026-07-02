@@ -75,6 +75,13 @@ test("non-standard native tag is flagged", () => {
   assert.ok(errs.some((e) => e.includes("non-standard tag <marquee>")));
 });
 
+test("standard head/document tags (script, meta) are recognized", () => {
+  assert.deepEqual(
+    clean(`<script type="module" src="/x.js"></script><meta name="a" content="b">`),
+    []
+  );
+});
+
 test("custom CSS is flagged by default but allowed with allowCss", () => {
   assert.ok(clean(`<m3e-button class="x">y</m3e-button>`).some((e) => e.includes("custom CSS")));
   assert.deepEqual(clean(`<m3e-button class="x">y</m3e-button>`, { allowCss: true }), []);

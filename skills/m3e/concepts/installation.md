@@ -1,10 +1,8 @@
 # Installation
 
-## Installation
-
 The M3E Web Component library is distributed as a single package under the **@m3e/web** namespace.
 
-```
+```sh
 npm i @m3e/web
 ```
 
@@ -12,13 +10,13 @@ After installing the package, each component can be imported individually throug
 
 For example:
 
-```
+```ts
 import "@m3e/web/button";
 ```
 
 **Alternatively, import the `@m3e/web/all` module to load every component at once.** This option is convenient when you want full access to the M3E ecosystem without managing individual modules.
 
-```
+```ts
 import "@m3e/web/all";
 ```
 
@@ -26,13 +24,13 @@ import "@m3e/web/all";
 
 Each package uses [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#module_specifiers) and documents their native module support. To use a module directly in a browser without a bundler, use a module script similar to the following.
 
-```
+```html
 <script type="module" src="/node_modules/@m3e/web/dist/button.js"></script>
 ```
 
 In addition, you must also use an [import map](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap) to include dependencies. The following is an example import map that imports all entry points for `@m3e/web/core`.
 
-```
+```html
 <script type="importmap">
   {
     "imports": {
@@ -68,7 +66,7 @@ To enable autocomplete and hover documentation, install the [Custom Elements Man
 
 Alternatively, you can explicitly reference the `html-custom-data.json` and `css-custom-data.json` in your workspace settings.
 
-```
+```json
 {
   "html.customData": ["./node_modules/@m3e/web/dist/html-custom-data.json"],
   "css.customData": ["./node_modules/@m3e/web/dist/css-custom-data.json"]

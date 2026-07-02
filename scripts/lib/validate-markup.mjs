@@ -31,7 +31,7 @@ const GLOBAL_OK = (name) =>
   name.startsWith("aria-") ||
   name.startsWith("data-") ||
   name.startsWith("on"); // inline event handlers are valid on any element
-const NATIVE = new Set(["div","span","a","img","input","textarea","label","p","time","nav","main","section","header","footer","aside","article","form","fieldset","legend","figure","figcaption","table","thead","tbody","tr","th","td","ul","ol","li","h1","h2","h3","h4","h5","h6","button","slot","br","hr","strong","em","small","i","b","link","body"]);
+const NATIVE = new Set(["div","span","a","img","input","textarea","label","p","time","nav","main","section","header","footer","aside","article","form","fieldset","legend","figure","figcaption","table","thead","tbody","tr","th","td","ul","ol","li","h1","h2","h3","h4","h5","h6","button","slot","br","hr","strong","em","small","i","b","link","body","script","meta"]);
 const VOID = new Set(["img", "input", "br", "hr", "source", "meta", "link"]);
 
 // ---- minimal HTML tokenizer -> tree -------------------------------------

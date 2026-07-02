@@ -41,10 +41,16 @@ function htmlToMarkdown(html) {
       .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
       .replace(/&amp;/g, "&");
 
+  // Rewrite intra-doc links to the skill's layout: the upstream pages link to
+  // sibling doc pages as `.html` (e.g. `../components/theme.html`), but in the
+  // rendered skill those are `.md`. Leave external/GitHub links untouched.
+  const rewriteHref = (h) =>
+    /^(https?:|#|mailto:)/.test(h) ? h : h.replace(/\.html(#.*)?$/, ".md$1");
+
   const inline = (s) =>
     decodeEntities(
       s
-        .replace(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a\s*>/g, (_, h, t) => `[${t.trim()}](${h})`)
+        .replace(/<a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a\s*>/g, (_, h, t) => `[${t.trim()}](${rewriteHref(h)})`)
         .replace(/<code[^>]*>([\s\S]*?)<\/code\s*>/g, (_, t) => `\`${t.trim()}\``)
         .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1\s*>/g, (_, __, t) => `**${t.trim()}**`)
         .replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1\s*>/g, (_, __, t) => `_${t.trim()}_`)
@@ -53,6 +59,19 @@ function htmlToMarkdown(html) {
     )
       .replace(/\s+/g, " ")
       .trim();
+
+  // Infer a fenced-code language for syntax highlighting + agent signal. The
+  // upstream <pre> blocks carry no language class, so this is heuristic: markup
+  // (starts with `<`) -> html; JSON object/settings -> json; shell installs ->
+  // sh; import/module code -> ts; otherwise leave unannotated.
+  const inferLang = (code) => {
+    const t = code.trim();
+    if (/^</.test(t)) return "html";
+    if (/^\{[\s\S]*\}$/.test(t) && /"[^"]*"\s*:/.test(t)) return "json";
+    if (/^(npm|pnpm|yarn|npx)\b/m.test(t)) return "sh";
+    if (/\b(import|export)\b/.test(t)) return "ts";
+    return "";
+  };
 
   const out = [];
   // token-walk the block elements in order
@@ -70,7 +89,10 @@ function htmlToMarkdown(html) {
     else if (m[3] != null) {
       const t = inline(m[3]);
       if (t) out.push(t + "\n");
-    } else if (m[4] != null) out.push("```\n" + decodeEntities(m[4].replace(/<[^>]+>/g, "")).trim() + "\n```\n");
+    } else if (m[4] != null) {
+      const code = decodeEntities(m[4].replace(/<[^>]+>/g, "")).trim();
+      out.push("```" + inferLang(code) + "\n" + code + "\n```\n");
+    }
     else if (m[5] != null) out.push(`- ${inline(m[5])}`);
   }
   return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();

@@ -1,10 +1,8 @@
 # React
 
-## React
-
 The **@m3e/react** package provides idiomatic React bindings for all M3E Web Components. Each component is exposed as its own React module, offering typed props, event mappings, and seamless integration with the React rendering model. However, the React bindings are **client-only**. In Next.js, you **must** use them inside a `"use client"` boundary.
 
-```
+```sh
 npm i @m3e/react
 ```
 
@@ -12,7 +10,7 @@ After installation, import the React module for any component you want to use. E
 
 For example:
 
-```
+```ts
 import { M3eButton } from "@m3e/react/button";
 ```
 
@@ -20,7 +18,7 @@ React modules automatically register their underlying Web Component, so no addit
 
 **Alternatively, import the `@m3e/react/all` module to load every React binding at once.** This option is convenient when you want full access to the M3E component suite without managing individual modules.
 
-```
+```ts
 import "@m3e/react/all";
 ```
 

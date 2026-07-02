@@ -1,7 +1,5 @@
 # Typography
 
-## Typography
-
 M3E applies the [Material Design 3 typography system](https://m3.material.io/styles/typography) to encode visual hierarchy, editorial tone, and spatial rhythm across components. The system defines a **30-style type scale**—comprising 15 baseline and 15 emphasized roles.
 
 Typography tokens follow the prefix `--md-sys-typescale-*` for the **standard** typescale and `--md-sys-typescale-emphasized-*` for **emphasized**. Each typescale variant encodes font size, line height, weight, and tracking (or letter spacing).

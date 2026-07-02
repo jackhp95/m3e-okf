@@ -149,8 +149,16 @@ for (const c of components) {
 // ---------------------------------------------------------------------------
 const byName = new Map(components.map((c) => [c.name, c]));
 for (const con of guidance.concepts) {
+  // Scraped concept markdown often opens with its own heading (e.g. `## React`)
+  // that duplicates the page title we'd prepend. Drop the leading duplicate
+  // heading rather than render `# React` immediately followed by `## React`.
+  let body = con.markdown;
+  const lead = body.match(/^\s*#{1,6}\s+(.+?)\s*(?:\n|$)/);
+  if (lead && lead[1].trim().toLowerCase() === con.title.trim().toLowerCase()) {
+    body = body.slice(lead[0].length).replace(/^\s+/, "");
+  }
   let md = `# ${con.title}\n\n`;
-  md += con.markdown + "\n\n";
+  md += body + "\n\n";
   md += con.authored
     ? `---\n_Authored for this skill; every example is validated against the CEM (\`matraic/m3e\` @ \`${SHORT}\`)._\n`
     : `---\n_Source: [\`${con.source}\`](${REPO}/${SHA}/${con.source}) · \`matraic/m3e\` @ \`${SHORT}\`._\n`;

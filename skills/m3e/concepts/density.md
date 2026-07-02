@@ -1,14 +1,12 @@
 # Density
 
-## Density
-
 Density refers to the spatial compactness of UI elements—how tightly components are arranged, how much padding surrounds them, and how much content fits within a given layout. M3E applies the [Material Design 3 density system](https://m3.material.io/foundations/layout/understanding-layout/density) to adapt component layout, spacing, and touch targets across varied contexts—from spacious, touch-friendly surfaces to compact, information-dense environments.
 
 ### Design tokens
 
 The [Material Design 3 design tokens](https://m3.material.io/foundations/design-tokens/overview) are implemented as custom CSS properties. Design tokens are named, platform-agnostic variables that represent visual design decisions—such as color, typography, spacing, and elevation—in a reusable, consistent format.
 
-Density tokens are surfaced using the standardized `--md-sys-density-scale` and `--md-sys-density-size` custom CSS properties. M3E provides the [Theme](../components/theme.html) component which can be used to systematically control `--md-sys-density-scale` using its `density` attribute.
+Density tokens are surfaced using the standardized `--md-sys-density-scale` and `--md-sys-density-size` custom CSS properties. M3E provides the [Theme](../components/theme.md) component which can be used to systematically control `--md-sys-density-scale` using its `density` attribute.
 
 ### Density-aware components
 
