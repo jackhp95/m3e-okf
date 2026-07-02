@@ -19,7 +19,7 @@ import "@m3e/web/dialog";
 <m3e-dialog id="dlg" dismissible onclosed="console.log(this.returnValue)">
   <span slot="header">Dialog Title</span>
   Dialog content goes here.
-  <div slot="actions" end>
+  <div slot="actions">
     <m3e-button autofocus><m3e-dialog-action return-value="ok">Close</m3e-dialog-action></m3e-button>
   </div>
 </m3e-dialog>
@@ -173,4 +173,4 @@ Source files:
 - [`packages/web/src/dialog/DialogTriggerElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/dialog/DialogTriggerElement.ts)
 
 **README drift corrected** (2 item(s); CEM values used above):
-_See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._
+_See the extraction report `data/report.md` in the m3e-docs repo that generated this skill for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

@@ -83,6 +83,12 @@ never silently ship a wrong API claim.
 
 ## Phases
 
+> **On the counts:** "57" below is the number of upstream
+> `packages/web/src/<c>/README.md` source files. The distilled skill covers
+> **53 components / 110 elements** (some source dirs collapse into one component
+> record, some expose several elements). README.md and SKILL.md report the final
+> 53/110; the "57" here is the raw upstream input count.
+
 0. **Scaffold + pin** — repo, dirs, plan. *(done)*
 1. **Fetch + CEM** — clone at SHA, generate `custom-elements.json`. Validate the
    manifest covers all 57 components.

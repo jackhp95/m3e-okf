@@ -54,7 +54,7 @@ Form controls for choosing values.
 | [radio-group](components/radio-group.md) | `m3e-radio-group +1` | Enable single-choice selection within a set of mutually exclusive options. |
 | [switch](components/switch.md) | `m3e-switch` | Semantic, accessible toggle control that reflects a binary state. |
 | [slider](components/slider.md) | `m3e-slider +1` | Enables users to select a numeric value from a continuous or discrete range. |
-| [chips](components/chips.md) | `m3e-chip +7` | The `@m3e/web/chips` module provides expressive, accessible chip components for actions, input, filtering, and suggestions, each supporting two appear |
+| [chips](components/chips.md) | `m3e-chip +7` | The `@m3e/web/chips` module provides expressive, accessible chip components for actions, input, filtering, and suggestions, each supporting two… |
 
 ### Text input & forms
 
@@ -75,7 +75,7 @@ Moving between destinations and through content.
 
 | Component | Tag(s) | What it's for |
 | --- | --- | --- |
-| [app-bar](components/app-bar.md) | `m3e-app-bar` | Prominent user interface component that provides consistent access to key actions, navigation, and contextual information at the top of an application |
+| [app-bar](components/app-bar.md) | `m3e-app-bar` | Prominent user interface component that provides consistent access to key actions, navigation, and contextual information at the top of an… |
 | [toolbar](components/toolbar.md) | `m3e-toolbar` | Presents contextual actions, navigation, and controls. |
 | [nav-bar](components/nav-bar.md) | `m3e-nav-bar +1` | Provide a navigation bar and interactive items for switching between primary destinations in your application. |
 | [nav-rail](components/nav-rail.md) | `m3e-nav-rail +1` | Extends `@m3e/nav-bar` to provide a vertical navigation rail and interactive items for switching between primary destinations in your application. |
@@ -99,9 +99,9 @@ Surfaces that group or reveal content.
 | [dialog](components/dialog.md) | `m3e-dialog +2` | Presents important prompts, alerts, and actions in user flows. |
 | [bottom-sheet](components/bottom-sheet.md) | `m3e-bottom-sheet +2` | Implements a Material 3 bottom sheet with gesture‑driven resizing, detent snapping, and adaptive motion. |
 | [split-pane](components/split-pane.md) | `m3e-split-pane` | Delivers a Material 3-inspired split view with a movable drag handle, enabling responsive layout composition and precise pane resizing. |
-| [expansion-panel](components/expansion-panel.md) | `m3e-expansion-panel +2` | The `@m3e/web/expansion-panel` module provides expressive, accessible components for organizing content in collapsible sections and coordinated groups |
+| [expansion-panel](components/expansion-panel.md) | `m3e-expansion-panel +2` | The `@m3e/web/expansion-panel` module provides expressive, accessible components for organizing content in collapsible sections and coordinated… |
 | [divider](components/divider.md) | `m3e-divider` | Visually separates content within layouts, lists, or containers using a thin, unobtrusive line. |
-| [menu](components/menu.md) | `m3e-menu +5` | The `@m3e/web/menu` module provides a cohesive set of components for constructing accessible, anchored menus that align with Material 3 design guidanc |
+| [menu](components/menu.md) | `m3e-menu +5` | The `@m3e/web/menu` module provides a cohesive set of components for constructing accessible, anchored menus that align with Material 3 design… |
 
 ### Data & collections
 
@@ -121,11 +121,11 @@ Communicating status, progress, and messages.
 | Component | Tag(s) | What it's for |
 | --- | --- | --- |
 | [badge](components/badge.md) | `m3e-badge` | Compact visual indicator used to label content. |
-| [snackbar](components/snackbar.md) | `m3e-snackbar` | The `@m3e/snackbar` package provides the `M3eSnackbar` global service on `window` (`globalThis`) used to present short updates about application proce |
-| [tooltip](components/tooltip.md) | `m3e-tooltip +2` | The `@m3e/web/tooltip` module provides tooltip and rich‑tooltip components for delivering contextual guidance, from simple hover descriptions to multi |
+| [snackbar](components/snackbar.md) | `m3e-snackbar` | The `@m3e/snackbar` package provides the `M3eSnackbar` global service on `window` (`globalThis`) used to present short updates about application… |
+| [tooltip](components/tooltip.md) | `m3e-tooltip +2` | The `@m3e/web/tooltip` module provides tooltip and rich‑tooltip components for delivering contextual guidance, from simple hover descriptions to… |
 | [loading-indicator](components/loading-indicator.md) | `m3e-loading-indicator` | Uses animation to grab attention, mitigate perceived latency, and indicate that an activity is in progress. |
 | [progress-indicator](components/progress-indicator.md) | `m3e-circular-progress-indicator +1` | Provide accessible, animated progress indicators for tracking the completion of tasks or processes. |
-| [skeleton](components/skeleton.md) | `m3e-skeleton` | Provides a loading placeholder surface with flexible shape variants and motion-based animations that communicate loading state while preserving layout |
+| [skeleton](components/skeleton.md) | `m3e-skeleton` | Provides a loading placeholder surface with flexible shape variants and motion-based animations that communicate loading state while preserving… |
 
 ### Content & media
 

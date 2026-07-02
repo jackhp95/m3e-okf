@@ -1,6 +1,6 @@
 // build-examples.mjs — validate mined real-world compositions against ground
 // truth, keep only the clean+correct ones, write data/examples.json.
-// Validation rules live in lib/validate-markup.mjs (shared with check-examples).
+// Validation rules live in lib/validate-markup.mjs (shared with check-skill).
 // Rejections are reported with reasons (this doubles as a correctness probe).
 
 import fs from "node:fs";

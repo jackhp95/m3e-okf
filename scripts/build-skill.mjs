@@ -39,7 +39,14 @@ const firstSentence = (s) => {
     .replace(/^The `?m3e-[a-z-]+`?(,? (and|or) `?m3e-[a-z-]+`?)*\s+(component|element)s?\s+/i, "");
   t = t.charAt(0).toUpperCase() + t.slice(1);
   const m = t.match(/^(.*?[.])\s/);
-  return (m ? m[1] : t).slice(0, 150);
+  t = m ? m[1] : t;
+  if (t.length <= 150) return t;
+  // Truncate on a word boundary and append an ellipsis rather than hard-slicing
+  // mid-word (this feeds the router table's "What it's for" column). Then drop a
+  // trailing unbalanced inline-code backtick so the cell can't render broken.
+  let cut = t.slice(0, 150).replace(/\s+\S*$/, "");
+  if ((cut.match(/`/g) || []).length % 2 === 1) cut = cut.replace(/`[^`]*$/, "").trimEnd();
+  return cut.replace(/[.,;:]$/, "") + "…";
 };
 
 // ---------------------------------------------------------------------------
@@ -114,7 +121,7 @@ for (const c of components) {
     md += "## Examples\n\n";
     for (const ex of cleanExamples.slice(0, 4)) md += "```html\n" + ex.code + "\n```\n\n";
   }
-  if (withheld) md += `_${withheld} README example(s) withheld — markup drifts from the manifest (see \`data/report.md\`). The validated **Compositions** below are CEM-checked._\n\n`;
+  if (withheld) md += `_${withheld} README example(s) withheld — markup drifts from the manifest (see the extraction report \`data/report.md\` in the m3e-docs repo that generated this skill). The validated **Compositions** below are CEM-checked._\n\n`;
 
   // validated compositions: every tag/attribute/slot/union value checked against
   // the CEM ground truth, no custom CSS. Either authored straight from the API or
@@ -139,7 +146,7 @@ for (const c of components) {
   md += "Source files:\n" + src.sourceFiles.map((f) => `- [\`${f}\`](${REPO}/${SHA}/${f})`).join("\n") + "\n";
   if (c.verification.findings) {
     md += `\n**README drift corrected** (${c.verification.findings} item(s); CEM values used above):\n`;
-    md += "_See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._\n";
+    md += "_See the extraction report `data/report.md` in the m3e-docs repo that generated this skill for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._\n";
   }
   fs.writeFileSync(path.join(OUT, "components", `${c.name}.md`), md);
 }

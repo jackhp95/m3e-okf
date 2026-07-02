@@ -409,10 +409,13 @@ let report = `# Extraction report\n\nUpstream \`matraic/m3e\` @ \`${PINNED_SHA}\
 report += `Components: ${components.length}  ·  Elements: ${components.reduce((n, c) => n + c.elementCount, 0)}\n\n`;
 report += `## Verification findings (README vs CEM ground truth)\n\n`;
 report += Object.entries(byKind).map(([k, n]) => `- **${k}**: ${n}`).join("\n") + "\n\n";
-report += `> UNDOCUMENTED = real attribute (in CEM) missing from README. README-only = README lists an\n`;
-report += `> attribute the CEM doesn't expose (likely stale/typo). DEFAULT-MISMATCH = default disagrees.\n`;
-report += `> EXAMPLE-DRIFT = a README example uses a tag/attribute/slot the CEM doesn't expose (markup an\n`;
-report += `> agent might copy verbatim). These snippets are withheld from the generated cards.\n\n`;
+report += `> DEFAULT-UNDOCUMENTED = the CEM specifies a default the README doesn't state.\n`;
+report += `> UNDOCUMENTED = real attribute (in CEM) missing from the README.\n`;
+report += `> DEFAULT-MISMATCH = README and CEM disagree on an attribute's default.\n`;
+report += `> EXAMPLE-DRIFT = a README example uses a tag/attribute/slot the CEM doesn't expose\n`;
+report += `> (markup an agent might copy verbatim); these snippets are withheld from the cards.\n`;
+report += `> README-only = the README lists an attribute the CEM doesn't expose (likely stale/typo).\n`;
+report += `> In every case the CEM value wins. (Categories with a 0 count above don't appear here.)\n\n`;
 for (const c of components) {
   const f = allFindings.filter((x) => x.dir === c.name);
   if (!f.length) continue;

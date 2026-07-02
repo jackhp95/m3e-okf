@@ -8,7 +8,7 @@ The `m3e-textarea-autosize` component automatically adjusts the height of a link
 import "@m3e/web/textarea-autosize";
 ```
 
-_1 README example(s) withheld — markup drifts from the manifest (see `data/report.md`). The validated **Compositions** below are CEM-checked._
+_1 README example(s) withheld — markup drifts from the manifest (see the extraction report `data/report.md` in the m3e-docs repo that generated this skill). The validated **Compositions** below are CEM-checked._
 
 ## Compositions
 
@@ -60,4 +60,4 @@ Source files:
 - [`packages/web/src/textarea-autosize/TextareaAutosizeElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/textarea-autosize/TextareaAutosizeElement.ts)
 
 **README drift corrected** (1 item(s); CEM values used above):
-_See `data/report.md` for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._
+_See the extraction report `data/report.md` in the m3e-docs repo that generated this skill for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

@@ -11,10 +11,13 @@ Components: 53  ·  Elements: 110
 - **DEFAULT-MISMATCH**: 10
 - **EXAMPLE-DRIFT**: 9
 
-> UNDOCUMENTED = real attribute (in CEM) missing from README. README-only = README lists an
-> attribute the CEM doesn't expose (likely stale/typo). DEFAULT-MISMATCH = default disagrees.
-> EXAMPLE-DRIFT = a README example uses a tag/attribute/slot the CEM doesn't expose (markup an
-> agent might copy verbatim). These snippets are withheld from the generated cards.
+> DEFAULT-UNDOCUMENTED = the CEM specifies a default the README doesn't state.
+> UNDOCUMENTED = real attribute (in CEM) missing from the README.
+> DEFAULT-MISMATCH = README and CEM disagree on an attribute's default.
+> EXAMPLE-DRIFT = a README example uses a tag/attribute/slot the CEM doesn't expose
+> (markup an agent might copy verbatim); these snippets are withheld from the cards.
+> README-only = the README lists an attribute the CEM doesn't expose (likely stale/typo).
+> In every case the CEM value wins. (Categories with a 0 count above don't appear here.)
 
 ### autocomplete
 - `panel-class` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)

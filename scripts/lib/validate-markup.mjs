@@ -1,6 +1,6 @@
 // validate-markup.mjs — structural validation of HTML markup against the CEM
 // ground truth, shared by build-examples.mjs (gate authored/mined compositions)
-// and check-examples.mjs (audit README snippets shown verbatim on cards).
+// and check-skill.mjs (audit README snippets shown verbatim on cards).
 //
 // A markup string is CLEAN only if:
 //   - it contains no custom CSS (no class= / style= anywhere),
