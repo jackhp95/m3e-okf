@@ -40,6 +40,7 @@ const REPO_ROOT = resolve(HERE, "..", "..");
 const EXAMPLES_PATH = resolve(HERE, "..", "data", "examples.json");
 const CATEGORIES_PATH = resolve(REPO_ROOT, "config", "categories.json");
 const OUT_GENERATED = resolve(REPO_ROOT, "config", "examples.generated.json");
+const OUT_RICH = resolve(REPO_ROOT, "config", "examples.rich.json");
 const OUT_SKIPPED = resolve(REPO_ROOT, "config", "examples.skipped.txt");
 
 const DEFAULT_CATEGORY = "Layout & style";
@@ -140,6 +141,9 @@ function main() {
         title,
         code: res.code,
         ...(section ? { section } : {}),
+        // Carried internally for the rich data file; stripped from the
+        // elm-cem-facing examples.generated.json at write time.
+        html: rawHtml,
       });
     }
 
@@ -191,16 +195,35 @@ function main() {
     }
   }
 
-  // Sort output keys alphabetically for a stable diff.
+  // Split the built data into two outputs (stable, alphabetized keys):
+  //   sortedGenerated -> elm-cem-facing {examples:[{title,code,section}],docMeta}
+  //   rich            -> docs-facing   {Module:[{title,section,html,top}]}
+  // `top` is the verified top-layer Elm (mid/bottom added by a later phase).
   const sortedGenerated = {};
+  const rich = {};
   for (const key of Object.keys(generated).sort()) {
-    sortedGenerated[key] = generated[key];
+    const { examples: exs, docMeta } = generated[key];
+    sortedGenerated[key] = {
+      examples: exs.map(({ title, code, section }) => ({
+        title,
+        code,
+        ...(section ? { section } : {}),
+      })),
+      docMeta,
+    };
+    rich[key] = exs.map(({ title, section, html, code }) => ({
+      title,
+      ...(section ? { section } : {}),
+      html,
+      top: code,
+    }));
   }
 
   // Keep the skip log deterministic.
   skippedLines.sort();
 
   writeFileSync(OUT_GENERATED, JSON.stringify(sortedGenerated, null, 2) + "\n");
+  writeFileSync(OUT_RICH, JSON.stringify(rich, null, 2) + "\n");
   writeFileSync(
     OUT_SKIPPED,
     skippedLines.length ? skippedLines.join("\n") + "\n" : "",
