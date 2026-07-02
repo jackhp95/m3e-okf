@@ -1,13 +1,17 @@
-// Deterministic HTML -> typed M3e.* Elm mapper (core cases).
+// Deterministic HTML -> typed M3e.* Elm mapper.
 //
-// Scope for THIS task: simple 2-arg M3e components (Button/Checkbox/Icon-style),
-// enum/bool/string attributes, named + default slots, and text. Anything that
-// cannot be mapped short-circuits the whole example with { skip: reason }.
+// Handles:
+//   - simple 2-arg M3e components (Button/Icon/Card-style): enum/bool/string
+//     attributes, named + default slots, and text.
+//   - required-record view form (3-arg): named required fields (e.g.
+//     ariaLabel <- aria-label) AND a required single-value default slot folded
+//     into the record as a bare `content` field (IconButton/Heading/Chip).
+//   - plain (non-m3e) HTML: Native.<tag> for a known tag list, Native.node
+//     Html.<tag> otherwise, and <a href> -> Kit.link. v1 drops non-structural
+//     attributes (class/id/for) rather than skipping the example.
 //
-// Out of scope here (deferred to the next task -> { skip }):
-//   - components whose oracle entry has requiredFields.length > 0
-//     (they need the required-record view form)
-//   - plain (non-m3e) HTML elements and links
+// Anything genuinely unmappable short-circuits the example with { skip: reason }
+// (never emit non-compiling Elm; the compile/elm-review gate is the backstop).
 //
 // Contract:
 //   toElm(htmlString, oracle) -> { code: string } | { skip: reason }
@@ -27,6 +31,26 @@ function escapeElmString(s) {
 
 const isWhitespaceText = (node) =>
   node.nodeType === 3 && node.textContent.trim() === "";
+
+// Plain HTML tags that have a dedicated `Native.<tag>` constructor.
+const NATIVE_TAGS = new Set([
+  "div",
+  "span",
+  "section",
+  "nav",
+  "p",
+  "header",
+  "footer",
+  "strong",
+  "em",
+  "small",
+  "ul",
+  "ol",
+  "li",
+  "img",
+  "br",
+  "hr",
+]);
 
 /**
  * Sentinel thrown internally to short-circuit on the FIRST unmappable thing.
@@ -63,12 +87,57 @@ function nodeToElm(node, oracle) {
   skip(`unsupported node type ${node.nodeType}`);
 }
 
+/**
+ * Map the non-whitespace child nodes of an element to a list of Elm exprs.
+ * Used for plain-HTML containers, whose children carry no slot semantics.
+ */
+function childNodesToElm(node, oracle) {
+  const out = [];
+  for (const child of node.childNodes) {
+    if (isWhitespaceText(child)) continue;
+    if (child.nodeType === 1 || child.nodeType === 3) {
+      out.push(nodeToElm(child, oracle));
+    }
+    // Comments and other node types are ignored.
+  }
+  return out;
+}
+
+/** Map a plain (non-m3e) HTML element to Elm. */
+function plainElementToElm(node, oracle) {
+  const tag = node.tagName.toLowerCase();
+
+  // <a href="URL"> -> Kit.link "URL" [ children ].
+  if (tag === "a") {
+    const href = node.getAttribute("href");
+    if (href == null) {
+      skip("plain <a> without href");
+    }
+    const children = childNodesToElm(node, oracle);
+    const list = children.length === 0 ? "[]" : `[ ${children.join(", ")} ]`;
+    return `Kit.link "${escapeElmString(href)}" ${list}`;
+  }
+
+  const children = childNodesToElm(node, oracle);
+  const list = children.length === 0 ? "[]" : `[ ${children.join(", ")} ]`;
+
+  // v1: attributes other than slot/href are dropped (not skipped).
+  if (NATIVE_TAGS.has(tag)) {
+    return `Native.${tag} [] ${list}`;
+  }
+
+  // Any other tag (label, etc.) -> Native.node Html.<tag>. Emitted code
+  // references `Html.<tag>`, so the example module needs an `Html` import
+  // (handled by the orchestrator when assembling the module).
+  return `Native.node Html.${tag} [] ${list}`;
+}
+
 function elementToElm(node, oracle) {
   const tag = node.tagName.toLowerCase();
 
-  // Non-m3e elements are plain HTML -> next task.
+  // Non-m3e elements are plain HTML.
   if (!tag.startsWith("m3e-")) {
-    skip("plain HTML (next task)");
+    return plainElementToElm(node, oracle);
   }
 
   const entry = oracle[tag];
@@ -76,17 +145,36 @@ function elementToElm(node, oracle) {
     skip(`unknown m3e tag ${tag}`);
   }
 
-  // Required-record components need the 3-arg view form -> next task.
-  if (entry.requiredFields && entry.requiredFields.length > 0) {
-    skip(`required-record form (next task) for ${tag}`);
-  }
+  // Does the default slot fold into the required record as a `content` field?
+  // (A required, single-value default slot is not a `child` helper.)
+  const defaultSlot = entry.slots.find((s) => s.rawName === "");
+  const foldsContent = !!(
+    defaultSlot &&
+    defaultSlot.required &&
+    !defaultSlot.multi
+  );
 
   const attrPairs = [...node.attributes].map((a) => [a.name, a.value]);
+
+  // --- Required-record named fields (e.g. ariaLabel <- aria-label). ---
+  // These source attributes are consumed here and are NOT emitted as setters.
+  const requiredFields = entry.requiredFields ?? [];
+  const requiredHtmlNames = new Set(requiredFields.map((f) => f.htmlName));
+  const recordFields = [];
+  for (const { field, htmlName } of requiredFields) {
+    const pair = attrPairs.find(([name]) => name === htmlName);
+    if (!pair) {
+      skip(`missing required ${field} on ${tag}`);
+    }
+    recordFields.push(`${field} = "${escapeElmString(pair[1])}"`);
+  }
 
   // --- Attributes (skip the `slot` attribute; it is structural). ---
   const attrExprs = [];
   for (const [name, value] of attrPairs) {
     if (name === "slot") continue;
+    // Required-record fields were consumed above; they are not setters.
+    if (requiredHtmlNames.has(name)) continue;
 
     const attr = entry.attributes.find((a) => a.htmlName === name);
     if (!attr) {
@@ -138,9 +226,20 @@ function elementToElm(node, oracle) {
     // Comments and other node types are ignored.
   }
 
-  // Wrap default-slot content with the component's child/children helpers.
+  // A required, single-value default slot is folded into the required record as
+  // a bare `content` field (no child/children helper). It is prepended so the
+  // record reads `{ content = ..., <named fields> }`, matching the codegen.
   const defaultWrapped = [];
-  if (defaultExprs.length === 1) {
+  if (foldsContent) {
+    if (defaultExprs.length === 0) {
+      skip(`missing required content (default slot) on ${tag}`);
+    }
+    if (defaultExprs.length > 1) {
+      skip(`multiple children for single-value content slot on ${tag}`);
+    }
+    recordFields.unshift(`content = ${defaultExprs[0]}`);
+  } else if (defaultExprs.length === 1) {
+    // Wrap default-slot content with the component's child helper.
     defaultWrapped.push(`M3e.${entry.module}.child (${defaultExprs[0]})`);
   } else if (defaultExprs.length > 1) {
     defaultWrapped.push(
@@ -154,7 +253,11 @@ function elementToElm(node, oracle) {
   const contentList =
     contentExprs.length === 0 ? "[]" : `[ ${contentExprs.join(", ")} ]`;
 
-  return `M3e.${entry.module}.view ${attrsList} ${contentList}`;
+  // Required record (named fields and/or folded content) -> 3-arg view form.
+  const hasRecord = recordFields.length > 0;
+  const recordArg = hasRecord ? `{ ${recordFields.join(", ")} } ` : "";
+
+  return `M3e.${entry.module}.view ${recordArg}${attrsList} ${contentList}`;
 }
 
 /**

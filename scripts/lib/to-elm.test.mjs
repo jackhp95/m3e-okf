@@ -21,14 +21,41 @@ test("plain text-only button", () => {
   });
 });
 
-// NOTE: The real `M3e.Checkbox.view` takes a required record `{ ariaLabel : String }`
-// as its first argument (oracle.requiredFields.length === 1). Per this task's scope
-// (2-arg simple components only) and the rule "never emit wrong Elm", a bare checkbox
-// is skipped as a required-record component. The originally-suggested golden string
-// `M3e.Checkbox.view [ ... ] []` would NOT compile, so we assert a skip instead.
-test("checkbox is required-record -> skip for now", () => {
+// The real `M3e.Checkbox.view` takes a required record `{ ariaLabel : String }`
+// as its first argument. A checkbox WITHOUT aria-label cannot call the typed view
+// honestly, so it is skipped (those examples fall through to the fallback later).
+test("checkbox missing required aria-label -> skip", () => {
   const r = conv(`<m3e-checkbox checked></m3e-checkbox>`);
-  assert.ok(r.skip && /required-record/.test(r.skip));
+  assert.ok(r.skip && /ariaLabel|aria-label/.test(r.skip));
+});
+
+// --- (a) required-record view form ---------------------------------------
+
+// IconButton exposes NO `child`/`children` helper: its default slot is
+// `required + single`, so the codegen folds it into the required record as the
+// `content` field (record order: content first, then named required fields).
+// Confirmed against packages/m3e/src/M3e/IconButton.elm:
+//   view : { content : Element {icon}, ariaLabel : String } -> ...
+test("icon-button required record folds default icon slot into content", () => {
+  const r = conv(
+    `<m3e-icon-button aria-label="Toggle theme"><m3e-icon name="dark_mode"></m3e-icon></m3e-icon-button>`,
+  );
+  assert.deepEqual(r, {
+    code: `M3e.IconButton.view { content = M3e.Icon.view [ M3e.Icon.name "dark_mode" ] [], ariaLabel = "Toggle theme" } [] []`,
+  });
+});
+
+// Checkbox has no default slot, so its required record is just { ariaLabel }.
+test("checkbox required record", () => {
+  const r = conv(`<m3e-checkbox aria-label="Accept" checked></m3e-checkbox>`);
+  assert.deepEqual(r, {
+    code: `M3e.Checkbox.view { ariaLabel = "Accept" } [ M3e.Checkbox.checked True ] []`,
+  });
+});
+
+test("icon-button missing required content (default slot) -> skip", () => {
+  const r = conv(`<m3e-icon-button aria-label="X"></m3e-icon-button>`);
+  assert.ok(r.skip && /content/.test(r.skip));
 });
 
 test("icon standalone", () => {
@@ -75,14 +102,48 @@ test("skip on unknown m3e tag", () => {
   assert.ok(r.skip);
 });
 
-test("skip on required-record component (icon-button) for now", () => {
+// --- Card with slotted content (2-arg view) + folded-content children ------
+
+// Heading/Chip also fold their required single text default slot into a
+// `content` record field; assert structurally (not brittle deepEqual) that the
+// whole Card example maps without skipping and uses the real helper names.
+test("card with header + content(div) slots", () => {
   const r = conv(
-    `<m3e-icon-button aria-label="X"><m3e-icon name="a"></m3e-icon></m3e-icon-button>`,
+    `<m3e-card variant="outlined"><m3e-heading slot="header" variant="title" size="small">People</m3e-heading><div slot="content"><m3e-chip-set><m3e-chip>Name</m3e-chip></m3e-chip-set></div></m3e-card>`,
   );
-  assert.ok(r.skip);
+  assert.ok(!r.skip, `expected no skip, got: ${r.skip}`);
+  assert.match(r.code, /M3e\.Card\.view/);
+  assert.match(r.code, /M3e\.Card\.header/);
+  assert.match(r.code, /M3e\.Card\.content/);
+  assert.match(r.code, /Native\.div/);
+  assert.match(r.code, /M3e\.Heading\.view \{ content = Kit\.text "People" \}/);
+  assert.match(r.code, /M3e\.Chip\.view \{ content = Kit\.text "Name" \}/);
 });
 
-test("skip on plain HTML for now", () => {
-  const r = conv(`<div>hi</div>`);
-  assert.ok(r.skip && /plain HTML/.test(r.skip));
+// --- (b) plain HTML + (c) anchor -> Kit.link --------------------------------
+
+test("plain div maps to Native.div", () => {
+  const r = conv(`<div><m3e-icon name="a"></m3e-icon></div>`);
+  assert.deepEqual(r, {
+    code: `Native.div [] [ M3e.Icon.view [ M3e.Icon.name "a" ] [] ]`,
+  });
+});
+
+test("plain div drops class attribute but does not skip", () => {
+  const r = conv(`<div class="grid"><m3e-icon name="a"></m3e-icon></div>`);
+  assert.deepEqual(r, {
+    code: `Native.div [] [ M3e.Icon.view [ M3e.Icon.name "a" ] [] ]`,
+  });
+});
+
+test("label maps to Native.node Html.label", () => {
+  const r = conv(`<label>Hi</label>`);
+  assert.deepEqual(r, {
+    code: `Native.node Html.label [] [ Kit.text "Hi" ]`,
+  });
+});
+
+test("anchor-wrapped card -> Kit.link", () => {
+  const r = conv(`<a href="/x"><m3e-card variant="filled">hi</m3e-card></a>`);
+  assert.ok(r.code && /Kit\.link "\/x"/.test(r.code) && /M3e\.Card\.view/.test(r.code));
 });

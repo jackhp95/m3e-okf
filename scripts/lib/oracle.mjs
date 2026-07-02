@@ -107,8 +107,14 @@ export function buildOracle() {
           helper = setterNames.has(base) ? base + "Slot" : base;
         }
         const cfgKey = rawName === "" ? "default" : rawName;
-        const kind = slotConfig[cfgKey]?.kinds?.[0] ?? "any";
-        slotEntries.push({ rawName, helper, kind });
+        const cfg = slotConfig[cfgKey] ?? {};
+        const kind = cfg.kinds?.[0] ?? "any";
+        // A required, single-value default slot is folded by the codegen into
+        // the view's required record as a `content` field (not a `child`
+        // helper). The mapper needs required/multi to reproduce that.
+        const required = cfg.required === true;
+        const multi = cfg.multi === true;
+        slotEntries.push({ rawName, helper, kind, required, multi });
       }
 
       oracle[tag] = {
