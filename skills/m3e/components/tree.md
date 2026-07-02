@@ -167,7 +167,6 @@ An expandable item in a tree.
 
 | Event | Type | Description |
 | --- | --- | --- |
-| `undefined` | `Event` |  |
 | `opening` |  | Dispatched when the item begins to open. |
 | `opened` |  | Dispatched when the item has opened. |
 | `closing` |  | Dispatched when the item begins to close. |

@@ -127,7 +127,6 @@ A sheet used to show secondary content anchored to the bottom of the screen.
 | --- | --- | --- |
 | `opening` | `Event` | Dispatched when the sheet begins to open. |
 | `closing` | `Event` | Dispatched when the sheet begins to close. |
-| `undefined` | `Event` |  |
 | `cancel` | `Event` | Dispatched when the sheet is cancelled. |
 | `opened` |  | Dispatched when the sheet has opened. |
 | `closed` |  | Dispatched when the sheet has closed. |

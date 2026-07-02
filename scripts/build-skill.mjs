@@ -72,10 +72,14 @@ function renderElement(el) {
       );
   if (el.slots.length)
     s += "**Slots**\n\n" + table(["Slot", "Description"], el.slots.map((sl) => [`\`${sl.name}\``, oneLine(sl.description)]));
-  if (el.events.length)
+  // Defensive: never render an event row for a nameless event (extract.mjs
+  // already drops these, but guard here so stale data can't ship an
+  // `undefined`-named row).
+  const events = el.events.filter((e) => e.name);
+  if (events.length)
     s +=
       "**Events**\n\n" +
-      table(["Event", "Type", "Description"], el.events.map((e) => [`\`${e.name}\``, e.type ? `\`${e.type}\`` : "", oneLine(e.description)]));
+      table(["Event", "Type", "Description"], events.map((e) => [`\`${e.name}\``, e.type ? `\`${e.type}\`` : "", oneLine(e.description)]));
   if (el.css.total) {
     s += `**CSS custom properties** — ${el.css.total} total across ${el.css.families} families. Common ones:\n\n`;
     s += table(

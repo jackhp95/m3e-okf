@@ -718,9 +718,6 @@
             "description": "Dispatched when the sheet begins to close."
           },
           {
-            "type": "Event"
-          },
-          {
             "name": "cancel",
             "type": "Event",
             "description": "Dispatched when the sheet is cancelled."
@@ -6445,9 +6442,6 @@
         ],
         "events": [
           {
-            "type": "Event"
-          },
-          {
             "name": "opening",
             "description": "Dispatched when the expansion panel begins to open."
           },
@@ -8122,10 +8116,10 @@
     ],
     "examples": [
       {
-        "code": "<m3e-fab>\n  <m3e-icon>add</m3e-icon>\n</m3e-fab>"
+        "code": "<m3e-fab>\n  <m3e-icon name=\"add\"></m3e-icon>\n</m3e-fab>"
       },
       {
-        "code": "<m3e-fab extended>\n  <m3e-icon>add</m3e-icon>\n  <span slot=\"label\">Add</span>\n</m3e-fab>"
+        "code": "<m3e-fab extended>\n  <m3e-icon name=\"add\"></m3e-icon>\n  <span slot=\"label\">Add</span>\n</m3e-fab>"
       }
     ],
     "verification": {
@@ -11086,9 +11080,6 @@
         ],
         "events": [
           {
-            "type": "Event"
-          },
-          {
             "name": "opening",
             "description": "Dispatched when the item begins to open."
           },
@@ -13863,9 +13854,6 @@
           }
         ],
         "events": [
-          {
-            "type": "Event"
-          },
           {
             "name": "opening",
             "description": "Dispatched when the item begins to open."
@@ -20357,9 +20345,6 @@
           }
         ],
         "events": [
-          {
-            "type": "Event"
-          },
           {
             "name": "opening",
             "description": "Dispatched when the item begins to open."

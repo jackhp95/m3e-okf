@@ -12,13 +12,13 @@ import "@m3e/web/fab";
 
 ```html
 <m3e-fab>
-  <m3e-icon>add</m3e-icon>
+  <m3e-icon name="add"></m3e-icon>
 </m3e-fab>
 ```
 
 ```html
 <m3e-fab extended>
-  <m3e-icon>add</m3e-icon>
+  <m3e-icon name="add"></m3e-icon>
   <span slot="label">Add</span>
 </m3e-fab>
 ```

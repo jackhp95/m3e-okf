@@ -162,7 +162,6 @@ An expandable details-summary view.
 
 | Event | Type | Description |
 | --- | --- | --- |
-| `undefined` | `Event` |  |
 | `opening` |  | Dispatched when the expansion panel begins to open. |
 | `opened` |  | Dispatched when the expansion panel has opened. |
 | `closing` |  | Dispatched when the expansion panel begins to close. |

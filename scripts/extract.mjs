@@ -327,7 +327,12 @@ for (const dir of dirs) {
       attributes,
       properties: propsOf(decl),
       slots: (decl.slots || []).map((s) => ({ name: s.name || "(default)", description: s.description })),
-      events: (decl.events || []).map((e) => ({ name: e.name, type: typeOf(e), description: e.description })),
+      // Skip CEM event entries with no resolvable name — the analyzer emits a
+      // nameless entry for some declarations, which would otherwise render an
+      // Events row for an event literally named "undefined".
+      events: (decl.events || [])
+        .filter((e) => e.name)
+        .map((e) => ({ name: e.name, type: typeOf(e), description: e.description })),
       css: summarizeCssProps(decl.cssProperties || []),
       cssParts: (decl.cssParts || []).map((p) => ({ name: p.name, description: p.description })),
     };
