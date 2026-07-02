@@ -11,11 +11,9 @@
     "build:skill": "node scripts/build-skill.mjs",
     "check:skill": "node scripts/check-skill.mjs",
     "check:staleness": "node scripts/check-staleness.mjs",
-    "build:elm-examples": "node scripts/examples-to-elm.mjs",
     "test": "node --test scripts/lib/*.test.mjs"
   },
   "devDependencies": {
-    "jsdom": "^25.0.0",
-    "linkedom": "^0.18.0"
+    "jsdom": "^25.0.0"
   }
 }
