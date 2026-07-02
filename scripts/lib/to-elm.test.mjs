@@ -275,3 +275,14 @@ test("numeric attribute -> Float literal (no quotes) at all layers", () => {
     code: `M3e.Cem.Html.Icon.icon [ M3e.Cem.Html.Icon.name "star", M3e.Cem.Html.Icon.opticalSize 24 ] []`,
   });
 });
+
+test("void elements (<hr>/<br>) are 0-arg Native values, not called with args", () => {
+  assert.deepEqual(conv(`<m3e-menu id="m"><hr></m3e-menu>`), {
+    code: `M3e.Menu.view [] [ M3e.Menu.child (Native.hr) ]`,
+  });
+});
+
+test("<main> maps to Html.main_ (reserved name)", () => {
+  const r = conv(`<m3e-drawer-container><main>Content</main></m3e-drawer-container>`);
+  assert.ok(r.code && /Native\.node Html\.main_ \[\]/.test(r.code), r.code || r.skip);
+});

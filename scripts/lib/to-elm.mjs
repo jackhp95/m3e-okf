@@ -57,6 +57,9 @@ const isDroppableAttr = (name) =>
 // Collected across a single toElm() run for logging/inspection.
 let droppedAttrs = [];
 
+// Void (empty) elements whose `Native.<tag>` is a 0-arg value, not a function.
+const VOID_NATIVE_TAGS = new Set(["br", "hr"]);
+
 // Plain HTML tags that have a dedicated `Native.<tag>` constructor.
 const NATIVE_TAGS = new Set([
   "div",
@@ -179,6 +182,12 @@ function plainElementToElm(node, oracle) {
     return `Kit.link "${escapeElmString(href)}" ${list}`;
   }
 
+  // Void elements (`Native.br`/`Native.hr`) are 0-arg VALUES, not functions —
+  // they take neither attributes nor children.
+  if (VOID_NATIVE_TAGS.has(tag)) {
+    return `Native.${tag}`;
+  }
+
   const children = childNodesToElm(node, oracle);
   const list = children.length === 0 ? "[]" : `[ ${children.join(", ")} ]`;
 
@@ -189,8 +198,10 @@ function plainElementToElm(node, oracle) {
 
   // Any other tag (label, etc.) -> Native.node Html.<tag>. Emitted code
   // references `Html.<tag>`, so the example module needs an `Html` import
-  // (handled by the orchestrator when assembling the module).
-  return `Native.node Html.${tag} [] ${list}`;
+  // (handled by the orchestrator when assembling the module). `main` clashes
+  // with the app entrypoint, so elm/html exposes it as `main_`.
+  const htmlFn = tag === "main" ? "main_" : tag;
+  return `Native.node Html.${htmlFn} [] ${list}`;
 }
 
 function elementToElm(node, oracle) {
