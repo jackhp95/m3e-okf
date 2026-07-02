@@ -373,6 +373,200 @@ function elementToElm(node, oracle) {
   return `M3e.${entry.module}.view ${recordArg}${attrsList} ${contentList}`;
 }
 
+// ---------------------------------------------------------------------------
+// Phase A1: middle (`M3e.Cem.*`) and bottom (`M3e.Cem.Html.*`) layer emitters.
+//
+// These layers are strictly MORE permissive supersets of the strict top layer:
+// each upper layer only ADDS constraints (required records, typed Content slots,
+// enum Value tokens). So any composition that compiles at top is representable
+// here by construction. The surface differs though — there are no required
+// records and no Content slot helpers; children are raw `Html`, and a field
+// that is a required record at top (e.g. `ariaLabel`) is just an untyped
+// attribute here. The emitter is therefore a uniform HTML->elm/html transpile:
+//   - typed setter where the oracle knows one (enum -> Value token at middle /
+//     raw string at bottom; bool -> True; string -> "..."),
+//   - the raw-attribute escape otherwise (`M3e.Cem.Attr.attribute` at middle,
+//     `Html.Attributes.attribute` at bottom) — lower layers express anything,
+//   - non-structural id/class/style/data-* dropped (as top does),
+//   - a slotted child carries its slot via `M3e.Cem.Attr.slot` (middle) or
+//     `Html.Attributes.attribute "slot"` (bottom).
+// ---------------------------------------------------------------------------
+
+const CEM_PREFIX = { middle: "M3e.Cem", bottom: "M3e.Cem.Html" };
+
+// Plain tags that map to a bare `Html.<tag>`; anything else -> `Html.node "tag"`.
+const HTML_TAGS = new Set([
+  ...NATIVE_TAGS,
+  "a",
+  "label",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "table",
+  "thead",
+  "tbody",
+  "tr",
+  "td",
+  "th",
+  "figure",
+  "figcaption",
+  "code",
+  "pre",
+  "b",
+  "i",
+  "u",
+]);
+
+/** A component's mid/bottom constructor = its module name, decapitalized
+ * (`Button` -> `button`, `IconButton` -> `iconButton`). This is NOT `camel`,
+ * which folds an already-PascalCase name to all-lowercase. */
+const decapitalize = (s) => s.charAt(0).toLowerCase() + s.slice(1);
+
+/** The slot attribute for a slotted child, per layer. */
+function cemSlotAttr(layer, slotName) {
+  const s = escapeElmString(slotName);
+  return layer === "middle"
+    ? `M3e.Cem.Attr.slot "${s}"`
+    : `Html.Attributes.attribute "slot" "${s}"`;
+}
+
+/** An untyped (raw) attribute name/value, per layer. */
+function cemRawAttr(layer, name, value) {
+  const n = escapeElmString(name);
+  const v = escapeElmString(value);
+  return layer === "middle"
+    ? `M3e.Cem.Attr.attribute (Html.Attributes.attribute "${n}") "${v}"`
+    : `Html.Attributes.attribute "${n}" "${v}"`;
+}
+
+/** A typed m3e setter for `name=value`, or null if the oracle has no setter. */
+function cemTypedAttr(entry, layer, name, value) {
+  const attr = entry.attributes.find((a) => a.htmlName === name);
+  if (!attr) return null;
+  const setterRef = `${CEM_PREFIX[layer]}.${entry.module}.${attr.setter}`;
+  if (attr.kind === "enum") {
+    return layer === "middle"
+      ? `${setterRef} M3e.Value.${camel(value)}`
+      : `${setterRef} "${escapeElmString(value)}"`;
+  }
+  if (attr.kind === "bool") {
+    return `${setterRef} True`;
+  }
+  if (attr.kind === "string") {
+    return `${setterRef} "${escapeElmString(value)}"`;
+  }
+  skip(`unknown attr kind ${attr.kind} for ${name} on ${entry.module}`);
+}
+
+/** The `[ ... ]` list literal for a set of expressions ([] when empty). */
+const elmList = (exprs) => (exprs.length === 0 ? "[]" : `[ ${exprs.join(", ")} ]`);
+
+/** Render one node to a raw-`Html` Elm expr at the given layer. `slotName` (or
+ * null) is injected as the element's slot attribute. */
+function cemNodeToElm(node, oracle, layer, slotName) {
+  if (node.nodeType === 3) {
+    return `Html.text "${escapeElmString(node.textContent.trim())}"`;
+  }
+  if (node.nodeType !== 1) {
+    skip(`unsupported node type ${node.nodeType}`);
+  }
+
+  const tag = node.tagName.toLowerCase();
+  const attrExprs = [];
+  if (slotName) attrExprs.push(cemSlotAttr(layer, slotName));
+
+  if (!tag.startsWith("m3e-")) {
+    // Plain HTML: <a href> keeps its href; other attrs (class/id/...) drop.
+    if (tag === "a") {
+      const href = node.getAttribute("href");
+      if (href != null) {
+        attrExprs.push(`Html.Attributes.href "${escapeElmString(href)}"`);
+      }
+    }
+    const children = cemChildren(node, oracle, layer);
+    const fn = HTML_TAGS.has(tag) ? `Html.${tag}` : `Html.node "${tag}"`;
+    return `${fn} ${elmList(attrExprs)} ${elmList(children)}`;
+  }
+
+  const entry = oracle[tag];
+  if (!entry) skip(`unknown m3e tag ${tag}`);
+
+  for (const [name, value] of [...node.attributes].map((a) => [a.name, a.value])) {
+    if (name === "slot") continue; // carried via slotName on this element
+    const typed = cemTypedAttr(entry, layer, name, value);
+    if (typed != null) {
+      attrExprs.push(typed);
+      continue;
+    }
+    if (isDroppableAttr(name)) {
+      droppedAttrs.push({ tag, name, value });
+      continue;
+    }
+    // Untyped but semantic (e.g. aria-label): raw-attribute escape. No skip —
+    // the bottom layer expresses any attribute; middle via Attr.attribute.
+    attrExprs.push(cemRawAttr(layer, name, value));
+  }
+
+  const children = cemChildren(node, oracle, layer);
+  return `${CEM_PREFIX[layer]}.${entry.module}.${decapitalize(
+    entry.module,
+  )} ${elmList(attrExprs)} ${elmList(children)}`;
+}
+
+/** Non-whitespace child nodes -> raw-`Html` exprs (each carrying its own slot). */
+function cemChildren(node, oracle, layer) {
+  const out = [];
+  for (const child of node.childNodes) {
+    if (isWhitespaceText(child)) continue;
+    if (child.nodeType === 1 || child.nodeType === 3) {
+      const slotName =
+        child.nodeType === 1 ? child.getAttribute("slot") || null : null;
+      out.push(cemNodeToElm(child, oracle, layer, slotName));
+    }
+  }
+  return out;
+}
+
+/**
+ * Convert an HTML string to the middle (`M3e.Cem.*`) or bottom
+ * (`M3e.Cem.Html.*`) Elm layer.
+ * @param {"middle"|"bottom"} layer
+ * @returns {{ code: string } | { skip: string }}
+ */
+export function toElmCem(htmlString, oracle, layer) {
+  droppedAttrs = [];
+  let document;
+  try {
+    ({ document } = parseHTML(`<html><body>${htmlString}</body></html>`));
+  } catch (err) {
+    return { skip: `parse error: ${err.message}` };
+  }
+
+  const roots = [...document.body.childNodes].filter(
+    (n) => !isWhitespaceText(n) && (n.nodeType === 1 || n.nodeType === 3),
+  );
+  if (roots.length === 0) {
+    return { skip: "empty example" };
+  }
+
+  try {
+    const codes = roots.map((n) => {
+      const slotName =
+        n.nodeType === 1 ? n.getAttribute("slot") || null : null;
+      return cemNodeToElm(n, oracle, layer, slotName);
+    });
+    return { code: codes.join("\n") };
+  } catch (err) {
+    if (err instanceof SkipError) {
+      return { skip: err.reason };
+    }
+    throw err;
+  }
+}
+
 /**
  * Convert an HTML string to typed M3e.* Elm.
  * @returns {{ code: string } | { skip: string }}

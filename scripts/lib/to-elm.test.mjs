@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildOracle } from "./oracle.mjs";
-import { toElm } from "./to-elm.mjs";
+import { toElm, toElmCem } from "./to-elm.mjs";
 
 const oracle = buildOracle();
 const conv = (h) => toElm(h, oracle);
@@ -197,4 +197,72 @@ test("label maps to Native.node Html.label", () => {
 test("anchor-wrapped card -> Kit.link", () => {
   const r = conv(`<a href="/x"><m3e-card variant="filled">hi</m3e-card></a>`);
   assert.ok(r.code && /Kit\.link "\/x"/.test(r.code) && /M3e\.Card\.view/.test(r.code));
+});
+
+// --- Phase A1: middle (M3e.Cem.*) + bottom (M3e.Cem.Html.*) layers ---------
+// Mid/bottom are a uniform HTML->elm/html transpile: typed setters where they
+// exist, raw-attribute escape otherwise, raw Html children (no required-record
+// folding, no Content slot helpers). Enums are Value tokens at middle, raw
+// strings at bottom. Slots: M3e.Cem.Attr.slot at middle / attribute "slot" at
+// bottom. Expected strings authored against the real per-layer modules.
+
+const mid = (h) => toElmCem(h, oracle, "middle");
+const bot = (h) => toElmCem(h, oracle, "bottom");
+
+test("middle: button with icon slot + text", () => {
+  assert.deepEqual(
+    mid(`<m3e-button variant="filled"><m3e-icon slot="icon" name="add"></m3e-icon>New</m3e-button>`),
+    {
+      code: `M3e.Cem.Button.button [ M3e.Cem.Button.variant M3e.Value.filled ] [ M3e.Cem.Icon.icon [ M3e.Cem.Attr.slot "icon", M3e.Cem.Icon.name "add" ] [], Html.text "New" ]`,
+    },
+  );
+});
+
+test("bottom: button with icon slot + text", () => {
+  assert.deepEqual(
+    bot(`<m3e-button variant="filled"><m3e-icon slot="icon" name="add"></m3e-icon>New</m3e-button>`),
+    {
+      code: `M3e.Cem.Html.Button.button [ M3e.Cem.Html.Button.variant "filled" ] [ M3e.Cem.Html.Icon.icon [ Html.Attributes.attribute "slot" "icon", M3e.Cem.Html.Icon.name "add" ] [], Html.text "New" ]`,
+    },
+  );
+});
+
+test("middle: aria-label (untyped) via Attr.attribute escape + typed bool", () => {
+  assert.deepEqual(mid(`<m3e-checkbox aria-label="Accept" checked></m3e-checkbox>`), {
+    code: `M3e.Cem.Checkbox.checkbox [ M3e.Cem.Attr.attribute (Html.Attributes.attribute "aria-label") "Accept", M3e.Cem.Checkbox.checked True ] []`,
+  });
+});
+
+test("bottom: aria-label as raw Html attribute + typed bool", () => {
+  assert.deepEqual(bot(`<m3e-checkbox aria-label="Accept" checked></m3e-checkbox>`), {
+    code: `M3e.Cem.Html.Checkbox.checkbox [ Html.Attributes.attribute "aria-label" "Accept", M3e.Cem.Html.Checkbox.checked True ] []`,
+  });
+});
+
+test("mid/bottom: plain text-only button", () => {
+  assert.deepEqual(mid(`<m3e-button variant="tonal">Tonal</m3e-button>`), {
+    code: `M3e.Cem.Button.button [ M3e.Cem.Button.variant M3e.Value.tonal ] [ Html.text "Tonal" ]`,
+  });
+  assert.deepEqual(bot(`<m3e-button variant="tonal">Tonal</m3e-button>`), {
+    code: `M3e.Cem.Html.Button.button [ M3e.Cem.Html.Button.variant "tonal" ] [ Html.text "Tonal" ]`,
+  });
+});
+
+test("mid/bottom: icon-button does NOT fold — aria-label attr + child element", () => {
+  const html = `<m3e-icon-button aria-label="Toggle theme"><m3e-icon name="dark_mode"></m3e-icon></m3e-icon-button>`;
+  assert.deepEqual(mid(html), {
+    code: `M3e.Cem.IconButton.iconButton [ M3e.Cem.Attr.attribute (Html.Attributes.attribute "aria-label") "Toggle theme" ] [ M3e.Cem.Icon.icon [ M3e.Cem.Icon.name "dark_mode" ] [] ]`,
+  });
+  assert.deepEqual(bot(html), {
+    code: `M3e.Cem.Html.IconButton.iconButton [ Html.Attributes.attribute "aria-label" "Toggle theme" ] [ M3e.Cem.Html.Icon.icon [ M3e.Cem.Html.Icon.name "dark_mode" ] [] ]`,
+  });
+});
+
+test("enum: Value token at middle, raw string at bottom", () => {
+  assert.deepEqual(mid(`<m3e-button size="extra-large">Big</m3e-button>`), {
+    code: `M3e.Cem.Button.button [ M3e.Cem.Button.size M3e.Value.extraLarge ] [ Html.text "Big" ]`,
+  });
+  assert.deepEqual(bot(`<m3e-button size="extra-large">Big</m3e-button>`), {
+    code: `M3e.Cem.Html.Button.button [ M3e.Cem.Html.Button.size "extra-large" ] [ Html.text "Big" ]`,
+  });
 });
