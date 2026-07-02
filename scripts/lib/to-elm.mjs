@@ -32,6 +32,20 @@ function escapeElmString(s) {
 const isWhitespaceText = (node) =>
   node.nodeType === 3 && node.textContent.trim() === "";
 
+// Non-structural attributes that carry no typed setter (presentational /
+// identity only). On a doc EXAMPLE these are safely DROPPED with a log rather
+// than skipping the whole example. Plain-HTML elements already drop all attrs;
+// this is the m3e-element equivalent for the known-safe set. Anything NOT in
+// this set (and without an oracle setter) is still conservatively skipped.
+const isDroppableAttr = (name) =>
+  name === "id" ||
+  name === "class" ||
+  name === "style" ||
+  name.startsWith("data-");
+
+// Collected across a single toElm() run for logging/inspection.
+let droppedAttrs = [];
+
 // Plain HTML tags that have a dedicated `Native.<tag>` constructor.
 const NATIVE_TAGS = new Set([
   "div",
@@ -103,6 +117,42 @@ function childNodesToElm(node, oracle) {
   return out;
 }
 
+/**
+ * Render the child of a required NAMED slot whose accepted `kinds` are
+ * text/link (e.g. NavMenuItem/TreeItem `label`). The codegen types this field
+ * as `Element { text, link }`, so a generic `Native.<tag>` wrapper (which
+ * carries an `html` row) would NOT unify. We therefore unwrap:
+ *   - <a href> child            -> Kit.link "href" [ ...text... ]
+ *   - text-only wrapper/bare    -> Kit.text "..."   (span/div wrappers folded)
+ * Anything richer than text/link genuinely can't be sourced honestly -> skip.
+ */
+function textLinkSlotChild(node, tag, field, oracle) {
+  // Bare text node.
+  if (node.nodeType === 3) {
+    return `Kit.text "${escapeElmString(node.textContent.trim())}"`;
+  }
+  if (node.nodeType !== 1) {
+    skip(`unsupported ${field} slot child on ${tag}`);
+  }
+  const childTag = node.tagName.toLowerCase();
+
+  // <a href> -> Kit.link (a link-kinded label).
+  if (childTag === "a") {
+    return plainElementToElm(node, oracle);
+  }
+
+  // A plain wrapper (span/div/etc.) or the m3e element's own text: fold to the
+  // inner text if it is text-only; otherwise it isn't a text/link label.
+  const nonWhitespace = [...node.childNodes].filter((c) => !isWhitespaceText(c));
+  const allText = nonWhitespace.every((c) => c.nodeType === 3);
+  if (allText) {
+    const text = nonWhitespace.map((c) => c.textContent.trim()).join(" ");
+    return `Kit.text "${escapeElmString(text)}"`;
+  }
+
+  skip(`unmappable ${field} slot child <${childTag}> on ${tag}`);
+}
+
 /** Map a plain (non-m3e) HTML element to Elm. */
 function plainElementToElm(node, oracle) {
   const tag = node.tagName.toLowerCase();
@@ -156,8 +206,9 @@ function elementToElm(node, oracle) {
 
   const attrPairs = [...node.attributes].map((a) => [a.name, a.value]);
 
-  // --- Required-record named fields (e.g. ariaLabel <- aria-label). ---
-  // These source attributes are consumed here and are NOT emitted as setters.
+  // --- Required-record named fields sourced from ATTRIBUTES. ---
+  // (e.g. ariaLabel <- aria-label.) These source attributes are consumed here
+  // and are NOT emitted as setters.
   const requiredFields = entry.requiredFields ?? [];
   const requiredHtmlNames = new Set(requiredFields.map((f) => f.htmlName));
   const recordFields = [];
@@ -169,6 +220,37 @@ function elementToElm(node, oracle) {
     recordFields.push(`${field} = "${escapeElmString(pair[1])}"`);
   }
 
+  // --- Required-record fields sourced from a NAMED SLOT child. ---
+  // (e.g. NavMenuItem/TreeItem `label` <- `slot="label"` child.) The codegen
+  // folds a required single-value named slot into the required record as a
+  // field of the same (camelCased) name — there is NO slot helper for it. We
+  // consume the matching child here; it must not also be routed as a slot.
+  const requiredSlots = entry.requiredSlots ?? [];
+  const consumedRequiredSlotNames = new Set();
+  for (const { field, rawName, kinds } of requiredSlots) {
+    const matches = [...node.childNodes].filter(
+      (c) => c.nodeType === 1 && c.getAttribute("slot") === rawName,
+    );
+    if (matches.length === 0) {
+      skip(`missing required ${field} (slot="${rawName}") on ${tag}`);
+    }
+    if (matches.length > 1) {
+      skip(`multiple children for required ${field} slot on ${tag}`);
+    }
+    // A text/link-kinded field (e.g. `label`) types as `Element { text, link }`.
+    // Render it through the text/link unwrapper so a `<span>`/`<div>` wrapper
+    // folds to `Kit.text` rather than an incompatible `Native.<tag>`.
+    const onlyTextLink =
+      kinds &&
+      kinds.length > 0 &&
+      kinds.every((k) => k === "text" || k === "link");
+    const expr = onlyTextLink
+      ? textLinkSlotChild(matches[0], tag, field, oracle)
+      : nodeToElm(matches[0], oracle);
+    recordFields.push(`${field} = ${expr}`);
+    consumedRequiredSlotNames.add(rawName);
+  }
+
   // --- Attributes (skip the `slot` attribute; it is structural). ---
   const attrExprs = [];
   for (const [name, value] of attrPairs) {
@@ -178,6 +260,13 @@ function elementToElm(node, oracle) {
 
     const attr = entry.attributes.find((a) => a.htmlName === name);
     if (!attr) {
+      // Non-structural presentational/identity attrs (id/class/style/data-*)
+      // have no typed setter: drop them (with a log) rather than skipping the
+      // whole example. Anything else genuinely unmappable still skips.
+      if (isDroppableAttr(name)) {
+        droppedAttrs.push({ tag, name, value });
+        continue;
+      }
       skip(`unmapped attr ${name} on ${tag}`);
     }
 
@@ -203,6 +292,8 @@ function elementToElm(node, oracle) {
 
     if (child.nodeType === 1) {
       const slotName = child.getAttribute("slot");
+      // A required named slot was already consumed into the record field above.
+      if (slotName != null && consumedRequiredSlotNames.has(slotName)) continue;
       if (slotName != null && slotName !== "") {
         const slotEntry = entry.slots.find((s) => s.rawName === slotName);
         if (!slotEntry) {
@@ -287,6 +378,7 @@ function elementToElm(node, oracle) {
  * @returns {{ code: string } | { skip: string }}
  */
 export function toElm(htmlString, oracle) {
+  droppedAttrs = [];
   let document;
   try {
     ({ document } = parseHTML(`<html><body>${htmlString}</body></html>`));

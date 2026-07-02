@@ -95,14 +95,62 @@ test("string attr with escaping", () => {
   });
 });
 
+// A genuinely unmappable attr (not id/class/style/data-*, no oracle setter)
+// still short-circuits the example — we stay conservative about dropping.
 test("skip on unmapped attr", () => {
-  const r = conv(`<m3e-button data-foo="x">Hi</m3e-button>`);
-  assert.ok(r.skip && /data-foo/.test(r.skip));
+  const r = conv(`<m3e-button data-foo="x" for="y">Hi</m3e-button>`);
+  assert.ok(r.skip && /for/.test(r.skip));
+});
+
+// Non-structural presentational/identity attrs (id/class/style/data-*) on an
+// m3e element are DROPPED (not skipped), matching plain-HTML behavior.
+test("m3e element with id/class is converted (attrs dropped), not skipped", () => {
+  const r = conv(`<m3e-button variant="filled" id="x" class="y">Go</m3e-button>`);
+  assert.ok(
+    r.code &&
+      /M3e\.Button\.view \[ M3e\.Button\.variant M3e\.Value\.filled \]/.test(
+        r.code,
+      ),
+  );
+  assert.ok(!/id|class/.test(r.code));
 });
 
 test("skip on unknown m3e tag", () => {
   const r = conv(`<m3e-nope></m3e-nope>`);
   assert.ok(r.skip);
+});
+
+// --- Required-record field sourced from a NAMED slot child -----------------
+
+// NavMenuItem/TreeItem have a required `label` NAMED slot that the codegen
+// folds into the required record as a `label` field (there is NO `label` slot
+// helper). Confirmed against packages/m3e/src/M3e/NavMenuItem.elm:
+//   view : { label : Element { text, link } msg } -> ...
+// with `M3e.Element.withSlot "label" req_.label`.
+test("nav-menu-item required label sourced from slot=label child", () => {
+  const r = conv(
+    `<m3e-nav-menu-item selected><m3e-icon slot="icon" name="home"></m3e-icon><a slot="label" href="/">Home</a></m3e-nav-menu-item>`,
+  );
+  assert.deepEqual(r, {
+    code: `M3e.NavMenuItem.view { label = Kit.link "/" [ Kit.text "Home" ] } [ M3e.NavMenuItem.selected True ] [ M3e.NavMenuItem.icon (M3e.Icon.view [ M3e.Icon.name "home" ] []) ]`,
+  });
+});
+
+// TreeItem nests child tree-items via the (default) `child` helper while its
+// own `label` comes from the required named slot.
+test("tree-item required label + nested child tree-items", () => {
+  const r = conv(
+    `<m3e-tree-item open><span slot="label">Getting Started</span><m3e-tree-item><span slot="label">Overview</span></m3e-tree-item></m3e-tree-item>`,
+  );
+  assert.deepEqual(r, {
+    code: `M3e.TreeItem.view { label = Kit.text "Getting Started" } [ M3e.TreeItem.open True ] [ M3e.TreeItem.child (M3e.TreeItem.view { label = Kit.text "Overview" } [] []) ]`,
+  });
+});
+
+// A required named slot with no matching child stays an honest skip.
+test("nav-menu-item missing required label slot -> skip", () => {
+  const r = conv(`<m3e-nav-menu-item></m3e-nav-menu-item>`);
+  assert.ok(r.skip && /label/.test(r.skip));
 });
 
 // --- Card with slotted content (2-arg view) + folded-content children ------

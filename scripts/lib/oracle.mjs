@@ -97,6 +97,11 @@ export function buildOracle() {
       // slots
       const slotEntries = [];
       const slotConfig = moduleConfig.slots ?? {};
+      // Required NAMED slots (e.g. NavMenuItem/TreeItem `label`) are folded by
+      // the codegen into the view's required record as a field (NOT a slot
+      // helper). Collect them so the mapper can source that field from the
+      // matching `slot="X"` child instead of emitting a non-existent helper.
+      const requiredSlots = [];
       for (const slot of d.slots ?? []) {
         const rawName = slot.name;
         let helper;
@@ -115,6 +120,20 @@ export function buildOracle() {
         const required = cfg.required === true;
         const multi = cfg.multi === true;
         slotEntries.push({ rawName, helper, kind, required, multi });
+
+        // A required, single-value NAMED slot -> required record field named
+        // after the slot (camelCased), sourced from the `slot="X"` child.
+        // `kinds` records what element rows the field accepts (e.g.
+        // ["text","link"]) so the mapper can unwrap a text-only wrapper into a
+        // compatible `Kit.text` / `Kit.link` rather than an incompatible
+        // `Native.<tag>` (which carries an `html` row).
+        if (rawName !== "" && required && !multi) {
+          requiredSlots.push({
+            field: camel(rawName),
+            rawName,
+            kinds: cfg.kinds ?? [],
+          });
+        }
       }
 
       oracle[tag] = {
@@ -122,6 +141,7 @@ export function buildOracle() {
         module,
         attributes,
         requiredFields,
+        requiredSlots,
         slots: slotEntries,
       };
     }
