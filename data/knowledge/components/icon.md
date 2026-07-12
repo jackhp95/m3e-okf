@@ -32,6 +32,25 @@ same meaning throughout. Pair an icon with a label when its meaning is not obvio
 is only as clear as its recognizability. Keep to one icon style within a context. See
 [icons](/styles/icons) for the style system.
 
+## Do / Don't
+
+**Do**
+
+- Use icons whose meaning is widely understood, and use them consistently — the
+  same icon for the same meaning throughout.
+- Pair an icon with a label when its meaning isn't obvious on its own.
+- Keep to one icon style (outlined, filled) within a context.
+- Give a standalone, meaningful icon an accessible name.
+
+**Don't**
+
+- Don't invent or repurpose an icon to mean something users won't recognize.
+- Don't mix icon styles within the same context — it looks inconsistent.
+- Don't use an icon alone where its meaning is ambiguous; add a label.
+- Don't let an icon be the only carrier of state that must also be perceivable
+  without color.
+  See [color-only state signaling](/anti-patterns/color-only-state-signaling).
+
 ## Accessibility
 
 A meaningful icon that stands alone (as in an icon button) needs an accessible name; a decorative

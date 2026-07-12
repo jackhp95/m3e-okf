@@ -29,6 +29,27 @@ point. If the screen truly has a single dominant action, a plain FAB is clearer.
 multiple standalone FABs across a screen — that flattens the primary-action hierarchy; see
 [FAB for non-primary actions](/anti-patterns/fab-for-non-primary-actions).
 
+## Do / Don't
+
+**Do**
+
+- Use a FAB menu when several creation actions are peers and belong under one
+  prominent entry point.
+- Label each expanded action so its purpose is clear at a glance.
+- Keep the action set small so the expanded cluster stays scannable.
+- Collapse the menu after an action, and return focus to the trigger.
+
+**Don't**
+
+- Don't use a FAB menu when the screen truly has a single dominant action — a
+  plain [FAB](/components/fab) is clearer.
+- Don't scatter multiple standalone FABs across a screen; that flattens the
+  primary-action hierarchy.
+  See [FAB for non-primary actions](/anti-patterns/fab-for-non-primary-actions).
+- Don't cram unrelated or secondary actions into the menu just because the FAB is
+  prominent.
+- Don't leave the expanded menu without an escape/outside-tap dismissal.
+
 ## Accessibility
 
 The trigger reports its expanded/collapsed state; expanding moves focus into the action set;

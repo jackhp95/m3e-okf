@@ -29,6 +29,26 @@ For measurable progress, use a determinate progress indicator; for content whose
 known in advance, a skeleton placeholder may communicate the wait with less motion. Remove the
 indicator as soon as the content is ready.
 
+## Do / Don't
+
+**Do**
+
+- Use a loading indicator for short, indeterminate waits where a percentage would
+  be meaningless.
+- Place it in or near the region that's loading so the wait's scope is clear.
+- Remove it as soon as the content is ready.
+- Honor a reduced-motion preference by simplifying the animation.
+  See [motion physics](/expressive/motion-physics).
+
+**Don't**
+
+- Don't use a loading indicator for measurable work — use a determinate
+  [progress indicator](/components/progress-indicator) instead.
+- Don't show a spinner for a wait long enough that a skeleton placeholder or
+  progress bar would set better expectations.
+- Don't leave the indicator spinning after the content has arrived.
+- Don't convey the busy state by animation alone with no accessible signal.
+
 ## Accessibility
 
 The busy state is exposed to assistive technology, not conveyed by animation alone, and the

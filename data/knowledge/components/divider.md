@@ -31,6 +31,27 @@ where whitespace alone is not enough. Do not divide every item — a divider bet
 adds noise and defeats grouping. Prefer spacing for light separation and reserve dividers for
 meaningful group boundaries.
 
+## Do / Don't
+
+**Do**
+
+- Use a divider to separate meaningful groups within a [list](/components/list) or
+  sections of content where whitespace alone isn't enough.
+- Prefer an inset divider when it should align with adjacent content, and a
+  full-width one for a top-level boundary.
+- Reach for spacing first for light separation, and reserve dividers for real
+  group boundaries.
+
+**Don't**
+
+- Don't divide every item in a list — a line between each row adds noise and
+  defeats the grouping it's meant to show.
+- Don't use a divider where a heading or grouped markup would convey the structure
+  more clearly.
+- Don't stack dividers with heavy containers so the boundary is signaled twice.
+- Don't rely on a divider alone to convey a semantic group change to assistive
+  technology.
+
 ## Accessibility
 
 A divider is usually purely visual and not announced. When it marks a genuine semantic

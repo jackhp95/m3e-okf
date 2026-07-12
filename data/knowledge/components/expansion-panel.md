@@ -27,6 +27,25 @@ Use expansion panels for progressive disclosure — FAQs, optional settings, sec
 where showing everything at once would overwhelm. Keep headers descriptive so the user can
 decide whether to expand. Do not hide essential, always-needed content behind a collapse.
 
+## Do / Don't
+
+**Do**
+
+- Use expansion panels for progressive disclosure — FAQs, optional settings,
+  secondary detail — where showing everything at once would overwhelm.
+- Write descriptive headers so the user can decide whether to expand without
+  guessing.
+- Signal the expanded/collapsed state with more than color.
+  See [color-only state signaling](/anti-patterns/color-only-state-signaling).
+- Let users expand more than one panel when comparing sections helps.
+
+**Don't**
+
+- Don't hide essential, always-needed content behind a collapse.
+- Don't nest accordions deeply so users lose track of what's open.
+- Don't use vague headers ("More", "Details") that don't hint at the content.
+- Don't collapse content that the user just acted on and still needs to see.
+
 ## Accessibility
 
 The header exposes its expanded/collapsed state and controls the associated content region,
