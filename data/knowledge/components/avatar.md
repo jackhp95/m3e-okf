@@ -27,6 +27,23 @@ Use an avatar to identify who or what a row, message, or account belongs to. Pro
 sensible fallback (initials or a generic icon) when no image exists rather than an empty
 shape. Keep sizing consistent within a context so avatars line up.
 
+## Do / Don't
+
+**Do**
+
+- Use an avatar to identify who or what a row, message, or account belongs to.
+- Provide a graceful fallback (initials or a generic icon) when no image exists.
+- Keep avatar sizing and shape consistent within a context so they line up.
+- Give an identity-bearing avatar a text alternative naming the person or entity.
+
+**Don't**
+
+- Don't leave an empty shape when an image is missing — show a fallback.
+- Don't rely on the avatar's color as the only way to tell entities apart.
+  See [color-only state signaling](/anti-patterns/color-only-state-signaling).
+- Don't stretch or crop images so faces are distorted or cut off.
+- Don't announce a purely decorative avatar that sits beside already-labeled text.
+
 ## Accessibility
 
 An avatar that conveys identity carries a text alternative naming the person or entity it

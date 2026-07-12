@@ -28,6 +28,26 @@ It complements, and does not replace, top-level [navigation](/patterns/navigatio
 screens, truncate or collapse middle levels rather than wrapping the trail. Do not use a
 breadcrumb for a flat structure with no real hierarchy.
 
+## Do / Don't
+
+**Do**
+
+- Use a breadcrumb when content is genuinely hierarchical and users move up and
+  down levels — nested folders, category trees, multi-level settings.
+- Show the full trail from the root to the current location, linking every
+  ancestor and marking the current level as current.
+- On narrow screens, truncate or collapse middle levels rather than wrapping the
+  trail.
+- Keep it as a complement to top-level [navigation](/patterns/navigation), not a
+  replacement.
+
+**Don't**
+
+- Don't use a breadcrumb for a flat structure with no real hierarchy.
+- Don't make the current (last) level a link — it goes nowhere.
+- Don't let a long trail wrap onto multiple lines; collapse it instead.
+- Don't rely on the breadcrumb as the only way to reach primary destinations.
+
 ## Accessibility
 
 The trail is exposed as navigation, the current location is marked as current (not just

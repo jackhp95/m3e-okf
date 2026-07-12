@@ -29,6 +29,27 @@ Use a badge to draw attention to unseen or pending items, such as unread message
 navigation icon. Keep numbers short, capping large counts (for example, "99+"). Do not
 overload a UI with badges, or they stop signaling importance.
 
+## Do / Don't
+
+**Do**
+
+- Use a badge to draw attention to unseen or pending items — unread messages on a
+  navigation icon, new activity on an avatar.
+- Keep numbers short and cap large counts (for example, "99+").
+- Choose a bare dot when only presence matters, and a numbered pill when the count
+  is meaningful.
+- Make the badge's meaning available in text, not just as a colored dot.
+  See [color-only state signaling](/anti-patterns/color-only-state-signaling).
+
+**Don't**
+
+- Don't overload the UI with badges; when everything is badged, nothing signals
+  importance.
+- Don't put long numbers or text in a badge — it's a marker, not a label.
+- Don't use a badge as a control; it decorates a host and isn't tappable on its
+  own.
+- Don't rely on the dot alone to convey a state assistive technology can't read.
+
 ## Accessibility
 
 A badge's meaning is exposed to assistive technology, not left as a purely visual dot — the

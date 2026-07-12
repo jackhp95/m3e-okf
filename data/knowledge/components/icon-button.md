@@ -31,6 +31,28 @@ Use an icon button when the action is well represented by a familiar icon and sp
 tight. Prefer a labeled button when the icon's meaning is not obvious. A toggle icon
 button that switches between two states must make the state clear by more than color.
 
+## Do / Don't
+
+**Do**
+
+- Use an icon button when the action is well represented by a familiar icon and
+  space is tight — toolbars, list rows, dense contexts.
+- Give every icon button an explicit accessible name (and often a tooltip) since
+  there's no visible label.
+- Choose the emphasis variant (from filled down to standard) to match the action's
+  importance.
+- For a toggle icon button, make the on/off state clear by more than color.
+
+**Don't**
+
+- Don't use an icon button when the icon's meaning isn't obvious — prefer a
+  labeled [button](/components/button).
+- Don't ship an icon button with no accessible name; the glyph alone isn't
+  announced.
+- Don't shrink the target below the minimum interactive size, even though the
+  glyph is small.
+- Don't rely on color alone to convey a toggle icon button's state.
+
 ## Accessibility
 
 Because there is no visible text, an icon button **must** carry an explicit accessible

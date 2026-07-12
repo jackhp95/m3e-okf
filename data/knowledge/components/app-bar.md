@@ -32,6 +32,29 @@ actions for the current screen; send the rest to an overflow menu. Do not crowd 
 every possible action. Top-level app destinations belong to
 [navigation](/patterns/navigation) surfaces, not the app bar.
 
+## Do / Don't
+
+**Do**
+
+- Use the app bar to orient the user (a clear title) and to surface the two or
+  three most relevant actions for the current screen.
+- Send the remaining actions to an overflow [menu](/components/menu) rather than
+  crowding the bar.
+- Give each action [icon button](/components/icon-button) an accessible name, and
+  keep the leading affordance (back or menu) consistent.
+- Pick a larger app-bar size when the title deserves more prominence.
+
+**Don't**
+
+- Don't pack the bar with every possible action; it becomes a cluttered strip of
+  ambiguous icons.
+- Don't put top-level app destinations in the app bar — those belong to
+  [navigation](/patterns/navigation) surfaces.
+- Don't change the title's meaning or the action set unpredictably between related
+  screens.
+- Don't use icon-only actions whose meaning isn't obvious without a label or
+  tooltip.
+
 ## Accessibility
 
 The title conveys the current context; action icon buttons carry accessible names; the bar

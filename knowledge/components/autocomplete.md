@@ -10,6 +10,9 @@ sources:
   - url: https://m3.material.io/components/menus/overview
     retrieved: 2026-07-11
     note: Exposed-dropdown and typeahead selection.
+  - url: https://m3.material.io/components/menus/guidelines
+    retrieved: 2026-07-11
+    note: Menu-based selection guidance the autocomplete builds on.
 ---
 
 Autocomplete is a [text field](/components/text-field) that filters and suggests matching
@@ -28,6 +31,29 @@ Use autocomplete when the option set is large enough that a [select](/components
 be tedious to scroll and typing to filter is natural — a country, a recipient, a tag. Make
 clear whether free text is accepted or only listed options are valid, and show a helpful empty
 state when nothing matches. See [search](/patterns/search) for search-oriented suggestion flows.
+
+## Do / Don't
+
+**Do**
+
+- Use autocomplete when the option set is large enough that a
+  [select](/components/select) would be tedious to scroll and typing to filter is
+  natural — a country, a recipient, a tag.
+- Make clear whether free text is accepted or only listed options are valid.
+- Show a helpful empty state when nothing matches, and rank suggestions by
+  relevance.
+- Filter forgivingly (case-insensitive, matching within the string) so near-misses
+  still surface results.
+
+**Don't**
+
+- Don't use autocomplete for a short option list — a plain
+  [select](/components/select) or [radio group](/components/radio-group) is
+  simpler.
+- Don't leave the user guessing whether their typed value will be accepted.
+- Don't show a dead end on no match; offer a "no results" message or a way to add
+  a value.
+- Don't auto-select or overwrite the user's text in a way that fights their typing.
 
 ## Accessibility
 
