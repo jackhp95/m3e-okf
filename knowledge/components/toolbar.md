@@ -10,6 +10,9 @@ sources:
   - url: https://m3.material.io/components/toolbars/overview
     retrieved: 2026-07-11
     note: Toolbar as an M3 Expressive component grouping contextual actions.
+  - url: https://m3.material.io/components/toolbars/guidelines
+    retrieved: 2026-07-11
+    note: What belongs in a contextual toolbar.
 ---
 
 A toolbar groups a set of actions relevant to the current content into one compact surface,
@@ -29,6 +32,25 @@ controls over a canvas, actions for a selection. Keep it to the most relevant ac
 the rest to an overflow [menu](/components/menu). Distinguish a floating contextual toolbar from
 a persistent [app bar](/components/app-bar), which orients the whole screen rather than acting
 on specific content.
+
+## Do / Don't
+
+**Do**
+
+- Use a toolbar to collect the handful of actions that apply to the current
+  context — editing controls over a canvas, actions for a selection.
+- Keep it to the most relevant actions and send the rest to an overflow
+  [menu](/components/menu).
+- Position a floating toolbar near the content it affects without covering it.
+- Give each action an accessible name, especially icon-only ones.
+
+**Don't**
+
+- Don't use a toolbar to orient the whole screen — that's a persistent
+  [app bar](/components/app-bar).
+- Don't overload it with every possible action; a crowded toolbar is hard to scan.
+- Don't let a floating toolbar obscure the content or selection it acts on.
+- Don't rely on ambiguous icons without labels or tooltips.
 
 ## Accessibility
 

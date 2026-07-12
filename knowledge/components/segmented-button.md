@@ -31,6 +31,27 @@ a small footprint — it keeps every choice visible, unlike a [select](/componen
 For many options, or options that are not a tight set, prefer a select or
 [radio group](/components/radio-group). Keep segment labels short.
 
+## Do / Don't
+
+**Do**
+
+- Use a segmented button when the options are few, related, and worth showing all
+  at once in a small footprint — a view mode, a filter, a sort.
+- Keep segment labels short, and make the selected segment(s) clearly distinct.
+  See [color-only state signaling](/anti-patterns/color-only-state-signaling).
+- Choose single-select for a one-of set (like a toggle) and multi-select when
+  several can be active.
+
+**Don't**
+
+- Don't use a segmented button for many options or a loose set — prefer a
+  [select](/components/select) or [radio group](/components/radio-group).
+- Don't use it to trigger actions; it holds a selection. For peer actions, use a
+  [button group](/components/button-group).
+- Don't cram more than a handful of segments in; the row gets cramped and labels
+  truncate.
+- Don't signal the selected segment with color alone.
+
 ## Accessibility
 
 The row is exposed as a group; selection state is announced and signaled beyond color;

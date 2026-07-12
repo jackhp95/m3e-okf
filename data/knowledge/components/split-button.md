@@ -10,6 +10,9 @@ sources:
   - url: https://m3.material.io/components/split-button/overview
     retrieved: 2026-07-11
     note: Split button as an M3 Expressive component.
+  - url: https://m3.material.io/components/split-button/guidelines
+    retrieved: 2026-07-11
+    note: When a default action plus related choices fits.
 ---
 
 A split button pairs a **primary action** with an attached affordance that opens a
@@ -27,6 +30,25 @@ Use a split button when there is a clear default action plus a few close variant
 "Save as…", "Send" with scheduling options. Make the default the action users want most often.
 When there is no obvious default, a plain [button](/components/button) opening a menu, or a
 [button group](/components/button-group), may communicate the choices more clearly.
+
+## Do / Don't
+
+**Do**
+
+- Use a split button when there's a clear default action plus a few close variants
+  — "Save" with "Save as…", "Send" with scheduling options.
+- Make the default the action users want most often, and label it clearly.
+- Keep the attached menu to related alternatives of the same intent.
+
+**Don't**
+
+- Don't use a split button when there's no obvious default — a plain
+  [button](/components/button) opening a [menu](/components/menu), or a
+  [button group](/components/button-group), reads more clearly.
+- Don't fill the attached menu with unrelated actions; it's for variants of the
+  primary one.
+- Don't make the menu trigger so small it's hard to hit next to the main button.
+- Don't hide a destructive option as the default where a mis-tap would be costly.
 
 ## Accessibility
 

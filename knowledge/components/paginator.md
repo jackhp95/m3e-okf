@@ -28,6 +28,26 @@ natural and the user benefits from knowing the total. For continuous browsing of
 content, incremental loading in a [feed](/patterns/feed) may fit better than discrete pages.
 Show the current position and total so the user is not lost.
 
+## Do / Don't
+
+**Do**
+
+- Use a paginator for large, tabular, or result-oriented data where page-by-page
+  navigation is natural and knowing the total helps.
+- Show the current range and total so the user always knows where they are.
+- Disable previous/next at the boundaries, and offer a page-size option when it's
+  useful.
+- Keep the current position stable when the user changes page size.
+
+**Don't**
+
+- Don't paginate continuous, homogeneous browsing where incremental loading in a
+  [feed](/patterns/feed) reads more smoothly.
+- Don't hide the total or current position, leaving the user unsure how much
+  remains.
+- Don't reset the user to page one on every unrelated interaction.
+- Don't offer numbered pages so numerous that the control itself becomes unwieldy.
+
 ## Accessibility
 
 The current page and total are exposed to assistive technology; previous/next and page

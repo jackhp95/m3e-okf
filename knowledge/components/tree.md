@@ -28,6 +28,25 @@ keeping context. Keep indentation and expansion state clear. For flat data, a pl
 [list](/components/list) is simpler; for moving up a known path, a
 [breadcrumb](/components/breadcrumb) complements a tree.
 
+## Do / Don't
+
+**Do**
+
+- Use a tree when the data is genuinely hierarchical and users need to navigate
+  levels while keeping context — a file system, an outline, a category hierarchy.
+- Keep indentation and expansion state clear, and mark expanded/collapsed with
+  more than color.
+  See [color-only state signaling](/anti-patterns/color-only-state-signaling).
+- Preserve expansion state as the user moves around so they don't lose their place.
+
+**Don't**
+
+- Don't use a tree for flat data — a plain [list](/components/list) is simpler.
+- Don't nest so deeply that indentation runs out of room and structure blurs.
+- Don't collapse the branch a user is working in out from under them.
+- Don't hide the expand/collapse affordance or make it ambiguous which nodes have
+  children.
+
 ## Accessibility
 
 The structure is exposed as a tree, with each node's level, expanded/collapsed state, and

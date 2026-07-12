@@ -31,6 +31,26 @@ left; use indeterminate when it is not. Place the indicator where the affected c
 and remove it as soon as the process finishes. For brief waits an inline loading indicator
 may fit better than a full progress bar.
 
+## Do / Don't
+
+**Do**
+
+- Use a determinate indicator when progress is measurable, so the user can gauge
+  how long is left.
+- Use an indeterminate indicator when the duration is genuinely unknown.
+- Place the indicator where the affected content is, and remove it as soon as the
+  process finishes.
+- Pick the linear or circular form to fit the layout (a bar across a region, a
+  ring inline).
+
+**Don't**
+
+- Don't show an indeterminate spinner when you could report real progress.
+- Don't leave a determinate bar stuck at a value after the work completes.
+- Don't use a full progress bar for a brief wait — an inline
+  [loading indicator](/components/loading-indicator) fits better.
+- Don't convey progress by animation alone with no accessible value.
+
 ## Accessibility
 
 The indicator's state is exposed to assistive technology — for a determinate indicator, its

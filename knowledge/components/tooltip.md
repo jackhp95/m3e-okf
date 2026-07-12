@@ -30,6 +30,27 @@ Use a tooltip to name or clarify a control whose purpose might not be obvious, e
 [icon buttons](/components/icon-button). Keep it short. Do not hide essential information
 only in a tooltip, since it is not persistently visible and can be hard to reach on touch.
 
+## Do / Don't
+
+**Do**
+
+- Use a tooltip to name or clarify a control whose purpose might not be obvious,
+  especially [icon buttons](/components/icon-button).
+- Keep the text short — a label or a brief phrase.
+- Show the tooltip on both hover and keyboard focus, and keep it visible long
+  enough to read.
+- Anchor it to its target so the association is clear.
+
+**Don't**
+
+- Don't hide essential information only in a tooltip; it isn't persistently
+  visible and is hard to reach on touch.
+- Don't treat a tooltip as a substitute for a control's accessible name — an icon
+  button still needs its own name.
+- Don't put interactive-critical actions in a plain tooltip that vanishes on
+  pointer move.
+- Don't show a tooltip on hover alone, leaving keyboard users without it.
+
 ## Accessibility
 
 A tooltip appears on **both** hover and keyboard focus, not hover alone, and stays visible
