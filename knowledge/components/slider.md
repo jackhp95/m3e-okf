@@ -30,6 +30,26 @@ Use a slider when the value is spatial or approximate and immediate feedback hel
 volume, brightness, a price range. When a precise number matters more than a feel for
 magnitude, a numeric [text field](/components/text-field) may serve better, or pair the two.
 
+## Do / Don't
+
+**Do**
+
+- Use a slider when the value is spatial or approximate and immediate feedback
+  helps — volume, brightness, a price range.
+- Show the current value in text (a label while dragging, or a nearby readout) so
+  it's not conveyed by handle position alone.
+- Use a discrete slider with tick marks when the value should snap to steps, and a
+  range slider when the user sets a lower and upper bound.
+
+**Don't**
+
+- Don't use a slider when a precise number matters more than a feel for magnitude
+  — a numeric [text field](/components/text-field) serves better, or pair the two.
+- Don't make the track cover so wide a range that fine adjustment is impractical.
+- Don't hide the selected value; a slider with no readout is hard to set
+  accurately.
+- Don't shrink the handle below the minimum target size.
+
 ## Accessibility
 
 The slider exposes its current value, minimum, and maximum to assistive technology and is

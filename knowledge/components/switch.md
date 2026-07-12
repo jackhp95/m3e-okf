@@ -30,6 +30,26 @@ Use a switch for an immediate binary setting — enabling a feature, turning som
 Use a [checkbox](/components/checkbox) instead when the choice is part of a form that is
 submitted together, or when an indeterminate state is needed.
 
+## Do / Don't
+
+**Do**
+
+- Use a switch for an immediate binary setting — enabling a feature, turning
+  something on — where the change takes effect at once.
+- Label the switch by the setting it controls, worded so "on" is unambiguous.
+- Signal the on/off state by position (and often an icon), not color alone.
+  See [color-only state signaling](/anti-patterns/color-only-state-signaling).
+
+**Don't**
+
+- Don't use a switch inside a form that's submitted together, or when an
+  indeterminate state is needed — use a [checkbox](/components/checkbox).
+- Don't attach a switch to an action that needs confirmation or has heavy
+  consequences without a safeguard; switches imply instant, low-stakes change.
+- Don't pair a switch with a separate "Apply"/"Save" button — that contradicts
+  its immediate-effect meaning.
+- Don't rely on color alone to convey the current state.
+
 ## Accessibility
 
 The on/off state is exposed to assistive technology and is signaled by more than color —

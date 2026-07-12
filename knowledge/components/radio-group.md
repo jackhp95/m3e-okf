@@ -31,6 +31,26 @@ seeing every option matters. For many options, a [select](/components/select) sa
 For independent on/off choices, use [checkboxes](/components/checkbox); for an immediate
 setting toggle, a [switch](/components/switch).
 
+## Do / Don't
+
+**Do**
+
+- Use a radio group for a single choice among a small set (roughly two to a
+  handful) where seeing every option matters.
+- Give the group a label and each option a clear, parallel label.
+- Preselect a sensible default when one exists, so the group isn't left empty.
+- Signal the selected option with more than color.
+
+**Don't**
+
+- Don't use a radio group when many options make the list long — a
+  [select](/components/select) saves space.
+- Don't use radios for independent on/off choices — those are
+  [checkboxes](/components/checkbox); for an immediate setting toggle, a
+  [switch](/components/switch).
+- Don't offer a single radio button on its own; a lone choice is a checkbox.
+- Don't scatter the options so the group reads as unrelated controls.
+
 ## Accessibility
 
 The options are exposed as one group with a group label, so assistive technology announces

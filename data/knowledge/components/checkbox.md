@@ -30,6 +30,27 @@ Use checkboxes for multi-select or for a single independent on/off choice within
 Use a [radio group](/components/radio-group) instead when exactly one option must be chosen
 from a set, and a [switch](/components/switch) for toggling a setting on or off immediately.
 
+## Do / Don't
+
+**Do**
+
+- Use checkboxes when the user can select any number of independent options,
+  including none.
+- Give each checkbox a clear label, and toggle the box when the label is tapped.
+- Use the indeterminate state for a parent that summarizes partially-selected
+  children.
+- Phrase labels positively so the checked state has an unambiguous meaning.
+
+**Don't**
+
+- Don't use a checkbox where exactly one option must be chosen from a set — that's
+  a [radio group](/components/radio-group).
+- Don't use a checkbox for a setting that should take effect immediately — a
+  [switch](/components/switch) signals instant on/off.
+- Don't write a negatively-worded label ("Don't send emails") that makes the
+  checked state confusing.
+- Don't rely on color alone to show the checked or indeterminate state.
+
 ## Accessibility
 
 The label is programmatically associated with the box so tapping the label toggles it, and
