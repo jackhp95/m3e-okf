@@ -33,6 +33,31 @@ step down for secondary ones; more than one high-emphasis button in the same are
 flattens the hierarchy. Labels are short and action-oriented — they say what
 happens.
 
+## Do / Don't
+
+**Do**
+
+- Reserve the filled (or highest-emphasis) variant for the single most important
+  action in a view, and step down the ladder for secondary actions.
+- Keep labels short and action-first — a verb or verb phrase that names what
+  happens ("Save", "Add to cart", "Send").
+- Pair a button with a matching state: disable it only when the action is genuinely
+  unavailable, and explain why nearby when the reason isn't obvious.
+- Group related actions together and order them consistently (the confirming
+  action last, in end-aligned dialog and form footers).
+
+**Don't**
+
+- Don't place two high-emphasis buttons side by side — competing "loudest"
+  buttons flatten the hierarchy and leave users unsure which to pick.
+  See [too many emphasis levels](/anti-patterns/too-many-emphasis-levels).
+- Don't use a button for navigation that just moves the user to another place —
+  that's a link. Buttons perform actions; links go places.
+- Don't write vague labels ("OK", "Submit", "Click here") when a specific verb
+  would tell the user the outcome.
+- Don't rely on color alone to signal a button's emphasis or disabled state;
+  keep the distinction legible without color.
+
 ## Accessibility
 
 The visible label is the button's accessible name, so it does not need a separate

@@ -33,6 +33,29 @@ suggestion chips for offered options. Filter chips must show their selected stat
 than color. Do not use chips as primary navigation or as a substitute for
 [buttons](/components/button) when a clear action hierarchy is needed.
 
+## Do / Don't
+
+**Do**
+
+- Match the chip type to the job: filter chips to narrow results, input chips for
+  tokens the user entered, assist chips for a contextual shortcut, suggestion
+  chips for offered options.
+- Keep chip labels short — a word or a short phrase — and make removable input
+  chips clearly removable.
+- Show filter and selection state with more than color (a checkmark or fill), so
+  the selected chips are unmistakable.
+  See [color-only state signaling](/anti-patterns/color-only-state-signaling).
+- Let a chip set wrap or scroll gracefully when there are many options.
+
+**Don't**
+
+- Don't use chips as primary navigation or as a replacement for
+  [buttons](/components/button) when the screen needs a clear action hierarchy.
+- Don't mix chip types with conflicting behaviors in the same set (a filter chip
+  next to an action chip) where it confuses what a tap does.
+- Don't rely on color alone to mark a filter chip as selected.
+- Don't overflow a row with so many chips that the important options are hidden.
+
 ## Accessibility
 
 Each chip is a control with an accessible name; a removable chip's remove action is

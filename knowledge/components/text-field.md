@@ -31,6 +31,28 @@ Keep the label short and always present rather than relying on placeholder text
 that vanishes on typing. Supporting text guides input up front; error text states
 what went wrong and how to fix it, not merely that the value is invalid.
 
+## Do / Don't
+
+**Do**
+
+- Keep a short, persistent label on every field so its purpose stays visible
+  after the user starts typing.
+- Use supporting text to set expectations up front (format, constraints), and
+  error text to say what went wrong and how to fix it.
+- Size the field to the expected input where it helps (a short field for a ZIP
+  code, a wider one for an address).
+- Mark required fields consistently, and validate at a helpful moment rather than
+  flagging every keystroke.
+
+**Don't**
+
+- Don't use placeholder text as the label — it disappears on typing and leaves
+  the user without a reference.
+- Don't write error text that only says a value is "invalid"; state the rule and
+  the fix.
+- Don't signal required, error, or focus state with color alone.
+- Don't cram unrelated inputs into one field or ask for information you don't need.
+
 ## Accessibility
 
 The label is programmatically associated with the input so it is announced as the
