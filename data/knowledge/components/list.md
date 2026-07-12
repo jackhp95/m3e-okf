@@ -32,6 +32,29 @@ files. Keep the row format consistent across items. When each item drills into a
 view, the list is the browse side of a [list-detail](/patterns/list-detail) layout. For a
 grid of richer cards, use a [feed](/patterns/feed) instead.
 
+## Do / Don't
+
+**Do**
+
+- Use a list for a homogeneous collection whose items share a structure —
+  messages, settings, files.
+- Keep the row format consistent across items (same line count, same leading and
+  trailing slots) so the column reads as one set.
+- Use leading and trailing elements purposefully: an avatar or icon to identify,
+  a control or metadata to act or inform.
+- When each row drills into detail, treat the list as the browse side of a
+  [list-detail](/patterns/list-detail) layout.
+
+**Don't**
+
+- Don't vary row height and structure item to item; inconsistent rows are hard to
+  scan.
+- Don't overload a row with competing controls that obscure the item's primary
+  target.
+- Don't use a list for a grid of rich, media-heavy cards — reach for a
+  [feed](/patterns/feed) instead.
+- Don't rely on a decorative leading icon to carry meaning without a text label.
+
 ## Accessibility
 
 The list is exposed as a list with a known item count, rows are keyboard-navigable, and any

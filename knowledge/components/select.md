@@ -33,6 +33,29 @@ crowd the layout. When the set is short and worth seeing at a glance, a
 keeps the options visible. When the user needs to filter a long list by typing, an
 autocomplete fits better.
 
+## Do / Don't
+
+**Do**
+
+- Use a select for one choice among many options where showing them all inline
+  would crowd the layout.
+- Give the field a persistent label and a sensible default or placeholder.
+- Order options predictably (alphabetical, by frequency, or by logical grouping)
+  so the target option is easy to find.
+
+**Don't**
+
+- Don't hide a short, high-value option set behind a select — a
+  [radio group](/components/radio-group) or
+  [segmented button](/components/segmented-button) keeps a few options visible at
+  a glance.
+- Don't use a plain select when the user needs to filter a long list by typing —
+  an autocomplete fits better.
+- Don't pack the option list with so many entries, or such long labels, that
+  scanning becomes work; group or filter instead.
+- Don't leave the field without a label or rely on the first option as a de facto
+  label.
+
 ## Accessibility
 
 The field has a label, exposes its current value and its expanded/collapsed state, and is

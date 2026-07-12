@@ -33,6 +33,27 @@ the user must act on before continuing — that is a [dialog](/components/dialog
 stack snackbars; show one at a time. See
 [dialog for non-blocking info](/anti-patterns/dialog-for-non-blocking-info).
 
+## Do / Don't
+
+**Do**
+
+- Use a snackbar for a brief, low-priority confirmation or notice that needs no
+  decision ("Message sent", "Photo deleted").
+- Keep the message to one line, and include at most one action (commonly *Undo*).
+- Let the action stay reachable long enough to be used before the snackbar
+  auto-dismisses.
+- Show one snackbar at a time, replacing rather than stacking.
+
+**Don't**
+
+- Don't use a snackbar for information the user must act on before continuing —
+  that's a [dialog](/components/dialog).
+  See [dialog for non-blocking info](/anti-patterns/dialog-for-non-blocking-info).
+- Don't stack multiple snackbars or queue a burst of them.
+- Don't put more than one action, or critical/destructive-only actions, in a
+  snackbar that will disappear on its own.
+- Don't rely on a snackbar for errors that need persistent, in-context attention.
+
 ## Accessibility
 
 A snackbar is announced to assistive technology when it appears without stealing focus.

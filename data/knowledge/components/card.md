@@ -31,6 +31,28 @@ Use a card to package related content into a scannable unit, especially in a
 that obvious and avoid burying separate interactive controls inside a clickable card in a
 way that confuses which target is being activated.
 
+## Do / Don't
+
+**Do**
+
+- Use a card to package related content and actions about one subject into a
+  scannable unit, especially in a [feed](/patterns/feed).
+- Keep one subject per card, and choose the variant (elevated, filled, outlined)
+  by how much separation from the background the context needs.
+- If the whole card is a target, make that obvious and give it a single clear
+  action.
+- Keep the markup's content order matching the visual reading order.
+
+**Don't**
+
+- Don't nest separate interactive controls inside a fully clickable card in a way
+  that makes it unclear which target a tap hits.
+- Don't cram multiple unrelated subjects into one card — split them.
+- Don't use a card merely to draw a box around content that isn't a distinct
+  unit; plain layout may serve better.
+- Don't mix card variants arbitrarily within one set where consistency aids
+  scanning.
+
 ## Accessibility
 
 If the whole card is a single target, it is one focusable control with an accessible name;

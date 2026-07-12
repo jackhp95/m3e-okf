@@ -31,6 +31,29 @@ destinations a [navigation bar](/components/navigation-bar) shows at compact wid
 drawer shows when expanded. See [navigation](/patterns/navigation). Keep destinations and
 order consistent across the size-class transitions.
 
+## Do / Don't
+
+**Do**
+
+- Use a navigation rail as the medium-width form of top-level navigation, showing
+  the same destinations the [bar](/components/navigation-bar) shows at compact
+  width and a drawer shows when expanded.
+- Keep destinations and their order consistent across the size-class transitions.
+  See [navigation](/patterns/navigation).
+- Mark the active destination with more than color, and give each a short label.
+- Use the rail's leading slot for a primary action such as a
+  [FAB](/components/fab) when the layout calls for one.
+
+**Don't**
+
+- Don't put contextual, per-screen actions in the rail — keep it to top-level
+  destinations.
+- Don't change the destination set or order between the bar, rail, and drawer
+  forms.
+- Don't overfill the rail; if the destination set outgrows it, move to a
+  [drawer](/components/navigation-drawer).
+- Don't rely on color alone to show which destination is active.
+
 ## Accessibility
 
 The rail is exposed as navigation, the current destination is announced and signaled beyond

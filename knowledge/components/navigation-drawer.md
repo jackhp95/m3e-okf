@@ -32,6 +32,26 @@ or [rail](/components/navigation-rail) should carry, or on expanded layouts wher
 panel fits. On smaller screens, prefer a modal drawer so it does not permanently consume a
 column. See [navigation](/patterns/navigation).
 
+## Do / Don't
+
+**Do**
+
+- Use a drawer when the destination set is larger than a
+  [bar](/components/navigation-bar) or [rail](/components/navigation-rail) should
+  carry, or on expanded layouts where a persistent panel fits.
+- Group related destinations with dividers and headings when the list is long.
+- Prefer a modal drawer on smaller screens so it doesn't permanently consume a
+  column; use a standard (persistent) drawer on wide layouts.
+- Keep the current destination clearly marked and the destination order stable.
+
+**Don't**
+
+- Don't force a permanent drawer onto compact screens — it steals space a
+  navigation bar would use better.
+- Don't fill the drawer with per-screen actions; it's for top-level navigation.
+- Don't leave a modal drawer without a scrim and an escape/dismiss affordance.
+- Don't rely on color alone to indicate the active destination.
+
 ## Accessibility
 
 The drawer is exposed as navigation with the current destination announced and signaled beyond
