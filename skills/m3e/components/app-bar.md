@@ -75,6 +75,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A bar, placed a the top of a screen, used to help users navigate through an application.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

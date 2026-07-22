@@ -69,6 +69,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An item of a floating action button (FAB) menu.
 
+**Display:** `inline-block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -118,6 +120,8 @@ An item of a floating action button (FAB) menu.
 
 A menu, opened from a floating action button (FAB), used to display multiple related actions.
 
+**Display:** `none`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -166,6 +170,8 @@ _…5 more families. See source for the full list._
 ### `<m3e-fab-menu-trigger>`
 
 An element, nested within a clickable element, used to open a floating action button (FAB) menu.
+
+**Display:** `none`
 
 **Attributes**
 

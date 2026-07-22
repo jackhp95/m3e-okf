@@ -42,6 +42,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An internal component used to display a single month in a calendar.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -72,6 +74,8 @@ An internal component used to display a single month in a calendar.
 
 An internal component used to display a year selector in a calendar.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -93,6 +97,8 @@ An internal component used to display a year selector in a calendar.
 
 An internal component used to display a single year in a calendar.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -113,6 +119,8 @@ An internal component used to display a single year in a calendar.
 ### `<m3e-calendar>`
 
 A calendar used to select a date.
+
+**Display:** `inline-block`
 
 **Attributes**
 

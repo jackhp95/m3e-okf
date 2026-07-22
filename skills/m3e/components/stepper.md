@@ -68,6 +68,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Provides a wizard-like workflow by dividing content into logical steps.
 
+**Display:** `flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -113,6 +115,8 @@ Provides a wizard-like workflow by dividing content into logical steps.
 
 A panel presented for a step in a wizard-like workflow.
 
+**Display:** `block`
+
 **Slots**
 
 | Slot | Description |
@@ -131,6 +135,8 @@ A panel presented for a step in a wizard-like workflow.
 ### `<m3e-step>`
 
 A step in a wizard-like workflow.
+
+**Display:** `block`
 
 **Attributes**
 
@@ -197,6 +203,8 @@ _…15 more families. See source for the full list._
 
 An element, nested within a clickable element, used to move a stepper to the next step.
 
+**Display:** `contents`
+
 **Slots**
 
 | Slot | Description |
@@ -207,6 +215,8 @@ An element, nested within a clickable element, used to move a stepper to the nex
 
 An element, nested within a clickable element, used to move a stepper to the previous step.
 
+**Display:** `contents`
+
 **Slots**
 
 | Slot | Description |
@@ -216,6 +226,8 @@ An element, nested within a clickable element, used to move a stepper to the pre
 ### `<m3e-stepper-reset>`
 
 An element, nested within a clickable element, used to reset a stepper to its initial state.
+
+**Display:** `contents`
 
 **Slots**
 

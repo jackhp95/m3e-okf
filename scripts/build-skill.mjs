@@ -79,6 +79,17 @@ function table(headers, rows) {
 function renderElement(el) {
   let s = `### \`<${el.tag}>\`\n\n`;
   if (el.summary) s += `${oneLine(el.summary)}\n\n`;
+  // Catalog metadata (from components.json): how the element renders + whether
+  // it's natively navigable — so an agent doesn't wrap an href-bearing element
+  // in an anchor, or guess its block/inline behaviour.
+  const meta = [];
+  if (el.display) {
+    let d = `**Display:** \`${el.display.value}\``;
+    if (el.display.note) d += ` (${el.display.note})`;
+    meta.push(d);
+  }
+  if (el.navigable) meta.push("**Navigable:** carries a native `href` — do not wrap it in an `<a>`.");
+  if (meta.length) s += meta.join(" · ") + "\n\n";
   if (el.attributes.length)
     s +=
       "**Attributes**\n\n" +
@@ -126,6 +137,15 @@ for (const c of components) {
   }
   md += `${oneLine(c.description)}\n\n`;
   if (cardNotes[c.name]) md += `> **Note:** ${oneLine(cardNotes[c.name])}\n\n`;
+  // Host contract (from components.json): the slotted structure this component
+  // expects (e.g. form-field wants native <label for> + control siblings and
+  // does no id-wiring). Surfaced so agents compose it correctly, not by guess.
+  if (c.hostContract) {
+    md += `> **Host contract:** ${oneLine(c.hostContract.expects)}`;
+    if (c.hostContract.knownControlTags && c.hostContract.knownControlTags.length)
+      md += ` Known control tags: ${c.hostContract.knownControlTags.map((t) => `\`${t}\``).join(", ")}.`;
+    md += "\n\n";
+  }
   md += "```ts\n" + c.import + "\n```\n\n";
   if (c.elementCount > 1) md += `**Elements:** ${c.elements.map((e) => `\`<${e.tag}>\``).join(", ")}\n\n`;
 

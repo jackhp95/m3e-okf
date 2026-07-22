@@ -50,6 +50,8 @@ _Source: kinfolk: src/pages/entities/[id].astro_
 
 An interactive element that, when activated, presents an associated tab panel.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -104,6 +106,8 @@ _…7 more families. See source for the full list._
 
 A panel presented for a tab.
 
+**Display:** `block`
+
 **Slots**
 
 | Slot | Description |
@@ -113,6 +117,8 @@ A panel presented for a tab.
 ### `<m3e-tabs>`
 
 Organizes content into separate views where only one view can be visible at a time.
+
+**Display:** `flex`
 
 **Attributes**
 

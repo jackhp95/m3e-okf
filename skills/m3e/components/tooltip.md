@@ -80,6 +80,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An element, nested within a clickable element, used to dismiss a parenting rich tooltip.
 
+**Display:** `contents`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -95,6 +97,8 @@ An element, nested within a clickable element, used to dismiss a parenting rich 
 ### `<m3e-rich-tooltip>`
 
 Provides contextual details for a control, such as explaining the value or purpose of a feature.
+
+**Display:** `contents`
 
 **Attributes**
 
@@ -152,6 +156,8 @@ _…8 more families. See source for the full list._
 ### `<m3e-tooltip>`
 
 Adds additional context to a button or other UI element.
+
+**Display:** `contents`
 
 **Attributes**
 

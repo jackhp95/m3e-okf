@@ -49,6 +49,8 @@ _Source: kinfolk: src/pages/entities/[id].astro_
 
 An image, icon or textual initials representing a user or other identity.
 
+**Display:** `inline-block`
+
 **Slots**
 
 | Slot | Description |

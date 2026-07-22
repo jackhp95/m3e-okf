@@ -58,6 +58,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A button used to show an action with a menu of related actions.
 
+**Display:** `inline-flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

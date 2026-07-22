@@ -84,6 +84,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An element, nested within a clickable element, used to close a parenting bottom sheet.
 
+**Display:** `contents`
+
 **Slots**
 
 | Slot | Description |
@@ -93,6 +95,8 @@ An element, nested within a clickable element, used to close a parenting bottom 
 ### `<m3e-bottom-sheet>`
 
 A sheet used to show secondary content anchored to the bottom of the screen.
+
+**Display:** `block`
 
 **Attributes**
 
@@ -153,6 +157,8 @@ _…20 more families. See source for the full list._
 ### `<m3e-bottom-sheet-trigger>`
 
 An element, nested within a clickable element, used to trigger a bottom sheet.
+
+**Display:** `block`
 
 **Attributes**
 

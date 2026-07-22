@@ -57,6 +57,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A circular indicator of progress and activity.
 
+**Display:** `inline-flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -93,6 +95,8 @@ A circular indicator of progress and activity.
 ### `<m3e-linear-progress-indicator>`
 
 A horizontal bar for indicating progress and activity.
+
+**Display:** `block`
 
 **Attributes**
 

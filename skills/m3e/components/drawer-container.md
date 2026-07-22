@@ -97,6 +97,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A container for one or two sliding drawers.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -146,6 +148,8 @@ A container for one or two sliding drawers.
 ### `<m3e-drawer-toggle>`
 
 An element, nested within a clickable element, used to toggle the opened state of a drawer.
+
+**Display:** `block`
 
 **Attributes**
 

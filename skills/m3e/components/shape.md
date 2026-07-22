@@ -43,6 +43,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A shape used to add emphasis and decorative flair.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

@@ -61,6 +61,8 @@ _Source: kinfolk: src/layouts/Layout.astro_
 
 ### `<m3e-breadcrumb-item-button>`
 
+**Display:** `block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -87,6 +89,8 @@ _Source: kinfolk: src/layouts/Layout.astro_
 ### `<m3e-breadcrumb-item>`
 
 An item in a breadcrumb.
+
+**Display:** `block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
 
 **Attributes**
 
@@ -141,6 +145,8 @@ _…9 more families. See source for the full list._
 ### `<m3e-breadcrumb>`
 
 Displays a hierarchical navigation path and identifies the user's
+
+**Display:** `block`
 
 **Attributes**
 

@@ -72,6 +72,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Presents frequently used actions relevant to the current page.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

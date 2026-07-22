@@ -100,6 +100,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An item in a list.
 
+**Display:** `block`
+
 **Properties** (JS-only, no attribute)
 
 | Property | Type | Description |
@@ -141,6 +143,8 @@ _…35 more families. See source for the full list._
 
 A list of items.
 
+**Display:** `flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -178,6 +182,8 @@ A list of items.
 | `--m3e-segmented-list-item-selected-container-shape` | Border radius of items in segmented variant when selected. |
 
 ### `<m3e-list-item-button>`
+
+**Display:** `block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
 
 **Attributes**
 
@@ -236,6 +242,8 @@ _…35 more families. See source for the full list._
 
 An item in a list that performs an action.
 
+**Display:** `block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -292,6 +300,8 @@ _…54 more families. See source for the full list._
 ### `<m3e-expandable-list-item>`
 
 An item in a list that can be expanded to show more items.
+
+**Display:** `block`
 
 **Attributes**
 
@@ -353,6 +363,8 @@ _…62 more families. See source for the full list._
 
 A list of actions.
 
+**Display:** `flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -392,6 +404,8 @@ A list of actions.
 ### `<m3e-list-option>`
 
 A selectable option in a list.
+
+**Display:** `block`
 
 **Attributes**
 
@@ -450,6 +464,8 @@ _…69 more families. See source for the full list._
 ### `<m3e-selection-list>`
 
 A list of selectable options.
+
+**Display:** `flex`
 
 **Attributes**
 

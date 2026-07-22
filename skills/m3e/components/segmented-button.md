@@ -60,6 +60,8 @@ _Source: 2026: src/components/ReadingToolbar.astro_
 
 A option that can be selected within a segmented button.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -116,6 +118,8 @@ _…17 more families. See source for the full list._
 ### `<m3e-segmented-button>`
 
 A button that allows a user to select from a limited set of options.
+
+**Display:** `inline-flex`
 
 **Attributes**
 
