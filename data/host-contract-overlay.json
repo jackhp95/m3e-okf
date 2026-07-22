@@ -1,0 +1,6 @@
+{
+  "form-field": {
+    "expects": "native <label for=id> + control <input id> as default-slot siblings; the component does NO id-wiring",
+    "knownControlTags": ["m3e-input-chip-set", "m3e-select", "input", "textarea", "select"]
+  }
+}

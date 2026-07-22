@@ -11,6 +11,10 @@
         "tag": "m3e-app-bar",
         "summary": "A bar, placed a the top of a screen, used to help users navigate through an application.",
         "sourceFile": "packages/web/src/app-bar/AppBarElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "centered",
@@ -218,6 +222,10 @@
         "tag": "m3e-autocomplete",
         "summary": "Enhances a text input with suggested options.",
         "sourceFile": "packages/web/src/autocomplete/AutocompleteElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "auto-activate",
@@ -405,6 +413,10 @@
         "tag": "m3e-avatar",
         "summary": "An image, icon or textual initials representing a user or other identity.",
         "sourceFile": "packages/web/src/avatar/AvatarElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -492,6 +504,10 @@
         "tag": "m3e-badge",
         "summary": "A visual indicator used to label content.",
         "sourceFile": "packages/web/src/badge/BadgeElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "size",
@@ -603,6 +619,10 @@
         "tag": "m3e-bottom-sheet-action",
         "summary": "An element, nested within a clickable element, used to close a parenting bottom sheet.",
         "sourceFile": "packages/web/src/bottom-sheet/BottomSheetActionElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "overlay"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -623,6 +643,10 @@
         "tag": "m3e-bottom-sheet",
         "summary": "A sheet used to show secondary content anchored to the bottom of the screen.",
         "sourceFile": "packages/web/src/bottom-sheet/BottomSheetElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "detent",
@@ -903,6 +927,10 @@
         "tag": "m3e-bottom-sheet-trigger",
         "summary": "An element, nested within a clickable element, used to trigger a bottom sheet.",
         "sourceFile": "packages/web/src/bottom-sheet/BottomSheetTriggerElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "detent",
@@ -974,6 +1002,11 @@
       {
         "tag": "m3e-breadcrumb-item-button",
         "sourceFile": "packages/web/src/breadcrumb/BreadcrumbItemButtonElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "current",
@@ -1044,6 +1077,11 @@
         "tag": "m3e-breadcrumb-item",
         "summary": "An item in a breadcrumb.",
         "sourceFile": "packages/web/src/breadcrumb/BreadcrumbItemElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "item-label",
@@ -1236,6 +1274,10 @@
         "tag": "m3e-breadcrumb",
         "summary": "Displays a hierarchical navigation path and identifies the user's",
         "sourceFile": "packages/web/src/breadcrumb/BreadcrumbElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "wrap",
@@ -1291,6 +1333,11 @@
         "tag": "m3e-button",
         "summary": "A button users interact with to perform an action.",
         "sourceFile": "packages/web/src/button/ButtonElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -2389,6 +2436,10 @@
         "tag": "m3e-button-group",
         "summary": "Organizes buttons and adds interactions between them.",
         "sourceFile": "packages/web/src/button-group/ButtonGroupElement.ts",
+        "display": {
+          "value": "flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "multi",
@@ -2482,6 +2533,10 @@
         "tag": "m3e-month-view",
         "summary": "An internal component used to display a single month in a calendar.",
         "sourceFile": "packages/web/src/calendar/MonthViewElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "range-start",
@@ -2569,6 +2624,10 @@
         "tag": "m3e-multi-year-view",
         "summary": "An internal component used to display a year selector in a calendar.",
         "sourceFile": "packages/web/src/calendar/MultiYearViewElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "today",
@@ -2629,6 +2688,10 @@
         "tag": "m3e-year-view",
         "summary": "An internal component used to display a single year in a calendar.",
         "sourceFile": "packages/web/src/calendar/YearViewElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "today",
@@ -2689,6 +2752,10 @@
         "tag": "m3e-calendar",
         "summary": "A calendar used to select a date.",
         "sourceFile": "packages/web/src/calendar/CalendarElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "date",
@@ -3041,6 +3108,12 @@
         "tag": "m3e-card",
         "summary": "A content container for text, images (or other media), and actions in the context of a single subject.",
         "sourceFile": "packages/web/src/card/CardElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "block",
+          "source": "ts",
+          "note": "block by default; inline-block with the `inline` attribute"
+        },
         "attributes": [
           {
             "name": "actionable",
@@ -3357,6 +3430,10 @@
         "tag": "m3e-checkbox",
         "summary": "A checkbox that allows a user to select one or more options from a limited number of choices.",
         "sourceFile": "packages/web/src/checkbox/CheckboxElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "checked",
@@ -3664,6 +3741,10 @@
         "tag": "m3e-chip",
         "summary": "A non-interactive chip used to convey small pieces of information.",
         "sourceFile": "packages/web/src/chips/ChipElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "value",
@@ -3813,6 +3894,11 @@
         "tag": "m3e-assist-chip",
         "summary": "A chip users interact with to perform a smart or automated action that can span multiple applications.",
         "sourceFile": "packages/web/src/chips/AssistChipElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -4068,6 +4154,10 @@
         "tag": "m3e-chip-set",
         "summary": "A container used to organize chips into a cohesive unit.",
         "sourceFile": "packages/web/src/chips/ChipSetElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "vertical",
@@ -4102,6 +4192,10 @@
         "tag": "m3e-filter-chip",
         "summary": "A chip users interact with to select/deselect options.",
         "sourceFile": "packages/web/src/chips/FilterChipElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -4424,6 +4518,10 @@
         "tag": "m3e-filter-chip-set",
         "summary": "A container that organizes filter chips into a cohesive group, enabling selection and",
         "sourceFile": "packages/web/src/chips/FilterChipSetElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -4560,6 +4658,10 @@
         "tag": "m3e-input-chip",
         "summary": "A chip which represents a discrete piece of information entered by a user.",
         "sourceFile": "packages/web/src/chips/InputChipElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -4853,6 +4955,10 @@
         "tag": "m3e-input-chip-set",
         "summary": "A container that transforms user input into a cohesive set of interactive chips, supporting entry, editing, and removal of discrete values.",
         "sourceFile": "packages/web/src/chips/InputChipSetElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -4989,6 +5095,11 @@
         "tag": "m3e-suggestion-chip",
         "summary": "A chip used to help narrow a user's intent by presenting dynamically generated suggestions, such as",
         "sourceFile": "packages/web/src/chips/SuggestionChipElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -5279,6 +5390,10 @@
         "tag": "m3e-content-pane",
         "summary": "A shaped surface for vertically scrollable content.",
         "sourceFile": "packages/web/src/content-pane/ContentPaneElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -5335,6 +5450,10 @@
         "tag": "m3e-datepicker",
         "summary": "Presents a date picker on a temporary surface.",
         "sourceFile": "packages/web/src/datepicker/DatepickerElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "variant",
@@ -5651,6 +5770,10 @@
         "tag": "m3e-datepicker-toggle",
         "summary": "An element, nested within a clickable element, used to toggle a datepicker.",
         "sourceFile": "packages/web/src/datepicker/DatepickerToggleElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "for",
@@ -5698,6 +5821,10 @@
         "tag": "m3e-dialog-action",
         "summary": "An element, nested within a clickable element, used to close a parenting dialog.",
         "sourceFile": "packages/web/src/dialog/DialogActionElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "overlay"
+        },
         "attributes": [
           {
             "name": "return-value",
@@ -5726,6 +5853,10 @@
         "tag": "m3e-dialog",
         "summary": "A dialog that provides important prompts in a user flow.",
         "sourceFile": "packages/web/src/dialog/DialogElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "alert",
@@ -5930,6 +6061,10 @@
         "tag": "m3e-dialog-trigger",
         "summary": "An element, nested within a clickable element, used to open a dialog.",
         "sourceFile": "packages/web/src/dialog/DialogTriggerElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "for",
@@ -5958,7 +6093,7 @@
     ],
     "examples": [
       {
-        "code": "<m3e-button variant=\"filled\">\n  <m3e-dialog-trigger for=\"dlg\">Open Dialog</m3e-dialog-trigger>\n</m3e-button>\n<m3e-dialog id=\"dlg\" dismissible onclosed=\"console.log(this.returnValue)\">\n  <span slot=\"header\">Dialog Title</span>\n  Dialog content goes here.\n  <div slot=\"actions\">\n    <m3e-button autofocus><m3e-dialog-action return-value=\"ok\">Close</m3e-dialog-action></m3e-button>\n  </div>\n</m3e-dialog>"
+        "code": "<m3e-button variant=\"filled\">\n  <m3e-dialog-trigger for=\"dlg\">Open Dialog</m3e-dialog-trigger>\n</m3e-button>\n<m3e-dialog id=\"dlg\" dismissible onclosed=\"console.log(this.returnValue)\">\n  <span slot=\"header\">Dialog Title</span>\n  Dialog content goes here.\n  <div slot=\"actions\" end>\n    <m3e-button autofocus><m3e-dialog-action return-value=\"ok\">Close</m3e-dialog-action></m3e-button>\n  </div>\n</m3e-dialog>"
       }
     ],
     "verification": {
@@ -5981,6 +6116,10 @@
         "tag": "m3e-divider",
         "summary": "A thin line that separates content in lists or other containers.",
         "sourceFile": "packages/web/src/divider/DividerElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "inset",
@@ -6071,6 +6210,10 @@
         "tag": "m3e-drawer-container",
         "summary": "A container for one or two sliding drawers.",
         "sourceFile": "packages/web/src/drawer-container/DrawerContainerElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "end",
@@ -6206,6 +6349,10 @@
         "tag": "m3e-drawer-toggle",
         "summary": "An element, nested within a clickable element, used to toggle the opened state of a drawer.",
         "sourceFile": "packages/web/src/drawer-container/DrawerToggleElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "for",
@@ -6260,6 +6407,10 @@
         "tag": "m3e-expansion-header",
         "summary": "A button used to toggle the expanded state of an expansion panel.",
         "sourceFile": "packages/web/src/expansion-panel/ExpansionHeaderElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "hide-toggle",
@@ -6377,6 +6528,10 @@
         "tag": "m3e-expansion-panel",
         "summary": "An expandable details-summary view.",
         "sourceFile": "packages/web/src/expansion-panel/ExpansionPanelElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -6585,6 +6740,10 @@
         "tag": "m3e-accordion",
         "summary": "Combines multiple expansion panels in to an accordion.",
         "sourceFile": "packages/web/src/expansion-panel/AccordionElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "multi",
@@ -6641,6 +6800,11 @@
         "tag": "m3e-fab",
         "summary": "A floating action button (FAB) used to present important actions.",
         "sourceFile": "packages/web/src/fab/FabElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -8116,10 +8280,10 @@
     ],
     "examples": [
       {
-        "code": "<m3e-fab aria-label=\"Add\">\n  <m3e-icon name=\"add\"></m3e-icon>\n</m3e-fab>"
+        "code": "<m3e-fab>\n  <m3e-icon>add</m3e-icon>\n</m3e-fab>"
       },
       {
-        "code": "<m3e-fab extended>\n  <m3e-icon name=\"add\"></m3e-icon>\n  <span slot=\"label\">Add</span>\n</m3e-fab>"
+        "code": "<m3e-fab extended>\n  <m3e-icon>add</m3e-icon>\n  <span slot=\"label\">Add</span>\n</m3e-fab>"
       }
     ],
     "verification": {
@@ -8142,6 +8306,11 @@
         "tag": "m3e-menu-item",
         "summary": "An item of a floating action button (FAB) menu.",
         "sourceFile": "packages/web/src/fab-menu/FabMenuItemElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -8272,6 +8441,10 @@
         "tag": "m3e-fab-menu",
         "summary": "A menu, opened from a floating action button (FAB), used to display multiple related actions.",
         "sourceFile": "packages/web/src/fab-menu/FabMenuElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "variant",
@@ -8407,6 +8580,10 @@
         "tag": "m3e-fab-menu-trigger",
         "summary": "An element, nested within a clickable element, used to open a floating action button (FAB) menu.",
         "sourceFile": "packages/web/src/fab-menu/FabMenuTriggerElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "for",
@@ -8461,11 +8638,25 @@
     "description": "The `m3e-form-field` component is a semantic, expressive container for form controls that anchors label behavior, subscript messaging, and variant-specific layout. Designed according to Material Design 3 guidelines, it supports two visual variants—`outlined` and `filled`—each with dynamic elevation, shape transitions, and adaptive color theming. The component responds to control state changes (focus, hover, press, disabled, invalid) with smooth motion and semantic clarity, ensuring visual hierarchy and emotional resonance.",
     "import": "import \"@m3e/web/form-field\";",
     "elementCount": 1,
+    "hostContract": {
+      "expects": "native <label for=id> + control <input id> as default-slot siblings; the component does NO id-wiring",
+      "knownControlTags": [
+        "m3e-input-chip-set",
+        "m3e-select",
+        "input",
+        "textarea",
+        "select"
+      ]
+    },
     "elements": [
       {
         "tag": "m3e-form-field",
         "summary": "A container for form controls that applies Material Design styling and behavior.",
         "sourceFile": "packages/web/src/form-field/FormFieldElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "float-label",
@@ -8714,6 +8905,10 @@
         "tag": "m3e-heading",
         "summary": "A heading to a page or section.",
         "sourceFile": "packages/web/src/heading/HeadingElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "emphasized",
@@ -8947,6 +9142,10 @@
         "tag": "m3e-icon",
         "summary": "A small symbol used to easily identify an action or category.",
         "sourceFile": "packages/web/src/icon/IconElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "filled",
@@ -9030,6 +9229,11 @@
         "tag": "m3e-icon-button",
         "summary": "An icon button users interact with to perform a supplementary action.",
         "sourceFile": "packages/web/src/icon-button/IconButtonElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -9830,7 +10034,7 @@
     ],
     "examples": [
       {
-        "code": "<m3e-icon-button variant=\"filled\" size=\"large\" toggle selected aria-label=\"Favorite\">\n  <m3e-icon name=\"favorite\"></m3e-icon>\n</m3e-icon-button>"
+        "code": "<m3e-icon-button variant=\"filled\" size=\"large\" toggle selected>\n  <m3e-icon name=\"favorite\"></m3e-icon>\n</m3e-icon-button>"
       }
     ],
     "verification": {
@@ -9853,6 +10057,10 @@
         "tag": "m3e-list-item",
         "summary": "An item in a list.",
         "sourceFile": "packages/web/src/list/ListItemElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [
           {
@@ -10144,6 +10352,10 @@
         "tag": "m3e-list",
         "summary": "A list of items.",
         "sourceFile": "packages/web/src/list/ListElement.ts",
+        "display": {
+          "value": "flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "variant",
@@ -10247,6 +10459,11 @@
       {
         "tag": "m3e-list-item-button",
         "sourceFile": "packages/web/src/list/ListItemButtonElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "href",
@@ -10579,6 +10796,11 @@
         "tag": "m3e-list-action",
         "summary": "An item in a list that performs an action.",
         "sourceFile": "packages/web/src/list/ListActionElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -11006,6 +11228,10 @@
         "tag": "m3e-expandable-list-item",
         "summary": "An item in a list that can be expanded to show more items.",
         "sourceFile": "packages/web/src/list/ExpandableListItemElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -11478,6 +11704,10 @@
         "tag": "m3e-action-list",
         "summary": "A list of actions.",
         "sourceFile": "packages/web/src/list/ActionListElement.ts",
+        "display": {
+          "value": "flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "variant",
@@ -11582,6 +11812,10 @@
         "tag": "m3e-list-option",
         "summary": "A selectable option in a list.",
         "sourceFile": "packages/web/src/list/ListOptionElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -12084,6 +12318,10 @@
         "tag": "m3e-selection-list",
         "summary": "A list of selectable options.",
         "sourceFile": "packages/web/src/list/SelectionListElement.ts",
+        "display": {
+          "value": "flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "hide-selection-indicator",
@@ -12306,6 +12544,10 @@
         "tag": "m3e-loading-indicator",
         "summary": "Shows indeterminate progress for a short wait time.",
         "sourceFile": "packages/web/src/loading-indicator/LoadingIndicatorElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "variant",
@@ -12380,6 +12622,10 @@
         "tag": "m3e-menu-trigger",
         "summary": "An element, nested within a clickable element, used to open a menu.",
         "sourceFile": "packages/web/src/menu/MenuTriggerElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "for",
@@ -12420,6 +12666,11 @@
         "tag": "m3e-menu-item",
         "summary": "An item of a menu.",
         "sourceFile": "packages/web/src/menu/MenuItemElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -12695,6 +12946,10 @@
         "tag": "m3e-menu",
         "summary": "Presents a list of choices on a temporary surface.",
         "sourceFile": "packages/web/src/menu/MenuElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "position-x",
@@ -12832,6 +13087,10 @@
         "tag": "m3e-menu-item-checkbox",
         "summary": "An item of a menu which supports a checkable state.",
         "sourceFile": "packages/web/src/menu/MenuItemCheckboxElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -13085,6 +13344,10 @@
         "tag": "m3e-menu-item-group",
         "summary": "Groups related items (such a radios) in a menu.",
         "sourceFile": "packages/web/src/menu/MenuItemGroupElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -13105,6 +13368,10 @@
         "tag": "m3e-menu-item-radio",
         "summary": "An item of a menu which supports a mutually exclusive checkable state.",
         "sourceFile": "packages/web/src/menu/MenuItemRadioElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -13384,6 +13651,11 @@
         "tag": "m3e-nav-item",
         "summary": "An item, placed in a navigation bar or rail, used to navigate to destinations in an application.",
         "sourceFile": "packages/web/src/nav-bar/NavItemElement.ts",
+        "navigable": true,
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -13644,6 +13916,10 @@
         "tag": "m3e-nav-bar",
         "summary": "A horizontal bar, typically used on smaller devices, that allows a user to switch between 3-5 views.",
         "sourceFile": "packages/web/src/nav-bar/NavBarElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "mode",
@@ -13748,6 +14024,10 @@
         "tag": "m3e-nav-menu-item",
         "summary": "An expandable item, selectable item within a navigation menu.",
         "sourceFile": "packages/web/src/nav-menu/NavMenuItemElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -14042,6 +14322,10 @@
         "tag": "m3e-nav-menu",
         "summary": "A hierarchical menu, typically used on larger devices, that allows a user to switch between views.",
         "sourceFile": "packages/web/src/nav-menu/NavMenuElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [
           {
@@ -14111,6 +14395,10 @@
         "tag": "m3e-nav-menu-item-group",
         "summary": "A top-level semantic grouping of items in a navigation menu.",
         "sourceFile": "packages/web/src/nav-menu/NavMenuItemGroupElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [
           {
@@ -14176,6 +14464,10 @@
         "tag": "m3e-nav-rail",
         "summary": "A vertical bar, typically used on larger devices, that allows a user to switch between views.",
         "sourceFile": "packages/web/src/nav-rail/NavRailElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "mode",
@@ -14318,6 +14610,10 @@
         "tag": "m3e-nav-rail-toggle",
         "summary": "An element, nested within a clickable element, used to toggle the expanded state of a navigation rail.",
         "sourceFile": "packages/web/src/nav-rail/NavRailToggleElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "for",
@@ -14370,6 +14666,10 @@
         "tag": "m3e-option",
         "summary": "An option that can be selected.",
         "sourceFile": "packages/web/src/option/OptionElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -14574,6 +14874,10 @@
         "tag": "m3e-optgroup",
         "summary": "Groups options under a subheading.",
         "sourceFile": "packages/web/src/option/OptGroupElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -14639,6 +14943,10 @@
         "tag": "m3e-option-panel",
         "summary": "Presents a list of options on a temporary surface.",
         "sourceFile": "packages/web/src/option/OptionPanelElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "state",
@@ -14839,6 +15147,10 @@
         "tag": "m3e-paginator",
         "summary": "Provides navigation for paged information, typically used with a table.",
         "sourceFile": "packages/web/src/paginator/PaginatorElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -15034,6 +15346,10 @@
         "tag": "m3e-circular-progress-indicator",
         "summary": "A circular indicator of progress and activity.",
         "sourceFile": "packages/web/src/progress-indicator/CircularProgressIndicatorElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "indeterminate",
@@ -15126,6 +15442,10 @@
         "tag": "m3e-linear-progress-indicator",
         "summary": "A horizontal bar for indicating progress and activity.",
         "sourceFile": "packages/web/src/progress-indicator/LinearProgressIndicatorElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "buffer-value",
@@ -15245,6 +15565,10 @@
         "tag": "m3e-radio",
         "summary": "A radio button that allows a user to select one option from a set of options.",
         "sourceFile": "packages/web/src/radio-group/RadioElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "checked",
@@ -15433,6 +15757,10 @@
         "tag": "m3e-radio-group",
         "summary": "A container for a set of radio buttons.",
         "sourceFile": "packages/web/src/radio-group/RadioGroupElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "aria-invalid",
@@ -15598,6 +15926,10 @@
         "tag": "m3e-search-bar",
         "summary": "A bar that provides a prominent entry point for search.",
         "sourceFile": "packages/web/src/search/SearchBarElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "clearable",
@@ -15770,6 +16102,10 @@
         "tag": "m3e-search-view",
         "summary": "A surface that presents suggestions and results for a search.",
         "sourceFile": "packages/web/src/search/SearchViewElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "contained",
@@ -16022,6 +16358,10 @@
         "tag": "m3e-button-segment",
         "summary": "A option that can be selected within a segmented button.",
         "sourceFile": "packages/web/src/segmented-button/ButtonSegmentElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "checked",
@@ -16265,6 +16605,10 @@
         "tag": "m3e-segmented-button",
         "summary": "A button that allows a user to select from a limited set of options.",
         "sourceFile": "packages/web/src/segmented-button/SegmentedButtonElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -16419,6 +16763,10 @@
         "tag": "m3e-select",
         "summary": "A form control that allows users to select a value from a set of predefined options.",
         "sourceFile": "packages/web/src/select/SelectElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -16660,6 +17008,10 @@
         "tag": "m3e-shape",
         "summary": "A shape used to add emphasis and decorative flair.",
         "sourceFile": "packages/web/src/shape/ShapeElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "name",
@@ -16724,6 +17076,10 @@
         "tag": "m3e-skeleton",
         "summary": "A visual placeholder that mimics the layout of content while it's still loading.",
         "sourceFile": "packages/web/src/skeleton/SkeletonElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "animation",
@@ -16834,6 +17190,10 @@
         "tag": "m3e-slide-group",
         "summary": "Presents pagination controls used to scroll overflowing content.",
         "sourceFile": "packages/web/src/slide-group/SlideGroupElement.ts",
+        "display": {
+          "value": "flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -16939,6 +17299,10 @@
         "tag": "m3e-slider-thumb",
         "summary": "A thumb used to select a value in a slider.",
         "sourceFile": "packages/web/src/slider/SliderThumbElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -17099,6 +17463,10 @@
         "tag": "m3e-slider",
         "summary": "Allows for the selection of numeric values from a range.",
         "sourceFile": "packages/web/src/slider/SliderElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -17339,6 +17707,10 @@
         "tag": "m3e-snackbar",
         "summary": "Presents short updates about application processes at the bottom of the screen.",
         "sourceFile": "packages/web/src/snackbar/SnackbarElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "action",
@@ -17463,6 +17835,10 @@
         "tag": "m3e-split-button",
         "summary": "A button used to show an action with a menu of related actions.",
         "sourceFile": "packages/web/src/split-button/SplitButtonElement.ts",
+        "display": {
+          "value": "inline-flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "variant",
@@ -17563,6 +17939,10 @@
         "tag": "m3e-split-pane",
         "summary": "A dual-view layout that separates content with a movable drag handle.",
         "sourceFile": "packages/web/src/split-pane/SplitPaneElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "detents",
@@ -17796,6 +18176,10 @@
         "tag": "m3e-stepper",
         "summary": "Provides a wizard-like workflow by dividing content into logical steps.",
         "sourceFile": "packages/web/src/stepper/StepperElement.ts",
+        "display": {
+          "value": "flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "header-position",
@@ -17904,6 +18288,10 @@
         "tag": "m3e-step-panel",
         "summary": "A panel presented for a step in a wizard-like workflow.",
         "sourceFile": "packages/web/src/stepper/StepPanelElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -17944,6 +18332,10 @@
         "tag": "m3e-step",
         "summary": "A step in a wizard-like workflow.",
         "sourceFile": "packages/web/src/stepper/StepElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "completed",
@@ -18219,6 +18611,10 @@
         "tag": "m3e-stepper-previous",
         "summary": "An element, nested within a clickable element, used to move a stepper to the next step.",
         "sourceFile": "packages/web/src/stepper/StepperNextElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "overlay"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -18239,6 +18635,10 @@
         "tag": "m3e-stepper-previous",
         "summary": "An element, nested within a clickable element, used to move a stepper to the previous step.",
         "sourceFile": "packages/web/src/stepper/StepperPreviousElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "overlay"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -18259,6 +18659,10 @@
         "tag": "m3e-stepper-reset",
         "summary": "An element, nested within a clickable element, used to reset a stepper to its initial state.",
         "sourceFile": "packages/web/src/stepper/StepperResetElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "overlay"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -18302,6 +18706,10 @@
         "tag": "m3e-switch",
         "summary": "An on/off control that can be toggled by clicking.",
         "sourceFile": "packages/web/src/switch/SwitchElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "checked",
@@ -18805,6 +19213,10 @@
         "tag": "m3e-tab",
         "summary": "An interactive element that, when activated, presents an associated tab panel.",
         "sourceFile": "packages/web/src/tabs/TabElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -18980,6 +19392,10 @@
         "tag": "m3e-tab-panel",
         "summary": "A panel presented for a tab.",
         "sourceFile": "packages/web/src/tabs/TabPanelElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [],
         "properties": [],
         "slots": [
@@ -19000,6 +19416,10 @@
         "tag": "m3e-tabs",
         "summary": "Organizes content into separate views where only one view can be visible at a time.",
         "sourceFile": "packages/web/src/tabs/TabsElement.ts",
+        "display": {
+          "value": "flex",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disable-pagination",
@@ -19173,6 +19593,10 @@
         "tag": "m3e-textarea-autosize",
         "summary": "A non-visual element used to automatically resize a `textarea` to fit its content.",
         "sourceFile": "packages/web/src/textarea-autosize/TextareaAutosizeElement.ts",
+        "display": {
+          "value": "none",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -19245,6 +19669,10 @@
         "tag": "m3e-theme",
         "summary": "A non-visual element responsible for application-level theming.",
         "sourceFile": "packages/web/src/theme/ThemeElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "color",
@@ -19328,6 +19756,10 @@
         "tag": "m3e-theme-icon",
         "summary": "An icon that visually presents a preview of a theme.",
         "sourceFile": "packages/web/src/theme/ThemeIconElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "color",
@@ -19428,6 +19860,10 @@
         "tag": "m3e-toc-item",
         "summary": "An item in a table of contents.",
         "sourceFile": "packages/web/src/toc/TocItemElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -19551,6 +19987,10 @@
         "tag": "m3e-toc",
         "summary": "A table of contents that provides in-page scroll navigation.",
         "sourceFile": "packages/web/src/toc/TocElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "for",
@@ -19722,6 +20162,10 @@
         "tag": "m3e-toolbar",
         "summary": "Presents frequently used actions relevant to the current page.",
         "sourceFile": "packages/web/src/toolbar/ToolbarElement.ts",
+        "display": {
+          "value": "inline-block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "elevated",
@@ -19837,6 +20281,10 @@
         "tag": "m3e-rich-tooltip-action",
         "summary": "An element, nested within a clickable element, used to dismiss a parenting rich tooltip.",
         "sourceFile": "packages/web/src/tooltip/RichTooltipActionElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "overlay"
+        },
         "attributes": [
           {
             "name": "disable-restore-focus",
@@ -19865,6 +20313,10 @@
         "tag": "m3e-rich-tooltip",
         "summary": "Provides contextual details for a control, such as explaining the value or purpose of a feature.",
         "sourceFile": "packages/web/src/tooltip/RichTooltipElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -20064,6 +20516,10 @@
         "tag": "m3e-tooltip",
         "summary": "Adds additional context to a button or other UI element.",
         "sourceFile": "packages/web/src/tooltip/TooltipElement.ts",
+        "display": {
+          "value": "contents",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -20232,6 +20688,10 @@
         "tag": "m3e-tree-item",
         "summary": "An expandable item in a tree.",
         "sourceFile": "packages/web/src/tree/TreeItemElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "disabled",
@@ -20478,6 +20938,10 @@
         "tag": "m3e-tree",
         "summary": "Presents hierarchical data in a tree structure.",
         "sourceFile": "packages/web/src/tree/TreeElement.ts",
+        "display": {
+          "value": "block",
+          "source": "ts"
+        },
         "attributes": [
           {
             "name": "multi",

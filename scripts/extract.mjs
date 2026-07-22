@@ -103,6 +103,113 @@ function buildAliasMap() {
 }
 const ALIASES = buildAliasMap();
 
+// ---------------------------------------------------------------------------
+// Catalog metadata: display (derived from TS `:host`) + hostContract overlay.
+// See scripts/README or the systems-solidification plan (Piece B).
+// ---------------------------------------------------------------------------
+
+/** Resolve a RELATIVE import/re-export specifier to an on-disk .ts file. */
+function resolveRelativeImport(fromFile, spec) {
+  if (!spec.startsWith(".")) return null; // non-relative (e.g. @m3e/web/core) — not chased
+  const base = path.resolve(path.dirname(fromFile), spec);
+  for (const cand of [base + ".ts", path.join(base, "index.ts")]) {
+    if (fs.existsSync(cand)) return cand;
+  }
+  return null;
+}
+
+/** Every relative import/export specifier in a TS source (for style-barrel + base-class chasing). */
+function relativeSpecsIn(src) {
+  const specs = [];
+  const re = /(?:import|export)\s+(?:type\s+)?(?:[^"';]*?from\s+)?["']([^"']+)["']/g;
+  let m;
+  while ((m = re.exec(src))) specs.push(m[1]);
+  return specs;
+}
+
+/**
+ * Collect the primary TS file + the files it (transitively, relatively) pulls
+ * in — element styles live in a `./styles` barrel (`export * from "./XStyle"`),
+ * and some elements inherit their `:host` from a same-dir base class. Bounded
+ * depth; only relative specifiers are chased (non-relative `@m3e/web/core`
+ * bases fall to the display-overlay).
+ */
+function relatedTsFiles(file, depth, seen) {
+  if (depth < 0 || seen.has(file)) return;
+  seen.add(file);
+  let src;
+  try {
+    src = fs.readFileSync(file, "utf8");
+  } catch {
+    return;
+  }
+  for (const spec of relativeSpecsIn(src)) {
+    const target = resolveRelativeImport(file, spec);
+    if (target) relatedTsFiles(target, depth - 1, seen);
+  }
+}
+
+/**
+ * Extract the host's DEFAULT display from a `css`…`` block: the first bare
+ * `:host { … display: X }` (or card's conditional `:host(:not([inline]))`).
+ * Deliberately ignores state/variant/descendant selectors
+ * (`:host([variant=…])`, `:host(:popover-open)`, `:host(…) .child`) — those are
+ * conditional overrides, not the resting display.
+ */
+function hostDisplayFrom(src) {
+  const lines = src.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const sel = lines[i].trim();
+    const bareHost = /^:host\s*\{$/.test(sel);
+    const notInline = /^:host\(:not\(\[inline\]\)\)\s*\{$/.test(sel); // card default
+    if (!bareHost && !notInline) continue;
+    for (let j = i + 1; j < lines.length; j++) {
+      const l = lines[j].trim();
+      if (l === "}") break; // block ended without a display: → keep scanning later :host blocks
+      const dm = l.match(/^display:\s*([a-z-]+)\s*;/);
+      if (dm) return { value: dm[1], conditional: notInline };
+    }
+  }
+  return null;
+}
+
+/** Optional overlay for the handful of elements whose `:host` lives behind a
+ *  non-relative base class (e.g. `@m3e/web/core` `ActionElementBase`). */
+const DISPLAY_OVERLAY = (() => {
+  const p = path.join(ROOT, "data/display-overlay.json");
+  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : {};
+})();
+
+/**
+ * The `display` catalog field for one element, given its primary CEM source
+ * path (`packages/web/src/…`). Derived from TS `:host` first; falls back to the
+ * checked-in overlay (keyed by tag) for the residual non-relative-base cases.
+ */
+function displayFor(cemSourcePath, tag) {
+  const primaryAbs = path.join(M3E, cemSourcePath); // cemSourcePath is `packages/web/src/…`
+  if (fs.existsSync(primaryAbs)) {
+    const seen = new Set();
+    relatedTsFiles(primaryAbs, 3, seen);
+    const ordered = [primaryAbs, ...[...seen].filter((f) => f !== primaryAbs)];
+    for (const f of ordered) {
+      const d = hostDisplayFrom(fs.readFileSync(f, "utf8"));
+      if (d) {
+        const out = { value: d.value, source: "ts" };
+        if (d.conditional) out.note = "block by default; inline-block with the `inline` attribute";
+        return out;
+      }
+    }
+  }
+  if (DISPLAY_OVERLAY[tag]) return { ...DISPLAY_OVERLAY[tag], source: "overlay" };
+  return undefined;
+}
+
+/** hostContract overlay — component-level composition contracts, hand-authored. */
+const HOST_CONTRACT_OVERLAY = (() => {
+  const p = path.join(ROOT, "data/host-contract-overlay.json");
+  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : {};
+})();
+
 /** Build { attrName -> readmeType } from a README's Attribute tables. */
 function readmeAttrTypes(readme) {
   const map = new Map();
@@ -320,10 +427,18 @@ for (const dir of dirs) {
       }
       return { name: a.name, type, typeSource, default: a.default, description: a.description };
     });
+    const sourceFile = `packages/web/${modulePath}`;
+    // navigable: derived — an element is navigable if it carries a native `href`.
+    const navigable = attributes.some((a) => a.name === "href") || undefined;
+    // display: derived from the element's `:host` CSS (overlay fallback for
+    // non-relative base classes).
+    const display = displayFor(sourceFile, decl.tagName);
     return {
       tag: decl.tagName,
       summary: (decl.description || "").split("\n")[0] || undefined,
-      sourceFile: `packages/web/${modulePath}`,
+      sourceFile,
+      navigable,
+      display,
       attributes,
       properties: propsOf(decl),
       slots: (decl.slots || []).map((s) => ({ name: s.name || "(default)", description: s.description })),
@@ -351,6 +466,9 @@ for (const dir of dirs) {
     description: readme?.description,
     import: readme?.import || `import "@m3e/web/${dir}";`,
     elementCount: elements.length,
+    // hostContract: hand-authored composition contract (manual overlay), for
+    // components whose host expects a specific slotted structure.
+    hostContract: HOST_CONTRACT_OVERLAY[dir],
     elements,
     examples: readme?.examples || [],
     verification: {
