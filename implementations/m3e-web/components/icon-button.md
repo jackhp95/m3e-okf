@@ -11,7 +11,7 @@ import "@m3e/web/icon-button";
 ## Examples
 
 ```html
-<m3e-icon-button variant="filled" size="large" toggle selected aria-label="Favorite">
+<m3e-icon-button variant="filled" size="large" toggle selected>
   <m3e-icon name="favorite"></m3e-icon>
 </m3e-icon-button>
 ```
@@ -63,6 +63,8 @@ _Source: kinfolk: src/pages/slideshow.astro_
 ### `<m3e-icon-button>`
 
 An icon button users interact with to perform a supplementary action.
+
+**Display:** `inline-block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
 
 **Attributes**
 

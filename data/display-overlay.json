@@ -3,6 +3,7 @@
   "m3e-bottom-sheet-action": { "value": "contents" },
   "m3e-dialog-action": { "value": "contents" },
   "m3e-rich-tooltip-action": { "value": "contents" },
+  "m3e-stepper-next": { "value": "contents" },
   "m3e-stepper-previous": { "value": "contents" },
   "m3e-stepper-reset": { "value": "contents" }
 }

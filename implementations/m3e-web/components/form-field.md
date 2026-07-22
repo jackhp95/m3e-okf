@@ -4,6 +4,8 @@
 
 The `m3e-form-field` component is a semantic, expressive container for form controls that anchors label behavior, subscript messaging, and variant-specific layout. Designed according to Material Design 3 guidelines, it supports two visual variants—`outlined` and `filled`—each with dynamic elevation, shape transitions, and adaptive color theming. The component responds to control state changes (focus, hover, press, disabled, invalid) with smooth motion and semantic clarity, ensuring visual hierarchy and emotional resonance.
 
+> **Host contract:** native <label for=id> + control <input id> as default-slot siblings; the component does NO id-wiring Known control tags: `m3e-input-chip-set`, `m3e-select`, `input`, `textarea`, `select`.
+
 ```ts
 import "@m3e/web/form-field";
 ```
@@ -54,6 +56,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 ### `<m3e-form-field>`
 
 A container for form controls that applies Material Design styling and behavior.
+
+**Display:** `inline-flex`
 
 **Attributes**
 

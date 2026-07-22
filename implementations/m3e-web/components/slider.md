@@ -52,6 +52,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A thumb used to select a value in a slider.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -103,6 +105,8 @@ _…1 more families. See source for the full list._
 ### `<m3e-slider>`
 
 Allows for the selection of numeric values from a range.
+
+**Display:** `inline-block`
 
 **Attributes**
 

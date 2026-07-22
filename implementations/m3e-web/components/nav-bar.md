@@ -83,6 +83,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An item, placed in a navigation bar or rail, used to navigate to destinations in an application.
 
+**Display:** `inline-block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -142,6 +144,8 @@ _…16 more families. See source for the full list._
 ### `<m3e-nav-bar>`
 
 A horizontal bar, typically used on smaller devices, that allows a user to switch between 3-5 views.
+
+**Display:** `block`
 
 **Attributes**
 

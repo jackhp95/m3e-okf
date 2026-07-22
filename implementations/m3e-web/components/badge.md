@@ -43,6 +43,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A visual indicator used to label content.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

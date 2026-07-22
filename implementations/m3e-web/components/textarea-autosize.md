@@ -36,6 +36,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A non-visual element used to automatically resize a `textarea` to fit its content.
 
+**Display:** `none`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

@@ -132,6 +132,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An element, nested within a clickable element, used to open a menu.
 
+**Display:** `none`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -154,6 +156,8 @@ An element, nested within a clickable element, used to open a menu.
 ### `<m3e-menu-item>`
 
 An item of a menu.
+
+**Display:** `none` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
 
 **Attributes**
 
@@ -210,6 +214,8 @@ _…25 more families. See source for the full list._
 
 Presents a list of choices on a temporary surface.
 
+**Display:** `none`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -260,6 +266,8 @@ Presents a list of choices on a temporary surface.
 ### `<m3e-menu-item-checkbox>`
 
 An item of a menu which supports a checkable state.
+
+**Display:** `none`
 
 **Attributes**
 
@@ -312,6 +320,8 @@ _…26 more families. See source for the full list._
 
 Groups related items (such a radios) in a menu.
 
+**Display:** `contents`
+
 **Slots**
 
 | Slot | Description |
@@ -321,6 +331,8 @@ Groups related items (such a radios) in a menu.
 ### `<m3e-menu-item-radio>`
 
 An item of a menu which supports a mutually exclusive checkable state.
+
+**Display:** `none`
 
 **Attributes**
 

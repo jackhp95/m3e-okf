@@ -28,7 +28,66 @@ const only = process.argv.slice(2); // optional dir filter
 // ---------------------------------------------------------------------------
 const manifest = JSON.parse(fs.readFileSync(CEM, "utf8"));
 
-/** dir -> [{ decl, modulePath }] for every custom element under src/<dir>/ */
+// ---------------------------------------------------------------------------
+// Tag truth: the registration export, not the jsdoc `decl.tagName`.
+//
+// A CEM analyzer can emit the WRONG `tagName` on a class declaration. In pinned
+// @m3e/web 2.5.12 two declarations carry a colliding sibling's tag —
+// `M3eFabMenuItemElement.tagName` is `"m3e-menu-item"` (real tag
+// `"m3e-fab-menu-item"`) and `M3eStepperNextElement.tagName` is
+// `"m3e-stepper-previous"` (real tag `"m3e-stepper-next"`) — even though their
+// `@customElement(...)` decorators are correct. The `custom-element-definition`
+// export mirrors `customElements.define(name, Class)`, so it is the
+// registration truth. We take each element's tag from that export and
+// cross-check `decl.tagName`, flagging divergence as CEM-TAG-MISMATCH.
+//
+// Ported from elm-cem's `reconcileTagNames` (bin/elm-cem.js) so tag truth is
+// shared across the family rather than re-derived per repo. Returns an
+// `authoritativeTag(decl)` lookup plus the mismatch findings.
+function reconcileTagNames(cem) {
+  // Resolve the class declaration a definition registers: prefer the module the
+  // definition names (handles a re-export), else match by name across modules.
+  const findDeclaration = (declName, declModule) => {
+    if (declModule) {
+      const mm = (cem.modules || []).find((m) => m.path === declModule);
+      const d = mm && (mm.declarations || []).find((x) => x.name === declName);
+      if (d) return d;
+    }
+    for (const m of cem.modules || []) {
+      const d = (m.declarations || []).find((x) => x.name === declName);
+      if (d) return d;
+    }
+    return null;
+  };
+  const tagByDecl = new Map(); // decl object -> authoritative (registration) tag
+  const findings = [];
+  for (const m of cem.modules || []) {
+    for (const e of m.exports || []) {
+      if (e.kind !== "custom-element-definition") continue;
+      const tag = e.name;
+      const declName = e.declaration && e.declaration.name;
+      if (!tag || !declName) continue;
+      const target = findDeclaration(declName, e.declaration.module);
+      if (!target || !target.customElement) continue;
+      tagByDecl.set(target, tag);
+      if (target.tagName !== tag) {
+        findings.push({
+          dir: (m.path || "").split("/")[1],
+          attr: declName,
+          kind: "CEM-TAG-MISMATCH",
+          detail: `decl.tagName=${target.tagName} registration=${tag} (registration wins)`,
+        });
+      }
+    }
+  }
+  return {
+    authoritativeTag: (decl) => (tagByDecl.has(decl) ? tagByDecl.get(decl) : decl.tagName),
+    findings,
+  };
+}
+const { authoritativeTag, findings: tagFindings } = reconcileTagNames(manifest);
+
+/** dir -> [{ decl, modulePath, tag }] for every custom element under src/<dir>/ */
 const elementsByDir = new Map();
 for (const mod of manifest.modules) {
   const p = mod.path || "";
@@ -36,9 +95,10 @@ for (const mod of manifest.modules) {
   if (parts[0] !== "src" || parts.length < 3) continue;
   const dir = parts[1];
   for (const decl of mod.declarations || []) {
-    if (decl.customElement && decl.tagName) {
+    const tag = authoritativeTag(decl);
+    if (decl.customElement && tag) {
       if (!elementsByDir.has(dir)) elementsByDir.set(dir, []);
-      elementsByDir.get(dir).push({ decl, modulePath: p });
+      elementsByDir.get(dir).push({ decl, modulePath: p, tag });
     }
   }
 }
@@ -399,6 +459,9 @@ const dirs = (only.length ? only : [...elementsByDir.keys()].filter((d) => d !==
 const components = [];
 const sources = [];
 const allFindings = [];
+// Tag-truth mismatches (registration export vs jsdoc decl.tagName) are global,
+// keyed to the element's dir so they surface in that component's report section.
+allFindings.push(...tagFindings);
 
 for (const dir of dirs) {
   const els = elementsByDir.get(dir) || [];
@@ -407,7 +470,7 @@ for (const dir of dirs) {
   const readme = hasReadme ? parseReadme(fs.readFileSync(readmePath, "utf8")) : null;
 
   const rmTypes = readmeAttrTypes(readme);
-  const elements = els.map(({ decl, modulePath }) => {
+  const elements = els.map(({ decl, modulePath, tag }) => {
     const attributes = (decl.attributes || []).map((a) => {
       let type = typeOf(a);
       let typeSource = "cem";
@@ -432,9 +495,9 @@ for (const dir of dirs) {
     const navigable = attributes.some((a) => a.name === "href") || undefined;
     // display: derived from the element's `:host` CSS (overlay fallback for
     // non-relative base classes).
-    const display = displayFor(sourceFile, decl.tagName);
+    const display = displayFor(sourceFile, tag);
     return {
-      tag: decl.tagName,
+      tag,
       summary: (decl.description || "").split("\n")[0] || undefined,
       sourceFile,
       navigable,
@@ -530,6 +593,8 @@ report += Object.entries(byKind).map(([k, n]) => `- **${k}**: ${n}`).join("\n") 
 report += `> DEFAULT-UNDOCUMENTED = the CEM specifies a default the README doesn't state.\n`;
 report += `> UNDOCUMENTED = real attribute (in CEM) missing from the README.\n`;
 report += `> DEFAULT-MISMATCH = README and CEM disagree on an attribute's default.\n`;
+report += `> CEM-TAG-MISMATCH = the analyzer's jsdoc \`decl.tagName\` disagrees with the\n`;
+report += `> \`custom-element-definition\` registration export; the registration tag wins.\n`;
 report += `> EXAMPLE-DRIFT = a README example uses a tag/attribute/slot the CEM doesn't expose\n`;
 report += `> (markup an agent might copy verbatim); these snippets are withheld from the cards.\n`;
 report += `> README-only = the README lists an attribute the CEM doesn't expose (likely stale/typo).\n`;

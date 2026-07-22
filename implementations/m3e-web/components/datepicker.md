@@ -46,6 +46,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Presents a date picker on a temporary surface.
 
+**Display:** `none`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -111,6 +113,8 @@ _…11 more families. See source for the full list._
 ### `<m3e-datepicker-toggle>`
 
 An element, nested within a clickable element, used to toggle a datepicker.
+
+**Display:** `none`
 
 **Attributes**
 

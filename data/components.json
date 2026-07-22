@@ -8303,7 +8303,7 @@
     "elementCount": 3,
     "elements": [
       {
-        "tag": "m3e-menu-item",
+        "tag": "m3e-fab-menu-item",
         "summary": "An item of a floating action button (FAB) menu.",
         "sourceFile": "packages/web/src/fab-menu/FabMenuItemElement.ts",
         "navigable": true,
@@ -8623,11 +8623,10 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 5,
+      "findings": 4,
       "byKind": {
         "DEFAULT-UNDOCUMENTED": 3,
-        "UNDOCUMENTED": 1,
-        "EXAMPLE-DRIFT": 1
+        "UNDOCUMENTED": 1
       }
     }
   },
@@ -18608,7 +18607,7 @@
         "cssParts": []
       },
       {
-        "tag": "m3e-stepper-previous",
+        "tag": "m3e-stepper-next",
         "summary": "An element, nested within a clickable element, used to move a stepper to the next step.",
         "sourceFile": "packages/web/src/stepper/StepperNextElement.ts",
         "display": {
@@ -18687,10 +18686,11 @@
     ],
     "verification": {
       "checked": true,
-      "findings": 4,
+      "findings": 3,
       "byKind": {
+        "CEM-TAG-MISMATCH": 1,
         "UNDOCUMENTED": 1,
-        "EXAMPLE-DRIFT": 3
+        "EXAMPLE-DRIFT": 2
       }
     }
   },

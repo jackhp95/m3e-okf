@@ -49,6 +49,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Shows indeterminate progress for a short wait time.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

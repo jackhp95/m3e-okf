@@ -27,6 +27,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Presents short updates about application processes at the bottom of the screen.
 
+**Display:** `inline-flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

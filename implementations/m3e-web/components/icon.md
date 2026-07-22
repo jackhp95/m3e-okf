@@ -52,6 +52,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A small symbol used to easily identify an action or category.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

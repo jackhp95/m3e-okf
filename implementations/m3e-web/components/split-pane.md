@@ -64,6 +64,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A dual-view layout that separates content with a movable drag handle.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

@@ -55,6 +55,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A radio button that allows a user to select one option from a set of options.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -108,6 +110,8 @@ _…3 more families. See source for the full list._
 ### `<m3e-radio-group>`
 
 A container for a set of radio buttons.
+
+**Display:** `inline-flex`
 
 **Attributes**
 

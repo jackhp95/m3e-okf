@@ -68,6 +68,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An option that can be selected.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -116,6 +118,8 @@ _…13 more families. See source for the full list._
 
 Groups options under a subheading.
 
+**Display:** `block`
+
 **Slots**
 
 | Slot | Description |
@@ -139,6 +143,8 @@ Groups options under a subheading.
 ### `<m3e-option-panel>`
 
 Presents a list of options on a temporary surface.
+
+**Display:** `block`
 
 **Attributes**
 

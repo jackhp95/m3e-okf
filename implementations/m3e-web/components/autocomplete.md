@@ -58,6 +58,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Enhances a text input with suggested options.
 
+**Display:** `contents`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

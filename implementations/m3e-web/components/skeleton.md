@@ -54,6 +54,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A visual placeholder that mimics the layout of content while it's still loading.
 
+**Display:** `contents`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

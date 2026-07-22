@@ -57,6 +57,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Presents pagination controls used to scroll overflowing content.
 
+**Display:** `flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

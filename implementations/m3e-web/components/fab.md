@@ -11,14 +11,14 @@ import "@m3e/web/fab";
 ## Examples
 
 ```html
-<m3e-fab aria-label="Add">
-  <m3e-icon name="add"></m3e-icon>
+<m3e-fab>
+  <m3e-icon>add</m3e-icon>
 </m3e-fab>
 ```
 
 ```html
 <m3e-fab extended>
-  <m3e-icon name="add"></m3e-icon>
+  <m3e-icon>add</m3e-icon>
   <span slot="label">Add</span>
 </m3e-fab>
 ```
@@ -42,6 +42,8 @@ _Source: 2026: src/components/NavFab.astro_
 ### `<m3e-fab>`
 
 A floating action button (FAB) used to present important actions.
+
+**Display:** `inline-block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
 
 **Attributes**
 

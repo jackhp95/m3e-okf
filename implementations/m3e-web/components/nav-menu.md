@@ -97,6 +97,8 @@ _Source: 2026: src/components/NavFab.astro_
 
 An expandable item, selectable item within a navigation menu.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -163,6 +165,8 @@ _…19 more families. See source for the full list._
 
 A hierarchical menu, typically used on larger devices, that allows a user to switch between views.
 
+**Display:** `block`
+
 **Properties** (JS-only, no attribute)
 
 | Property | Type | Description |
@@ -191,6 +195,8 @@ A hierarchical menu, typically used on larger devices, that allows a user to swi
 ### `<m3e-nav-menu-item-group>`
 
 A top-level semantic grouping of items in a navigation menu.
+
+**Display:** `contents`
 
 **Properties** (JS-only, no attribute)
 

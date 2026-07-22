@@ -49,6 +49,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Provides navigation for paged information, typically used with a table.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
