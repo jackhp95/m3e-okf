@@ -61,6 +61,8 @@ _Source: kinfolk: src/pages/entities/[id].astro_
 
 A content container for text, images (or other media), and actions in the context of a single subject.
 
+**Display:** `block` (block by default; inline-block with the `inline` attribute) · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

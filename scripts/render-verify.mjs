@@ -65,6 +65,20 @@ globalThis.window = W;
 try { Object.defineProperty(globalThis, "navigator", { value: W.navigator, configurable: true }); } catch {}
 for (const g of ["matchMedia", "ResizeObserver", "IntersectionObserver", "CSS"]) globalThis[g] = W[g];
 
+// --- capture the shipped registration set -----------------------------------
+// Intercept customElements.define so we learn EVERY tag the bundle registers
+// (jsdom's registry has no enumeration API). This is the ground-truth "shipped-
+// defined" set for the tag set-equality assertion below.
+const shippedTags = new Set();
+{
+  const ce = globalThis.customElements;
+  const origDefine = ce.define.bind(ce);
+  ce.define = (name, ctor, opts) => {
+    shippedTags.add(name);
+    return origDefine(name, ctor, opts);
+  };
+}
+
 // --- load the built bundle (registers every component) ----------------------
 await import(pathToFileURL(BUNDLE).href);
 
@@ -89,10 +103,57 @@ for (const [tag, sources] of [...usedTags].sort()) {
 }
 
 const total = usedTags.size;
+let failed = false;
 if (missing.length) {
+  failed = true;
   console.error(`✗ ${missing.length}/${total} example tag(s) are NOT defined by the built bundle:\n`);
   for (const m of missing) console.error(`  <${m.tag}>  — used in: ${m.sources.join(", ")}`);
-  console.error(`\nEither the example references a tag the shipped code doesn't register, or the\nbuild is stale. (Note: README-example drift is separately withheld from cards;\nthis checks the markup that actually ships.)`);
-  process.exit(1);
+  console.error(`\nEither the example references a tag the shipped code doesn't register, or the\nbuild is stale. (Note: README-example drift is separately withheld from cards;\nthis checks the markup that actually ships.)\n`);
+} else {
+  console.log(`✓ all ${total} distinct m3e-* tags used across examples are defined by the built bundle (dist/all.js).`);
 }
-console.log(`✓ all ${total} distinct m3e-* tags used across examples are defined by the built bundle (dist/all.js).`);
+
+// ---------------------------------------------------------------------------
+// Tag set-equality: every element the CARDS document must be a tag the bundle
+// actually registers, AND every non-core tag the bundle registers must have a
+// card. This is the assertion that would have caught B23/B24: a card teaching a
+// tag the bundle never defines (documented∖shipped), or a shipped element with
+// no card because a tag collision merged/dropped it (shipped∖documented, e.g.
+// the pre-fix missing <m3e-stepper-next>).
+//
+// The `core` primitives (ripple, state-layer, focus-ring, …) ship but are
+// deliberately un-carded — extract.mjs excludes the `core` dir — so we exclude
+// core registrations from the shipped side. "core" is read from the CEM's
+// registration exports (module path `src/core/…`), the same registration truth
+// extract.mjs now trusts, not a hand-maintained denylist.
+const cem = JSON.parse(fs.readFileSync(path.join(ROOT, ".cache/m3e/packages/web/dist/custom-elements.json"), "utf8"));
+const coreTags = new Set();
+for (const mod of cem.modules || []) {
+  const dir = (mod.path || "").split("/")[1];
+  if (dir !== "core") continue;
+  for (const e of mod.exports || []) {
+    if (e.kind === "custom-element-definition" && e.name) coreTags.add(e.name);
+  }
+}
+const documentedTags = new Set();
+for (const c of comps) for (const el of c.elements || []) documentedTags.add(el.tag);
+const shippedNonCore = new Set([...shippedTags].filter((t) => !coreTags.has(t)));
+
+const documentedNotShipped = [...documentedTags].filter((t) => !shippedTags.has(t)).sort();
+const shippedNotDocumented = [...shippedNonCore].filter((t) => !documentedTags.has(t)).sort();
+
+if (documentedNotShipped.length || shippedNotDocumented.length) {
+  failed = true;
+  console.error(`\n✗ tag set mismatch between documented cards and shipped bundle:`);
+  if (documentedNotShipped.length)
+    console.error(`  documented but NOT shipped (card teaches a tag the bundle never registers):\n    ${documentedNotShipped.join("\n    ")}`);
+  if (shippedNotDocumented.length)
+    console.error(`  shipped but NOT documented (bundle registers a non-core element with no card):\n    ${shippedNotDocumented.join("\n    ")}`);
+} else {
+  console.log(
+    `✓ tag set-equality holds — ${documentedTags.size} documented tags == ${shippedNonCore.size} shipped non-core tags ` +
+      `(${coreTags.size} core primitives excluded).`
+  );
+}
+
+if (failed) process.exit(1);

@@ -19,7 +19,7 @@ import "@m3e/web/dialog";
 <m3e-dialog id="dlg" dismissible onclosed="console.log(this.returnValue)">
   <span slot="header">Dialog Title</span>
   Dialog content goes here.
-  <div slot="actions">
+  <div slot="actions" end>
     <m3e-button autofocus><m3e-dialog-action return-value="ok">Close</m3e-dialog-action></m3e-button>
   </div>
 </m3e-dialog>
@@ -74,6 +74,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An element, nested within a clickable element, used to close a parenting dialog.
 
+**Display:** `contents`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -89,6 +91,8 @@ An element, nested within a clickable element, used to close a parenting dialog.
 ### `<m3e-dialog>`
 
 A dialog that provides important prompts in a user flow.
+
+**Display:** `contents`
 
 **Attributes**
 
@@ -149,6 +153,8 @@ _…6 more families. See source for the full list._
 ### `<m3e-dialog-trigger>`
 
 An element, nested within a clickable element, used to open a dialog.
+
+**Display:** `contents`
 
 **Attributes**
 

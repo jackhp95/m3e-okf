@@ -61,6 +61,8 @@ _Source: kinfolk: src/layouts/Layout.astro_
 
 A non-visual element responsible for application-level theming.
 
+**Display:** `contents`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -94,6 +96,8 @@ A non-visual element responsible for application-level theming.
 ### `<m3e-theme-icon>`
 
 An icon that visually presents a preview of a theme.
+
+**Display:** `inline-block`
 
 **Attributes**
 

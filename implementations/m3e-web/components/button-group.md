@@ -71,6 +71,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 Organizes buttons and adds interactions between them.
 
+**Display:** `flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

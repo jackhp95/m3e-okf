@@ -86,6 +86,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A button used to toggle the expanded state of an expansion panel.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -132,6 +134,8 @@ A button used to toggle the expanded state of an expansion panel.
 ### `<m3e-expansion-panel>`
 
 An expandable details-summary view.
+
+**Display:** `block`
 
 **Attributes**
 
@@ -189,6 +193,8 @@ _…11 more families. See source for the full list._
 ### `<m3e-accordion>`
 
 Combines multiple expansion panels in to an accordion.
+
+**Display:** `block`
 
 **Attributes**
 

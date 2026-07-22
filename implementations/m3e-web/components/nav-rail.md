@@ -88,6 +88,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A vertical bar, typically used on larger devices, that allows a user to switch between views.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -139,6 +141,8 @@ _…3 more families. See source for the full list._
 ### `<m3e-nav-rail-toggle>`
 
 An element, nested within a clickable element, used to toggle the expanded state of a navigation rail.
+
+**Display:** `block`
 
 **Attributes**
 

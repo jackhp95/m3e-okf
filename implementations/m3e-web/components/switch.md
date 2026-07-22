@@ -40,6 +40,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An on/off control that can be toggled by clicking.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

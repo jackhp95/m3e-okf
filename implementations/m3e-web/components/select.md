@@ -55,6 +55,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A form control that allows users to select a value from a set of predefined options.
 
+**Display:** `inline-flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

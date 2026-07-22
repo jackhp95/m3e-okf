@@ -310,13 +310,13 @@
   "fab-menu": [
     {
       "title": "Primary FAB revealing a secondary action menu",
-      "code": "<m3e-button variant=\"filled\" size=\"large\">\n  <m3e-fab-menu-trigger for=\"compose-menu\"></m3e-fab-menu-trigger>\n  <m3e-icon slot=\"icon\" name=\"edit\"></m3e-icon>\n  Compose\n</m3e-button>\n<m3e-fab-menu id=\"compose-menu\" variant=\"secondary\">\n  <m3e-menu-item>\n    <m3e-icon slot=\"icon\" name=\"mail\"></m3e-icon>\n    New email\n  </m3e-menu-item>\n  <m3e-menu-item>\n    <m3e-icon slot=\"icon\" name=\"event\"></m3e-icon>\n    New event\n  </m3e-menu-item>\n  <m3e-menu-item>\n    <m3e-icon slot=\"icon\" name=\"group\"></m3e-icon>\n    New group\n  </m3e-menu-item>\n</m3e-fab-menu>",
+      "code": "<m3e-button variant=\"filled\" size=\"large\">\n  <m3e-fab-menu-trigger for=\"compose-menu\"></m3e-fab-menu-trigger>\n  <m3e-icon slot=\"icon\" name=\"edit\"></m3e-icon>\n  Compose\n</m3e-button>\n<m3e-fab-menu id=\"compose-menu\" variant=\"secondary\">\n  <m3e-fab-menu-item>\n    <m3e-icon slot=\"icon\" name=\"mail\"></m3e-icon>\n    New email\n  </m3e-fab-menu-item>\n  <m3e-fab-menu-item>\n    <m3e-icon slot=\"icon\" name=\"event\"></m3e-icon>\n    New event\n  </m3e-fab-menu-item>\n  <m3e-fab-menu-item>\n    <m3e-icon slot=\"icon\" name=\"group\"></m3e-icon>\n    New group\n  </m3e-fab-menu-item>\n</m3e-fab-menu>",
       "source": "authored (validated vs CEM)",
       "origin": "authored"
     },
     {
       "title": "Tertiary FAB menu with link and disabled items",
-      "code": "<m3e-button variant=\"tonal\" size=\"large\">\n  <m3e-fab-menu-trigger for=\"share-menu\"></m3e-fab-menu-trigger>\n  <m3e-icon slot=\"icon\" name=\"share\"></m3e-icon>\n</m3e-button>\n<m3e-fab-menu id=\"share-menu\" variant=\"tertiary\">\n  <m3e-menu-item href=\"https://example.com/link\" target=\"_blank\">\n    <m3e-icon slot=\"icon\" name=\"link\"></m3e-icon>\n    Copy link\n  </m3e-menu-item>\n  <m3e-menu-item>\n    <m3e-icon slot=\"icon\" name=\"download\"></m3e-icon>\n    Export PDF\n  </m3e-menu-item>\n  <m3e-menu-item disabled>\n    <m3e-icon slot=\"icon\" name=\"print\"></m3e-icon>\n    Print\n  </m3e-menu-item>\n</m3e-fab-menu>",
+      "code": "<m3e-button variant=\"tonal\" size=\"large\">\n  <m3e-fab-menu-trigger for=\"share-menu\"></m3e-fab-menu-trigger>\n  <m3e-icon slot=\"icon\" name=\"share\"></m3e-icon>\n</m3e-button>\n<m3e-fab-menu id=\"share-menu\" variant=\"tertiary\">\n  <m3e-fab-menu-item href=\"https://example.com/link\" target=\"_blank\">\n    <m3e-icon slot=\"icon\" name=\"link\"></m3e-icon>\n    Copy link\n  </m3e-fab-menu-item>\n  <m3e-fab-menu-item>\n    <m3e-icon slot=\"icon\" name=\"download\"></m3e-icon>\n    Export PDF\n  </m3e-fab-menu-item>\n  <m3e-fab-menu-item disabled>\n    <m3e-icon slot=\"icon\" name=\"print\"></m3e-icon>\n    Print\n  </m3e-fab-menu-item>\n</m3e-fab-menu>",
       "source": "authored (validated vs CEM)",
       "origin": "authored"
     }

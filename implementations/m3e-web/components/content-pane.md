@@ -41,6 +41,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A shaped surface for vertically scrollable content.
 
+**Display:** `block`
+
 **Slots**
 
 | Slot | Description |

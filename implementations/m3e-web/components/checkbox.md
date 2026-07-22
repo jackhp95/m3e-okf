@@ -65,6 +65,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A checkbox that allows a user to select one or more options from a limited number of choices.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

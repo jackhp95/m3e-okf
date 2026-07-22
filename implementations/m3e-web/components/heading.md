@@ -59,6 +59,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A heading to a page or section.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

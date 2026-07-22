@@ -8,9 +8,25 @@ The `m3e-fab-menu` component presents a dynamic menu of related actions, elegant
 import "@m3e/web/fab-menu";
 ```
 
-**Elements:** `<m3e-menu-item>`, `<m3e-fab-menu>`, `<m3e-fab-menu-trigger>`
+**Elements:** `<m3e-fab-menu-item>`, `<m3e-fab-menu>`, `<m3e-fab-menu-trigger>`
 
-_1 README example(s) withheld — markup drifts from the manifest (see the extraction report `data/report.md` in the m3e-docs repo that generated this skill). The validated **Compositions** below are CEM-checked._
+## Examples
+
+```html
+<m3e-fab variant="primary" size="large">
+  <m3e-fab-menu-trigger for="fabmenu">
+    <m3e-icon name="edit"></m3e-icon>
+  </m3e-fab-menu-trigger>
+</m3e-fab>
+<m3e-fab-menu id="fabmenu" variant="secondary">
+  <m3e-fab-menu-item>First</m3e-fab-menu-item>
+  <m3e-fab-menu-item>Second</m3e-fab-menu-item>
+  <m3e-fab-menu-item>Third</m3e-fab-menu-item>
+  <m3e-fab-menu-item>Forth</m3e-fab-menu-item>
+  <m3e-fab-menu-item>Fifth</m3e-fab-menu-item>
+  <m3e-fab-menu-item>Sixth</m3e-fab-menu-item>
+</m3e-fab-menu>
+```
 
 ## Compositions
 
@@ -25,18 +41,18 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
   Compose
 </m3e-button>
 <m3e-fab-menu id="compose-menu" variant="secondary">
-  <m3e-menu-item>
+  <m3e-fab-menu-item>
     <m3e-icon slot="icon" name="mail"></m3e-icon>
     New email
-  </m3e-menu-item>
-  <m3e-menu-item>
+  </m3e-fab-menu-item>
+  <m3e-fab-menu-item>
     <m3e-icon slot="icon" name="event"></m3e-icon>
     New event
-  </m3e-menu-item>
-  <m3e-menu-item>
+  </m3e-fab-menu-item>
+  <m3e-fab-menu-item>
     <m3e-icon slot="icon" name="group"></m3e-icon>
     New group
-  </m3e-menu-item>
+  </m3e-fab-menu-item>
 </m3e-fab-menu>
 ```
 
@@ -48,24 +64,24 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
   <m3e-icon slot="icon" name="share"></m3e-icon>
 </m3e-button>
 <m3e-fab-menu id="share-menu" variant="tertiary">
-  <m3e-menu-item href="https://example.com/link" target="_blank">
+  <m3e-fab-menu-item href="https://example.com/link" target="_blank">
     <m3e-icon slot="icon" name="link"></m3e-icon>
     Copy link
-  </m3e-menu-item>
-  <m3e-menu-item>
+  </m3e-fab-menu-item>
+  <m3e-fab-menu-item>
     <m3e-icon slot="icon" name="download"></m3e-icon>
     Export PDF
-  </m3e-menu-item>
-  <m3e-menu-item disabled>
+  </m3e-fab-menu-item>
+  <m3e-fab-menu-item disabled>
     <m3e-icon slot="icon" name="print"></m3e-icon>
     Print
-  </m3e-menu-item>
+  </m3e-fab-menu-item>
 </m3e-fab-menu>
 ```
 
 ## API
 
-### `<m3e-menu-item>`
+### `<m3e-fab-menu-item>`
 
 An item of a floating action button (FAB) menu.
 
@@ -196,5 +212,5 @@ Source files:
 - [`packages/web/src/fab-menu/FabMenuElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/fab-menu/FabMenuElement.ts)
 - [`packages/web/src/fab-menu/FabMenuTriggerElement.ts`](https://github.com/matraic/m3e/blob/c89173f392134df452422ffad051d5a5c90934b6/packages/web/src/fab-menu/FabMenuTriggerElement.ts)
 
-**README drift corrected** (5 item(s); CEM values used above):
+**README drift corrected** (4 item(s); CEM values used above):
 _See the extraction report `data/report.md` in the m3e-docs repo that generated this skill for specifics — attributes, defaults, or slots where the README disagreed with or omitted the code._

@@ -51,6 +51,8 @@ _Source: 2026: src/pages/work/index.astro_
 
 A bar that provides a prominent entry point for search.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -100,6 +102,8 @@ _…11 more families. See source for the full list._
 ### `<m3e-search-view>`
 
 A surface that presents suggestions and results for a search.
+
+**Display:** `block`
 
 **Attributes**
 

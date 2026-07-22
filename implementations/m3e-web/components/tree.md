@@ -129,6 +129,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 An expandable item in a tree.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -195,6 +197,8 @@ _…8 more families. See source for the full list._
 ### `<m3e-tree>`
 
 Presents hierarchical data in a tree structure.
+
+**Display:** `block`
 
 **Attributes**
 

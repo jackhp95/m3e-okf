@@ -6,14 +6,17 @@ Components: 53  ·  Elements: 110
 
 ## Verification findings (README vs CEM ground truth)
 
+- **CEM-TAG-MISMATCH**: 2
 - **DEFAULT-UNDOCUMENTED**: 37
 - **UNDOCUMENTED**: 37
 - **DEFAULT-MISMATCH**: 10
-- **EXAMPLE-DRIFT**: 9
+- **EXAMPLE-DRIFT**: 7
 
 > DEFAULT-UNDOCUMENTED = the CEM specifies a default the README doesn't state.
 > UNDOCUMENTED = real attribute (in CEM) missing from the README.
 > DEFAULT-MISMATCH = README and CEM disagree on an attribute's default.
+> CEM-TAG-MISMATCH = the analyzer's jsdoc `decl.tagName` disagrees with the
+> `custom-element-definition` registration export; the registration tag wins.
 > EXAMPLE-DRIFT = a README example uses a tag/attribute/slot the CEM doesn't expose
 > (markup an agent might copy verbatim); these snippets are withheld from the cards.
 > README-only = the README lists an attribute the CEM doesn't expose (likely stale/typo).
@@ -85,11 +88,11 @@ Components: 53  ·  Elements: 110
 - `rel` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 
 ### fab-menu
+- `M3eFabMenuItemElement` — **CEM-TAG-MISMATCH** (decl.tagName=m3e-menu-item registration=m3e-fab-menu-item (registration wins))
 - `href` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `rel` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `target` — **DEFAULT-UNDOCUMENTED** (CEM="", README blank)
 - `for` — **UNDOCUMENTED** (in CEM, not in README)
-- `unknown tag <m3e-fab-menu-item>` — **EXAMPLE-DRIFT** (in README example)
 
 ### form-field
 - `slot="label" not a slot of <m3e-form-field>` — **EXAMPLE-DRIFT** (in README example)
@@ -158,10 +161,10 @@ Components: 53  ·  Elements: 110
 - `disabled` — **UNDOCUMENTED** (in CEM, not in README)
 
 ### stepper
+- `M3eStepperNextElement` — **CEM-TAG-MISMATCH** (decl.tagName=m3e-stepper-previous registration=m3e-stepper-next (registration wins))
 - `invalid` — **UNDOCUMENTED** (in CEM, not in README)
 - `slot="label" not a slot of <m3e-form-field>` — **EXAMPLE-DRIFT** (in README example)
 - `slot="actions" not a slot of <m3e-step-panel>` — **EXAMPLE-DRIFT** (in README example)
-- `unknown tag <m3e-stepper-next>` — **EXAMPLE-DRIFT** (in README example)
 
 ### switch
 - `icons` — **DEFAULT-MISMATCH** (README=false CEM="none")

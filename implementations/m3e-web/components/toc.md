@@ -46,6 +46,8 @@ _Source: 2026: src/components/ReadingToolbar.astro_
 
 An item in a table of contents.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -93,6 +95,8 @@ _…3 more families. See source for the full list._
 ### `<m3e-toc>`
 
 A table of contents that provides in-page scroll navigation.
+
+**Display:** `inline-block`
 
 **Attributes**
 

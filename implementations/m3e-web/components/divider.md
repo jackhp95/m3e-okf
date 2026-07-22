@@ -58,6 +58,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A thin line that separates content in lists or other containers.
 
+**Display:** `block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

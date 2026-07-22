@@ -54,6 +54,8 @@ _Validated against the manifest — every tag, attribute, slot, and union value 
 
 A button users interact with to perform an action.
 
+**Display:** `inline-block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
+
 **Attributes**
 
 | Attribute | Type | Default | Description |

@@ -71,6 +71,8 @@ _Source: 2026: src/pages/speed-reader.astro_
 
 A non-interactive chip used to convey small pieces of information.
 
+**Display:** `inline-block`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -115,6 +117,8 @@ _…7 more families. See source for the full list._
 ### `<m3e-assist-chip>`
 
 A chip users interact with to perform a smart or automated action that can span multiple applications.
+
+**Display:** `inline-block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
 
 **Attributes**
 
@@ -175,6 +179,8 @@ _…16 more families. See source for the full list._
 
 A container used to organize chips into a cohesive unit.
 
+**Display:** `inline-flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -196,6 +202,8 @@ A container used to organize chips into a cohesive unit.
 ### `<m3e-filter-chip>`
 
 A chip users interact with to select/deselect options.
+
+**Display:** `inline-block`
 
 **Attributes**
 
@@ -254,6 +262,8 @@ _…33 more families. See source for the full list._
 
 A container that organizes filter chips into a cohesive group, enabling selection and
 
+**Display:** `inline-flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -302,6 +312,8 @@ A container that organizes filter chips into a cohesive group, enabling selectio
 ### `<m3e-input-chip>`
 
 A chip which represents a discrete piece of information entered by a user.
+
+**Display:** `inline-block`
 
 **Attributes**
 
@@ -363,6 +375,8 @@ _…24 more families. See source for the full list._
 
 A container that transforms user input into a cohesive set of interactive chips, supporting entry, editing, and removal of discrete values.
 
+**Display:** `inline-flex`
+
 **Attributes**
 
 | Attribute | Type | Default | Description |
@@ -411,6 +425,8 @@ A container that transforms user input into a cohesive set of interactive chips,
 ### `<m3e-suggestion-chip>`
 
 A chip used to help narrow a user's intent by presenting dynamically generated suggestions, such as
+
+**Display:** `inline-block` · **Navigable:** carries a native `href` — do not wrap it in an `<a>`.
 
 **Attributes**
 
